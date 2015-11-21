@@ -1,0 +1,91 @@
+package com.thoughtworks.lhli.lovelive_rock;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class Card {
+
+    private final String id;
+    private final String name;
+    private final String japaneseName;
+    private final JSONObject idol;
+    private final String japaneseCollection;
+    private final String rarity;
+    private final String attribute;
+    private final String japaneseAttribute;
+    private final boolean isPromo;
+    private final String promoItem;
+    private final String releaseDate;
+    private final boolean japanOnly;
+    private final JSONObject event;
+    private final boolean isSpecial;
+    private final String hp;
+    private final String minimumStatisticsSmile;
+    private final String minimumStatisticsPure;
+    private final String minimumStatisticsCool;
+    private final String nonIdolizedMaximumStatisticsSmile;
+    private final String nonIdolizedMaximumStatisticsPure;
+    private final String nonIdolizedMaximumStatisticsCool;
+    private final String idolizedMaximumStatisticsSmile;
+    private final String idolizedMaximumStatisticsPure;
+    private final String idolizedMaximumStatisticsCool;
+    private final String skill;
+    private final String japaneseSkill;
+    private final String skillDetails;
+    private final String japaneseSkillDetails;
+    private final String centerSkill;
+    private final String japaneseCenterSkill;
+    private final String japaneseCenterSkillDetails;
+    private final String cardImage;
+    private final String cardIdolizedImage;
+    private final String roundCardImage;
+    private final String videoStory;
+    private final String japaneseVideoStory;
+    private final String websiteUrl;
+    private final String nonIdolizedMaxLevel;
+    private final String idolizedMaxLevel;
+    private final String ownedCards;
+
+    public Card(JSONObject jsonObject) throws JSONException {
+        id = jsonObject.getString("id");
+        name = jsonObject.getString("name");
+        japaneseName = jsonObject.getString("japanese_name");
+        idol = jsonObject.getJSONObject("idol");
+        japaneseCollection = jsonObject.getString("japanese_collection");
+        rarity = jsonObject.getString("rarity");
+        attribute = jsonObject.getString("attribute");
+        japaneseAttribute = jsonObject.getString("japanese_attribute");
+        isPromo = jsonObject.getBoolean("is_promo");
+        promoItem = jsonObject.getString("promo_item");
+        releaseDate = jsonObject.getString("release_date");
+        japanOnly = jsonObject.getBoolean("japan_only");
+        event = jsonObject.getJSONObject("event");
+        isSpecial = jsonObject.getBoolean("is_special");
+        hp = jsonObject.getString("hp");
+        minimumStatisticsSmile = jsonObject.getString("minimum_statistics_smile");
+        minimumStatisticsPure = jsonObject.getString("minimum_statistics_pure");
+        minimumStatisticsCool = jsonObject.getString("minimum_statistics_cool");
+        nonIdolizedMaximumStatisticsSmile = jsonObject.getString("non_idolized_maximum_statistics_smile");
+        nonIdolizedMaximumStatisticsPure = jsonObject.getString("non_idolized_maximum_statistics_pure");
+        nonIdolizedMaximumStatisticsCool = jsonObject.getString("non_idolized_maximum_statistics_cool");
+        idolizedMaximumStatisticsSmile = jsonObject.getString("idolized_maximum_statistics_smile");
+        idolizedMaximumStatisticsPure = jsonObject.getString("idolized_maximum_statistics_pure");
+        idolizedMaximumStatisticsCool = jsonObject.getString("idolized_maximum_statistics_cool");
+        skill = jsonObject.getString("skill");
+        japaneseSkill = jsonObject.getString("japanese_skill");
+        skillDetails = jsonObject.getString("skill_details");
+        japaneseSkillDetails = jsonObject.getString("japanese_skill_details");
+        centerSkill = jsonObject.getString("center_skill");
+        japaneseCenterSkill = jsonObject.getString("japanese_center_skill");
+        japaneseCenterSkillDetails = jsonObject.getString("japanese_center_skill_details");
+        cardImage = jsonObject.getString("card_image");
+        cardIdolizedImage = jsonObject.getString("card_idolized_image");
+        roundCardImage = jsonObject.getString("round_card_image");
+        videoStory = jsonObject.getString("video_story");
+        japaneseVideoStory = jsonObject.getString("japanese_video_story");
+        websiteUrl = jsonObject.getString("website_url");
+        nonIdolizedMaxLevel = jsonObject.getString("non_idolized_max_level");
+        idolizedMaxLevel = jsonObject.getString("idolized_max_level");
+        ownedCards = jsonObject.getString("owned_cards");
+    }
+}
