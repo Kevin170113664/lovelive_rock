@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorBackground"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/small_card_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/small_card_padding_top"
+            android:src="@mipmap/RoundKotori726" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/small_text_paddint_left">
+
+            <TextView
+                android:id="@+id/small_card_collection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/small_text_padding_top"
+                android:text="卡牌主题：舞踏会編"
+                android:textSize="10pt" />
+
+            <TextView
+                android:id="@+id/small_card_max_statistics"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/small_text_line_paddint_top"
+                android:text="最高属性：5050"
+                android:textSize="10pt" />
+
+            <TextView
+                android:id="@+id/small_card_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/small_text_line_paddint_top"
+                android:text="技能类型：图标判定"
+                android:textSize="10pt" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/small_card_padding_top"
+            android:src="@mipmap/RoundIdolizedKotori119" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/small_text_paddint_left">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/small_text_padding_top"
+                android:text="卡牌主题：特典"
+                android:textSize="10pt" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/small_text_line_paddint_top"
+                android:text="最高属性：4020"
+                android:textSize="10pt" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/small_text_line_paddint_top"
+                android:text="技能类型：时间加分"
+                android:textSize="10pt" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/small_card_padding_top"
+            android:src="@mipmap/RoundIdolizedKotori315" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/small_text_paddint_left">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/small_text_padding_top"
+                android:text="卡牌主题：5月編"
+                android:textSize="10pt" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/small_text_line_paddint_top"
+                android:text="最高属性：5210"
+                android:textSize="10pt" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/small_text_line_paddint_top"
+                android:text="技能类型：完美加分"
+                android:textSize="10pt" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/small_card_padding_top"
+            android:src="@mipmap/RoundIdolizedKotori565" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/small_text_paddint_left">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/small_text_padding_top"
+                android:text="卡牌主题：職業編Part2"
+                android:textSize="10pt" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/small_text_line_paddint_top"
+                android:text="最高属性：5250"
+                android:textSize="10pt" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/small_text_line_paddint_top"
+                android:text="技能类型：图标判定"
+                android:textSize="10pt" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/small_card_padding_top"
+            android:src="@mipmap/RoundIdolizedKotori634" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/small_text_paddint_left">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/small_text_padding_top"
+                android:text="卡牌主题：手品師編"
+                android:textSize="10pt" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/small_text_line_paddint_top"
+                android:text="最高属性：5330"
+                android:textSize="10pt" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/small_text_line_paddint_top"
+                android:text="技能类型：图标回血"
+                android:textSize="10pt" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
