@@ -1,4 +1,8 @@
 <resources>
-    <string name="app_name">lovelive_rock</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name">Lovelive</string>
+    <string name="action_card">Card</string>
+    <string name="action_song">Song</string>
+    <string name="action_event">Event</string>
+
+    <string name="card_layout_label">Card</string>
 </resources>

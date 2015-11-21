@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lovelive</string>
+    <string name="action_card">卡牌</string>
+    <string name="action_song">歌曲</string>
+    <string name="action_event">活动</string>
+
+    <string name="card_layout_label">卡牌</string>
+</resources>
