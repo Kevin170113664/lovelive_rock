@@ -1,8 +1,14 @@
-package com.thoughtworks.lhli.lovelive_rock;
+package com.thoughtworks.lhli.lovelive_rock.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.thoughtworks.lhli.lovelive_rock.model.Card;
+import com.thoughtworks.lhli.lovelive_rock.service.CardService;
+
+import java.util.List;
+
+import retrofit.Call;
 import retrofit.Retrofit;
 
 public class CardActivity extends AppCompatActivity {
@@ -14,6 +20,6 @@ public class CardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        cardService.listCards();
+        Call<List<Card>> cardList = cardService.getCardList();
     }
 }

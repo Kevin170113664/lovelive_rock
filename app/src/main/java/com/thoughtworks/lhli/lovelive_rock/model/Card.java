@@ -1,4 +1,4 @@
-package com.thoughtworks.lhli.lovelive_rock;
+package com.thoughtworks.lhli.lovelive_rock.model;
 
 import org.json.JSONException;
 import org.json.JSONObject;
