@@ -5,11 +5,8 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -17,7 +14,6 @@ import android.widget.ListView;
 import com.squareup.okhttp.ResponseBody;
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.adapter.MediumCardListAdapter;
-import com.thoughtworks.lhli.lovelive_rock.adapter.SmallCardListAdapter;
 import com.thoughtworks.lhli.lovelive_rock.service.CardService;
 
 import java.io.IOException;
@@ -43,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
 
-        listView.setAdapter(new MediumCardListAdapter());
+        listView.setAdapter(new MediumCardListAdapter("Start Dash!"));
 //        try {
 //            fetchCardList();
 //        } catch (IOException e) {

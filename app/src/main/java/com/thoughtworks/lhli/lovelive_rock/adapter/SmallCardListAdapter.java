@@ -12,14 +12,20 @@ import com.thoughtworks.lhli.lovelive_rock.R;
 
 public class SmallCardListAdapter extends BaseAdapter {
 
-    @Override
-    public int getCount() {
-        return 0;
+    private String data;
+
+    public SmallCardListAdapter(String data) {
+        this.data = data;
     }
 
     @Override
-    public Object getItem(int position) {
-        return null;
+    public int getCount() {
+        return 2;
+    }
+
+    @Override
+    public String getItem(int position) {
+        return data == null ? null : data;
     }
 
     @Override
@@ -43,7 +49,7 @@ public class SmallCardListAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.smallCardCollection.setText((Integer) getItem(position));
+//        viewHolder.smallCardCollection.setText("HHHHHHHHHHHHH");
         return convertView;
     }
 

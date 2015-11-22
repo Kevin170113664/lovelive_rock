@@ -10,14 +10,21 @@ import android.widget.TextView;
 import com.thoughtworks.lhli.lovelive_rock.R;
 
 public class MediumCardListAdapter extends BaseAdapter {
-    @Override
-    public int getCount() {
-        return 0;
+
+    private String data;
+
+    public MediumCardListAdapter(String data) {
+        this.data = data;
     }
 
     @Override
-    public Object getItem(int position) {
-        return null;
+    public int getCount() {
+        return 2;
+    }
+
+    @Override
+    public String getItem(int position) {
+        return data == null ? null : data;
     }
 
     @Override
@@ -50,7 +57,7 @@ public class MediumCardListAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-
+//        viewHolder.mediumCardIdolName.setText("OOOOOOOOOOO");
         return convertView;
     }
 

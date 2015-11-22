@@ -37,7 +37,7 @@ public class CardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.card);
         ButterKnife.bind(this);
-        listView.setAdapter(new SmallCardListAdapter());
+        listView.setAdapter(new SmallCardListAdapter("String"));
     }
 
     @Override
