@@ -21,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:paddingBottom="8dp"
             android:paddingLeft="@dimen/small_text_paddint_left">
 
             <TextView
@@ -67,6 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:paddingBottom="8dp"
             android:paddingLeft="@dimen/small_text_paddint_left">
 
             <TextView
@@ -110,6 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:paddingBottom="8dp"
             android:paddingLeft="@dimen/small_text_paddint_left">
 
             <TextView
@@ -153,6 +156,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:paddingBottom="8dp"
             android:paddingLeft="@dimen/small_text_paddint_left">
 
             <TextView
@@ -196,49 +200,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingLeft="@dimen/small_text_paddint_left">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingTop="@dimen/small_text_padding_top"
-                android:text="卡牌主题：手品師編"
-                android:textSize="10pt" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingTop="@dimen/small_text_line_paddint_top"
-                android:text="最高属性：5330"
-                android:textSize="10pt" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingTop="@dimen/small_text_line_paddint_top"
-                android:text="技能类型：图标回血"
-                android:textSize="10pt" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/small_card_padding_top"
-            android:src="@mipmap/round_idolized_kotori_634" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:paddingBottom="8dp"
             android:paddingLeft="@dimen/small_text_paddint_left">
 
             <TextView

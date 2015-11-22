@@ -24,6 +24,10 @@
             android:name=".activity.CardActivity"
             android:label="@string/card_layout_label"
             android:parentActivityName=".activity.MainActivity" />
+        <activity
+            android:name=".activity.CardDetailActivity"
+            android:label="@string/card_detail_layout_label"
+            android:parentActivityName=".activity.CardActivity" />
     </application>
 
 </manifest>

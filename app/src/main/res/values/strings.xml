@@ -5,4 +5,5 @@
     <string name="action_event">Event</string>
 
     <string name="card_layout_label">Card</string>
+    <string name="card_detail_layout_label">Card Detail</string>
 </resources>

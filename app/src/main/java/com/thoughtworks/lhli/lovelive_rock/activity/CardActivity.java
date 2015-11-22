@@ -1,31 +1,19 @@
 package com.thoughtworks.lhli.lovelive_rock.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.squareup.okhttp.ResponseBody;
 import com.thoughtworks.lhli.lovelive_rock.R;
-import com.thoughtworks.lhli.lovelive_rock.adapter.MediumCardListAdapter;
 import com.thoughtworks.lhli.lovelive_rock.adapter.SmallCardListAdapter;
-import com.thoughtworks.lhli.lovelive_rock.model.Card;
-import com.thoughtworks.lhli.lovelive_rock.service.CardService;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.Converter;
-import retrofit.Response;
-import retrofit.Retrofit;
 
 public class CardActivity extends AppCompatActivity {
 
@@ -35,9 +23,16 @@ public class CardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.card);
+        setContentView(R.layout.activity_card);
         ButterKnife.bind(this);
         listView.setAdapter(new SmallCardListAdapter("String"));
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startActivity(new Intent(CardActivity.this, CardDetailActivity.class));
+            }
+        });
     }
 
     @Override

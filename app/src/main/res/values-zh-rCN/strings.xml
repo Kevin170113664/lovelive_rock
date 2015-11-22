@@ -6,4 +6,5 @@
     <string name="action_event">活动</string>
 
     <string name="card_layout_label">卡牌</string>
+    <string name="card_detail_layout_label">卡牌详情</string>
 </resources>

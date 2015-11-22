@@ -40,11 +40,6 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         listView.setAdapter(new MediumCardListAdapter("Start Dash!"));
-//        try {
-//            fetchCardList();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
 
     protected void fetchCardList() throws IOException {
