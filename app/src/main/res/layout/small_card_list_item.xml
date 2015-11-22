@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/small_card_padding_top"
-            android:src="@mipmap/RoundKotori726" />
+            android:src="@mipmap/round_kotori_726" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,7 +40,7 @@
                 android:textSize="10pt" />
 
             <TextView
-                android:id="@+id/small_card_text"
+                android:id="@+id/small_card_skill"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/small_text_line_paddint_top"
@@ -58,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/small_card_padding_top"
-            android:src="@mipmap/RoundIdolizedKotori119" />
+            android:src="@mipmap/round_idolized_kotori_119" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -98,7 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/small_card_padding_top"
-            android:src="@mipmap/RoundIdolizedKotori315" />
+            android:src="@mipmap/round_idolized_kotori_315" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -138,7 +138,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/small_card_padding_top"
-            android:src="@mipmap/RoundIdolizedKotori565" />
+            android:src="@mipmap/round_idolized_kotori_565" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -178,7 +178,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/small_card_padding_top"
-            android:src="@mipmap/RoundIdolizedKotori634" />
+            android:src="@mipmap/round_idolized_kotori_634" />
 
         <LinearLayout
             android:layout_width="match_parent"

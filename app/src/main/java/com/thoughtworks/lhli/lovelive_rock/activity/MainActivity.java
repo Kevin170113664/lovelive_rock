@@ -1,6 +1,9 @@
 package com.thoughtworks.lhli.lovelive_rock.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,10 +12,28 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
+import com.squareup.okhttp.ResponseBody;
 import com.thoughtworks.lhli.lovelive_rock.R;
+import com.thoughtworks.lhli.lovelive_rock.adapter.MediumCardListAdapter;
+import com.thoughtworks.lhli.lovelive_rock.adapter.SmallCardListAdapter;
+import com.thoughtworks.lhli.lovelive_rock.service.CardService;
+
+import java.io.IOException;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.GsonConverterFactory;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
+
+    @Bind(R.id.medium_card_list)
+    protected ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,20 +41,45 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        ButterKnife.bind(this);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        listView.setAdapter(new MediumCardListAdapter());
+//        try {
+//            fetchCardList();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+    }
+
+    protected void fetchCardList() throws IOException {
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("http://schoolido.lu/api/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            CardService cardService = retrofit.create(CardService.class);
+            Call<ResponseBody> call = cardService.getCardList();
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Response response) {
+
+                }
+
+                @Override
+                public void onFailure(Throwable t) {
+
+                }
+            });
+        } else {
+            // display error
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
