@@ -11,19 +11,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
-import com.squareup.okhttp.ResponseBody;
 import com.thoughtworks.lhli.lovelive_rock.R;
+import com.thoughtworks.lhli.lovelive_rock.RestClient;
 import com.thoughtworks.lhli.lovelive_rock.adapter.MediumCardListAdapter;
+import com.thoughtworks.lhli.lovelive_rock.model.Card;
 import com.thoughtworks.lhli.lovelive_rock.service.CardService;
 
 import java.io.IOException;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import retrofit.Call;
 import retrofit.Callback;
-import retrofit.GsonConverterFactory;
-import retrofit.Response;
 import retrofit.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
@@ -52,16 +52,14 @@ public class MainActivity extends AppCompatActivity {
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://schoolido.lu/api/")
-                    .build();
-            CardService cardService = retrofit.create(CardService.class);
-            Call<ResponseBody> call = cardService.getCardList();
-            call.enqueue(new Callback<ResponseBody>() {
+            RestClient restClient = new RestClient();
+            CardService cardService = restClient.getCardService();
+            Call<List<Card>> call = cardService.getCardList();
+            call.enqueue(new Callback<List<Card>>() {
 
                 @Override
-                public void onResponse(Response<ResponseBody> response, Retrofit retrofit) {
-                    System.out.print("HEY,HEY,HEY");
+                public void onResponse(retrofit.Response<List<Card>> response, Retrofit retrofit) {
+                    System.out.print(response);
                 }
 
                 @Override
