@@ -10,8 +10,11 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 import com.thoughtworks.lhli.lovelive_rock.R;
+import com.thoughtworks.lhli.lovelive_rock.bus.CardEvent;
 import com.thoughtworks.lhli.lovelive_rock.bus.EventEvent;
+import com.thoughtworks.lhli.lovelive_rock.manager.CardManager;
 import com.thoughtworks.lhli.lovelive_rock.manager.EventManager;
+import com.thoughtworks.lhli.lovelive_rock.model.Card;
 import com.thoughtworks.lhli.lovelive_rock.model.Event;
 
 import java.io.IOException;
@@ -30,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
-
         final EventManager eventManager = new EventManager(new ArrayList<Event>(), this);
 
         try {
@@ -40,10 +42,24 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void onEvent(EventEvent eventEvent) {
+    public void onEvent(EventEvent eventEvent) throws IOException {
         Picasso.with(this)
                 .load(eventEvent.getEventList().get(0).getImage())
                 .into((ImageView) findViewById(R.id.latest_event_image));
+
+        final CardManager cardManager = new CardManager(new ArrayList<Card>(), this);
+        Integer cardId = eventEvent.getEventList().get(0).getCards()[1];
+        cardManager.getCardById(cardId.toString());
+    }
+
+    public void onEvent(CardEvent cardEvent) {
+        Picasso.with(this)
+                .load(cardEvent.getCardList().get(0).getCardImage())
+                .into((ImageView) findViewById(R.id.latest_event_Sr_image));
+
+        Picasso.with(this)
+                .load(cardEvent.getCardList().get(0).getCardIdolizedImage())
+                .into((ImageView) findViewById(R.id.latest_event_idolized_Sr_image));
     }
 
     @Override
