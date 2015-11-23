@@ -1,11 +1,7 @@
 package com.thoughtworks.lhli.lovelive_rock.activity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -15,29 +11,20 @@ import android.widget.ListView;
 import com.thoughtworks.lhli.lovelive_rock.CardEvent;
 import com.thoughtworks.lhli.lovelive_rock.CardManager;
 import com.thoughtworks.lhli.lovelive_rock.R;
-import com.thoughtworks.lhli.lovelive_rock.Retrofit;
 import com.thoughtworks.lhli.lovelive_rock.adapter.MediumCardListAdapter;
 import com.thoughtworks.lhli.lovelive_rock.model.Card;
-import com.thoughtworks.lhli.lovelive_rock.model.MultipleCards;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.Response;
 
 public class MainActivity extends AppCompatActivity {
 
     @Bind(R.id.medium_card_list)
     protected ListView listView;
-
-    protected List<Card> cardList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,71 +34,16 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
-        cardList = new ArrayList<>();
-        CardManager cardManager = new CardManager(cardList, MainActivity.this);
+        CardManager cardManager = new CardManager(new ArrayList<Card>(), MainActivity.this);
         try {
-            cardManager.fetchCardList();
+            cardManager.getAllCards();
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        try {
-//            cardList = new ArrayList<>();
-//            fetchCardList();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
 
     public void onEvent(CardEvent cardEvent) {
         listView.setAdapter(new MediumCardListAdapter(MainActivity.this, cardEvent.getCardList()));
-    }
-
-    protected void fetchCardList() throws IOException {
-        if (isNetworkAvailable()) {
-            Call<MultipleCards> callMultipleCards = Retrofit.getInstance().getCardService().getCardList(72);
-            callMultipleCards.enqueue(getCardListCallback());
-
-            Call<Card> callSingleCard = Retrofit.getInstance().getCardService().getCardById("315");
-            callSingleCard.enqueue(getCardByIdCallback());
-        } else {
-            System.out.print("------------------------------");
-        }
-    }
-
-    @NonNull
-    private Callback<MultipleCards> getCardListCallback() {
-        return new Callback<MultipleCards>() {
-            @Override
-            public void onResponse(Response<MultipleCards> response, retrofit.Retrofit retrofit) {
-                if (response.isSuccess()) {
-                    cardList.addAll(Arrays.asList(response.body().getResults()));
-                    listView.setAdapter(new MediumCardListAdapter(MainActivity.this, cardList));
-                }
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-                System.out.print("getCardListCallback failed.");
-            }
-        };
-    }
-
-    @NonNull
-    private Callback<Card> getCardByIdCallback() {
-        return new Callback<Card>() {
-            @Override
-            public void onResponse(Response<Card> response, retrofit.Retrofit retrofit) {
-                if (response.isSuccess()) {
-                    cardList.add(response.body());
-                    listView.setAdapter(new MediumCardListAdapter(MainActivity.this, cardList));
-                }
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-                System.out.print("getCardByIdCallback failed.");
-            }
-        };
     }
 
     @Override
@@ -133,12 +65,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    protected Boolean isNetworkAvailable() {
-        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-
-        return networkInfo != null && networkInfo.isConnected();
     }
 }

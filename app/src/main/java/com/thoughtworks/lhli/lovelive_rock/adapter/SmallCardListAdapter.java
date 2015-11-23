@@ -23,6 +23,7 @@ public class SmallCardListAdapter extends BaseAdapter {
     private List<Card> cardList;
 
     public SmallCardListAdapter(Context context, List<Card> cardList) {
+        this.context = context;
         this.cardList = cardList;
     }
 

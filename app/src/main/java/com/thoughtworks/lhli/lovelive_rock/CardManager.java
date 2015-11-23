@@ -27,15 +27,23 @@ public class CardManager {
         this.context = context;
     }
 
-    public void fetchCardList() throws IOException {
+    public void getAllCards() throws IOException {
         if (isNetworkAvailable()) {
-            Call<MultipleCards> callMultipleCards = Retrofit.getInstance().getCardService().getCardList(72);
-            callMultipleCards.enqueue(getCardListCallback());
-
-            Call<Card> callSingleCard = Retrofit.getInstance().getCardService().getCardById("315");
-            callSingleCard.enqueue(getCardByIdCallback());
+            for (int page = 70; page < 73; page++) {
+                Call<MultipleCards> call = Retrofit.getInstance().getCardService().getCardList(page);
+                call.enqueue(getCardListCallback());
+            }
         } else {
-            System.out.print("------------------------------");
+            System.out.print("Get all cards failed.");
+        }
+    }
+
+    public void getCardById(String Id) throws IOException {
+        if (isNetworkAvailable()) {
+            Call<Card> call = Retrofit.getInstance().getCardService().getCardById(Id);
+            call.enqueue(getCardByIdCallback());
+        } else {
+            System.out.print("Get card by id failed.");
         }
     }
 
@@ -54,7 +62,6 @@ public class CardManager {
                 if (response.isSuccess()) {
                     cardList.addAll(Arrays.asList(response.body().getResults()));
                     EventBus.getDefault().post(new CardEvent(cardList));
-//                    listView.setAdapter(new MediumCardListAdapter(context, cardList));
                 }
             }
 
@@ -73,7 +80,6 @@ public class CardManager {
                 if (response.isSuccess()) {
                     cardList.add(response.body());
                     EventBus.getDefault().post(new CardEvent(cardList));
-//                    listView.setAdapter(new MediumCardListAdapter(context, cardList));
                 }
             }
 
