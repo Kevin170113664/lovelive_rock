@@ -1,18 +1,20 @@
 package com.thoughtworks.lhli.lovelive_rock.service;
 
 import com.thoughtworks.lhli.lovelive_rock.model.Card;
-
-import java.util.List;
+import com.thoughtworks.lhli.lovelive_rock.model.MultipleCards;
 
 import retrofit.Call;
-import retrofit.Callback;
 import retrofit.http.GET;
 import retrofit.http.Path;
+import retrofit.http.Query;
 
 public interface CardService {
-    @GET("cards")
-    public void getCardList(Callback<List<Card>> callback);
+    @GET("/cards")
+    Call<MultipleCards> getCardList(@Query("page") Integer page);
 
-    @GET("cards/{id}")
+    @GET("/cards")
+    Call<MultipleCards> getCardList();
+
+    @GET("/cards/{id}")
     Call<Card> getCardById(@Path("id") String cardId);
 }

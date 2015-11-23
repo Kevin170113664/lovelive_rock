@@ -3,25 +3,24 @@ package com.thoughtworks.lhli.lovelive_rock;
 import com.thoughtworks.lhli.lovelive_rock.service.CardService;
 
 import retrofit.GsonConverterFactory;
-import retrofit.Retrofit;
 
-public class RestClient {
+public class Retrofit {
 
 
-    private static RestClient instance;
+    private static Retrofit instance;
 
-    private Retrofit retrofit;
+    private retrofit.Retrofit retrofit;
 
-    public static RestClient getInstance() {
+    public static Retrofit getInstance() {
         if (instance == null) {
-            instance = new RestClient();
+            instance = new Retrofit();
         }
         return instance;
     }
 
-    public RestClient() {
-        retrofit = new Retrofit.Builder()
-                .baseUrl("http://schoolido.lu/api/")
+    public Retrofit() {
+        retrofit = new retrofit.Retrofit.Builder()
+                .baseUrl("http://schoolido.lu/api")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }

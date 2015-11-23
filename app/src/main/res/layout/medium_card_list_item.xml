@@ -14,8 +14,7 @@
             android:id="@+id/medium_card_image"
             android:layout_width="171dp"
             android:layout_height="240dp"
-            android:padding="10dp"
-            android:src="@mipmap/idolized_kotori_315" />
+            android:padding="10dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,7 +28,7 @@
                 android:layout_weight="1"
                 android:paddingLeft="9dp"
                 android:paddingTop="17dp"
-                android:text="南ことり"
+                android:text=""
                 android:textSize="10pt" />
 
             <LinearLayout
@@ -45,7 +44,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingTop="10dp"
-                    android:text="3720"
+                    android:text=""
                     android:textAlignment="center"
                     android:textSize="10pt" />
 
@@ -55,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingTop="10dp"
-                    android:text="3260"
+                    android:text=""
                     android:textAlignment="center"
                     android:textSize="10pt" />
 
@@ -65,7 +64,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingTop="10dp"
-                    android:text="2340"
+                    android:text=""
                     android:textAlignment="center"
                     android:textSize="10pt" />
             </LinearLayout>
@@ -83,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingTop="10dp"
-                    android:text="4910"
+                    android:text=""
                     android:textAlignment="center"
                     android:textSize="10pt" />
 
@@ -93,7 +92,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingTop="10dp"
-                    android:text="4450"
+                    android:text=""
                     android:textAlignment="center"
                     android:textSize="10pt" />
 
@@ -103,7 +102,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingTop="10dp"
-                    android:text="3530"
+                    android:text=""
                     android:textAlignment="center"
                     android:textSize="10pt" />
             </LinearLayout>
@@ -121,7 +120,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingTop="10dp"
-                    android:text="5210"
+                    android:text=""
                     android:textAlignment="center"
                     android:textSize="10pt" />
 
@@ -131,7 +130,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingTop="10dp"
-                    android:text="4750"
+                    android:text=""
                     android:textAlignment="center"
                     android:textSize="10pt" />
 
@@ -141,19 +140,19 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingTop="10dp"
-                    android:text="3830"
+                    android:text=""
                     android:textAlignment="center"
                     android:textSize="10pt" />
             </LinearLayout>
 
             <TextView
-                android:id="@+id/medium_card_center_skill"
+                android:id="@+id/medium_card_center_skill_type"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingLeft="9dp"
                 android:paddingTop="10dp"
-                android:text="微笑天使"
+                android:text=""
                 android:textSize="10pt" />
 
             <TextView
@@ -164,219 +163,44 @@
                 android:paddingBottom="15dp"
                 android:paddingLeft="9dp"
                 android:paddingTop="10dp"
-                android:text="2014-04-30"
+                android:text=""
                 android:textSize="10pt" />
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingRight="10dp">
-
         <TextView
-            android:id="@+id/medium_card_skill_name"
+            android:id="@+id/medium_card_center_skill"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
-            android:text="小さなお姫様"
+            android:text=""
             android:textSize="10pt" />
 
         <TextView
-            android:id="@+id/medium_card_skill_detail"
+            android:id="@+id/medium_card_center_skill_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:paddingTop="10dp"
-            android:text="PERFECTを22回達成す"
+            android:text=""
             android:textSize="8pt" />
-    </LinearLayout>
 
     <TextView
-        android:id="@+id/medium_card_skill_detail_1"
-        android:layout_width="match_parent"
+        android:id="@+id/medium_card_skill"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
-        android:text="るごとに35%の確率でスコアが600増える"
-        android:textSize="8pt" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="171dp"
-            android:layout_height="240dp"
-            android:padding="10dp"
-            android:src="@mipmap/idolized_kotori_155" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="210dp"
-                android:layout_height="wrap_content"
-                android:paddingLeft="9dp"
-                android:paddingTop="17dp"
-                android:text="南ことり"
-                android:textSize="10pt" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingRight="10dp">
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="10dp"
-                    android:text="2760"
-                    android:textAlignment="center"
-                    android:textSize="10pt" />
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="10dp"
-                    android:text="2850"
-                    android:textAlignment="center"
-                    android:textSize="10pt" />
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="10dp"
-                    android:text="3710"
-                    android:textAlignment="center"
-                    android:textSize="10pt" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingRight="10dp">
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="10dp"
-                    android:text="3950"
-                    android:textAlignment="center"
-                    android:textSize="10pt" />
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="10dp"
-                    android:text="4040"
-                    android:textAlignment="center"
-                    android:textSize="10pt" />
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="10dp"
-                    android:text="4900"
-                    android:textAlignment="center"
-                    android:textSize="10pt" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingRight="10dp">
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="10dp"
-                    android:text="4250"
-                    android:textAlignment="center"
-                    android:textSize="10pt" />
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="10dp"
-                    android:text="4340"
-                    android:textAlignment="center"
-                    android:textSize="10pt" />
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="10dp"
-                    android:text="5200"
-                    android:textAlignment="center"
-                    android:textSize="10pt" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="210dp"
-                android:layout_height="wrap_content"
-                android:paddingLeft="9dp"
-                android:paddingTop="10dp"
-                android:text="冷酷女皇"
-                android:textSize="10pt" />
-
-            <TextView
-                android:layout_width="210dp"
-                android:layout_height="wrap_content"
-                android:paddingBottom="15dp"
-                android:paddingLeft="9dp"
-                android:paddingTop="10dp"
-                android:text="2013-09-15"
-                android:textSize="10pt" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingRight="10dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:text="夕涼みガール"
-            android:textSize="10pt" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="10dp"
-            android:text="リズムアイコン19個ご"
-            android:textSize="8pt" />
-    </LinearLayout>
+        android:text=""
+        android:textSize="10pt" />
 
     <TextView
+        android:id="@+id/medium_card_skill_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
-        android:paddingTop="10dp"
-        android:text="とに33%の確率で体力が3回復する"
+        android:paddingRight="10dp"
+        android:text=""
         android:textSize="8pt" />
 
 </LinearLayout>

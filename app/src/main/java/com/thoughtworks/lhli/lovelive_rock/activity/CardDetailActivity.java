@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
 import com.thoughtworks.lhli.lovelive_rock.R;
-import com.thoughtworks.lhli.lovelive_rock.adapter.MediumCardListAdapter;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -20,6 +19,6 @@ public class CardDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_detail);
         ButterKnife.bind(this);
-        listView.setAdapter(new MediumCardListAdapter("Start Dash!"));
+//        listView.setAdapter(new MediumCardListAdapter("Start Dash!"));
     }
 }
