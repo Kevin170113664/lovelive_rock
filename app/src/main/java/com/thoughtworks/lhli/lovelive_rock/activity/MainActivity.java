@@ -12,6 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
+import com.thoughtworks.lhli.lovelive_rock.CardEvent;
+import com.thoughtworks.lhli.lovelive_rock.CardManager;
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.Retrofit;
 import com.thoughtworks.lhli.lovelive_rock.adapter.MediumCardListAdapter;
@@ -25,6 +27,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
@@ -43,19 +46,28 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
+        EventBus.getDefault().register(this);
+        cardList = new ArrayList<>();
+        CardManager cardManager = new CardManager(cardList, MainActivity.this);
         try {
-            cardList = new ArrayList<>();
-            fetchCardList();
+            cardManager.fetchCardList();
         } catch (IOException e) {
             e.printStackTrace();
         }
+//        try {
+//            cardList = new ArrayList<>();
+//            fetchCardList();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+    }
+
+    public void onEvent(CardEvent cardEvent) {
+        listView.setAdapter(new MediumCardListAdapter(MainActivity.this, cardEvent.getCardList()));
     }
 
     protected void fetchCardList() throws IOException {
-        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-
-        if (networkInfo != null && networkInfo.isConnected()) {
+        if (isNetworkAvailable()) {
             Call<MultipleCards> callMultipleCards = Retrofit.getInstance().getCardService().getCardList(72);
             callMultipleCards.enqueue(getCardListCallback());
 
@@ -121,5 +133,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    protected Boolean isNetworkAvailable() {
+        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+        return networkInfo != null && networkInfo.isConnected();
     }
 }
