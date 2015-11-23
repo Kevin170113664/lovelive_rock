@@ -19,6 +19,7 @@ import com.thoughtworks.lhli.lovelive_rock.model.Card;
 import com.thoughtworks.lhli.lovelive_rock.model.MultipleCards;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Bind(R.id.medium_card_list)
     protected ListView listView;
+
     protected List<Card> cardList;
 
     @Override
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
         try {
+            cardList = new ArrayList<>();
             fetchCardList();
         } catch (IOException e) {
             e.printStackTrace();
@@ -53,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
         if (networkInfo != null && networkInfo.isConnected()) {
-            Call<MultipleCards> callMultipleCards = Retrofit.getInstance().getCardService().getCardList();
+            Call<MultipleCards> callMultipleCards = Retrofit.getInstance().getCardService().getCardList(72);
             callMultipleCards.enqueue(getCardListCallback());
 
             Call<Card> callSingleCard = Retrofit.getInstance().getCardService().getCardById("315");
@@ -76,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Throwable t) {
-
+                System.out.print("getCardListCallback failed.");
             }
         };
     }
@@ -94,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Throwable t) {
-
+                System.out.print("getCardByIdCallback failed.");
             }
         };
     }

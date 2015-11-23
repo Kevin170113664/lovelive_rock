@@ -9,12 +9,12 @@ import retrofit.http.Path;
 import retrofit.http.Query;
 
 public interface CardService {
-    @GET("/cards")
+    @GET("cards")
     Call<MultipleCards> getCardList(@Query("page") Integer page);
 
-    @GET("/cards")
+    @GET("cards")
     Call<MultipleCards> getCardList();
 
-    @GET("/cards/{id}")
+    @GET("cards/{id}")
     Call<Card> getCardById(@Path("id") String cardId);
 }

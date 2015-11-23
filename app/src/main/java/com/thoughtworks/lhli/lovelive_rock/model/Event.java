@@ -2,8 +2,6 @@ package com.thoughtworks.lhli.lovelive_rock.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
-
 public class Event {
     @SerializedName("japanese_name")
     private String japaneseName;
@@ -21,16 +19,16 @@ public class Event {
     private String englishImage;
 
     @SerializedName("beginning")
-    private Date beginning;
+    private String beginning;
 
     @SerializedName("end")
-    private Date end;
+    private String end;
 
     @SerializedName("english_beginning")
-    private Date englishBeginning;
+    private String englishBeginning;
 
     @SerializedName("english_end")
-    private Date englishEnd;
+    private String englishEnd;
 
     @SerializedName("japan_current")
     private Boolean japanCurrent;
@@ -72,8 +70,8 @@ public class Event {
     private String note;
 
     public Event(String japaneseName, String romajiName, String englishName, String image,
-                 String englishImage, Date beginning, Date end, Date englishBeginning,
-                 Date englishEnd, Boolean japanCurrent, Boolean worldCurrent, int[] cards,
+                 String englishImage, String beginning, String end, String englishBeginning,
+                 String englishEnd, Boolean japanCurrent, Boolean worldCurrent, int[] cards,
                  String song, Integer japaneseT1Points, Integer japaneseT1Rank,
                  Integer japaneseT2Points, Integer japaneseT2Rank, Integer englishT1Points,
                  Integer englishT1Rank, Integer englishT2Points, Integer englishT2Rank, String note) {
@@ -144,35 +142,35 @@ public class Event {
         this.englishImage = englishImage;
     }
 
-    public Date getBeginning() {
+    public String getBeginning() {
         return beginning;
     }
 
-    public void setBeginning(Date beginning) {
+    public void setBeginning(String beginning) {
         this.beginning = beginning;
     }
 
-    public Date getEnd() {
+    public String getEnd() {
         return end;
     }
 
-    public void setEnd(Date end) {
+    public void setEnd(String end) {
         this.end = end;
     }
 
-    public Date getEnglishBeginning() {
+    public String getEnglishBeginning() {
         return englishBeginning;
     }
 
-    public void setEnglishBeginning(Date englishBeginning) {
+    public void setEnglishBeginning(String englishBeginning) {
         this.englishBeginning = englishBeginning;
     }
 
-    public Date getEnglishEnd() {
+    public String getEnglishEnd() {
         return englishEnd;
     }
 
-    public void setEnglishEnd(Date englishEnd) {
+    public void setEnglishEnd(String englishEnd) {
         this.englishEnd = englishEnd;
     }
 

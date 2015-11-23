@@ -10,7 +10,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.thoughtworks.lhli.lovelive_rock.R;
-import com.thoughtworks.lhli.lovelive_rock.adapter.SmallCardListAdapter;
+import com.thoughtworks.lhli.lovelive_rock.model.Card;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -20,12 +22,14 @@ public class CardActivity extends AppCompatActivity {
     @Bind(R.id.small_card_list)
     protected ListView listView;
 
+    protected List<Card> cardList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card);
         ButterKnife.bind(this);
-        listView.setAdapter(new SmallCardListAdapter("String"));
+//        listView.setAdapter(new SmallCardListAdapter(cardList);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

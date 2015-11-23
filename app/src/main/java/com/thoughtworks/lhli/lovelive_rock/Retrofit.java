@@ -20,7 +20,7 @@ public class Retrofit {
 
     public Retrofit() {
         retrofit = new retrofit.Retrofit.Builder()
-                .baseUrl("http://schoolido.lu/api")
+                .baseUrl("http://schoolido.lu/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
