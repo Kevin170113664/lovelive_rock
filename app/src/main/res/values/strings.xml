@@ -14,4 +14,7 @@
     <string name="card_center_skill_detail_default_text">Unknown center skill detail</string>
     <string name="card_skill_name_default_text">Unknown skill name</string>
     <string name="card_skill_detail_default_text">Unknown skill detail</string>
+    <string name="card_collection">Collection:</string>
+    <string name="card_max_stat">Max Stat:</string>
+    <string name="card_skill_type">Skill Type:</string>
 </resources>

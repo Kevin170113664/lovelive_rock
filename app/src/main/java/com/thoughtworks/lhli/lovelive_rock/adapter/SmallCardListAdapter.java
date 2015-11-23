@@ -69,9 +69,9 @@ public class SmallCardListAdapter extends BaseAdapter {
         Picasso.with(context)
                 .load(cardList.get(position).getRoundCardIdolizedImage())
                 .into(viewHolder.smallCardImage);
-        viewHolder.smallCardCollection.setText(cardList.get(position).getJapaneseCollection());
-        viewHolder.smallCardMaxStatistics.setText(Collections.max(statistics).toString());
-        viewHolder.smallCardSkill.setText(cardList.get(position).getSkill());
+        viewHolder.smallCardCollection.setText(context.getString(R.string.card_collection) + cardList.get(position).getJapaneseCollection());
+        viewHolder.smallCardMaxStatistics.setText(context.getString(R.string.card_max_stat) + Collections.max(statistics).toString());
+        viewHolder.smallCardSkill.setText(context.getString(R.string.card_skill_type) + cardList.get(position).getSkill());
     }
 
     private void bindItemView(View convertView, ViewHolder viewHolder) {

@@ -2,4 +2,7 @@
 <resources>
     <string name="card_collection_default_text">No Collection</string>
     <string name="card_skill_default_text">Unknown</string>
+    <string name="card_collection">Collection:</string>
+    <string name="card_max_stat">Max Stat:</string>
+    <string name="card_skill_type">Skill Type:</string>
 </resources>
