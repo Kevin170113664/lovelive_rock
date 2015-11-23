@@ -19,6 +19,7 @@
         android:id="@+id/medium_card_list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_marginTop="?attr/actionBarSize"
         android:background="@color/colorBackground" />
 
 </android.support.design.widget.CoordinatorLayout>

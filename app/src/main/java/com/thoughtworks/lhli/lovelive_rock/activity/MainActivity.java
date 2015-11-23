@@ -15,15 +15,14 @@ import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.RestClient;
 import com.thoughtworks.lhli.lovelive_rock.adapter.MediumCardListAdapter;
 import com.thoughtworks.lhli.lovelive_rock.model.Card;
-import com.thoughtworks.lhli.lovelive_rock.service.CardService;
 
 import java.io.IOException;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import retrofit.Call;
 import retrofit.Callback;
+import retrofit.Response;
 import retrofit.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
@@ -52,13 +51,12 @@ public class MainActivity extends AppCompatActivity {
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
-            RestClient restClient = new RestClient();
-            CardService cardService = restClient.getCardService();
-            Call<List<Card>> call = cardService.getCardList();
-            call.enqueue(new Callback<List<Card>>() {
+//            Call<List<Card>> call = cardService.getCardList();
+            Call<Card> call = RestClient.getInstance().getCardService().getCardById("315");
+            call.enqueue(new Callback<Card>() {
 
                 @Override
-                public void onResponse(retrofit.Response<List<Card>> response, Retrofit retrofit) {
+                public void onResponse(Response<Card> response, Retrofit retrofit) {
                     System.out.print(response);
                 }
 

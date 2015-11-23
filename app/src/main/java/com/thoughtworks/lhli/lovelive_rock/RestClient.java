@@ -2,6 +2,7 @@ package com.thoughtworks.lhli.lovelive_rock;
 
 import com.thoughtworks.lhli.lovelive_rock.service.CardService;
 
+import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
 
 public class RestClient {
@@ -21,6 +22,7 @@ public class RestClient {
     public RestClient() {
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://schoolido.lu/api/")
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
 
