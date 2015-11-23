@@ -39,6 +39,11 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
 
+        try {
+            fetchCardList();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         listView.setAdapter(new MediumCardListAdapter("Start Dash!"));
     }
 
@@ -49,14 +54,14 @@ public class MainActivity extends AppCompatActivity {
         if (networkInfo != null && networkInfo.isConnected()) {
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("http://schoolido.lu/api/")
-                    .addConverterFactory(GsonConverterFactory.create())
                     .build();
             CardService cardService = retrofit.create(CardService.class);
             Call<ResponseBody> call = cardService.getCardList();
             call.enqueue(new Callback<ResponseBody>() {
-                @Override
-                public void onResponse(Response response) {
 
+                @Override
+                public void onResponse(Response<ResponseBody> response, Retrofit retrofit) {
+                    System.out.print("HEY,HEY,HEY");
                 }
 
                 @Override
@@ -65,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         } else {
-            // display error
+            System.out.print("------------------------------");
         }
     }
 
