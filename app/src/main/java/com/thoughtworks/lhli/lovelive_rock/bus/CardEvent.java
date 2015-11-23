@@ -1,4 +1,4 @@
-package com.thoughtworks.lhli.lovelive_rock;
+package com.thoughtworks.lhli.lovelive_rock.bus;
 
 import com.thoughtworks.lhli.lovelive_rock.model.Card;
 

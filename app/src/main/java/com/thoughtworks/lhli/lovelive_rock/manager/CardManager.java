@@ -1,10 +1,12 @@
-package com.thoughtworks.lhli.lovelive_rock;
+package com.thoughtworks.lhli.lovelive_rock.manager;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 
+import com.thoughtworks.lhli.lovelive_rock.bus.CardEvent;
+import com.thoughtworks.lhli.lovelive_rock.Retrofit;
 import com.thoughtworks.lhli.lovelive_rock.model.Card;
 import com.thoughtworks.lhli.lovelive_rock.model.MultipleCards;
 
@@ -92,6 +94,5 @@ public class CardManager {
                 System.out.print("getCardByIdCallback failed.");
             }
         };
-
     }
 }

@@ -15,13 +15,11 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <ListView
-        android:id="@+id/medium_card_list"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:dividerHeight="0dp"
-        android:divider="@android:color/transparent"
-        android:layout_marginTop="?attr/actionBarSize"
-        android:background="@color/colorBackground" />
+
+    <ImageView
+        android:id="@+id/latest_event_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="?attr/actionBarSize"/>
 
 </android.support.design.widget.CoordinatorLayout>

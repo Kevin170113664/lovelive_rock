@@ -1,6 +1,7 @@
 package com.thoughtworks.lhli.lovelive_rock;
 
 import com.thoughtworks.lhli.lovelive_rock.service.CardService;
+import com.thoughtworks.lhli.lovelive_rock.service.EventService;
 
 import retrofit.GsonConverterFactory;
 
@@ -27,6 +28,10 @@ public class Retrofit {
 
     public CardService getCardService() {
         return retrofit.create(CardService.class);
+    }
+
+    public EventService getEventService() {
+        return retrofit.create(EventService.class);
     }
 
 }

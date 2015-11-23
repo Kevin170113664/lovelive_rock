@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
-import com.thoughtworks.lhli.lovelive_rock.CardEvent;
-import com.thoughtworks.lhli.lovelive_rock.CardManager;
+import com.thoughtworks.lhli.lovelive_rock.bus.CardEvent;
+import com.thoughtworks.lhli.lovelive_rock.manager.CardManager;
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.adapter.MediumCardListAdapter;
 import com.thoughtworks.lhli.lovelive_rock.model.Card;

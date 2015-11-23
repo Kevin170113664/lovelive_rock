@@ -6,10 +6,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
 import com.thoughtworks.lhli.lovelive_rock.R;
+import com.thoughtworks.lhli.lovelive_rock.bus.EventEvent;
+import com.thoughtworks.lhli.lovelive_rock.manager.EventManager;
+import com.thoughtworks.lhli.lovelive_rock.model.Event;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +29,21 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
+        EventBus.getDefault().register(this);
+
+        final EventManager eventManager = new EventManager(new ArrayList<Event>(), this);
+
+        try {
+            eventManager.getLatestEvent();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onEvent(EventEvent eventEvent) {
+        Picasso.with(this)
+                .load(eventEvent.getEventList().get(0).getImage())
+                .into((ImageView) findViewById(R.id.latest_event_image));
     }
 
     @Override
