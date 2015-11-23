@@ -33,10 +33,10 @@ public class CardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_card);
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
-        CardManager cardManager = new CardManager(new ArrayList<Card>(), CardActivity.this);
+        final CardManager cardManager = new CardManager(new ArrayList<Card>(), CardActivity.this);
 
         try {
-            cardManager.getCardById("315");
+            cardManager.getAllCards();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -44,7 +44,9 @@ public class CardActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(CardActivity.this, CardDetailActivity.class));
+                Intent intent = new Intent(CardActivity.this, CardDetailActivity.class);
+                intent.putExtra("cardId", cardManager.getCardList().get(position).getId());
+                startActivity(intent);
             }
         });
     }

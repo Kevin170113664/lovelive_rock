@@ -29,8 +29,10 @@ public class CardDetailActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
         CardManager cardManager = new CardManager(new ArrayList<Card>(), CardDetailActivity.this);
+
         try {
-            cardManager.getAllCards();
+            String cardId = getIntent().getStringExtra("cardId");
+            cardManager.getCardById(cardId);
         } catch (IOException e) {
             e.printStackTrace();
         }

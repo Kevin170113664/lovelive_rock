@@ -27,6 +27,10 @@ public class CardManager {
         this.context = context;
     }
 
+    public List<Card> getCardList() {
+        return cardList;
+    }
+
     public void getAllCards() throws IOException {
         if (isNetworkAvailable()) {
             for (int page = 70; page < 73; page++) {
@@ -88,5 +92,6 @@ public class CardManager {
                 System.out.print("getCardByIdCallback failed.");
             }
         };
+
     }
 }
