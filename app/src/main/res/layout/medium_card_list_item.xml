@@ -29,7 +29,7 @@
                 android:paddingLeft="9dp"
                 android:paddingTop="17dp"
                 android:text=""
-                android:textSize="10pt" />
+                android:textSize="@dimen/text_size_default" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -44,9 +44,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingTop="10dp"
-                    android:text=""
+                    android:text="@string/card_statistics_default_text"
                     android:textAlignment="center"
-                    android:textSize="10pt" />
+                    android:textColor="@color/colorSmile"
+                    android:textSize="@dimen/text_size_default" />
 
                 <TextView
                     android:id="@+id/medium_card_min_pure"
@@ -54,9 +55,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingTop="10dp"
-                    android:text=""
+                    android:text="@string/card_statistics_default_text"
                     android:textAlignment="center"
-                    android:textSize="10pt" />
+                    android:textColor="@color/colorPure"
+                    android:textSize="@dimen/text_size_default" />
 
                 <TextView
                     android:id="@+id/medium_card_min_cool"
@@ -64,9 +66,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingTop="10dp"
-                    android:text=""
+                    android:text="@string/card_statistics_default_text"
                     android:textAlignment="center"
-                    android:textSize="10pt" />
+                    android:textColor="@color/colorCool"
+                    android:textSize="@dimen/text_size_default" />
             </LinearLayout>
 
             <LinearLayout
@@ -82,9 +85,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingTop="10dp"
-                    android:text=""
+                    android:text="@string/card_statistics_default_text"
                     android:textAlignment="center"
-                    android:textSize="10pt" />
+                    android:textColor="@color/colorSmile"
+                    android:textSize="@dimen/text_size_default" />
 
                 <TextView
                     android:id="@+id/medium_card_non_idolized_max_pure"
@@ -92,9 +96,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingTop="10dp"
-                    android:text=""
+                    android:text="@string/card_statistics_default_text"
                     android:textAlignment="center"
-                    android:textSize="10pt" />
+                    android:textColor="@color/colorPure"
+                    android:textSize="@dimen/text_size_default" />
 
                 <TextView
                     android:id="@+id/medium_card_non_idolized_max_cool"
@@ -102,9 +107,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingTop="10dp"
-                    android:text=""
+                    android:text="@string/card_statistics_default_text"
                     android:textAlignment="center"
-                    android:textSize="10pt" />
+                    android:textColor="@color/colorCool"
+                    android:textSize="@dimen/text_size_default" />
             </LinearLayout>
 
             <LinearLayout
@@ -120,9 +126,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingTop="10dp"
-                    android:text=""
+                    android:text="@string/card_statistics_default_text"
                     android:textAlignment="center"
-                    android:textSize="10pt" />
+                    android:textColor="@color/colorSmile"
+                    android:textSize="@dimen/text_size_default" />
 
                 <TextView
                     android:id="@+id/medium_card_idolized_max_pure"
@@ -130,9 +137,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingTop="10dp"
-                    android:text=""
+                    android:text="@string/card_statistics_default_text"
                     android:textAlignment="center"
-                    android:textSize="10pt" />
+                    android:textColor="@color/colorPure"
+                    android:textSize="@dimen/text_size_default" />
 
                 <TextView
                     android:id="@+id/medium_card_idolized_max_cool"
@@ -140,9 +148,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingTop="10dp"
-                    android:text=""
+                    android:text="@string/card_statistics_default_text"
                     android:textAlignment="center"
-                    android:textSize="10pt" />
+                    android:textColor="@color/colorCool"
+                    android:textSize="@dimen/text_size_default" />
             </LinearLayout>
 
             <TextView
@@ -152,8 +161,8 @@
                 android:layout_weight="1"
                 android:paddingLeft="9dp"
                 android:paddingTop="10dp"
-                android:text=""
-                android:textSize="10pt" />
+                android:text="@string/card_skill_default_text"
+                android:textSize="@dimen/text_size_default" />
 
             <TextView
                 android:id="@+id/medium_card_release_date"
@@ -163,27 +172,27 @@
                 android:paddingBottom="15dp"
                 android:paddingLeft="9dp"
                 android:paddingTop="10dp"
-                android:text=""
-                android:textSize="10pt" />
+                android:text="@string/card_release_date_default_text"
+                android:textSize="@dimen/text_size_default" />
         </LinearLayout>
     </LinearLayout>
 
-        <TextView
-            android:id="@+id/medium_card_center_skill"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:text=""
-            android:textSize="10pt" />
+    <TextView
+        android:id="@+id/medium_card_center_skill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:text="@string/card_center_skill_default_text"
+        android:textSize="@dimen/text_size_default" />
 
-        <TextView
-            android:id="@+id/medium_card_center_skill_detail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text=""
-            android:textSize="8pt" />
+    <TextView
+        android:id="@+id/medium_card_center_skill_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/card_center_skill_detail_default_text"
+        android:textSize="@dimen/text_size_small" />
 
     <TextView
         android:id="@+id/medium_card_skill"
@@ -191,8 +200,8 @@
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
-        android:text=""
-        android:textSize="10pt" />
+        android:text="@string/card_skill_name_default_text"
+        android:textSize="@dimen/text_size_default" />
 
     <TextView
         android:id="@+id/medium_card_skill_detail"
@@ -200,7 +209,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:text=""
-        android:textSize="8pt" />
+        android:text="@string/card_skill_detail_default_text"
+        android:textSize="@dimen/text_size_small" />
 
 </LinearLayout>

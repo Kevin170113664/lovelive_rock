@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#FF6F00</color>
     <color name="colorAccent">#607D8B</color>
     <color name="colorBackground">#FFF8E1</color>
+    <color name="colorSmile">#FF0000</color>
+    <color name="colorPure">#047200</color>
+    <color name="colorCool">#0000FF</color>
 
     <color name="colorOrange50">#FFF8E1</color>
     <color name="colorOrange100">#FFECB3</color>

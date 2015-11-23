@@ -36,7 +36,7 @@ public class CardActivity extends AppCompatActivity {
         CardManager cardManager = new CardManager(new ArrayList<Card>(), CardActivity.this);
 
         try {
-            cardManager.getAllCards();
+            cardManager.getCardById("315");
         } catch (IOException e) {
             e.printStackTrace();
         }

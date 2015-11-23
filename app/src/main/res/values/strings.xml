@@ -6,4 +6,12 @@
 
     <string name="card_layout_label">Card</string>
     <string name="card_detail_layout_label">Card Detail</string>
+    <string name="card_collection_default_text">No Collection</string>
+    <string name="card_statistics_default_text">0</string>
+    <string name="card_skill_default_text">Unknown skill</string>
+    <string name="card_release_date_default_text">Unknown release date</string>
+    <string name="card_center_skill_default_text">Unknown center skill</string>
+    <string name="card_center_skill_detail_default_text">Unknown center skill detail</string>
+    <string name="card_skill_name_default_text">Unknown skill name</string>
+    <string name="card_skill_detail_default_text">Unknown skill detail</string>
 </resources>

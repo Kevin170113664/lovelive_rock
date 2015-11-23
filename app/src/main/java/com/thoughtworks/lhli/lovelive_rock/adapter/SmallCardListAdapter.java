@@ -45,11 +45,11 @@ public class SmallCardListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
+
         if (convertView == null) {
             viewHolder = new ViewHolder();
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.small_card_list_item, parent, false);
             bindItemView(convertView, viewHolder);
-
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -67,10 +67,10 @@ public class SmallCardListAdapter extends BaseAdapter {
         statistics.add(Integer.parseInt(cardList.get(position).getIdolizedMaximumStatisticsCool()));
 
         Picasso.with(context)
-                .load(cardList.get(position).getCardIdolizedImage())
+                .load(cardList.get(position).getRoundCardIdolizedImage())
                 .into(viewHolder.smallCardImage);
         viewHolder.smallCardCollection.setText(cardList.get(position).getJapaneseCollection());
-        viewHolder.smallCardMaxStatistics.setText(Collections.max(statistics));
+        viewHolder.smallCardMaxStatistics.setText(Collections.max(statistics).toString());
         viewHolder.smallCardSkill.setText(cardList.get(position).getSkill());
     }
 

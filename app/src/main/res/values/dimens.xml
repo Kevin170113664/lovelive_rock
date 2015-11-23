@@ -7,4 +7,6 @@
     <dimen name="small_text_paddint_left">10dp</dimen>
     <dimen name="small_text_padding_top">10dp</dimen>
     <dimen name="small_text_line_paddint_top">3dp</dimen>
+    <dimen name="text_size_default">8pt</dimen>
+    <dimen name="text_size_small">7pt</dimen>
 </resources>

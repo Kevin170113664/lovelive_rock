@@ -106,6 +106,9 @@ public class Card {
     @SerializedName("round_card_image")
     private String roundCardImage;
 
+    @SerializedName("round_card_idolized_image")
+    private String roundCardIdolizedImage;
+
     @SerializedName("video_story")
     private String videoStory;
 
@@ -550,5 +553,13 @@ public class Card {
 
     public void setTransparentIdolizedUrPair(String transparentIdolizedUrPair) {
         this.transparentIdolizedUrPair = transparentIdolizedUrPair;
+    }
+
+    public String getRoundCardIdolizedImage() {
+        return roundCardIdolizedImage;
+    }
+
+    public void setRoundCardIdolizedImage(String roundCardIdolizedImage) {
+        this.roundCardIdolizedImage = roundCardIdolizedImage;
     }
 }
