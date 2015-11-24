@@ -22,7 +22,7 @@ import retrofit.Response;
 public class CardManager {
 
     private List<Card> cardList;
-    private Context context;
+    private static Context context;
 
     public CardManager(List<Card> cardList, Context context) {
         this.cardList = cardList;
@@ -53,10 +53,10 @@ public class CardManager {
         }
     }
 
-    protected Boolean isNetworkAvailable() {
-        ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    protected static Boolean isNetworkAvailable() {
+        ConnectivityManager connMgr = (ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-
         return networkInfo != null && networkInfo.isConnected();
     }
 

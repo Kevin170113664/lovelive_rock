@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
-        final EventManager eventManager = new EventManager(new ArrayList<Event>(), this);
+        final EventManager eventManager = new EventManager(new ArrayList<Event>());
 
         try {
             eventManager.getLatestEvent();

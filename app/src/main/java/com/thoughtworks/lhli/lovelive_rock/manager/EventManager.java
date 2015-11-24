@@ -1,8 +1,5 @@
 package com.thoughtworks.lhli.lovelive_rock.manager;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 
 import com.thoughtworks.lhli.lovelive_rock.Retrofit;
@@ -22,11 +19,9 @@ import retrofit.Response;
 public class EventManager {
 
     private List<Event> eventList;
-    private Context context;
 
-    public EventManager(List<Event> eventList, Context context) {
+    public EventManager(List<Event> eventList) {
         this.eventList = eventList;
-        this.context = context;
     }
 
     public List<Event> getEventList() {
@@ -34,19 +29,13 @@ public class EventManager {
     }
 
     public void getLatestEvent() throws IOException {
-        if (isNetworkAvailable()) {
+        if (CardManager.isNetworkAvailable()) {
             Call<MultipleEvents> call =
                     Retrofit.getInstance().getEventService().getLatestEvent("-beginning", 1);
             call.enqueue(getLatestCallback());
         } else {
             System.out.print("Get all cards failed.");
         }
-    }
-
-    protected Boolean isNetworkAvailable() {
-        ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        return networkInfo != null && networkInfo.isConnected();
     }
 
     @NonNull
@@ -65,5 +54,13 @@ public class EventManager {
                 System.out.print("getLatestCallback failed.");
             }
         };
+    }
+
+    private void cacheEvent() {
+//        helper = new AbstractDaoMaster.( this, "notes-db", null);
+//        db = helper.getWritableDatabase();
+//        daoMaster = new DaoMaster(db);
+//        daoSession = daoMaster.newSession();
+//        noteDao = daoSession.getNoteDao();
     }
 }
