@@ -26,6 +26,7 @@ public class EventManager {
     public EventManager(List<Event> eventList, Context context) {
         this.eventList = eventList;
         this.context = context;
+        this.databaseManager = new DatabaseManager(context);
     }
 
     public List<Event> getEventList() {
@@ -33,7 +34,6 @@ public class EventManager {
     }
 
     public void getLatestEvent() throws IOException {
-        databaseManager = new DatabaseManager(context);
         Event event = databaseManager.getLatestEventFromDatabase("Score Match Round 22");
 
         if (event != null && event.getJapaneseName() != null) {
@@ -55,7 +55,6 @@ public class EventManager {
             public void onResponse(Response<MultipleEvents> response, retrofit.Retrofit retrofit) {
                 if (response.isSuccess()) {
                     eventList.addAll(Arrays.asList(response.body().getResults()));
-                    databaseManager = new DatabaseManager(context);
                     databaseManager.cacheEvent(eventList);
                     EventBus.getDefault().post(new EventEvent(eventList));
                 }

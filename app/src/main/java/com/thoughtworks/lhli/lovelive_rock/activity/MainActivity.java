@@ -71,9 +71,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void saveLatestEventSrId(EventEvent eventEvent) {
-        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
         if (eventEvent.getEventList().get(0).getCards() != null) {
+            SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString(getString(R.string.latest_event_Sr_id),
                     String.format("%s", eventEvent.getEventList().get(0).getCards()[1]));
             editor.apply();
