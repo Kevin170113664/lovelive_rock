@@ -14,9 +14,9 @@ public class MultipleCards {
     private String previous;
 
     @SerializedName("results")
-    private Card[] results;
+    private CardModel[] results;
 
-    public MultipleCards(Integer count, String next, String previous, Card[] results) {
+    public MultipleCards(Integer count, String next, String previous, CardModel[] results) {
         this.count = count;
         this.next = next;
         this.previous = previous;
@@ -50,11 +50,11 @@ public class MultipleCards {
         this.previous = previous;
     }
 
-    public Card[] getResults() {
+    public CardModel[] getResults() {
         return results;
     }
 
-    public void setResults(Card[] results) {
+    public void setResults(CardModel[] results) {
         this.results = results;
     }
 }

@@ -2,7 +2,7 @@ package com.thoughtworks.lhli.lovelive_rock.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Idol {
+public class IdolModel {
 
     @SerializedName("name")
     private String name;
@@ -50,7 +50,7 @@ public class Idol {
     private String subUnit;
 
     @SerializedName("cv")
-    private CharacterVoice characterVoice;
+    private CvModel cvModel;
 
     @SerializedName("summary")
     private String summary;
@@ -73,12 +73,12 @@ public class Idol {
     @SerializedName("chibi_small")
     private String chibiSmall;
 
-    public Idol(String name, String japaneseName, Boolean main, Integer age, String birthday,
-                String astrologicalSign, String blood, Integer height, String measurements,
-                String favoriteFood, String leastFavoriteFood, String hobbies, String attribute,
-                String year, String subUnit, CharacterVoice characterVoice, String summary,
-                String websiteUrl, String wikiUrl, String wikiaUrl, String officialUrl,
-                String chibi, String chibiSmall) {
+    public IdolModel(String name, String japaneseName, Boolean main, Integer age, String birthday,
+                     String astrologicalSign, String blood, Integer height, String measurements,
+                     String favoriteFood, String leastFavoriteFood, String hobbies, String attribute,
+                     String year, String subUnit, CvModel cvModel, String summary,
+                     String websiteUrl, String wikiUrl, String wikiaUrl, String officialUrl,
+                     String chibi, String chibiSmall) {
         this.name = name;
         this.japaneseName = japaneseName;
         this.main = main;
@@ -94,7 +94,7 @@ public class Idol {
         this.attribute = attribute;
         this.year = year;
         this.subUnit = subUnit;
-        this.characterVoice = characterVoice;
+        this.cvModel = cvModel;
         this.summary = summary;
         this.websiteUrl = websiteUrl;
         this.wikiUrl = wikiUrl;
@@ -104,7 +104,7 @@ public class Idol {
         this.chibiSmall = chibiSmall;
     }
 
-    public Idol() {
+    public IdolModel() {
     }
 
     public String getName() {
@@ -227,12 +227,12 @@ public class Idol {
         this.subUnit = subUnit;
     }
 
-    public CharacterVoice getCharacterVoice() {
-        return characterVoice;
+    public CvModel getCvModel() {
+        return cvModel;
     }
 
-    public void setCharacterVoice(CharacterVoice characterVoice) {
-        this.characterVoice = characterVoice;
+    public void setCvModel(CvModel cvModel) {
+        this.cvModel = cvModel;
     }
 
     public String getSummary() {

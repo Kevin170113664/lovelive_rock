@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.thoughtworks.lhli.lovelive_rock.R;
-import com.thoughtworks.lhli.lovelive_rock.model.Card;
+import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,21 +20,21 @@ import java.util.List;
 public class SmallCardListAdapter extends BaseAdapter {
 
     private Context context;
-    private List<Card> cardList;
+    private List<CardModel> cardModelList;
 
-    public SmallCardListAdapter(Context context, List<Card> cardList) {
+    public SmallCardListAdapter(Context context, List<CardModel> cardModelList) {
         this.context = context;
-        this.cardList = cardList;
+        this.cardModelList = cardModelList;
     }
 
     @Override
     public int getCount() {
-        return cardList.size();
+        return cardModelList.size();
     }
 
     @Override
-    public List<Card> getItem(int position) {
-        return cardList == null ? null : cardList;
+    public List<CardModel> getItem(int position) {
+        return cardModelList == null ? null : cardModelList;
     }
 
     @Override
@@ -62,16 +62,22 @@ public class SmallCardListAdapter extends BaseAdapter {
 
     private void setItemView(int position, ViewHolder viewHolder) {
         List<Integer> statistics = new ArrayList<>();
-        statistics.add(Integer.parseInt(cardList.get(position).getIdolizedMaximumStatisticsSmile()));
-        statistics.add(Integer.parseInt(cardList.get(position).getIdolizedMaximumStatisticsPure()));
-        statistics.add(Integer.parseInt(cardList.get(position).getIdolizedMaximumStatisticsCool()));
+        statistics.add(Integer.parseInt(cardModelList.get(position).getIdolizedMaximumStatisticsSmile()));
+        statistics.add(Integer.parseInt(cardModelList.get(position).getIdolizedMaximumStatisticsPure()));
+        statistics.add(Integer.parseInt(cardModelList.get(position).getIdolizedMaximumStatisticsCool()));
 
         Picasso.with(context)
-                .load(cardList.get(position).getRoundCardIdolizedImage())
+                .load(cardModelList.get(position).getRoundCardIdolizedImage())
                 .into(viewHolder.smallCardImage);
-        viewHolder.smallCardCollection.setText(context.getString(R.string.card_collection) + cardList.get(position).getJapaneseCollection());
-        viewHolder.smallCardMaxStatistics.setText(context.getString(R.string.card_max_stat) + Collections.max(statistics).toString());
-        viewHolder.smallCardSkill.setText(context.getString(R.string.card_skill_type) + cardList.get(position).getSkill());
+        viewHolder.smallCardCollection.setText(String.format("%s%s",
+                context.getString(R.string.card_collection),
+                cardModelList.get(position).getJapaneseCollection()));
+        viewHolder.smallCardMaxStatistics.setText(String.format("%s%s",
+                context.getString(R.string.card_max_stat),
+                Collections.max(statistics).toString()));
+        viewHolder.smallCardSkill.setText(String.format("%s%s",
+                context.getString(R.string.card_skill_type),
+                cardModelList.get(position).getSkill()));
     }
 
     private void bindItemView(View convertView, ViewHolder viewHolder) {

@@ -2,7 +2,7 @@ package com.thoughtworks.lhli.lovelive_rock.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Event {
+public class EventModel {
     @SerializedName("japanese_name")
     private String japaneseName;
 
@@ -69,12 +69,12 @@ public class Event {
     @SerializedName("note")
     private String note;
 
-    public Event(String japaneseName, String romajiName, String englishName, String image,
-                 String englishImage, String beginning, String end, String englishBeginning,
-                 String englishEnd, Boolean japanCurrent, Boolean worldCurrent, int[] cards,
-                 String song, Integer japaneseT1Points, Integer japaneseT1Rank,
-                 Integer japaneseT2Points, Integer japaneseT2Rank, Integer englishT1Points,
-                 Integer englishT1Rank, Integer englishT2Points, Integer englishT2Rank, String note) {
+    public EventModel(String japaneseName, String romajiName, String englishName, String image,
+                      String englishImage, String beginning, String end, String englishBeginning,
+                      String englishEnd, Boolean japanCurrent, Boolean worldCurrent, int[] cards,
+                      String song, Integer japaneseT1Points, Integer japaneseT1Rank,
+                      Integer japaneseT2Points, Integer japaneseT2Rank, Integer englishT1Points,
+                      Integer englishT1Rank, Integer englishT2Points, Integer englishT2Rank, String note) {
         this.japaneseName = japaneseName;
         this.romajiName = romajiName;
         this.englishName = englishName;
@@ -99,7 +99,7 @@ public class Event {
         this.note = note;
     }
 
-    public Event() {
+    public EventModel() {
     }
 
     public String getJapaneseName() {

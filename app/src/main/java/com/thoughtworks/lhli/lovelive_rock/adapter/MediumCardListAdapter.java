@@ -10,28 +10,28 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.thoughtworks.lhli.lovelive_rock.R;
-import com.thoughtworks.lhli.lovelive_rock.model.Card;
+import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 
 import java.util.List;
 
 public class MediumCardListAdapter extends BaseAdapter {
 
     private Context context;
-    private List<Card> cardList;
+    private List<CardModel> cardModelList;
 
-    public MediumCardListAdapter(Context context, List<Card> cardList) {
+    public MediumCardListAdapter(Context context, List<CardModel> cardModelList) {
         this.context = context;
-        this.cardList = cardList;
+        this.cardModelList = cardModelList;
     }
 
     @Override
     public int getCount() {
-        return cardList.size();
+        return cardModelList.size();
     }
 
     @Override
-    public List<Card> getItem(int position) {
-        return cardList == null ? null : cardList;
+    public List<CardModel> getItem(int position) {
+        return cardModelList == null ? null : cardModelList;
     }
 
     @Override
@@ -59,25 +59,25 @@ public class MediumCardListAdapter extends BaseAdapter {
 
     private void setItemView(int position, ViewHolder viewHolder) {
         Picasso.with(context)
-               .load(cardList.get(position).getCardIdolizedImage())
+               .load(cardModelList.get(position).getCardIdolizedImage())
                .into(viewHolder.mediumCardImage);
-        viewHolder.mediumCardIdolName.setText(cardList.get(position).getJapaneseName());
-        viewHolder.mediumCardMinSmile.setText(cardList.get(position).getMinimumStatisticsSmile());
-        viewHolder.mediumCardMinPure.setText(cardList.get(position).getMinimumStatisticsPure());
-        viewHolder.mediumCardMinCool.setText(cardList.get(position).getMinimumStatisticsCool());
-        viewHolder.mediumCardNonIdolizedMaxSmile.setText(cardList.get(position).getNonIdolizedMaximumStatisticsSmile());
-        viewHolder.mediumCardNonIdolizedMaxPure.setText(cardList.get(position).getNonIdolizedMaximumStatisticsPure());
-        viewHolder.mediumCardNonIdolizedMaxCool.setText(cardList.get(position).getNonIdolizedMaximumStatisticsCool());
-        viewHolder.mediumCardIdolizedMaxSmile.setText(cardList.get(position).getIdolizedMaximumStatisticsSmile());
-        viewHolder.mediumCardIdolizedMaxPure.setText(cardList.get(position).getIdolizedMaximumStatisticsPure());
-        viewHolder.mediumCardIdolizedMaxCool.setText(cardList.get(position).getIdolizedMaximumStatisticsCool());
-        viewHolder.mediumCardSkillType.setText(cardList.get(position).getSkill());
-        viewHolder.mediumCardReleaseDate.setText(cardList.get(position).getReleaseDate());
-        viewHolder.mediumCardCenterSkill.setText(cardList.get(position).getJapaneseCenterSkill());
-        viewHolder.mediumCardCenterSkill.setText(cardList.get(position).getJapaneseCenterSkill());
-        viewHolder.mediumCardCenterSkillDetail.setText(cardList.get(position).getJapaneseCenterSkillDetails());
-        viewHolder.mediumCardSkill.setText(cardList.get(position).getJapaneseSkill());
-        viewHolder.mediumCardSkillDetail.setText(cardList.get(position).getJapaneseSkillDetails());
+        viewHolder.mediumCardIdolName.setText(cardModelList.get(position).getJapaneseName());
+        viewHolder.mediumCardMinSmile.setText(cardModelList.get(position).getMinimumStatisticsSmile());
+        viewHolder.mediumCardMinPure.setText(cardModelList.get(position).getMinimumStatisticsPure());
+        viewHolder.mediumCardMinCool.setText(cardModelList.get(position).getMinimumStatisticsCool());
+        viewHolder.mediumCardNonIdolizedMaxSmile.setText(cardModelList.get(position).getNonIdolizedMaximumStatisticsSmile());
+        viewHolder.mediumCardNonIdolizedMaxPure.setText(cardModelList.get(position).getNonIdolizedMaximumStatisticsPure());
+        viewHolder.mediumCardNonIdolizedMaxCool.setText(cardModelList.get(position).getNonIdolizedMaximumStatisticsCool());
+        viewHolder.mediumCardIdolizedMaxSmile.setText(cardModelList.get(position).getIdolizedMaximumStatisticsSmile());
+        viewHolder.mediumCardIdolizedMaxPure.setText(cardModelList.get(position).getIdolizedMaximumStatisticsPure());
+        viewHolder.mediumCardIdolizedMaxCool.setText(cardModelList.get(position).getIdolizedMaximumStatisticsCool());
+        viewHolder.mediumCardSkillType.setText(cardModelList.get(position).getSkill());
+        viewHolder.mediumCardReleaseDate.setText(cardModelList.get(position).getReleaseDate());
+        viewHolder.mediumCardCenterSkill.setText(cardModelList.get(position).getJapaneseCenterSkill());
+        viewHolder.mediumCardCenterSkill.setText(cardModelList.get(position).getJapaneseCenterSkill());
+        viewHolder.mediumCardCenterSkillDetail.setText(cardModelList.get(position).getJapaneseCenterSkillDetails());
+        viewHolder.mediumCardSkill.setText(cardModelList.get(position).getJapaneseSkill());
+        viewHolder.mediumCardSkillDetail.setText(cardModelList.get(position).getJapaneseSkillDetails());
     }
 
     private void bindItemView(View convertView, ViewHolder viewHolder) {

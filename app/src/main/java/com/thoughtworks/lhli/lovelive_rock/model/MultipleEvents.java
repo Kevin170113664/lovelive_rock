@@ -13,9 +13,9 @@ public class MultipleEvents {
     private String previous;
 
     @SerializedName("results")
-    private Event[] results;
+    private EventModel[] results;
 
-    public MultipleEvents(Integer count, String next, String previous, Event[] results) {
+    public MultipleEvents(Integer count, String next, String previous, EventModel[] results) {
         this.count = count;
         this.next = next;
         this.previous = previous;
@@ -49,11 +49,11 @@ public class MultipleEvents {
         this.previous = previous;
     }
 
-    public Event[] getResults() {
+    public EventModel[] getResults() {
         return results;
     }
 
-    public void setResults(Event[] results) {
+    public void setResults(EventModel[] results) {
         this.results = results;
     }
 }

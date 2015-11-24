@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 
 import com.thoughtworks.lhli.lovelive_rock.Retrofit;
 import com.thoughtworks.lhli.lovelive_rock.bus.CardEvent;
-import com.thoughtworks.lhli.lovelive_rock.model.Card;
+import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 import com.thoughtworks.lhli.lovelive_rock.model.MultipleCards;
 
 import java.io.IOException;
@@ -21,18 +21,18 @@ import retrofit.Response;
 
 public class CardManager {
 
-    private List<Card> cardList;
+    private List<CardModel> cardModelList;
     private static Context context;
     DatabaseManager databaseManager;
 
-    public CardManager(List<Card> cardList, Context context) {
-        this.cardList = cardList;
+    public CardManager(List<CardModel> cardModelList, Context context) {
+        this.cardModelList = cardModelList;
         this.context = context;
         this.databaseManager = new DatabaseManager(context);
     }
 
-    public List<Card> getCardList() {
-        return cardList;
+    public List<CardModel> getCardModelList() {
+        return cardModelList;
     }
 
     public void getAllCards() throws IOException {
@@ -47,16 +47,16 @@ public class CardManager {
     }
 
     public void getCardById(String cardId) throws IOException {
-        Card card = databaseManager.getCardByIdFromCache(cardId);
+        CardModel cardModel = databaseManager.getCardByIdFromCache(cardId);
 
-        if (card != null && card.getCardId() != null) {
-            cardList.add(card);
-            EventBus.getDefault().post(new CardEvent(cardList));
+        if (cardModel != null && cardModel.getCardId() != null) {
+            cardModelList.add(cardModel);
+            EventBus.getDefault().post(new CardEvent(cardModelList));
         } else if (isNetworkAvailable(context)) {
-            Call<Card> call = Retrofit.getInstance().getCardService().getCardById(cardId);
+            Call<CardModel> call = Retrofit.getInstance().getCardService().getCardById(cardId);
             call.enqueue(getCardByIdCallback());
         } else {
-            System.out.print("Get card by id failed.");
+            System.out.print("Get cardModel by id failed.");
         }
     }
 
@@ -73,8 +73,8 @@ public class CardManager {
             @Override
             public void onResponse(Response<MultipleCards> response, retrofit.Retrofit retrofit) {
                 if (response.isSuccess()) {
-                    cardList.addAll(Arrays.asList(response.body().getResults()));
-                    EventBus.getDefault().post(new CardEvent(cardList));
+                    cardModelList.addAll(Arrays.asList(response.body().getResults()));
+                    EventBus.getDefault().post(new CardEvent(cardModelList));
                 }
             }
 
@@ -86,14 +86,14 @@ public class CardManager {
     }
 
     @NonNull
-    private Callback<Card> getCardByIdCallback() {
-        return new Callback<Card>() {
+    private Callback<CardModel> getCardByIdCallback() {
+        return new Callback<CardModel>() {
             @Override
-            public void onResponse(Response<Card> response, retrofit.Retrofit retrofit) {
+            public void onResponse(Response<CardModel> response, retrofit.Retrofit retrofit) {
                 if (response.isSuccess()) {
-                    cardList.add(response.body());
-                    databaseManager.cacheCards(cardList);
-                    EventBus.getDefault().post(new CardEvent(cardList));
+                    cardModelList.add(response.body());
+                    databaseManager.cacheCards(cardModelList);
+                    EventBus.getDefault().post(new CardEvent(cardModelList));
                 }
             }
 

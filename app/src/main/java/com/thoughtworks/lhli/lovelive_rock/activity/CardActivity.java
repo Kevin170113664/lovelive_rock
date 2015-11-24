@@ -13,7 +13,7 @@ import com.thoughtworks.lhli.lovelive_rock.bus.CardEvent;
 import com.thoughtworks.lhli.lovelive_rock.manager.CardManager;
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.adapter.SmallCardListAdapter;
-import com.thoughtworks.lhli.lovelive_rock.model.Card;
+import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ public class CardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_card);
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
-        final CardManager cardManager = new CardManager(new ArrayList<Card>(), CardActivity.this);
+        final CardManager cardManager = new CardManager(new ArrayList<CardModel>(), CardActivity.this);
 
         try {
             cardManager.getAllCards();
@@ -45,14 +45,14 @@ public class CardActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(CardActivity.this, CardDetailActivity.class);
-                intent.putExtra("cardId", cardManager.getCardList().get(position).getCardId());
+                intent.putExtra("cardId", cardManager.getCardModelList().get(position).getCardId());
                 startActivity(intent);
             }
         });
     }
 
     public void onEvent(CardEvent cardEvent) {
-        listView.setAdapter(new SmallCardListAdapter(CardActivity.this, cardEvent.getCardList()));
+        listView.setAdapter(new SmallCardListAdapter(CardActivity.this, cardEvent.getCardModelList()));
     }
 
     @Override

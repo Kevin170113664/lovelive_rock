@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 
 import com.thoughtworks.lhli.lovelive_rock.Retrofit;
 import com.thoughtworks.lhli.lovelive_rock.bus.EventEvent;
-import com.thoughtworks.lhli.lovelive_rock.model.Event;
+import com.thoughtworks.lhli.lovelive_rock.model.EventModel;
 import com.thoughtworks.lhli.lovelive_rock.model.MultipleEvents;
 
 import java.io.IOException;
@@ -19,26 +19,26 @@ import retrofit.Response;
 
 public class EventManager {
 
-    private List<Event> eventList;
+    private List<EventModel> eventModelList;
     private Context context;
     DatabaseManager databaseManager;
 
-    public EventManager(List<Event> eventList, Context context) {
-        this.eventList = eventList;
+    public EventManager(List<EventModel> eventModelList, Context context) {
+        this.eventModelList = eventModelList;
         this.context = context;
         this.databaseManager = new DatabaseManager(context);
     }
 
-    public List<Event> getEventList() {
-        return eventList;
+    public List<EventModel> getEventModelList() {
+        return eventModelList;
     }
 
     public void getLatestEvent() throws IOException {
-        Event event = databaseManager.getLatestEventFromCache("Score Match Round 22");
+        EventModel eventModel = databaseManager.getLatestEventFromCache("Score Match Round 22");
 
-        if (event != null && event.getJapaneseName() != null) {
-            eventList.add(event);
-            EventBus.getDefault().post(new EventEvent(eventList));
+        if (eventModel != null && eventModel.getJapaneseName() != null) {
+            eventModelList.add(eventModel);
+            EventBus.getDefault().post(new EventEvent(eventModelList));
         } else if (CardManager.isNetworkAvailable(context)) {
             Call<MultipleEvents> call =
                     Retrofit.getInstance().getEventService().getLatestEvent("-beginning", 1);
@@ -54,9 +54,9 @@ public class EventManager {
             @Override
             public void onResponse(Response<MultipleEvents> response, retrofit.Retrofit retrofit) {
                 if (response.isSuccess()) {
-                    eventList.addAll(Arrays.asList(response.body().getResults()));
-                    databaseManager.cacheLatestEvent(eventList);
-                    EventBus.getDefault().post(new EventEvent(eventList));
+                    eventModelList.addAll(Arrays.asList(response.body().getResults()));
+                    databaseManager.cacheLatestEvent(eventModelList);
+                    EventBus.getDefault().post(new EventEvent(eventModelList));
                 }
             }
 

@@ -1,18 +1,18 @@
 package com.thoughtworks.lhli.lovelive_rock.bus;
 
-import com.thoughtworks.lhli.lovelive_rock.model.Card;
+import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 
 import java.util.List;
 
 public class CardEvent {
 
-    public List<Card> cardList;
+    public List<CardModel> cardModelList;
 
-    public CardEvent(List<Card> cardList) {
-        this.cardList = cardList;
+    public CardEvent(List<CardModel> cardModelList) {
+        this.cardModelList = cardModelList;
     }
 
-    public List<Card> getCardList() {
-        return cardList;
+    public List<CardModel> getCardModelList() {
+        return cardModelList;
     }
 }

@@ -2,7 +2,7 @@ package com.thoughtworks.lhli.lovelive_rock.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Card {
+public class CardModel {
 
     @SerializedName("id")
     private String cardId;
@@ -14,7 +14,7 @@ public class Card {
     private String japaneseName;
 
     @SerializedName("idol")
-    private Idol idol;
+    private IdolModel idolModel;
 
     @SerializedName("japanese_collection")
     private String japaneseCollection;
@@ -41,7 +41,7 @@ public class Card {
     private boolean japanOnly;
 
     @SerializedName("event")
-    private Event event;
+    private EventModel eventModel;
 
     @SerializedName("is_special")
     private boolean isSpecial;
@@ -139,25 +139,25 @@ public class Card {
     @SerializedName("transparent_idolized_ur_pair")
     private String transparentIdolizedUrPair;
 
-    public Card(String cardId, String name, String japaneseName, Idol idol, String japaneseCollection,
-                String rarity, String attribute, String japaneseAttribute, boolean isPromo,
-                String promoItem, String releaseDate, boolean japanOnly, Event event,
-                boolean isSpecial, String hp, String minimumStatisticsSmile,
-                String minimumStatisticsPure, String minimumStatisticsCool,
-                String nonIdolizedMaximumStatisticsSmile, String nonIdolizedMaximumStatisticsPure,
-                String nonIdolizedMaximumStatisticsCool, String idolizedMaximumStatisticsSmile,
-                String idolizedMaximumStatisticsPure, String idolizedMaximumStatisticsCool,
-                String skill, String japaneseSkill, String skillDetails,
-                String japaneseSkillDetails, String centerSkill, String japaneseCenterSkill,
-                String japaneseCenterSkillDetails, String cardImage, String cardIdolizedImage,
-                String roundCardImage, String videoStory, String japaneseVideoStory,
-                String websiteUrl, String nonIdolizedMaxLevel, String idolizedMaxLevel,
-                String ownedCards, String transparentImage, String transparentIdolizedImage,
-                String transparentUrPair, String transparentIdolizedUrPair) {
+    public CardModel(String cardId, String name, String japaneseName, IdolModel idolModel, String japaneseCollection,
+                     String rarity, String attribute, String japaneseAttribute, boolean isPromo,
+                     String promoItem, String releaseDate, boolean japanOnly, EventModel eventModel,
+                     boolean isSpecial, String hp, String minimumStatisticsSmile,
+                     String minimumStatisticsPure, String minimumStatisticsCool,
+                     String nonIdolizedMaximumStatisticsSmile, String nonIdolizedMaximumStatisticsPure,
+                     String nonIdolizedMaximumStatisticsCool, String idolizedMaximumStatisticsSmile,
+                     String idolizedMaximumStatisticsPure, String idolizedMaximumStatisticsCool,
+                     String skill, String japaneseSkill, String skillDetails,
+                     String japaneseSkillDetails, String centerSkill, String japaneseCenterSkill,
+                     String japaneseCenterSkillDetails, String cardImage, String cardIdolizedImage,
+                     String roundCardImage, String videoStory, String japaneseVideoStory,
+                     String websiteUrl, String nonIdolizedMaxLevel, String idolizedMaxLevel,
+                     String ownedCards, String transparentImage, String transparentIdolizedImage,
+                     String transparentUrPair, String transparentIdolizedUrPair) {
         this.cardId = cardId;
         this.name = name;
         this.japaneseName = japaneseName;
-        this.idol = idol;
+        this.idolModel = idolModel;
         this.japaneseCollection = japaneseCollection;
         this.rarity = rarity;
         this.attribute = attribute;
@@ -166,7 +166,7 @@ public class Card {
         this.promoItem = promoItem;
         this.releaseDate = releaseDate;
         this.japanOnly = japanOnly;
-        this.event = event;
+        this.eventModel = eventModel;
         this.isSpecial = isSpecial;
         this.hp = hp;
         this.minimumStatisticsSmile = minimumStatisticsSmile;
@@ -200,7 +200,7 @@ public class Card {
         this.transparentIdolizedUrPair = transparentIdolizedUrPair;
     }
 
-    public Card() {
+    public CardModel() {
     }
 
     public String getCardId() {
@@ -215,8 +215,8 @@ public class Card {
         return japaneseName;
     }
 
-    public Idol getIdol() {
-        return idol;
+    public IdolModel getIdolModel() {
+        return idolModel;
     }
 
     public String getJapaneseCollection() {
@@ -251,8 +251,8 @@ public class Card {
         return japanOnly;
     }
 
-    public Event getEvent() {
-        return event;
+    public EventModel getEventModel() {
+        return eventModel;
     }
 
     public boolean isSpecial() {
@@ -391,8 +391,8 @@ public class Card {
         this.japaneseName = japaneseName;
     }
 
-    public void setIdol(Idol idol) {
-        this.idol = idol;
+    public void setIdolModel(IdolModel idolModel) {
+        this.idolModel = idolModel;
     }
 
     public void setJapaneseCollection(String japaneseCollection) {
@@ -427,8 +427,8 @@ public class Card {
         this.japanOnly = japanOnly;
     }
 
-    public void setEvent(Event event) {
-        this.event = event;
+    public void setEventModel(EventModel eventModel) {
+        this.eventModel = eventModel;
     }
 
     public void setIsSpecial(boolean isSpecial) {

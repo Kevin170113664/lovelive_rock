@@ -8,7 +8,7 @@ import com.thoughtworks.lhli.lovelive_rock.bus.CardEvent;
 import com.thoughtworks.lhli.lovelive_rock.manager.CardManager;
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.adapter.MediumCardListAdapter;
-import com.thoughtworks.lhli.lovelive_rock.model.Card;
+import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class CardDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_card_detail);
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
-        CardManager cardManager = new CardManager(new ArrayList<Card>(), CardDetailActivity.this);
+        CardManager cardManager = new CardManager(new ArrayList<CardModel>(), CardDetailActivity.this);
 
         try {
             String cardId = getIntent().getStringExtra("cardId");
@@ -39,6 +39,6 @@ public class CardDetailActivity extends AppCompatActivity {
     }
 
     public void onEvent(CardEvent cardEvent) {
-        listView.setAdapter(new MediumCardListAdapter(CardDetailActivity.this, cardEvent.getCardList()));
+        listView.setAdapter(new MediumCardListAdapter(CardDetailActivity.this, cardEvent.getCardModelList()));
     }
 }

@@ -1,18 +1,18 @@
 package com.thoughtworks.lhli.lovelive_rock.bus;
 
-import com.thoughtworks.lhli.lovelive_rock.model.Event;
+import com.thoughtworks.lhli.lovelive_rock.model.EventModel;
 
 import java.util.List;
 
 public class EventEvent {
 
-    public List<Event> eventList;
+    public List<EventModel> eventModelList;
 
-    public EventEvent(List<Event> eventList) {
-        this.eventList = eventList;
+    public EventEvent(List<EventModel> eventModelList) {
+        this.eventModelList = eventModelList;
     }
 
-    public List<Event> getEventList() {
-        return eventList;
+    public List<EventModel> getEventModelList() {
+        return eventModelList;
     }
 }

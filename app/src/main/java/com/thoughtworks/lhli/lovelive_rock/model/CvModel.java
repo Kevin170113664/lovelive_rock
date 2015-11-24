@@ -2,7 +2,7 @@ package com.thoughtworks.lhli.lovelive_rock.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class CharacterVoice {
+public class CvModel {
     @SerializedName("url")
     private String url;
 
@@ -18,7 +18,7 @@ public class CharacterVoice {
     @SerializedName("instagram")
     private String instagram;
 
-    public CharacterVoice(String url, String twitter, String nickname, String name, String instagram) {
+    public CvModel(String url, String twitter, String nickname, String name, String instagram) {
         this.url = url;
         this.twitter = twitter;
         this.nickname = nickname;
@@ -26,7 +26,7 @@ public class CharacterVoice {
         this.instagram = instagram;
     }
 
-    public CharacterVoice() {
+    public CvModel() {
     }
 
     public String getUrl() {

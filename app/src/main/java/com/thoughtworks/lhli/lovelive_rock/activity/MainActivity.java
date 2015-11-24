@@ -16,8 +16,8 @@ import com.thoughtworks.lhli.lovelive_rock.bus.CardEvent;
 import com.thoughtworks.lhli.lovelive_rock.bus.EventEvent;
 import com.thoughtworks.lhli.lovelive_rock.manager.CardManager;
 import com.thoughtworks.lhli.lovelive_rock.manager.EventManager;
-import com.thoughtworks.lhli.lovelive_rock.model.Card;
-import com.thoughtworks.lhli.lovelive_rock.model.Event;
+import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
+import com.thoughtworks.lhli.lovelive_rock.model.EventModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
-        final EventManager eventManager = new EventManager(new ArrayList<Event>(), this);
+        final EventManager eventManager = new EventManager(new ArrayList<EventModel>(), this);
 
         try {
             eventManager.getLatestEvent();
@@ -46,13 +46,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void onEvent(EventEvent eventEvent) throws IOException {
         Picasso.with(this)
-                .load(eventEvent.getEventList().get(0).getImage())
+                .load(eventEvent.getEventModelList().get(0).getImage())
                 .into((ImageView) findViewById(R.id.latest_event_image));
 
-        final CardManager cardManager = new CardManager(new ArrayList<Card>(), this);
+        final CardManager cardManager = new CardManager(new ArrayList<CardModel>(), this);
 
         if (readLatestEventSrId().equals("0")) {
-            Integer cardId = eventEvent.getEventList().get(0).getCards()[1];
+            Integer cardId = eventEvent.getEventModelList().get(0).getCards()[1];
             cardManager.getCardById(cardId.toString());
         } else {
             cardManager.getCardById(readLatestEventSrId());
@@ -62,20 +62,20 @@ public class MainActivity extends AppCompatActivity {
 
     public void onEvent(CardEvent cardEvent) {
         Picasso.with(this)
-                .load(cardEvent.getCardList().get(0).getCardImage())
+                .load(cardEvent.getCardModelList().get(0).getCardImage())
                 .into((ImageView) findViewById(R.id.latest_event_Sr_image));
 
         Picasso.with(this)
-                .load(cardEvent.getCardList().get(0).getCardIdolizedImage())
+                .load(cardEvent.getCardModelList().get(0).getCardIdolizedImage())
                 .into((ImageView) findViewById(R.id.latest_event_idolized_Sr_image));
     }
 
     protected void saveLatestEventSrId(EventEvent eventEvent) {
-        if (eventEvent.getEventList().get(0).getCards() != null) {
+        if (eventEvent.getEventModelList().get(0).getCards() != null) {
             SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString(getString(R.string.latest_event_Sr_id),
-                    String.format("%s", eventEvent.getEventList().get(0).getCards()[1]));
+                    String.format("%s", eventEvent.getEventModelList().get(0).getCards()[1]));
             editor.apply();
         }
     }

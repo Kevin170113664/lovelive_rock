@@ -3,16 +3,18 @@ package com.thoughtworks.lhli.lovelive_rock.manager;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.thoughtworks.lhli.lovelive_rock.data.Card;
 import com.thoughtworks.lhli.lovelive_rock.data.CardDao;
 import com.thoughtworks.lhli.lovelive_rock.data.CharacterVoice;
 import com.thoughtworks.lhli.lovelive_rock.data.CharacterVoiceDao;
 import com.thoughtworks.lhli.lovelive_rock.data.DaoMaster;
 import com.thoughtworks.lhli.lovelive_rock.data.DaoSession;
+import com.thoughtworks.lhli.lovelive_rock.data.Event;
 import com.thoughtworks.lhli.lovelive_rock.data.EventDao;
 import com.thoughtworks.lhli.lovelive_rock.data.Idol;
 import com.thoughtworks.lhli.lovelive_rock.data.IdolDao;
-import com.thoughtworks.lhli.lovelive_rock.model.Card;
-import com.thoughtworks.lhli.lovelive_rock.model.Event;
+import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
+import com.thoughtworks.lhli.lovelive_rock.model.EventModel;
 
 import org.modelmapper.ModelMapper;
 
@@ -32,19 +34,19 @@ public class DatabaseManager {
         this.helper = new DaoMaster.DevOpenHelper(context, "lovelive-db", null);
     }
 
-    public void cacheLatestEvent(List<Event> eventList) {
+    public void cacheLatestEvent(List<EventModel> eventModelList) {
         DaoMaster daoMaster = new DaoMaster(helper.getWritableDatabase());
         daoSession = daoMaster.newSession();
         eventDao = daoSession.getEventDao();
 
-        for (Event e : eventList) {
-            com.thoughtworks.lhli.lovelive_rock.data.Event dataEvent =
-                    modelMapper.map(e, com.thoughtworks.lhli.lovelive_rock.data.Event.class);
+        for (EventModel e : eventModelList) {
+            Event dataEvent =
+                    modelMapper.map(e, Event.class);
             eventDao.insert(dataEvent);
         }
     }
 
-    public void cacheCards(List<Card> cardList) {
+    public void cacheCards(List<CardModel> cardModelList) {
         DaoMaster daoMaster = new DaoMaster(helper.getWritableDatabase());
         daoSession = daoMaster.newSession();
         cardDao = daoSession.getCardDao();
@@ -52,78 +54,110 @@ public class DatabaseManager {
         idolDao = daoSession.getIdolDao();
         characterVoiceDao = daoSession.getCharacterVoiceDao();
 
-        for (Card c : cardList) {
-            Long characterVoiceId = cacheCharacterVoice(c);
-            Long idolId = cacheIdol(c, characterVoiceId);
-            Long eventId = cacheEvent(c);
-            cacheCard(c, idolId, eventId);
+        for (CardModel cardModel : cardModelList) {
+            Long characterVoiceId = cacheCharacterVoice(cardModel);
+            Long idolId = cacheIdol(cardModel, characterVoiceId);
+            Long eventId = cacheEvent(cardModel);
+            cacheCard(cardModel, idolId, eventId);
         }
     }
 
-    private void cacheCard(Card card, Long idolId, Long eventId) {
-        card.setEvent(null);
-        card.setIdol(null);
-        com.thoughtworks.lhli.lovelive_rock.data.Card dataCard =
-                modelMapper.map(card, com.thoughtworks.lhli.lovelive_rock.data.Card.class);
-        dataCard.setIdolId(idolId);
-        dataCard.setEventId(eventId);
-        cardDao.insert(dataCard);
+    private void cacheCard(CardModel cardModel, Long idolId, Long eventId) {
+        List<Card> dataCardList
+                = cardDao.queryBuilder()
+                .where(CardDao.Properties.CardId.eq(cardModel.getCardId()))
+                .list();
+        if (dataCardList.size() != 0) {
+//            return dataCardList.get(0).getId();
+        } else {
+            cardModel.setEventModel(null);
+            cardModel.setIdolModel(null);
+            Card dataCard =
+                    modelMapper.map(cardModel, Card.class);
+            dataCard.setIdolId(idolId);
+            dataCard.setEventId(eventId);
+            cardDao.insert(dataCard);
+        }
     }
 
     @NonNull
-    private Long cacheEvent(Card card) {
-        com.thoughtworks.lhli.lovelive_rock.data.Event dataEvent =
-                modelMapper.map(card.getEvent(),
-                        com.thoughtworks.lhli.lovelive_rock.data.Event.class);
-        return eventDao.insert(dataEvent);
+    private Long cacheEvent(CardModel cardModel) {
+        List<Event> dataEventList
+                = eventDao.queryBuilder()
+                .where(EventDao.Properties.JapaneseName.eq(cardModel.getEventModel().getJapaneseName()))
+                .list();
+        if (dataEventList.size() != 0) {
+            return dataEventList.get(0).getId();
+        } else {
+            Event dataEvent =
+                    modelMapper.map(cardModel.getEventModel(),
+                            Event.class);
+            return eventDao.insert(dataEvent);
+        }
     }
 
     @NonNull
-    private Long cacheIdol(Card card, Long characterVoiceId) {
-        card.getIdol().setCharacterVoice(null);
-        Idol dataIdol = modelMapper.map(card.getIdol(), Idol.class);
-        dataIdol.setCharacterVoiceId(characterVoiceId);
-        return idolDao.insert(dataIdol);
+    private Long cacheIdol(CardModel cardModel, Long characterVoiceId) {
+        List<Idol> dataIdolList
+                = idolDao.queryBuilder()
+                .where(IdolDao.Properties.JapaneseName.eq(cardModel.getIdolModel().getJapaneseName()))
+                .list();
+        if (dataIdolList.size() != 0) {
+            return dataIdolList.get(0).getId();
+        } else {
+            cardModel.getIdolModel().setCvModel(null);
+            Idol dataIdol = modelMapper.map(cardModel.getIdolModel(), Idol.class);
+            dataIdol.setCharacterVoiceId(characterVoiceId);
+            return idolDao.insert(dataIdol);
+        }
     }
 
     @NonNull
-    private Long cacheCharacterVoice(Card c) {
-        CharacterVoice dataCharacterVoice =
-                modelMapper.map(c.getIdol().getCharacterVoice(), CharacterVoice.class);
-        return characterVoiceDao.insert(dataCharacterVoice);
+    private Long cacheCharacterVoice(CardModel cardModel) {
+        List<CharacterVoice> dataCharacterVoiceList
+                = characterVoiceDao.queryBuilder()
+                .where(CharacterVoiceDao.Properties.Name.eq(cardModel.getIdolModel().getCvModel().getName()))
+                .list();
+        if (dataCharacterVoiceList.size() != 0) {
+            return dataCharacterVoiceList.get(0).getId();
+        } else {
+            CharacterVoice dataCharacterVoice =
+                    modelMapper.map(cardModel.getIdolModel().getCvModel(), CharacterVoice.class);
+            return characterVoiceDao.insert(dataCharacterVoice);
+        }
     }
 
-    public Event getLatestEventFromCache(String japaneseName) {
+    public EventModel getLatestEventFromCache(String japaneseName) {
         DaoMaster daoMaster = new DaoMaster(helper.getReadableDatabase());
         daoSession = daoMaster.newSession();
         eventDao = daoSession.getEventDao();
 
-        List dataEvent
+        List<Event> dataEvent
                 = eventDao.queryBuilder()
                 .where(EventDao.Properties.JapaneseName.eq(japaneseName))
                 .list();
         if (dataEvent.size() != 0) {
-            Event event = modelMapper.map(dataEvent.get(0), Event.class);
-            if (event.getJapaneseName() != null) {
-                return event;
+            EventModel eventModel = modelMapper.map(dataEvent.get(0), EventModel.class);
+            if (eventModel.getJapaneseName() != null) {
+                return eventModel;
             }
         }
         return null;
     }
 
-    public Card getCardByIdFromCache(String cardId) {
+    public CardModel getCardByIdFromCache(String cardId) {
         DaoMaster daoMaster = new DaoMaster(helper.getReadableDatabase());
         daoSession = daoMaster.newSession();
         cardDao = daoSession.getCardDao();
 
-        List dataCard
+        List<Card> dataCard
                 = cardDao.queryBuilder()
                 .where(CardDao.Properties.CardId.eq(cardId))
                 .list();
         if (dataCard.size() != 0) {
-            Card card = modelMapper.map(dataCard.get(0), Card.class);
-            if (card.getCardId() != null) {
-                return card;
+            CardModel cardModel = modelMapper.map(dataCard.get(0), CardModel.class);
+            if (cardModel.getCardId() != null) {
+                return cardModel;
             }
         }
         return null;
