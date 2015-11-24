@@ -44,12 +44,12 @@ public class DatabaseManager {
                 = eventDao.queryBuilder()
                 .where(EventDao.Properties.JapaneseName.eq(japaneseName))
                 .list();
-
-        Event event = modelMapper.map(dataEvent.get(0), Event.class);
-        if (event.getJapaneseName() != null) {
-            return event;
-        } else {
-            return null;
+        if (dataEvent.size() != 0) {
+            Event event = modelMapper.map(dataEvent.get(0), Event.class);
+            if (event.getJapaneseName() != null) {
+                return event;
+            }
         }
+        return null;
     }
 }

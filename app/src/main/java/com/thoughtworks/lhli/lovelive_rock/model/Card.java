@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Card {
 
-    @SerializedName("cardId")
+    @SerializedName("id")
     private String cardId;
 
     @SerializedName("name")

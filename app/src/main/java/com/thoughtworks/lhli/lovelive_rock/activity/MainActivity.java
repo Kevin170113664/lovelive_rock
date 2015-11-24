@@ -1,6 +1,8 @@
 package com.thoughtworks.lhli.lovelive_rock.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -48,8 +50,14 @@ public class MainActivity extends AppCompatActivity {
                 .into((ImageView) findViewById(R.id.latest_event_image));
 
         final CardManager cardManager = new CardManager(new ArrayList<Card>(), this);
-        Integer cardId = eventEvent.getEventList().get(0).getCards()[1];
-        cardManager.getCardById(cardId.toString());
+
+        if (readLatestEventSrId().equals("0")) {
+            Integer cardId = eventEvent.getEventList().get(0).getCards()[1];
+            cardManager.getCardById(cardId.toString());
+        } else {
+            cardManager.getCardById(readLatestEventSrId());
+        }
+        saveLatestEventSrId(eventEvent);
     }
 
     public void onEvent(CardEvent cardEvent) {
@@ -60,6 +68,21 @@ public class MainActivity extends AppCompatActivity {
         Picasso.with(this)
                 .load(cardEvent.getCardList().get(0).getCardIdolizedImage())
                 .into((ImageView) findViewById(R.id.latest_event_idolized_Sr_image));
+    }
+
+    protected void saveLatestEventSrId(EventEvent eventEvent) {
+        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        if (eventEvent.getEventList().get(0).getCards() != null) {
+            editor.putString(getString(R.string.latest_event_Sr_id),
+                    String.format("%s", eventEvent.getEventList().get(0).getCards()[1]));
+            editor.apply();
+        }
+    }
+
+    protected String readLatestEventSrId() {
+        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        return sharedPreferences.getString(getString(R.string.latest_event_Sr_id), "0");
     }
 
     @Override
