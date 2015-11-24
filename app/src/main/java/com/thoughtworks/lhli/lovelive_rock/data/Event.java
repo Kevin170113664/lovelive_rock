@@ -18,7 +18,6 @@ public class Event implements java.io.Serializable {
     private String englishEnd;
     private Boolean japanCurrent;
     private Boolean worldCurrent;
-    private String cards;
     private String song;
     private Short japaneseT1Points;
     private Short japaneseT1Rank;
@@ -37,7 +36,7 @@ public class Event implements java.io.Serializable {
         this.id = id;
     }
 
-    public Event(Long id, String japaneseName, String romajiName, String englishName, String image, String englishImage, String beginning, String end, String englishBeginning, String englishEnd, Boolean japanCurrent, Boolean worldCurrent, String cards, String song, Short japaneseT1Points, Short japaneseT1Rank, Short japaneseT2Points, Short japaneseT2Rank, Short englishT1Points, Short englishT1Rank, Short englishT2Points, Short englishT2Rank, String note) {
+    public Event(Long id, String japaneseName, String romajiName, String englishName, String image, String englishImage, String beginning, String end, String englishBeginning, String englishEnd, Boolean japanCurrent, Boolean worldCurrent, String song, Short japaneseT1Points, Short japaneseT1Rank, Short japaneseT2Points, Short japaneseT2Rank, Short englishT1Points, Short englishT1Rank, Short englishT2Points, Short englishT2Rank, String note) {
         this.id = id;
         this.japaneseName = japaneseName;
         this.romajiName = romajiName;
@@ -50,7 +49,6 @@ public class Event implements java.io.Serializable {
         this.englishEnd = englishEnd;
         this.japanCurrent = japanCurrent;
         this.worldCurrent = worldCurrent;
-        this.cards = cards;
         this.song = song;
         this.japaneseT1Points = japaneseT1Points;
         this.japaneseT1Rank = japaneseT1Rank;
@@ -157,14 +155,6 @@ public class Event implements java.io.Serializable {
 
     public void setWorldCurrent(Boolean worldCurrent) {
         this.worldCurrent = worldCurrent;
-    }
-
-    public String getCards() {
-        return cards;
-    }
-
-    public void setCards(String cards) {
-        this.cards = cards;
     }
 
     public String getSong() {

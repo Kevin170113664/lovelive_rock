@@ -44,9 +44,9 @@ public class CardManager {
         }
     }
 
-    public void getCardById(String Id) throws IOException {
+    public void getCardById(String cardId) throws IOException {
         if (isNetworkAvailable(context)) {
-            Call<Card> call = Retrofit.getInstance().getCardService().getCardById(Id);
+            Call<Card> call = Retrofit.getInstance().getCardService().getCardById(cardId);
             call.enqueue(getCardByIdCallback());
         } else {
             System.out.print("Get card by id failed.");

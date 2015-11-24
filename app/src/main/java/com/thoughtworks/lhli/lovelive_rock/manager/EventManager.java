@@ -5,8 +5,13 @@ import android.support.annotation.NonNull;
 
 import com.thoughtworks.lhli.lovelive_rock.Retrofit;
 import com.thoughtworks.lhli.lovelive_rock.bus.EventEvent;
+import com.thoughtworks.lhli.lovelive_rock.data.DaoMaster;
+import com.thoughtworks.lhli.lovelive_rock.data.DaoSession;
+import com.thoughtworks.lhli.lovelive_rock.data.EventDao;
 import com.thoughtworks.lhli.lovelive_rock.model.Event;
 import com.thoughtworks.lhli.lovelive_rock.model.MultipleEvents;
+
+import org.modelmapper.ModelMapper;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -21,6 +26,8 @@ public class EventManager {
 
     private List<Event> eventList;
     private Context context;
+    private DaoSession daoSession;
+    private EventDao eventDao;
 
     public EventManager(List<Event> eventList, Context context) {
         this.eventList = eventList;
@@ -60,10 +67,15 @@ public class EventManager {
     }
 
     private void cacheEvent() {
-//        helper = new AbstractDaoMaster.( this, "notes-db", null);
-//        db = helper.getWritableDatabase();
-//        daoMaster = new DaoMaster(db);
-//        daoSession = daoMaster.newSession();
-//        noteDao = daoSession.getNoteDao();
+        DaoMaster.OpenHelper helper = new DaoMaster.DevOpenHelper(context, "lovelive-db", null);
+        DaoMaster daoMaster = new DaoMaster(helper.getWritableDatabase());
+        daoSession = daoMaster.newSession();
+        eventDao = daoSession.getEventDao();
+        for (Event e : eventList) {
+            ModelMapper modelMapper = new ModelMapper();
+            com.thoughtworks.lhli.lovelive_rock.data.Event dataEvent =
+                    modelMapper.map(e, com.thoughtworks.lhli.lovelive_rock.data.Event.class);
+            eventDao.insert(dataEvent);
+        }
     }
 }

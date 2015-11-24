@@ -52,8 +52,6 @@ public class LoveliveDaoGenerator {
         Event.addStringProperty("englishEnd");
         Event.addBooleanProperty("japanCurrent");
         Event.addBooleanProperty("worldCurrent");
-        //TODO how to save int array in the db?
-        Event.addStringProperty("cards");
         Event.addStringProperty("song");
         Event.addShortProperty("japaneseT1Points");
         Event.addShortProperty("japaneseT1Rank");
