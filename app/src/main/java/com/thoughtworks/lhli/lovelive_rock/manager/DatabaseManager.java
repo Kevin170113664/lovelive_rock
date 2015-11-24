@@ -1,6 +1,7 @@
 package com.thoughtworks.lhli.lovelive_rock.manager;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import com.thoughtworks.lhli.lovelive_rock.data.CardDao;
 import com.thoughtworks.lhli.lovelive_rock.data.CharacterVoice;
@@ -31,7 +32,7 @@ public class DatabaseManager {
         this.helper = new DaoMaster.DevOpenHelper(context, "lovelive-db", null);
     }
 
-    public void cacheEvent(List<Event> eventList) {
+    public void cacheLatestEvent(List<Event> eventList) {
         DaoMaster daoMaster = new DaoMaster(helper.getWritableDatabase());
         daoSession = daoMaster.newSession();
         eventDao = daoSession.getEventDao();
@@ -52,28 +53,44 @@ public class DatabaseManager {
         characterVoiceDao = daoSession.getCharacterVoiceDao();
 
         for (Card c : cardList) {
-            CharacterVoice dataCharacterVoice =
-                    modelMapper.map(c.getIdol().getCharacterVoice(), CharacterVoice.class);
-            Long characterVoiceId = characterVoiceDao.insert(dataCharacterVoice);
-
-            c.getIdol().setCharacterVoice(null);
-            Idol dataIdol = modelMapper.map(c.getIdol(), Idol.class);
-            dataIdol.setCharacterVoiceId(characterVoiceId);
-            Long idolId = idolDao.insert(dataIdol);
-
-            com.thoughtworks.lhli.lovelive_rock.data.Event dataEvent =
-                    modelMapper.map(c.getEvent(),
-                            com.thoughtworks.lhli.lovelive_rock.data.Event.class);
-            Long eventId = eventDao.insert(dataEvent);
-
-            c.setEvent(null);
-            c.setIdol(null);
-            com.thoughtworks.lhli.lovelive_rock.data.Card dataCard =
-                    modelMapper.map(c, com.thoughtworks.lhli.lovelive_rock.data.Card.class);
-            dataCard.setIdolId(idolId);
-            dataCard.setEventId(eventId);
-            cardDao.insert(dataCard);
+            Long characterVoiceId = cacheCharacterVoice(c);
+            Long idolId = cacheIdol(c, characterVoiceId);
+            Long eventId = cacheEvent(c);
+            cacheCard(c, idolId, eventId);
         }
+    }
+
+    private void cacheCard(Card card, Long idolId, Long eventId) {
+        card.setEvent(null);
+        card.setIdol(null);
+        com.thoughtworks.lhli.lovelive_rock.data.Card dataCard =
+                modelMapper.map(card, com.thoughtworks.lhli.lovelive_rock.data.Card.class);
+        dataCard.setIdolId(idolId);
+        dataCard.setEventId(eventId);
+        cardDao.insert(dataCard);
+    }
+
+    @NonNull
+    private Long cacheEvent(Card card) {
+        com.thoughtworks.lhli.lovelive_rock.data.Event dataEvent =
+                modelMapper.map(card.getEvent(),
+                        com.thoughtworks.lhli.lovelive_rock.data.Event.class);
+        return eventDao.insert(dataEvent);
+    }
+
+    @NonNull
+    private Long cacheIdol(Card card, Long characterVoiceId) {
+        card.getIdol().setCharacterVoice(null);
+        Idol dataIdol = modelMapper.map(card.getIdol(), Idol.class);
+        dataIdol.setCharacterVoiceId(characterVoiceId);
+        return idolDao.insert(dataIdol);
+    }
+
+    @NonNull
+    private Long cacheCharacterVoice(Card c) {
+        CharacterVoice dataCharacterVoice =
+                modelMapper.map(c.getIdol().getCharacterVoice(), CharacterVoice.class);
+        return characterVoiceDao.insert(dataCharacterVoice);
     }
 
     public Event getLatestEventFromCache(String japaneseName) {

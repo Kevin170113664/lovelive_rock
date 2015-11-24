@@ -55,7 +55,7 @@ public class EventManager {
             public void onResponse(Response<MultipleEvents> response, retrofit.Retrofit retrofit) {
                 if (response.isSuccess()) {
                     eventList.addAll(Arrays.asList(response.body().getResults()));
-                    databaseManager.cacheEvent(eventList);
+                    databaseManager.cacheLatestEvent(eventList);
                     EventBus.getDefault().post(new EventEvent(eventList));
                 }
             }
