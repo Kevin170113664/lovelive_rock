@@ -40,9 +40,8 @@ public class DatabaseManager {
         eventDao = daoSession.getEventDao();
 
         for (EventModel e : eventModelList) {
-            Event dataEvent =
-                    modelMapper.map(e, Event.class);
-            eventDao.insert(dataEvent);
+            Event event = modelMapper.map(e, Event.class);
+            eventDao.insert(event);
         }
     }
 
@@ -61,67 +60,60 @@ public class DatabaseManager {
     }
 
     private void insertCard(CardModel cardModel, Long idolId, Long eventId) {
-        List<Card> dataCardList
-                = cardDao.queryBuilder()
+        List<Card> cardList = cardDao.queryBuilder()
                 .where(CardDao.Properties.CardId.eq(cardModel.getCardId()))
                 .list();
-        if (dataCardList.size() != 0) {
-//            return dataCardList.get(0).getId();
+        if (cardList.size() != 0) {
+
         } else {
             cardModel.setEventModel(null);
             cardModel.setIdolModel(null);
-            Card dataCard =
-                    modelMapper.map(cardModel, Card.class);
-            dataCard.setIdolId(idolId);
-            dataCard.setEventId(eventId);
-            cardDao.insert(dataCard);
+            Card card = modelMapper.map(cardModel, Card.class);
+            card.setIdolId(idolId);
+            card.setEventId(eventId);
+            cardDao.insert(card);
         }
     }
 
     @NonNull
     private Long insertEvent(CardModel cardModel) {
-        List<Event> dataEventList
-                = eventDao.queryBuilder()
+        List<Event> eventList = eventDao.queryBuilder()
                 .where(EventDao.Properties.JapaneseName.eq(cardModel.getEventModel().getJapaneseName()))
                 .list();
-        if (dataEventList.size() != 0) {
-            return dataEventList.get(0).getId();
+        if (eventList.size() != 0) {
+            return eventList.get(0).getId();
         } else {
-            Event dataEvent =
-                    modelMapper.map(cardModel.getEventModel(),
-                            Event.class);
-            return eventDao.insert(dataEvent);
+            Event event = modelMapper.map(cardModel.getEventModel(), Event.class);
+            return eventDao.insert(event);
         }
     }
 
     @NonNull
     private Long insertIdol(CardModel cardModel, Long characterVoiceId) {
-        List<Idol> dataIdolList
-                = idolDao.queryBuilder()
+        List<Idol> idolList = idolDao.queryBuilder()
                 .where(IdolDao.Properties.JapaneseName.eq(cardModel.getIdolModel().getJapaneseName()))
                 .list();
-        if (dataIdolList.size() != 0) {
-            return dataIdolList.get(0).getId();
+        if (idolList.size() != 0) {
+            return idolList.get(0).getId();
         } else {
             cardModel.getIdolModel().setCvModel(null);
-            Idol dataIdol = modelMapper.map(cardModel.getIdolModel(), Idol.class);
-            dataIdol.setCharacterVoiceId(characterVoiceId);
-            return idolDao.insert(dataIdol);
+            Idol idol = modelMapper.map(cardModel.getIdolModel(), Idol.class);
+            idol.setCharacterVoiceId(characterVoiceId);
+            return idolDao.insert(idol);
         }
     }
 
     @NonNull
     private Long insertCv(CardModel cardModel) {
-        List<CharacterVoice> dataCharacterVoiceList
-                = characterVoiceDao.queryBuilder()
+        List<CharacterVoice> characterVoiceList = characterVoiceDao.queryBuilder()
                 .where(CharacterVoiceDao.Properties.Name.eq(cardModel.getIdolModel().getCvModel().getName()))
                 .list();
-        if (dataCharacterVoiceList.size() != 0) {
-            return dataCharacterVoiceList.get(0).getId();
+        if (characterVoiceList.size() != 0) {
+            return characterVoiceList.get(0).getId();
         } else {
-            CharacterVoice dataCharacterVoice =
+            CharacterVoice characterVoice =
                     modelMapper.map(cardModel.getIdolModel().getCvModel(), CharacterVoice.class);
-            return characterVoiceDao.insert(dataCharacterVoice);
+            return characterVoiceDao.insert(characterVoice);
         }
     }
 
@@ -130,12 +122,11 @@ public class DatabaseManager {
         daoSession = daoMaster.newSession();
         eventDao = daoSession.getEventDao();
 
-        List<Event> dataEvent
-                = eventDao.queryBuilder()
+        List<Event> eventList = eventDao.queryBuilder()
                 .where(EventDao.Properties.JapaneseName.eq(japaneseName))
                 .list();
-        if (dataEvent.size() != 0) {
-            EventModel eventModel = modelMapper.map(dataEvent.get(0), EventModel.class);
+        if (eventList.size() != 0) {
+            EventModel eventModel = modelMapper.map(eventList.get(0), EventModel.class);
             if (eventModel.getJapaneseName() != null) {
                 return eventModel;
             }
@@ -148,12 +139,12 @@ public class DatabaseManager {
         daoSession = daoMaster.newSession();
         cardDao = daoSession.getCardDao();
 
-        List<Card> dataCard
+        List<Card> cardList
                 = cardDao.queryBuilder()
                 .where(CardDao.Properties.CardId.eq(cardId))
                 .list();
-        if (dataCard.size() != 0) {
-            CardModel cardModel = modelMapper.map(dataCard.get(0), CardModel.class);
+        if (cardList.size() != 0) {
+            CardModel cardModel = modelMapper.map(cardList.get(0), CardModel.class);
             if (cardModel.getCardId() != null) {
                 return cardModel;
             }
