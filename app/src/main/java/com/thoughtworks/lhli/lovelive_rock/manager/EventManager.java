@@ -1,5 +1,6 @@
 package com.thoughtworks.lhli.lovelive_rock.manager;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.thoughtworks.lhli.lovelive_rock.Retrofit;
@@ -19,9 +20,11 @@ import retrofit.Response;
 public class EventManager {
 
     private List<Event> eventList;
+    private Context context;
 
-    public EventManager(List<Event> eventList) {
+    public EventManager(List<Event> eventList, Context context) {
         this.eventList = eventList;
+        this.context = context;
     }
 
     public List<Event> getEventList() {
@@ -29,7 +32,7 @@ public class EventManager {
     }
 
     public void getLatestEvent() throws IOException {
-        if (CardManager.isNetworkAvailable()) {
+        if (CardManager.isNetworkAvailable(context)) {
             Call<MultipleEvents> call =
                     Retrofit.getInstance().getEventService().getLatestEvent("-beginning", 1);
             call.enqueue(getLatestCallback());

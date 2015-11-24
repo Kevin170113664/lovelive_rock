@@ -5,8 +5,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 
-import com.thoughtworks.lhli.lovelive_rock.bus.CardEvent;
 import com.thoughtworks.lhli.lovelive_rock.Retrofit;
+import com.thoughtworks.lhli.lovelive_rock.bus.CardEvent;
 import com.thoughtworks.lhli.lovelive_rock.model.Card;
 import com.thoughtworks.lhli.lovelive_rock.model.MultipleCards;
 
@@ -34,7 +34,7 @@ public class CardManager {
     }
 
     public void getAllCards() throws IOException {
-        if (isNetworkAvailable()) {
+        if (isNetworkAvailable(context)) {
             for (int page = 70; page < 73; page++) {
                 Call<MultipleCards> call = Retrofit.getInstance().getCardService().getCardList(page);
                 call.enqueue(getCardListCallback());
@@ -45,7 +45,7 @@ public class CardManager {
     }
 
     public void getCardById(String Id) throws IOException {
-        if (isNetworkAvailable()) {
+        if (isNetworkAvailable(context)) {
             Call<Card> call = Retrofit.getInstance().getCardService().getCardById(Id);
             call.enqueue(getCardByIdCallback());
         } else {
@@ -53,7 +53,7 @@ public class CardManager {
         }
     }
 
-    protected static Boolean isNetworkAvailable() {
+    protected static Boolean isNetworkAvailable(Context context) {
         ConnectivityManager connMgr = (ConnectivityManager) context
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
