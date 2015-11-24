@@ -1,7 +1,6 @@
 package com.thoughtworks.lhli.lovelive_rock.manager;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 
 import com.thoughtworks.lhli.lovelive_rock.data.Card;
 import com.thoughtworks.lhli.lovelive_rock.data.CardDao;
@@ -46,13 +45,6 @@ public class DatabaseManager {
     }
 
     public void cacheCard(CardModel cardModel) {
-        DaoMaster daoMaster = new DaoMaster(helper.getWritableDatabase());
-        daoSession = daoMaster.newSession();
-        cardDao = daoSession.getCardDao();
-        eventDao = daoSession.getEventDao();
-        idolDao = daoSession.getIdolDao();
-        characterVoiceDao = daoSession.getCharacterVoiceDao();
-
         Long characterVoiceId = insertCv(cardModel);
         Long idolId = insertIdol(cardModel, characterVoiceId);
         Long eventId = insertEvent(cardModel);
@@ -60,41 +52,38 @@ public class DatabaseManager {
     }
 
     private void insertCard(CardModel cardModel, Long idolId, Long eventId) {
-        List<Card> cardList = cardDao.queryBuilder()
-                .where(CardDao.Properties.CardId.eq(cardModel.getCardId()))
-                .list();
-        if (cardList.size() != 0) {
+        DaoMaster daoMaster = new DaoMaster(helper.getWritableDatabase());
+        daoSession = daoMaster.newSession();
+        cardDao = daoSession.getCardDao();
 
-        } else {
-            cardModel.setEventModel(null);
-            cardModel.setIdolModel(null);
-            Card card = modelMapper.map(cardModel, Card.class);
-            card.setIdolId(idolId);
-            card.setEventId(eventId);
-            cardDao.insert(card);
-        }
+        cardModel.setEventModel(null);
+        cardModel.setIdolModel(null);
+        Card card = modelMapper.map(cardModel, Card.class);
+        card.setIdolId(idolId);
+        card.setEventId(eventId);
+        cardDao.insert(card);
     }
 
-    @NonNull
     private Long insertEvent(CardModel cardModel) {
-        List<Event> eventList = eventDao.queryBuilder()
-                .where(EventDao.Properties.JapaneseName.eq(cardModel.getEventModel().getJapaneseName()))
-                .list();
-        if (eventList.size() != 0) {
-            return eventList.get(0).getId();
+        DaoMaster daoMaster = new DaoMaster(helper.getWritableDatabase());
+        daoSession = daoMaster.newSession();
+        eventDao = daoSession.getEventDao();
+
+        if (cardModel.getEventModel() == null) {
+            return null;
         } else {
             Event event = modelMapper.map(cardModel.getEventModel(), Event.class);
             return eventDao.insert(event);
         }
     }
 
-    @NonNull
     private Long insertIdol(CardModel cardModel, Long characterVoiceId) {
-        List<Idol> idolList = idolDao.queryBuilder()
-                .where(IdolDao.Properties.JapaneseName.eq(cardModel.getIdolModel().getJapaneseName()))
-                .list();
-        if (idolList.size() != 0) {
-            return idolList.get(0).getId();
+        DaoMaster daoMaster = new DaoMaster(helper.getWritableDatabase());
+        daoSession = daoMaster.newSession();
+        idolDao = daoSession.getIdolDao();
+
+        if (cardModel.getIdolModel() == null) {
+            return null;
         } else {
             cardModel.getIdolModel().setCvModel(null);
             Idol idol = modelMapper.map(cardModel.getIdolModel(), Idol.class);
@@ -103,17 +92,62 @@ public class DatabaseManager {
         }
     }
 
-    @NonNull
     private Long insertCv(CardModel cardModel) {
-        List<CharacterVoice> characterVoiceList = characterVoiceDao.queryBuilder()
-                .where(CharacterVoiceDao.Properties.Name.eq(cardModel.getIdolModel().getCvModel().getName()))
-                .list();
-        if (characterVoiceList.size() != 0) {
-            return characterVoiceList.get(0).getId();
+        DaoMaster daoMaster = new DaoMaster(helper.getWritableDatabase());
+        daoSession = daoMaster.newSession();
+        characterVoiceDao = daoSession.getCharacterVoiceDao();
+
+        if (cardModel.getIdolModel() == null || cardModel.getIdolModel().getCvModel() == null) {
+            return null;
         } else {
             CharacterVoice characterVoice =
                     modelMapper.map(cardModel.getIdolModel().getCvModel(), CharacterVoice.class);
             return characterVoiceDao.insert(characterVoice);
+        }
+    }
+
+    private Event queryEventByName(CardModel cardModel) {
+        DaoMaster daoMaster = new DaoMaster(helper.getReadableDatabase());
+        daoSession = daoMaster.newSession();
+        eventDao = daoSession.getEventDao();
+
+        List<Event> eventList = eventDao.queryBuilder()
+                .where(EventDao.Properties.JapaneseName.eq(cardModel.getEventModel().getJapaneseName()))
+                .list();
+        if (eventList.size() != 0) {
+            return eventList.get(0);
+        } else {
+            return null;
+        }
+    }
+
+    private Idol queryIdolByName(CardModel cardModel) {
+        DaoMaster daoMaster = new DaoMaster(helper.getReadableDatabase());
+        daoSession = daoMaster.newSession();
+        idolDao = daoSession.getIdolDao();
+
+        List<Idol> idolList = idolDao.queryBuilder()
+                .where(IdolDao.Properties.JapaneseName.eq(cardModel.getIdolModel().getJapaneseName()))
+                .list();
+        if (idolList.size() != 0) {
+            return idolList.get(0);
+        } else {
+            return null;
+        }
+    }
+
+    private CharacterVoice queryCharacterVoiceByName(CardModel cardModel) {
+        DaoMaster daoMaster = new DaoMaster(helper.getReadableDatabase());
+        daoSession = daoMaster.newSession();
+        characterVoiceDao = daoSession.getCharacterVoiceDao();
+
+        List<CharacterVoice> characterVoiceList = characterVoiceDao.queryBuilder()
+                .where(CharacterVoiceDao.Properties.Name.eq(cardModel.getIdolModel().getCvModel().getName()))
+                .list();
+        if (characterVoiceList.size() != 0) {
+            return characterVoiceList.get(0);
+        } else {
+            return null;
         }
     }
 
