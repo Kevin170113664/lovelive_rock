@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class Card {
 
-    @SerializedName("id")
-    private String id;
+    @SerializedName("cardId")
+    private String cardId;
 
     @SerializedName("name")
     private String name;
@@ -139,7 +139,7 @@ public class Card {
     @SerializedName("transparent_idolized_ur_pair")
     private String transparentIdolizedUrPair;
 
-    public Card(String id, String name, String japaneseName, Idol idol, String japaneseCollection,
+    public Card(String cardId, String name, String japaneseName, Idol idol, String japaneseCollection,
                 String rarity, String attribute, String japaneseAttribute, boolean isPromo,
                 String promoItem, String releaseDate, boolean japanOnly, Event event,
                 boolean isSpecial, String hp, String minimumStatisticsSmile,
@@ -154,7 +154,7 @@ public class Card {
                 String websiteUrl, String nonIdolizedMaxLevel, String idolizedMaxLevel,
                 String ownedCards, String transparentImage, String transparentIdolizedImage,
                 String transparentUrPair, String transparentIdolizedUrPair) {
-        this.id = id;
+        this.cardId = cardId;
         this.name = name;
         this.japaneseName = japaneseName;
         this.idol = idol;
@@ -203,8 +203,8 @@ public class Card {
     public Card() {
     }
 
-    public String getId() {
-        return id;
+    public String getCardId() {
+        return cardId;
     }
 
     public String getName() {
@@ -379,8 +379,8 @@ public class Card {
         return transparentIdolizedUrPair;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setCardId(String cardId) {
+        this.cardId = cardId;
     }
 
     public void setName(String name) {

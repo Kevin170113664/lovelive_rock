@@ -86,7 +86,7 @@ public class LoveliveDaoGenerator {
         Idol.addStringProperty("attribute");
         Idol.addStringProperty("year");
         Idol.addStringProperty("subUnit");
-        Property characterVoiceProperty = Idol.addStringProperty("characterVoiceId").notNull().getProperty();
+        Property characterVoiceProperty = Idol.addLongProperty("characterVoiceId").notNull().getProperty();
         Idol.addToOne(characterVoice, characterVoiceProperty);
         Idol.addStringProperty("summary");
         Idol.addStringProperty("websiteUrl");
@@ -102,10 +102,10 @@ public class LoveliveDaoGenerator {
     private void generateCardEntity(Schema schema, Entity event, Entity idol) {
         Entity Card = schema.addEntity("Card");
         Card.addIdProperty();
-        Card.addStringProperty("id");
+        Card.addStringProperty("cardId");
         Card.addStringProperty("name");
         Card.addStringProperty("japaneseName");
-        Property idolProperty = Card.addStringProperty("idolId").notNull().getProperty();
+        Property idolProperty = Card.addLongProperty("idolId").notNull().getProperty();
         Card.addToOne(idol, idolProperty);
         Card.addStringProperty("japaneseCollection");
         Card.addStringProperty("rarity");
@@ -115,7 +115,7 @@ public class LoveliveDaoGenerator {
         Card.addStringProperty("promoItem");
         Card.addStringProperty("releaseDate");
         Card.addBooleanProperty("japanOnly");
-        Property eventProperty = Card.addStringProperty("eventId").notNull().getProperty();
+        Property eventProperty = Card.addLongProperty("eventId").notNull().getProperty();
         Card.addToOne(event, eventProperty);
         Card.addBooleanProperty("isSpecial");
         Card.addStringProperty("hp");

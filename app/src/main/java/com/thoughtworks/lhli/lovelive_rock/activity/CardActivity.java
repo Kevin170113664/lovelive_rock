@@ -45,7 +45,7 @@ public class CardActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(CardActivity.this, CardDetailActivity.class);
-                intent.putExtra("cardId", cardManager.getCardList().get(position).getId());
+                intent.putExtra("cardId", cardManager.getCardList().get(position).getCardId());
                 startActivity(intent);
             }
         });
