@@ -46,7 +46,7 @@ public class DatabaseManager {
         }
     }
 
-    public void cacheCards(List<CardModel> cardModelList) {
+    public void cacheCard(CardModel cardModel) {
         DaoMaster daoMaster = new DaoMaster(helper.getWritableDatabase());
         daoSession = daoMaster.newSession();
         cardDao = daoSession.getCardDao();
@@ -54,15 +54,13 @@ public class DatabaseManager {
         idolDao = daoSession.getIdolDao();
         characterVoiceDao = daoSession.getCharacterVoiceDao();
 
-        for (CardModel cardModel : cardModelList) {
-            Long characterVoiceId = cacheCharacterVoice(cardModel);
-            Long idolId = cacheIdol(cardModel, characterVoiceId);
-            Long eventId = cacheEvent(cardModel);
-            cacheCard(cardModel, idolId, eventId);
-        }
+        Long characterVoiceId = insertCv(cardModel);
+        Long idolId = insertIdol(cardModel, characterVoiceId);
+        Long eventId = insertEvent(cardModel);
+        insertCard(cardModel, idolId, eventId);
     }
 
-    private void cacheCard(CardModel cardModel, Long idolId, Long eventId) {
+    private void insertCard(CardModel cardModel, Long idolId, Long eventId) {
         List<Card> dataCardList
                 = cardDao.queryBuilder()
                 .where(CardDao.Properties.CardId.eq(cardModel.getCardId()))
@@ -81,7 +79,7 @@ public class DatabaseManager {
     }
 
     @NonNull
-    private Long cacheEvent(CardModel cardModel) {
+    private Long insertEvent(CardModel cardModel) {
         List<Event> dataEventList
                 = eventDao.queryBuilder()
                 .where(EventDao.Properties.JapaneseName.eq(cardModel.getEventModel().getJapaneseName()))
@@ -97,7 +95,7 @@ public class DatabaseManager {
     }
 
     @NonNull
-    private Long cacheIdol(CardModel cardModel, Long characterVoiceId) {
+    private Long insertIdol(CardModel cardModel, Long characterVoiceId) {
         List<Idol> dataIdolList
                 = idolDao.queryBuilder()
                 .where(IdolDao.Properties.JapaneseName.eq(cardModel.getIdolModel().getJapaneseName()))
@@ -113,7 +111,7 @@ public class DatabaseManager {
     }
 
     @NonNull
-    private Long cacheCharacterVoice(CardModel cardModel) {
+    private Long insertCv(CardModel cardModel) {
         List<CharacterVoice> dataCharacterVoiceList
                 = characterVoiceDao.queryBuilder()
                 .where(CharacterVoiceDao.Properties.Name.eq(cardModel.getIdolModel().getCvModel().getName()))

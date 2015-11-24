@@ -92,7 +92,7 @@ public class CardManager {
             public void onResponse(Response<CardModel> response, retrofit.Retrofit retrofit) {
                 if (response.isSuccess()) {
                     cardModelList.add(response.body());
-                    databaseManager.cacheCards(cardModelList);
+                    databaseManager.cacheCard(response.body());
                     EventBus.getDefault().post(new CardEvent(cardModelList));
                 }
             }
