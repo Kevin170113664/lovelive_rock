@@ -5,13 +5,8 @@ import android.support.annotation.NonNull;
 
 import com.thoughtworks.lhli.lovelive_rock.Retrofit;
 import com.thoughtworks.lhli.lovelive_rock.bus.EventEvent;
-import com.thoughtworks.lhli.lovelive_rock.data.DaoMaster;
-import com.thoughtworks.lhli.lovelive_rock.data.DaoSession;
-import com.thoughtworks.lhli.lovelive_rock.data.EventDao;
 import com.thoughtworks.lhli.lovelive_rock.model.Event;
 import com.thoughtworks.lhli.lovelive_rock.model.MultipleEvents;
-
-import org.modelmapper.ModelMapper;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -26,8 +21,7 @@ public class EventManager {
 
     private List<Event> eventList;
     private Context context;
-    private DaoSession daoSession;
-    private EventDao eventDao;
+    DatabaseManager databaseManager;
 
     public EventManager(List<Event> eventList, Context context) {
         this.eventList = eventList;
@@ -39,12 +33,18 @@ public class EventManager {
     }
 
     public void getLatestEvent() throws IOException {
-        if (CardManager.isNetworkAvailable(context)) {
+        databaseManager = new DatabaseManager(context);
+        Event event = databaseManager.getLatestEventFromDatabase("Score Match Round 22");
+
+        if (event != null && event.getJapaneseName() != null) {
+            eventList.add(event);
+            EventBus.getDefault().post(new EventEvent(eventList));
+        } else if (CardManager.isNetworkAvailable(context)) {
             Call<MultipleEvents> call =
                     Retrofit.getInstance().getEventService().getLatestEvent("-beginning", 1);
             call.enqueue(getLatestCallback());
         } else {
-            System.out.print("Get all cards failed.");
+            System.out.print("Network is not available.");
         }
     }
 
@@ -55,6 +55,8 @@ public class EventManager {
             public void onResponse(Response<MultipleEvents> response, retrofit.Retrofit retrofit) {
                 if (response.isSuccess()) {
                     eventList.addAll(Arrays.asList(response.body().getResults()));
+                    databaseManager = new DatabaseManager(context);
+                    databaseManager.cacheEvent(eventList);
                     EventBus.getDefault().post(new EventEvent(eventList));
                 }
             }
@@ -64,18 +66,5 @@ public class EventManager {
                 System.out.print("getLatestCallback failed.");
             }
         };
-    }
-
-    private void cacheEvent() {
-        DaoMaster.OpenHelper helper = new DaoMaster.DevOpenHelper(context, "lovelive-db", null);
-        DaoMaster daoMaster = new DaoMaster(helper.getWritableDatabase());
-        daoSession = daoMaster.newSession();
-        eventDao = daoSession.getEventDao();
-        for (Event e : eventList) {
-            ModelMapper modelMapper = new ModelMapper();
-            com.thoughtworks.lhli.lovelive_rock.data.Event dataEvent =
-                    modelMapper.map(e, com.thoughtworks.lhli.lovelive_rock.data.Event.class);
-            eventDao.insert(dataEvent);
-        }
     }
 }
