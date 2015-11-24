@@ -23,10 +23,12 @@ public class CardManager {
 
     private List<Card> cardList;
     private static Context context;
+    DatabaseManager databaseManager;
 
     public CardManager(List<Card> cardList, Context context) {
         this.cardList = cardList;
         this.context = context;
+        this.databaseManager = new DatabaseManager(context);
     }
 
     public List<Card> getCardList() {
@@ -45,7 +47,12 @@ public class CardManager {
     }
 
     public void getCardById(String cardId) throws IOException {
-        if (isNetworkAvailable(context)) {
+        Card card = databaseManager.getCardByIdFromDatabase(cardId);
+
+        if (card != null && card.getCardId() != null) {
+            cardList.add(card);
+            EventBus.getDefault().post(new CardEvent(cardList));
+        } else if (isNetworkAvailable(context)) {
             Call<Card> call = Retrofit.getInstance().getCardService().getCardById(cardId);
             call.enqueue(getCardByIdCallback());
         } else {
@@ -85,6 +92,7 @@ public class CardManager {
             public void onResponse(Response<Card> response, retrofit.Retrofit retrofit) {
                 if (response.isSuccess()) {
                     cardList.add(response.body());
+                    databaseManager.cacheCards(cardList);
                     EventBus.getDefault().post(new CardEvent(cardList));
                 }
             }

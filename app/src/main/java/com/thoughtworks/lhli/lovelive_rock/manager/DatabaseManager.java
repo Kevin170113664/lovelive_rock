@@ -45,6 +45,8 @@ public class DatabaseManager {
         cardDao = daoSession.getCardDao();
 
         for (Card c : cardList) {
+            c.setEvent(null);
+            c.setIdol(null);
             com.thoughtworks.lhli.lovelive_rock.data.Card dataCard =
                     modelMapper.map(c, com.thoughtworks.lhli.lovelive_rock.data.Card.class);
             cardDao.insert(dataCard);
