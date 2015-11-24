@@ -37,7 +37,7 @@ public class CardManager {
 
     public void getAllCards() throws IOException {
         if (isNetworkAvailable(context)) {
-            for (int page = 70; page < 73; page++) {
+            for (int page = 30; page < 32; page++) {
                 Call<MultipleCards> call = Retrofit.getInstance().getCardService().getCardList(page);
                 call.enqueue(getCardListCallback());
             }
@@ -47,7 +47,7 @@ public class CardManager {
     }
 
     public void getCardById(String cardId) throws IOException {
-        Card card = databaseManager.getCardByIdFromDatabase(cardId);
+        Card card = databaseManager.getCardByIdFromCache(cardId);
 
         if (card != null && card.getCardId() != null) {
             cardList.add(card);

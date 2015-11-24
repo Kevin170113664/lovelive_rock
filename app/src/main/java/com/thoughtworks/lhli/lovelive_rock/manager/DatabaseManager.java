@@ -3,9 +3,13 @@ package com.thoughtworks.lhli.lovelive_rock.manager;
 import android.content.Context;
 
 import com.thoughtworks.lhli.lovelive_rock.data.CardDao;
+import com.thoughtworks.lhli.lovelive_rock.data.CharacterVoice;
+import com.thoughtworks.lhli.lovelive_rock.data.CharacterVoiceDao;
 import com.thoughtworks.lhli.lovelive_rock.data.DaoMaster;
 import com.thoughtworks.lhli.lovelive_rock.data.DaoSession;
 import com.thoughtworks.lhli.lovelive_rock.data.EventDao;
+import com.thoughtworks.lhli.lovelive_rock.data.Idol;
+import com.thoughtworks.lhli.lovelive_rock.data.IdolDao;
 import com.thoughtworks.lhli.lovelive_rock.model.Card;
 import com.thoughtworks.lhli.lovelive_rock.model.Event;
 
@@ -15,18 +19,19 @@ import java.util.List;
 
 public class DatabaseManager {
 
-    private Context context;
+    private DaoMaster.OpenHelper helper;
     private DaoSession daoSession;
     private CardDao cardDao;
     private EventDao eventDao;
+    private IdolDao idolDao;
+    private CharacterVoiceDao characterVoiceDao;
     private ModelMapper modelMapper = new ModelMapper();
 
     public DatabaseManager(Context context) {
-        this.context = context;
+        this.helper = new DaoMaster.DevOpenHelper(context, "lovelive-db", null);
     }
 
     public void cacheEvent(List<Event> eventList) {
-        DaoMaster.OpenHelper helper = new DaoMaster.DevOpenHelper(context, "lovelive-db", null);
         DaoMaster daoMaster = new DaoMaster(helper.getWritableDatabase());
         daoSession = daoMaster.newSession();
         eventDao = daoSession.getEventDao();
@@ -39,22 +44,39 @@ public class DatabaseManager {
     }
 
     public void cacheCards(List<Card> cardList) {
-        DaoMaster.OpenHelper helper = new DaoMaster.DevOpenHelper(context, "lovelive-db", null);
         DaoMaster daoMaster = new DaoMaster(helper.getWritableDatabase());
         daoSession = daoMaster.newSession();
         cardDao = daoSession.getCardDao();
+        eventDao = daoSession.getEventDao();
+        idolDao = daoSession.getIdolDao();
+        characterVoiceDao = daoSession.getCharacterVoiceDao();
 
         for (Card c : cardList) {
+            CharacterVoice dataCharacterVoice =
+                    modelMapper.map(c.getIdol().getCharacterVoice(), CharacterVoice.class);
+            Long characterVoiceId = characterVoiceDao.insert(dataCharacterVoice);
+
+            c.getIdol().setCharacterVoice(null);
+            Idol dataIdol = modelMapper.map(c.getIdol(), Idol.class);
+            dataIdol.setCharacterVoiceId(characterVoiceId);
+            Long idolId = idolDao.insert(dataIdol);
+
+            com.thoughtworks.lhli.lovelive_rock.data.Event dataEvent =
+                    modelMapper.map(c.getEvent(),
+                            com.thoughtworks.lhli.lovelive_rock.data.Event.class);
+            Long eventId = eventDao.insert(dataEvent);
+
             c.setEvent(null);
             c.setIdol(null);
             com.thoughtworks.lhli.lovelive_rock.data.Card dataCard =
                     modelMapper.map(c, com.thoughtworks.lhli.lovelive_rock.data.Card.class);
+            dataCard.setIdolId(idolId);
+            dataCard.setEventId(eventId);
             cardDao.insert(dataCard);
         }
     }
 
-    public Event getLatestEventFromDatabase(String japaneseName) {
-        DaoMaster.OpenHelper helper = new DaoMaster.DevOpenHelper(context, "lovelive-db", null);
+    public Event getLatestEventFromCache(String japaneseName) {
         DaoMaster daoMaster = new DaoMaster(helper.getReadableDatabase());
         daoSession = daoMaster.newSession();
         eventDao = daoSession.getEventDao();
@@ -72,9 +94,8 @@ public class DatabaseManager {
         return null;
     }
 
-    public Card getCardByIdFromDatabase(String cardId) {
-        DaoMaster.OpenHelper helper = new DaoMaster.DevOpenHelper(context, "lovelive-db", null);
-        DaoMaster daoMaster = new DaoMaster(helper.getWritableDatabase());
+    public Card getCardByIdFromCache(String cardId) {
+        DaoMaster daoMaster = new DaoMaster(helper.getReadableDatabase());
         daoSession = daoMaster.newSession();
         cardDao = daoSession.getCardDao();
 
@@ -89,5 +110,16 @@ public class DatabaseManager {
             }
         }
         return null;
+    }
+
+    public Integer getTotalCardsAmountFromCache() {
+        DaoMaster daoMaster = new DaoMaster(helper.getWritableDatabase());
+        daoSession = daoMaster.newSession();
+        cardDao = daoSession.getCardDao();
+
+//        List dataCard
+//                = cardDao.queryBuilder()
+//                .buildCount().list();
+        return 0;
     }
 }
