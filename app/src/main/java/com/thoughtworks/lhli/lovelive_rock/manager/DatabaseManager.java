@@ -25,6 +25,7 @@ import java.util.List;
 public class DatabaseManager {
 
     private final Integer MAX_CARDS_AMOUNT_IN_ONE_PAGE = 10;
+    private final Long NULL_FIELD_FOR_FOREIGN_KEY = -1L;
     private DaoMaster.OpenHelper helper;
     private DaoSession daoSession;
     private CardDao cardDao;
@@ -80,10 +81,9 @@ public class DatabaseManager {
         eventDao = daoSession.getEventDao();
 
         if (cardModel.getEventModel() == null) {
-            return null;
+            return NULL_FIELD_FOR_FOREIGN_KEY;
         } else {
-            Event event = modelMapper.map(cardModel.getEventModel(), Event.class);
-            return eventDao.insert(event);
+            return eventDao.insert(modelMapper.map(cardModel.getEventModel(), Event.class));
         }
     }
 
@@ -93,7 +93,7 @@ public class DatabaseManager {
         idolDao = daoSession.getIdolDao();
 
         if (cardModel.getIdolModel() == null) {
-            return null;
+            return NULL_FIELD_FOR_FOREIGN_KEY;
         } else {
             cardModel.getIdolModel().setCvModel(null);
             Idol idol = modelMapper.map(cardModel.getIdolModel(), Idol.class);
@@ -108,11 +108,10 @@ public class DatabaseManager {
         characterVoiceDao = daoSession.getCharacterVoiceDao();
 
         if (cardModel.getIdolModel() == null || cardModel.getIdolModel().getCvModel() == null) {
-            return null;
+            return NULL_FIELD_FOR_FOREIGN_KEY;
         } else {
-            CharacterVoice characterVoice =
-                    modelMapper.map(cardModel.getIdolModel().getCvModel(), CharacterVoice.class);
-            return characterVoiceDao.insert(characterVoice);
+            return characterVoiceDao.insert(
+                    modelMapper.map(cardModel.getIdolModel().getCvModel(), CharacterVoice.class));
         }
     }
 
