@@ -13,14 +13,18 @@ import com.thoughtworks.lhli.lovelive_rock.data.EventDao;
 import com.thoughtworks.lhli.lovelive_rock.data.Idol;
 import com.thoughtworks.lhli.lovelive_rock.data.IdolDao;
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
+import com.thoughtworks.lhli.lovelive_rock.model.CvModel;
 import com.thoughtworks.lhli.lovelive_rock.model.EventModel;
+import com.thoughtworks.lhli.lovelive_rock.model.IdolModel;
 
 import org.modelmapper.ModelMapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseManager {
 
+    private final Integer MAX_CARDS_AMOUNT_IN_ONE_PAGE = 10;
     private DaoMaster.OpenHelper helper;
     private DaoSession daoSession;
     private CardDao cardDao;
@@ -41,6 +45,12 @@ public class DatabaseManager {
         for (EventModel e : eventModelList) {
             Event event = modelMapper.map(e, Event.class);
             eventDao.insert(event);
+        }
+    }
+
+    public void cacheCardsByPage(List<CardModel> cardModelList) {
+        for (CardModel cardModel : cardModelList) {
+            cacheCard(cardModel);
         }
     }
 
@@ -106,7 +116,7 @@ public class DatabaseManager {
         }
     }
 
-    private Event queryEventByName(CardModel cardModel) {
+    public EventModel queryEventByName(CardModel cardModel) {
         DaoMaster daoMaster = new DaoMaster(helper.getReadableDatabase());
         daoSession = daoMaster.newSession();
         eventDao = daoSession.getEventDao();
@@ -115,13 +125,13 @@ public class DatabaseManager {
                 .where(EventDao.Properties.JapaneseName.eq(cardModel.getEventModel().getJapaneseName()))
                 .list();
         if (eventList.size() != 0) {
-            return eventList.get(0);
+            return modelMapper.map(eventList.get(0), EventModel.class);
         } else {
             return null;
         }
     }
 
-    private Idol queryIdolByName(CardModel cardModel) {
+    public IdolModel queryIdolByName(CardModel cardModel) {
         DaoMaster daoMaster = new DaoMaster(helper.getReadableDatabase());
         daoSession = daoMaster.newSession();
         idolDao = daoSession.getIdolDao();
@@ -130,13 +140,13 @@ public class DatabaseManager {
                 .where(IdolDao.Properties.JapaneseName.eq(cardModel.getIdolModel().getJapaneseName()))
                 .list();
         if (idolList.size() != 0) {
-            return idolList.get(0);
+            return modelMapper.map(idolList.get(0), IdolModel.class);
         } else {
             return null;
         }
     }
 
-    private CharacterVoice queryCharacterVoiceByName(CardModel cardModel) {
+    public CvModel queryCharacterVoiceByName(CardModel cardModel) {
         DaoMaster daoMaster = new DaoMaster(helper.getReadableDatabase());
         daoSession = daoMaster.newSession();
         characterVoiceDao = daoSession.getCharacterVoiceDao();
@@ -145,7 +155,7 @@ public class DatabaseManager {
                 .where(CharacterVoiceDao.Properties.Name.eq(cardModel.getIdolModel().getCvModel().getName()))
                 .list();
         if (characterVoiceList.size() != 0) {
-            return characterVoiceList.get(0);
+            return modelMapper.map(characterVoiceList.get(0), CvModel.class);
         } else {
             return null;
         }
@@ -160,10 +170,7 @@ public class DatabaseManager {
                 .where(EventDao.Properties.JapaneseName.eq(japaneseName))
                 .list();
         if (eventList.size() != 0) {
-            EventModel eventModel = modelMapper.map(eventList.get(0), EventModel.class);
-            if (eventModel.getJapaneseName() != null) {
-                return eventModel;
-            }
+            return modelMapper.map(eventList.get(0), EventModel.class);
         }
         return null;
     }
@@ -178,11 +185,32 @@ public class DatabaseManager {
                 .where(CardDao.Properties.CardId.eq(cardId))
                 .list();
         if (cardList.size() != 0) {
-            CardModel cardModel = modelMapper.map(cardList.get(0), CardModel.class);
-            if (cardModel.getCardId() != null) {
-                return cardModel;
-            }
+            return modelMapper.map(cardList.get(0), CardModel.class);
         }
         return null;
+    }
+
+    public List<CardModel> queryCardByPage(String page) {
+        DaoMaster daoMaster = new DaoMaster(helper.getReadableDatabase());
+        daoSession = daoMaster.newSession();
+        cardDao = daoSession.getCardDao();
+
+        Integer startId = Integer.parseInt(page) * MAX_CARDS_AMOUNT_IN_ONE_PAGE
+                - (MAX_CARDS_AMOUNT_IN_ONE_PAGE - 1);
+        Integer ednId = Integer.parseInt(page) * MAX_CARDS_AMOUNT_IN_ONE_PAGE;
+
+        List<Card> cardList
+                = cardDao.queryBuilder()
+                .where(CardDao.Properties.CardId.between(startId, ednId))
+                .list();
+        if (cardList.size() != 0) {
+            List<CardModel> cardModelList = new ArrayList<>();
+            for (Card card : cardList) {
+                cardModelList.add(modelMapper.map(card, CardModel.class));
+            }
+            return cardModelList;
+        } else {
+            return null;
+        }
     }
 }
