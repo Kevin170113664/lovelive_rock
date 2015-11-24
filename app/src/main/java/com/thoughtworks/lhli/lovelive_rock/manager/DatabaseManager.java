@@ -125,7 +125,7 @@ public class DatabaseManager {
         }
     }
 
-    public EventModel getLatestEventFromCache(String japaneseName) {
+    public EventModel queryLatestEvent(String japaneseName) {
         DaoMaster daoMaster = new DaoMaster(helper.getReadableDatabase());
         daoSession = daoMaster.newSession();
         eventDao = daoSession.getEventDao();
@@ -143,7 +143,7 @@ public class DatabaseManager {
         return null;
     }
 
-    public CardModel getCardByIdFromCache(String cardId) {
+    public CardModel queryCardById(String cardId) {
         DaoMaster daoMaster = new DaoMaster(helper.getReadableDatabase());
         daoSession = daoMaster.newSession();
         cardDao = daoSession.getCardDao();
@@ -159,16 +159,5 @@ public class DatabaseManager {
             }
         }
         return null;
-    }
-
-    public Integer getTotalCardsAmountFromCache() {
-        DaoMaster daoMaster = new DaoMaster(helper.getWritableDatabase());
-        daoSession = daoMaster.newSession();
-        cardDao = daoSession.getCardDao();
-
-//        List dataCard
-//                = cardDao.queryBuilder()
-//                .buildCount().list();
-        return 0;
     }
 }

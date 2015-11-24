@@ -47,7 +47,7 @@ public class CardManager {
     }
 
     public void getCardById(String cardId) throws IOException {
-        CardModel cardModel = databaseManager.getCardByIdFromCache(cardId);
+        CardModel cardModel = databaseManager.queryCardById(cardId);
 
         if (cardModel != null && cardModel.getCardId() != null) {
             cardModelList.add(cardModel);

@@ -34,7 +34,7 @@ public class EventManager {
     }
 
     public void getLatestEvent() throws IOException {
-        EventModel eventModel = databaseManager.getLatestEventFromCache("Score Match Round 22");
+        EventModel eventModel = databaseManager.queryLatestEvent("Score Match Round 22");
 
         if (eventModel != null && eventModel.getJapaneseName() != null) {
             eventModelList.add(eventModel);
