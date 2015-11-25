@@ -12,7 +12,8 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 import com.thoughtworks.lhli.lovelive_rock.R;
-import com.thoughtworks.lhli.lovelive_rock.bus.MainActivityEvent;
+import com.thoughtworks.lhli.lovelive_rock.bus.EventEvent;
+import com.thoughtworks.lhli.lovelive_rock.bus.MainCardEvent;
 import com.thoughtworks.lhli.lovelive_rock.task.LoadMainActivityData;
 
 import java.io.IOException;
@@ -41,23 +42,22 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    public void onEventMainThread(MainActivityEvent mainActivityEvent) throws IOException {
+    public void onEventMainThread(EventEvent eventEvent) throws IOException {
         findViewById(R.id.loading_icon).setVisibility(View.GONE);
-        if (mainActivityEvent.getHashMap().get("EventImage") != null) {
-            Picasso.with(this)
-                    .load(mainActivityEvent.getHashMap().get("EventImage"))
-                    .into((ImageView) findViewById(R.id.latest_event_image));
-        }
-        if (mainActivityEvent.getHashMap().get("NonIdolizedSrImage") != null) {
-            Picasso.with(this)
-                    .load(mainActivityEvent.getHashMap().get("NonIdolizedSrImage"))
-                    .into((ImageView) findViewById(R.id.latest_event_Sr_image));
-        }
-        if (mainActivityEvent.getHashMap().get("IdolizedSrImage") != null) {
-            Picasso.with(this)
-                    .load(mainActivityEvent.getHashMap().get("IdolizedSrImage"))
-                    .into((ImageView) findViewById(R.id.latest_event_idolized_Sr_image));
-        }
+
+        Picasso.with(this)
+                .load(eventEvent.getEventModelList().get(0).getImage())
+                .into((ImageView) findViewById(R.id.latest_event_image));
+    }
+
+    public void onEventMainThread(MainCardEvent mainCardEvent) {
+        Picasso.with(this)
+                .load(mainCardEvent.getCardModelList().get(0).getCardImage())
+                .into((ImageView) findViewById(R.id.latest_event_Sr_image));
+
+        Picasso.with(this)
+                .load(mainCardEvent.getCardModelList().get(0).getCardIdolizedImage())
+                .into((ImageView) findViewById(R.id.latest_event_idolized_Sr_image));
     }
 
     @Override
