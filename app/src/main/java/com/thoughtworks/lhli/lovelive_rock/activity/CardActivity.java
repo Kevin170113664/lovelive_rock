@@ -9,10 +9,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.thoughtworks.lhli.lovelive_rock.bus.CardEvent;
-import com.thoughtworks.lhli.lovelive_rock.manager.CardManager;
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.adapter.SmallCardListAdapter;
+import com.thoughtworks.lhli.lovelive_rock.bus.SmallCardEvent;
+import com.thoughtworks.lhli.lovelive_rock.manager.CardManager;
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 
 import java.io.IOException;
@@ -51,8 +51,8 @@ public class CardActivity extends AppCompatActivity {
         });
     }
 
-    public void onEvent(CardEvent cardEvent) {
-        listView.setAdapter(new SmallCardListAdapter(CardActivity.this, cardEvent.getCardModelList()));
+    public void onEvent(SmallCardEvent smallCardEvent) {
+        listView.setAdapter(new SmallCardListAdapter(CardActivity.this, smallCardEvent.getCardModelList()));
     }
 
     @Override

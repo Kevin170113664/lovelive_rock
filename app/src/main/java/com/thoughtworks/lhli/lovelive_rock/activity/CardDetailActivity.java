@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
-import com.thoughtworks.lhli.lovelive_rock.bus.CardEvent;
+import com.thoughtworks.lhli.lovelive_rock.bus.MediumCardEvent;
 import com.thoughtworks.lhli.lovelive_rock.manager.CardManager;
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.adapter.MediumCardListAdapter;
@@ -38,7 +38,7 @@ public class CardDetailActivity extends AppCompatActivity {
         }
     }
 
-    public void onEvent(CardEvent cardEvent) {
-        listView.setAdapter(new MediumCardListAdapter(CardDetailActivity.this, cardEvent.getCardModelList()));
+    public void onEvent(MediumCardEvent mediumCardEvent) {
+        listView.setAdapter(new MediumCardListAdapter(CardDetailActivity.this, mediumCardEvent.getCardModelList()));
     }
 }

@@ -6,7 +6,10 @@ import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 
 import com.thoughtworks.lhli.lovelive_rock.Retrofit;
-import com.thoughtworks.lhli.lovelive_rock.bus.CardEvent;
+import com.thoughtworks.lhli.lovelive_rock.activity.MainActivity;
+import com.thoughtworks.lhli.lovelive_rock.bus.MainCardEvent;
+import com.thoughtworks.lhli.lovelive_rock.bus.MediumCardEvent;
+import com.thoughtworks.lhli.lovelive_rock.bus.SmallCardEvent;
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 import com.thoughtworks.lhli.lovelive_rock.model.MultipleCards;
 
@@ -51,7 +54,7 @@ public class CardManager {
 
         if (cardModel != null && cardModel.getCardId() != null) {
             cardModelList.add(cardModel);
-            EventBus.getDefault().post(new CardEvent(cardModelList));
+            postEvent();
         } else if (isNetworkAvailable(context)) {
             Call<CardModel> call = Retrofit.getInstance().getCardService().getCardById(cardId);
             call.enqueue(getCardByIdCallback());
@@ -74,7 +77,7 @@ public class CardManager {
             public void onResponse(Response<MultipleCards> response, retrofit.Retrofit retrofit) {
                 if (response.isSuccess()) {
                     cardModelList.addAll(Arrays.asList(response.body().getResults()));
-                    EventBus.getDefault().post(new CardEvent(cardModelList));
+                    EventBus.getDefault().post(new SmallCardEvent(cardModelList));
                 }
             }
 
@@ -93,7 +96,7 @@ public class CardManager {
                 if (response.isSuccess()) {
                     cardModelList.add(response.body());
                     databaseManager.cacheCard(response.body());
-                    EventBus.getDefault().post(new CardEvent(cardModelList));
+                    postEvent();
                 }
             }
 
@@ -102,5 +105,13 @@ public class CardManager {
                 System.out.print("getCardByIdCallback failed.");
             }
         };
+    }
+
+    private void postEvent() {
+        if (context.getClass().equals(MainActivity.class)) {
+            EventBus.getDefault().post(new MainCardEvent(cardModelList));
+        } else {
+            EventBus.getDefault().post(new MediumCardEvent(cardModelList));
+        }
     }
 }

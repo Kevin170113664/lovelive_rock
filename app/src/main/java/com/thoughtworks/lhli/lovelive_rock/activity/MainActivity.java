@@ -12,8 +12,8 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 import com.thoughtworks.lhli.lovelive_rock.R;
-import com.thoughtworks.lhli.lovelive_rock.bus.CardEvent;
 import com.thoughtworks.lhli.lovelive_rock.bus.EventEvent;
+import com.thoughtworks.lhli.lovelive_rock.bus.MainCardEvent;
 import com.thoughtworks.lhli.lovelive_rock.manager.CardManager;
 import com.thoughtworks.lhli.lovelive_rock.manager.EventManager;
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
@@ -54,30 +54,27 @@ public class MainActivity extends AppCompatActivity {
         if (readLatestEventSrId().equals("0")) {
             Integer cardId = eventEvent.getEventModelList().get(0).getCards()[1];
             cardManager.getCardById(cardId.toString());
+            saveLatestEventSrId(cardId.toString());
         } else {
             cardManager.getCardById(readLatestEventSrId());
         }
-        saveLatestEventSrId(eventEvent);
     }
 
-    public void onEvent(CardEvent cardEvent) {
+    public void onEvent(MainCardEvent mainCardEvent) {
         Picasso.with(this)
-                .load(cardEvent.getCardModelList().get(0).getCardImage())
+                .load(mainCardEvent.getCardModelList().get(0).getCardImage())
                 .into((ImageView) findViewById(R.id.latest_event_Sr_image));
 
         Picasso.with(this)
-                .load(cardEvent.getCardModelList().get(0).getCardIdolizedImage())
+                .load(mainCardEvent.getCardModelList().get(0).getCardIdolizedImage())
                 .into((ImageView) findViewById(R.id.latest_event_idolized_Sr_image));
     }
 
-    protected void saveLatestEventSrId(EventEvent eventEvent) {
-        if (eventEvent.getEventModelList().get(0).getCards() != null) {
-            SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString(getString(R.string.latest_event_Sr_id),
-                    String.format("%s", eventEvent.getEventModelList().get(0).getCards()[1]));
-            editor.apply();
-        }
+    protected void saveLatestEventSrId(String cardId) {
+        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(getString(R.string.latest_event_Sr_id), cardId);
+        editor.apply();
     }
 
     protected String readLatestEventSrId() {

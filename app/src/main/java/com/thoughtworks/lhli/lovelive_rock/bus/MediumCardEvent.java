@@ -4,11 +4,11 @@ import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 
 import java.util.List;
 
-public class CardEvent {
+public class MediumCardEvent {
 
     public List<CardModel> cardModelList;
 
-    public CardEvent(List<CardModel> cardModelList) {
+    public MediumCardEvent(List<CardModel> cardModelList) {
         this.cardModelList = cardModelList;
     }
 
