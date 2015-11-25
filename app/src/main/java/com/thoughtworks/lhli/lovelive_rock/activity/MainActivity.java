@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onEventMainThread(MainCardEvent mainCardEvent) {
+        findViewById(R.id.loading_icon).setVisibility(View.GONE);
+
         Picasso.with(this)
                 .load(mainCardEvent.getCardModelList().get(0).getCardImage())
                 .into((ImageView) findViewById(R.id.latest_event_Sr_image));

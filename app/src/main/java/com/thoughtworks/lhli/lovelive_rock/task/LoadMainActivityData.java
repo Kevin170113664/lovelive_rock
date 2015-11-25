@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 
 import com.thoughtworks.lhli.lovelive_rock.R;
+import com.thoughtworks.lhli.lovelive_rock.activity.CardActivity;
+import com.thoughtworks.lhli.lovelive_rock.activity.MainActivity;
 import com.thoughtworks.lhli.lovelive_rock.bus.EventEvent;
 import com.thoughtworks.lhli.lovelive_rock.manager.CardManager;
 import com.thoughtworks.lhli.lovelive_rock.manager.EventManager;
@@ -28,13 +30,26 @@ public class LoadMainActivityData extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... voids) {
         EventBus.getDefault().register(this);
+        if (activity.getClass().equals(MainActivity.class)) {
+            loadMainActivityData();
+        } else if (activity.getClass().equals(CardActivity.class)) {
+            CardManager cardManager = new CardManager(new ArrayList<CardModel>(), activity);
+            try {
+                cardManager.getAllCards();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    private void loadMainActivityData() {
         EventManager eventManager = new EventManager(new ArrayList<EventModel>(), activity);
         try {
             eventManager.getLatestEvent();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
     }
 
     @Override

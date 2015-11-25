@@ -39,7 +39,7 @@ public class CardManager {
     }
 
     public void getAllCards() throws IOException {
-        for (int page = 65; page < 70; page++) {
+        for (int page = 56; page < 61; page++) {
             List<CardModel> queriedCardModelList = databaseManager.queryCardByPage(String.valueOf(page));
 
             if (queriedCardModelList != null && queriedCardModelList.size() == 10) {

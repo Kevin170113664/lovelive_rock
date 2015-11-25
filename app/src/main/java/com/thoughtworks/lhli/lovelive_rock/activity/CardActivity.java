@@ -7,16 +7,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.bumptech.glide.Glide;
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.adapter.SmallCardListAdapter;
 import com.thoughtworks.lhli.lovelive_rock.bus.SmallCardEvent;
-import com.thoughtworks.lhli.lovelive_rock.manager.CardManager;
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
+import com.thoughtworks.lhli.lovelive_rock.task.LoadMainActivityData;
 
-import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -27,7 +28,7 @@ public class CardActivity extends AppCompatActivity {
     @Bind(R.id.small_card_list)
     protected ListView listView;
 
-    private CardManager cardManager;
+    private List<CardModel> cardModelList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,26 +36,25 @@ public class CardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_card);
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
-        cardManager = new CardManager(new ArrayList<CardModel>(), CardActivity.this);
+        Glide.with(this).load(R.drawable.loading).asGif()
+                .into((ImageView) findViewById(R.id.loading_icon));
+        new LoadMainActivityData(this).execute();
+    }
 
-        try {
-            cardManager.getAllCards();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void onEventMainThread(SmallCardEvent smallCardEvent) {
+        findViewById(R.id.loading_icon).setVisibility(View.GONE);
+        cardModelList = smallCardEvent.getCardModelList();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(CardActivity.this, CardDetailActivity.class);
-                intent.putExtra("cardId", cardManager.getCardModelList().get(position).getCardId());
+                intent.putExtra("cardId", cardModelList.get(position).getCardId());
                 startActivity(intent);
             }
         });
-    }
 
-    public void onEvent(SmallCardEvent smallCardEvent) {
-        listView.setAdapter(new SmallCardListAdapter(CardActivity.this, smallCardEvent.getCardModelList()));
+        listView.setAdapter(new SmallCardListAdapter(CardActivity.this, cardModelList));
     }
 
     @Override
