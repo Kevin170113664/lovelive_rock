@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.activity.CardActivity;
+import com.thoughtworks.lhli.lovelive_rock.activity.CardDetailActivity;
 import com.thoughtworks.lhli.lovelive_rock.activity.MainActivity;
 import com.thoughtworks.lhli.lovelive_rock.bus.EventEvent;
 import com.thoughtworks.lhli.lovelive_rock.manager.CardManager;
@@ -19,11 +20,11 @@ import java.util.ArrayList;
 
 import de.greenrobot.event.EventBus;
 
-public class LoadMainActivityData extends AsyncTask<Void, Void, Void> {
+public class LoadActivityData extends AsyncTask<Void, Void, Void> {
 
     private Activity activity;
 
-    public LoadMainActivityData(Activity activity) {
+    public LoadActivityData(Activity activity) {
         this.activity = activity;
     }
 
@@ -33,14 +34,30 @@ public class LoadMainActivityData extends AsyncTask<Void, Void, Void> {
         if (activity.getClass().equals(MainActivity.class)) {
             loadMainActivityData();
         } else if (activity.getClass().equals(CardActivity.class)) {
-            CardManager cardManager = new CardManager(new ArrayList<CardModel>(), activity);
-            try {
-                cardManager.getAllCards();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            loadCardActivityData();
+        } else if (activity.getClass().equals(CardDetailActivity.class)) {
+            loadCardDetailActivityData();
         }
         return null;
+    }
+
+    private void loadCardDetailActivityData() {
+        CardManager cardManager = new CardManager(new ArrayList<CardModel>(), activity);
+        try {
+            String cardId = activity.getIntent().getStringExtra("cardId");
+            cardManager.getCardById(cardId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadCardActivityData() {
+        CardManager cardManager = new CardManager(new ArrayList<CardModel>(), activity);
+        try {
+            cardManager.getAllCards();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void loadMainActivityData() {

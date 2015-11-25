@@ -2,16 +2,15 @@ package com.thoughtworks.lhli.lovelive_rock.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 
-import com.thoughtworks.lhli.lovelive_rock.bus.MediumCardEvent;
-import com.thoughtworks.lhli.lovelive_rock.manager.CardManager;
+import com.bumptech.glide.Glide;
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.adapter.MediumCardListAdapter;
-import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
-
-import java.io.IOException;
-import java.util.ArrayList;
+import com.thoughtworks.lhli.lovelive_rock.bus.MediumCardEvent;
+import com.thoughtworks.lhli.lovelive_rock.task.LoadActivityData;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -28,17 +27,14 @@ public class CardDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_card_detail);
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
-        CardManager cardManager = new CardManager(new ArrayList<CardModel>(), CardDetailActivity.this);
-
-        try {
-            String cardId = getIntent().getStringExtra("cardId");
-            cardManager.getCardById(cardId);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Glide.with(this).load(R.drawable.loading).asGif()
+                .into((ImageView) findViewById(R.id.loading_icon));
+        new LoadActivityData(this).execute();
     }
 
-    public void onEvent(MediumCardEvent mediumCardEvent) {
-        listView.setAdapter(new MediumCardListAdapter(CardDetailActivity.this, mediumCardEvent.getCardModelList()));
+    public void onEventMainThread(MediumCardEvent mediumCardEvent) {
+        findViewById(R.id.loading_icon).setVisibility(View.GONE);
+        listView.setAdapter(new MediumCardListAdapter(CardDetailActivity.this,
+                mediumCardEvent.getCardModelList()));
     }
 }

@@ -15,7 +15,7 @@ import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.adapter.SmallCardListAdapter;
 import com.thoughtworks.lhli.lovelive_rock.bus.SmallCardEvent;
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
-import com.thoughtworks.lhli.lovelive_rock.task.LoadMainActivityData;
+import com.thoughtworks.lhli.lovelive_rock.task.LoadActivityData;
 
 import java.util.List;
 
@@ -38,7 +38,7 @@ public class CardActivity extends AppCompatActivity {
         EventBus.getDefault().register(this);
         Glide.with(this).load(R.drawable.loading).asGif()
                 .into((ImageView) findViewById(R.id.loading_icon));
-        new LoadMainActivityData(this).execute();
+        new LoadActivityData(this).execute();
     }
 
     public void onEventMainThread(SmallCardEvent smallCardEvent) {

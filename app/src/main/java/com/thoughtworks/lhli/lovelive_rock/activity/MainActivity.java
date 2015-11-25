@@ -14,7 +14,7 @@ import com.squareup.picasso.Picasso;
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.bus.EventEvent;
 import com.thoughtworks.lhli.lovelive_rock.bus.MainCardEvent;
-import com.thoughtworks.lhli.lovelive_rock.task.LoadMainActivityData;
+import com.thoughtworks.lhli.lovelive_rock.task.LoadActivityData;
 
 import java.io.IOException;
 
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         EventBus.getDefault().register(this);
         Glide.with(this).load(R.drawable.loading).asGif()
                 .into((ImageView) findViewById(R.id.loading_icon));
-        new LoadMainActivityData(this).execute();
+        new LoadActivityData(this).execute();
     }
 
     @Override
