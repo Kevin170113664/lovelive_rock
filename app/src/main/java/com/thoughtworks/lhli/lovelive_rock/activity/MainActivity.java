@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
@@ -37,14 +38,20 @@ public class MainActivity extends AppCompatActivity {
         EventBus.getDefault().register(this);
         final EventManager eventManager = new EventManager(new ArrayList<EventModel>(), this);
 
-        try {
-            eventManager.getLatestEvent();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    eventManager.getLatestEvent();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public void onEvent(EventEvent eventEvent) throws IOException {
+        findViewById(R.id.loading_icon).setVisibility(View.GONE);
+
         Picasso.with(this)
                 .load(eventEvent.getEventModelList().get(0).getImage())
                 .into((ImageView) findViewById(R.id.latest_event_image));
