@@ -56,9 +56,22 @@ public class DatabaseManager {
     }
 
     public void cacheCard(CardModel cardModel) {
-        Long characterVoiceId = insertCv(cardModel);
-        Long idolId = insertIdol(cardModel, characterVoiceId);
-        Long eventId = insertEvent(cardModel);
+        Long characterVoiceId = NULL_FIELD_FOR_FOREIGN_KEY;
+        Long idolId = NULL_FIELD_FOR_FOREIGN_KEY;
+        Long eventId = NULL_FIELD_FOR_FOREIGN_KEY;
+        if (cardModel.getIdolModel() != null
+                && cardModel.getIdolModel().getCvModel() != null
+                && queryCharacterVoiceByName(cardModel) == null) {
+            characterVoiceId = insertCv(cardModel);
+        }
+        if (cardModel.getIdolModel() != null
+                && queryIdolByName(cardModel) == null) {
+            idolId = insertIdol(cardModel, characterVoiceId);
+        }
+        if (cardModel.getEventModel() != null
+                && queryEventByName(cardModel) == null) {
+            eventId = insertEvent(cardModel);
+        }
         insertCard(cardModel, idolId, eventId);
     }
 
