@@ -32,9 +32,8 @@
             android:id="@+id/loading_icon"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:layout_marginTop="100dp"
             android:layout_gravity="center"
-            android:src="@mipmap/loading"/>
+            android:layout_marginTop="100dp" />
 
         <ImageView
             android:id="@+id/latest_event_image"

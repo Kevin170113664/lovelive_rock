@@ -8,17 +8,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.bus.EventEvent;
 import com.thoughtworks.lhli.lovelive_rock.bus.MainCardEvent;
 import com.thoughtworks.lhli.lovelive_rock.manager.CardManager;
-import com.thoughtworks.lhli.lovelive_rock.manager.EventManager;
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
-import com.thoughtworks.lhli.lovelive_rock.model.EventModel;
+import com.thoughtworks.lhli.lovelive_rock.task.LoadMainActivityData;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,22 +35,18 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
-        final EventManager eventManager = new EventManager(new ArrayList<EventModel>(), this);
+        Glide.with(this).load(R.drawable.loading).asGif()
+                .into((ImageView) findViewById(R.id.loading_icon));
+        new LoadMainActivityData(this).execute();
+    }
 
-        new Thread(new Runnable() {
-            public void run() {
-                try {
-                    eventManager.getLatestEvent();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 
     public void onEvent(EventEvent eventEvent) throws IOException {
-        findViewById(R.id.loading_icon).setVisibility(View.GONE);
-
         Picasso.with(this)
                 .load(eventEvent.getEventModelList().get(0).getImage())
                 .into((ImageView) findViewById(R.id.latest_event_image));
@@ -87,12 +82,6 @@ public class MainActivity extends AppCompatActivity {
     protected String readLatestEventSrId() {
         SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         return sharedPreferences.getString(getString(R.string.latest_event_Sr_id), "0");
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
     }
 
     @Override

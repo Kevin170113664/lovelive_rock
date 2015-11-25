@@ -33,12 +33,13 @@ public class EventManager {
         return eventModelList;
     }
 
-    public void getLatestEvent() throws IOException {
+    public List<EventModel> getLatestEvent() throws IOException {
         EventModel eventModel = databaseManager.queryLatestEvent("Score Match Round 22");
 
         if (eventModel != null && eventModel.getJapaneseName() != null) {
             eventModelList.add(eventModel);
-            EventBus.getDefault().post(new EventEvent(eventModelList));
+            return eventModelList;
+//            EventBus.getDefault().post(new EventEvent(eventModelList));
         } else if (CardManager.isNetworkAvailable(context)) {
             Call<MultipleEvents> call =
                     Retrofit.getInstance().getEventService().getLatestEvent("-beginning", 1);
@@ -46,6 +47,7 @@ public class EventManager {
         } else {
             System.out.print("Network is not available.");
         }
+        return null;
     }
 
     @NonNull
