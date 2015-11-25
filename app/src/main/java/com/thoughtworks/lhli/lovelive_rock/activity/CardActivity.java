@@ -6,6 +6,7 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -54,7 +55,46 @@ public class CardActivity extends AppCompatActivity {
             }
         });
 
-        listView.setAdapter(new SmallCardListAdapter(CardActivity.this, cardModelList));
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            private int currentScrollState;
+            private int currentFirstVisibleItem;
+            private int currentVisibleItemCount;
+            private boolean isLoading = false;
+            private List<CardModel> tempCardModelList = cardModelList.subList(0, 10);
+            private int page = 2;
+            private int maxIndex = cardModelList.size();
+            private int startIndex = 0;
+            private int endIndex = page * 10;
+
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                this.currentScrollState = scrollState;
+                this.isScrollCompleted();
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                this.currentFirstVisibleItem = firstVisibleItem;
+                this.currentVisibleItemCount = visibleItemCount;
+            }
+
+            private void isScrollCompleted() {
+                if (this.currentVisibleItemCount > 0 && this.currentScrollState == SCROLL_STATE_IDLE) {
+                    if (!isLoading && endIndex != maxIndex) {
+                        isLoading = true;
+                        listView.setAdapter(new SmallCardListAdapter(CardActivity.this,
+                                cardModelList.subList(startIndex, endIndex)));
+                        page += 1;
+                        endIndex = page * 10;
+                        if (endIndex > maxIndex) {
+                            endIndex = maxIndex;
+                        }
+                    }
+                }
+            }
+        });
+
+        listView.setAdapter(new SmallCardListAdapter(CardActivity.this, cardModelList.subList(0, 10)));
     }
 
     @Override
