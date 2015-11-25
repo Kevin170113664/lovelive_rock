@@ -80,10 +80,10 @@ public class DatabaseManager {
         daoSession = daoMaster.newSession();
         eventDao = daoSession.getEventDao();
 
-        if (cardModel.getEventModel() == null) {
-            return NULL_FIELD_FOR_FOREIGN_KEY;
-        } else {
+        if (cardModel.getEventModel() != null) {
             return eventDao.insert(modelMapper.map(cardModel.getEventModel(), Event.class));
+        } else {
+            return NULL_FIELD_FOR_FOREIGN_KEY;
         }
     }
 

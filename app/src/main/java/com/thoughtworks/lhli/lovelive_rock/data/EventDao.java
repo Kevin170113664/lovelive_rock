@@ -34,14 +34,14 @@ public class EventDao extends AbstractDao<Event, Long> {
         public final static Property JapanCurrent = new Property(10, Boolean.class, "japanCurrent", false, "JAPAN_CURRENT");
         public final static Property WorldCurrent = new Property(11, Boolean.class, "worldCurrent", false, "WORLD_CURRENT");
         public final static Property Song = new Property(12, String.class, "song", false, "SONG");
-        public final static Property JapaneseT1Points = new Property(13, Short.class, "japaneseT1Points", false, "JAPANESE_T1_POINTS");
-        public final static Property JapaneseT1Rank = new Property(14, Short.class, "japaneseT1Rank", false, "JAPANESE_T1_RANK");
-        public final static Property JapaneseT2Points = new Property(15, Short.class, "japaneseT2Points", false, "JAPANESE_T2_POINTS");
-        public final static Property JapaneseT2Rank = new Property(16, Short.class, "japaneseT2Rank", false, "JAPANESE_T2_RANK");
-        public final static Property EnglishT1Points = new Property(17, Short.class, "englishT1Points", false, "ENGLISH_T1_POINTS");
-        public final static Property EnglishT1Rank = new Property(18, Short.class, "englishT1Rank", false, "ENGLISH_T1_RANK");
-        public final static Property EnglishT2Points = new Property(19, Short.class, "englishT2Points", false, "ENGLISH_T2_POINTS");
-        public final static Property EnglishT2Rank = new Property(20, Short.class, "englishT2Rank", false, "ENGLISH_T2_RANK");
+        public final static Property JapaneseT1Points = new Property(13, Long.class, "japaneseT1Points", false, "JAPANESE_T1_POINTS");
+        public final static Property JapaneseT1Rank = new Property(14, Long.class, "japaneseT1Rank", false, "JAPANESE_T1_RANK");
+        public final static Property JapaneseT2Points = new Property(15, Long.class, "japaneseT2Points", false, "JAPANESE_T2_POINTS");
+        public final static Property JapaneseT2Rank = new Property(16, Long.class, "japaneseT2Rank", false, "JAPANESE_T2_RANK");
+        public final static Property EnglishT1Points = new Property(17, Long.class, "englishT1Points", false, "ENGLISH_T1_POINTS");
+        public final static Property EnglishT1Rank = new Property(18, Long.class, "englishT1Rank", false, "ENGLISH_T1_RANK");
+        public final static Property EnglishT2Points = new Property(19, Long.class, "englishT2Points", false, "ENGLISH_T2_POINTS");
+        public final static Property EnglishT2Rank = new Property(20, Long.class, "englishT2Rank", false, "ENGLISH_T2_RANK");
         public final static Property Note = new Property(21, String.class, "note", false, "NOTE");
     };
 
@@ -158,42 +158,42 @@ public class EventDao extends AbstractDao<Event, Long> {
             stmt.bindString(13, song);
         }
  
-        Short japaneseT1Points = entity.getJapaneseT1Points();
+        Long japaneseT1Points = entity.getJapaneseT1Points();
         if (japaneseT1Points != null) {
             stmt.bindLong(14, japaneseT1Points);
         }
  
-        Short japaneseT1Rank = entity.getJapaneseT1Rank();
+        Long japaneseT1Rank = entity.getJapaneseT1Rank();
         if (japaneseT1Rank != null) {
             stmt.bindLong(15, japaneseT1Rank);
         }
  
-        Short japaneseT2Points = entity.getJapaneseT2Points();
+        Long japaneseT2Points = entity.getJapaneseT2Points();
         if (japaneseT2Points != null) {
             stmt.bindLong(16, japaneseT2Points);
         }
  
-        Short japaneseT2Rank = entity.getJapaneseT2Rank();
+        Long japaneseT2Rank = entity.getJapaneseT2Rank();
         if (japaneseT2Rank != null) {
             stmt.bindLong(17, japaneseT2Rank);
         }
  
-        Short englishT1Points = entity.getEnglishT1Points();
+        Long englishT1Points = entity.getEnglishT1Points();
         if (englishT1Points != null) {
             stmt.bindLong(18, englishT1Points);
         }
  
-        Short englishT1Rank = entity.getEnglishT1Rank();
+        Long englishT1Rank = entity.getEnglishT1Rank();
         if (englishT1Rank != null) {
             stmt.bindLong(19, englishT1Rank);
         }
  
-        Short englishT2Points = entity.getEnglishT2Points();
+        Long englishT2Points = entity.getEnglishT2Points();
         if (englishT2Points != null) {
             stmt.bindLong(20, englishT2Points);
         }
  
-        Short englishT2Rank = entity.getEnglishT2Rank();
+        Long englishT2Rank = entity.getEnglishT2Rank();
         if (englishT2Rank != null) {
             stmt.bindLong(21, englishT2Rank);
         }
@@ -227,14 +227,14 @@ public class EventDao extends AbstractDao<Event, Long> {
             cursor.isNull(offset + 10) ? null : cursor.getShort(offset + 10) != 0, // japanCurrent
             cursor.isNull(offset + 11) ? null : cursor.getShort(offset + 11) != 0, // worldCurrent
             cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // song
-            cursor.isNull(offset + 13) ? null : cursor.getShort(offset + 13), // japaneseT1Points
-            cursor.isNull(offset + 14) ? null : cursor.getShort(offset + 14), // japaneseT1Rank
-            cursor.isNull(offset + 15) ? null : cursor.getShort(offset + 15), // japaneseT2Points
-            cursor.isNull(offset + 16) ? null : cursor.getShort(offset + 16), // japaneseT2Rank
-            cursor.isNull(offset + 17) ? null : cursor.getShort(offset + 17), // englishT1Points
-            cursor.isNull(offset + 18) ? null : cursor.getShort(offset + 18), // englishT1Rank
-            cursor.isNull(offset + 19) ? null : cursor.getShort(offset + 19), // englishT2Points
-            cursor.isNull(offset + 20) ? null : cursor.getShort(offset + 20), // englishT2Rank
+            cursor.isNull(offset + 13) ? null : cursor.getLong(offset + 13), // japaneseT1Points
+            cursor.isNull(offset + 14) ? null : cursor.getLong(offset + 14), // japaneseT1Rank
+            cursor.isNull(offset + 15) ? null : cursor.getLong(offset + 15), // japaneseT2Points
+            cursor.isNull(offset + 16) ? null : cursor.getLong(offset + 16), // japaneseT2Rank
+            cursor.isNull(offset + 17) ? null : cursor.getLong(offset + 17), // englishT1Points
+            cursor.isNull(offset + 18) ? null : cursor.getLong(offset + 18), // englishT1Rank
+            cursor.isNull(offset + 19) ? null : cursor.getLong(offset + 19), // englishT2Points
+            cursor.isNull(offset + 20) ? null : cursor.getLong(offset + 20), // englishT2Rank
             cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21) // note
         );
         return entity;
@@ -256,14 +256,14 @@ public class EventDao extends AbstractDao<Event, Long> {
         entity.setJapanCurrent(cursor.isNull(offset + 10) ? null : cursor.getShort(offset + 10) != 0);
         entity.setWorldCurrent(cursor.isNull(offset + 11) ? null : cursor.getShort(offset + 11) != 0);
         entity.setSong(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
-        entity.setJapaneseT1Points(cursor.isNull(offset + 13) ? null : cursor.getShort(offset + 13));
-        entity.setJapaneseT1Rank(cursor.isNull(offset + 14) ? null : cursor.getShort(offset + 14));
-        entity.setJapaneseT2Points(cursor.isNull(offset + 15) ? null : cursor.getShort(offset + 15));
-        entity.setJapaneseT2Rank(cursor.isNull(offset + 16) ? null : cursor.getShort(offset + 16));
-        entity.setEnglishT1Points(cursor.isNull(offset + 17) ? null : cursor.getShort(offset + 17));
-        entity.setEnglishT1Rank(cursor.isNull(offset + 18) ? null : cursor.getShort(offset + 18));
-        entity.setEnglishT2Points(cursor.isNull(offset + 19) ? null : cursor.getShort(offset + 19));
-        entity.setEnglishT2Rank(cursor.isNull(offset + 20) ? null : cursor.getShort(offset + 20));
+        entity.setJapaneseT1Points(cursor.isNull(offset + 13) ? null : cursor.getLong(offset + 13));
+        entity.setJapaneseT1Rank(cursor.isNull(offset + 14) ? null : cursor.getLong(offset + 14));
+        entity.setJapaneseT2Points(cursor.isNull(offset + 15) ? null : cursor.getLong(offset + 15));
+        entity.setJapaneseT2Rank(cursor.isNull(offset + 16) ? null : cursor.getLong(offset + 16));
+        entity.setEnglishT1Points(cursor.isNull(offset + 17) ? null : cursor.getLong(offset + 17));
+        entity.setEnglishT1Rank(cursor.isNull(offset + 18) ? null : cursor.getLong(offset + 18));
+        entity.setEnglishT2Points(cursor.isNull(offset + 19) ? null : cursor.getLong(offset + 19));
+        entity.setEnglishT2Rank(cursor.isNull(offset + 20) ? null : cursor.getLong(offset + 20));
         entity.setNote(cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21));
      }
     

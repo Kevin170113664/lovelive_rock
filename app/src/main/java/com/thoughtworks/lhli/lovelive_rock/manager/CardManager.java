@@ -40,9 +40,16 @@ public class CardManager {
 
     public void getAllCards() throws IOException {
         if (isNetworkAvailable(context)) {
-            for (int page = 30; page < 32; page++) {
-                Call<MultipleCards> call = Retrofit.getInstance().getCardService().getCardList(page);
-                call.enqueue(getCardListCallback());
+            for (int page = 65; page < 70; page++) {
+                List<CardModel> queriedCardModelList = databaseManager.queryCardByPage(String.valueOf(page));
+
+                if (queriedCardModelList != null && queriedCardModelList.size() == 10) {
+                    cardModelList.addAll(queriedCardModelList);
+                    EventBus.getDefault().post(new SmallCardEvent(cardModelList));
+                } else {
+                    Call<MultipleCards> call = Retrofit.getInstance().getCardService().getCardList(page);
+                    call.enqueue(getCardListCallback());
+                }
             }
         } else {
             System.out.print("Get all cards failed.");
@@ -78,6 +85,13 @@ public class CardManager {
                 if (response.isSuccess()) {
                     cardModelList.addAll(Arrays.asList(response.body().getResults()));
                     EventBus.getDefault().post(new SmallCardEvent(cardModelList));
+
+                    for (CardModel cardModel : cardModelList) {
+                        CardModel queriedCardModel = databaseManager.queryCardById(cardModel.getCardId());
+                        if (queriedCardModel == null) {
+                            databaseManager.cacheCard(cardModel);
+                        }
+                    }
                 }
             }
 
@@ -95,8 +109,8 @@ public class CardManager {
             public void onResponse(Response<CardModel> response, retrofit.Retrofit retrofit) {
                 if (response.isSuccess()) {
                     cardModelList.add(response.body());
-                    databaseManager.cacheCard(response.body());
                     postEvent();
+                    databaseManager.cacheCard(response.body());
                 }
             }
 

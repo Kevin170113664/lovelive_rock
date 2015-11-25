@@ -27,13 +27,15 @@ public class CardActivity extends AppCompatActivity {
     @Bind(R.id.small_card_list)
     protected ListView listView;
 
+    private CardManager cardManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card);
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
-        final CardManager cardManager = new CardManager(new ArrayList<CardModel>(), CardActivity.this);
+        cardManager = new CardManager(new ArrayList<CardModel>(), CardActivity.this);
 
         try {
             cardManager.getAllCards();

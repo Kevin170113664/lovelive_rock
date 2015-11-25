@@ -19,14 +19,14 @@ public class Event implements java.io.Serializable {
     private Boolean japanCurrent;
     private Boolean worldCurrent;
     private String song;
-    private Short japaneseT1Points;
-    private Short japaneseT1Rank;
-    private Short japaneseT2Points;
-    private Short japaneseT2Rank;
-    private Short englishT1Points;
-    private Short englishT1Rank;
-    private Short englishT2Points;
-    private Short englishT2Rank;
+    private Long japaneseT1Points;
+    private Long japaneseT1Rank;
+    private Long japaneseT2Points;
+    private Long japaneseT2Rank;
+    private Long englishT1Points;
+    private Long englishT1Rank;
+    private Long englishT2Points;
+    private Long englishT2Rank;
     private String note;
 
     public Event() {
@@ -36,7 +36,7 @@ public class Event implements java.io.Serializable {
         this.id = id;
     }
 
-    public Event(Long id, String japaneseName, String romajiName, String englishName, String image, String englishImage, String beginning, String end, String englishBeginning, String englishEnd, Boolean japanCurrent, Boolean worldCurrent, String song, Short japaneseT1Points, Short japaneseT1Rank, Short japaneseT2Points, Short japaneseT2Rank, Short englishT1Points, Short englishT1Rank, Short englishT2Points, Short englishT2Rank, String note) {
+    public Event(Long id, String japaneseName, String romajiName, String englishName, String image, String englishImage, String beginning, String end, String englishBeginning, String englishEnd, Boolean japanCurrent, Boolean worldCurrent, String song, Long japaneseT1Points, Long japaneseT1Rank, Long japaneseT2Points, Long japaneseT2Rank, Long englishT1Points, Long englishT1Rank, Long englishT2Points, Long englishT2Rank, String note) {
         this.id = id;
         this.japaneseName = japaneseName;
         this.romajiName = romajiName;
@@ -165,67 +165,67 @@ public class Event implements java.io.Serializable {
         this.song = song;
     }
 
-    public Short getJapaneseT1Points() {
+    public Long getJapaneseT1Points() {
         return japaneseT1Points;
     }
 
-    public void setJapaneseT1Points(Short japaneseT1Points) {
+    public void setJapaneseT1Points(Long japaneseT1Points) {
         this.japaneseT1Points = japaneseT1Points;
     }
 
-    public Short getJapaneseT1Rank() {
+    public Long getJapaneseT1Rank() {
         return japaneseT1Rank;
     }
 
-    public void setJapaneseT1Rank(Short japaneseT1Rank) {
+    public void setJapaneseT1Rank(Long japaneseT1Rank) {
         this.japaneseT1Rank = japaneseT1Rank;
     }
 
-    public Short getJapaneseT2Points() {
+    public Long getJapaneseT2Points() {
         return japaneseT2Points;
     }
 
-    public void setJapaneseT2Points(Short japaneseT2Points) {
+    public void setJapaneseT2Points(Long japaneseT2Points) {
         this.japaneseT2Points = japaneseT2Points;
     }
 
-    public Short getJapaneseT2Rank() {
+    public Long getJapaneseT2Rank() {
         return japaneseT2Rank;
     }
 
-    public void setJapaneseT2Rank(Short japaneseT2Rank) {
+    public void setJapaneseT2Rank(Long japaneseT2Rank) {
         this.japaneseT2Rank = japaneseT2Rank;
     }
 
-    public Short getEnglishT1Points() {
+    public Long getEnglishT1Points() {
         return englishT1Points;
     }
 
-    public void setEnglishT1Points(Short englishT1Points) {
+    public void setEnglishT1Points(Long englishT1Points) {
         this.englishT1Points = englishT1Points;
     }
 
-    public Short getEnglishT1Rank() {
+    public Long getEnglishT1Rank() {
         return englishT1Rank;
     }
 
-    public void setEnglishT1Rank(Short englishT1Rank) {
+    public void setEnglishT1Rank(Long englishT1Rank) {
         this.englishT1Rank = englishT1Rank;
     }
 
-    public Short getEnglishT2Points() {
+    public Long getEnglishT2Points() {
         return englishT2Points;
     }
 
-    public void setEnglishT2Points(Short englishT2Points) {
+    public void setEnglishT2Points(Long englishT2Points) {
         this.englishT2Points = englishT2Points;
     }
 
-    public Short getEnglishT2Rank() {
+    public Long getEnglishT2Rank() {
         return englishT2Rank;
     }
 
-    public void setEnglishT2Rank(Short englishT2Rank) {
+    public void setEnglishT2Rank(Long englishT2Rank) {
         this.englishT2Rank = englishT2Rank;
     }
 

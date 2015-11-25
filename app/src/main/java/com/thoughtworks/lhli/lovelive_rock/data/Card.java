@@ -44,6 +44,7 @@ public class Card implements java.io.Serializable {
     private String cardImage;
     private String cardIdolizedImage;
     private String roundCardImage;
+    private String roundCardIdolizedImage;
     private String videoStory;
     private String japaneseVideoStory;
     private String websiteUrl;
@@ -75,7 +76,7 @@ public class Card implements java.io.Serializable {
         this.id = id;
     }
 
-    public Card(Long id, String cardId, String name, String japaneseName, long idolId, String japaneseCollection, String rarity, String attribute, String japaneseAttribute, Boolean isPromo, String promoItem, String releaseDate, Boolean japanOnly, long eventId, Boolean isSpecial, String hp, String minimumStatisticsSmile, String minimumStatisticsPure, String minimumStatisticsCool, String nonIdolizedMaximumStatisticsSmile, String nonIdolizedMaximumStatisticsPure, String nonIdolizedMaximumStatisticsCool, String idolizedMaximumStatisticsSmile, String idolizedMaximumStatisticsPure, String idolizedMaximumStatisticsCool, String skill, String japaneseSkill, String skillDetails, String japaneseSkillDetails, String centerSkill, String japaneseCenterSkill, String japaneseCenterSkillDetails, String cardImage, String cardIdolizedImage, String roundCardImage, String videoStory, String japaneseVideoStory, String websiteUrl, String nonIdolizedMaxLevel, String idolizedMaxLevel, String ownedCards, String transparentImage, String transparentIdolizedImage, String transparentUrPair, String transparentIdolizedUrPair) {
+    public Card(Long id, String cardId, String name, String japaneseName, long idolId, String japaneseCollection, String rarity, String attribute, String japaneseAttribute, Boolean isPromo, String promoItem, String releaseDate, Boolean japanOnly, long eventId, Boolean isSpecial, String hp, String minimumStatisticsSmile, String minimumStatisticsPure, String minimumStatisticsCool, String nonIdolizedMaximumStatisticsSmile, String nonIdolizedMaximumStatisticsPure, String nonIdolizedMaximumStatisticsCool, String idolizedMaximumStatisticsSmile, String idolizedMaximumStatisticsPure, String idolizedMaximumStatisticsCool, String skill, String japaneseSkill, String skillDetails, String japaneseSkillDetails, String centerSkill, String japaneseCenterSkill, String japaneseCenterSkillDetails, String cardImage, String cardIdolizedImage, String roundCardImage, String roundCardIdolizedImage, String videoStory, String japaneseVideoStory, String websiteUrl, String nonIdolizedMaxLevel, String idolizedMaxLevel, String ownedCards, String transparentImage, String transparentIdolizedImage, String transparentUrPair, String transparentIdolizedUrPair) {
         this.id = id;
         this.cardId = cardId;
         this.name = name;
@@ -111,6 +112,7 @@ public class Card implements java.io.Serializable {
         this.cardImage = cardImage;
         this.cardIdolizedImage = cardIdolizedImage;
         this.roundCardImage = roundCardImage;
+        this.roundCardIdolizedImage = roundCardIdolizedImage;
         this.videoStory = videoStory;
         this.japaneseVideoStory = japaneseVideoStory;
         this.websiteUrl = websiteUrl;
@@ -407,6 +409,14 @@ public class Card implements java.io.Serializable {
 
     public void setRoundCardImage(String roundCardImage) {
         this.roundCardImage = roundCardImage;
+    }
+
+    public String getRoundCardIdolizedImage() {
+        return roundCardIdolizedImage;
+    }
+
+    public void setRoundCardIdolizedImage(String roundCardIdolizedImage) {
+        this.roundCardIdolizedImage = roundCardIdolizedImage;
     }
 
     public String getVideoStory() {
