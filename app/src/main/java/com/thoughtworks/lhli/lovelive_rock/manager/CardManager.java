@@ -25,7 +25,7 @@ import retrofit.Response;
 public class CardManager {
 
     private List<CardModel> cardModelList;
-    private static Context context;
+    private Context context;
     DatabaseManager databaseManager;
 
     public CardManager(List<CardModel> cardModelList, Context context) {
@@ -39,20 +39,20 @@ public class CardManager {
     }
 
     public void getAllCards() throws IOException {
-        if (isNetworkAvailable(context)) {
-            for (int page = 65; page < 70; page++) {
-                List<CardModel> queriedCardModelList = databaseManager.queryCardByPage(String.valueOf(page));
+        for (int page = 65; page < 70; page++) {
+            List<CardModel> queriedCardModelList = databaseManager.queryCardByPage(String.valueOf(page));
 
-                if (queriedCardModelList != null && queriedCardModelList.size() == 10) {
-                    cardModelList.addAll(queriedCardModelList);
-                    EventBus.getDefault().post(new SmallCardEvent(cardModelList));
-                } else {
+            if (queriedCardModelList != null && queriedCardModelList.size() == 10) {
+                cardModelList.addAll(queriedCardModelList);
+                EventBus.getDefault().post(new SmallCardEvent(cardModelList));
+            } else {
+                if (isNetworkAvailable(context)) {
                     Call<MultipleCards> call = Retrofit.getInstance().getCardService().getCardList(page);
                     call.enqueue(getCardListCallback());
+                } else {
+                    System.out.print("Get all cards failed.");
                 }
             }
-        } else {
-            System.out.print("Get all cards failed.");
         }
     }
 
