@@ -24,6 +24,9 @@ import retrofit.Response;
 
 public class CardManager {
 
+    private final Integer MAX_CARD_NUMBER = 738;
+    private final Integer MAX_CARD_PAGE = 74;
+
     private List<CardModel> cardModelList;
     private Context context;
     DatabaseManager databaseManager;
@@ -39,13 +42,11 @@ public class CardManager {
     }
 
     public void getAllCards() throws IOException {
-        for (int page = 56; page < 61; page++) {
-            List<CardModel> queriedCardModelList = databaseManager.queryCardByPage(String.valueOf(page));
-
-            if (queriedCardModelList != null && queriedCardModelList.size() == 10) {
-                cardModelList.addAll(queriedCardModelList);
-                EventBus.getDefault().post(new SmallCardEvent(cardModelList));
-            } else {
+        List<CardModel> cardModelList = databaseManager.queryAllCards();
+        if (cardModelList != null && cardModelList.size() == MAX_CARD_NUMBER) {
+            EventBus.getDefault().post(new SmallCardEvent(cardModelList));
+        } else {
+            for (int page = 1; page <= MAX_CARD_PAGE; page++) {
                 if (isNetworkAvailable(context)) {
                     Call<MultipleCards> call = Retrofit.getInstance().getCardService().getCardList(page);
                     call.enqueue(getCardListCallback());
@@ -84,13 +85,16 @@ public class CardManager {
             public void onResponse(Response<MultipleCards> response, retrofit.Retrofit retrofit) {
                 if (response.isSuccess()) {
                     cardModelList.addAll(Arrays.asList(response.body().getResults()));
-                    EventBus.getDefault().post(new SmallCardEvent(cardModelList));
-
                     for (CardModel cardModel : cardModelList) {
                         CardModel queriedCardModel = databaseManager.queryCardById(cardModel.getCardId());
                         if (queriedCardModel == null) {
                             databaseManager.cacheCard(cardModel);
                         }
+                    }
+                    String lastCardId = cardModelList.get(cardModelList.size()).getCardId();
+                    if (lastCardId.equals(MAX_CARD_NUMBER.toString())) {
+                        cardModelList = databaseManager.queryAllCards();
+                        EventBus.getDefault().post(new SmallCardEvent(cardModelList));
                     }
                 }
             }

@@ -12,6 +12,58 @@
         android:layout_gravity="center"
         android:layout_marginTop="100dp" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <Button
+            android:id="@+id/filter_n"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_dark_orange"
+            android:text="N"
+            android:textColor="@color/colorBackground"
+            android:textSize="15pt" />
+
+        <Button
+            android:id="@+id/filter_r"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_dark_orange"
+            android:text="R"
+            android:textColor="@color/colorBackground"
+            android:textSize="15pt" />
+
+        <Button
+            android:id="@+id/filter_sr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_dark_orange"
+            android:text="SR"
+            android:textColor="@color/colorBackground"
+            android:textSize="15pt" />
+
+        <Button
+            android:id="@+id/filter_ur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_dark_orange"
+            android:text="UR"
+            android:textColor="@color/colorBackground"
+            android:textSize="15pt" />
+
+    </LinearLayout>
+
     <ListView
         android:id="@+id/small_card_list"
         android:layout_width="fill_parent"

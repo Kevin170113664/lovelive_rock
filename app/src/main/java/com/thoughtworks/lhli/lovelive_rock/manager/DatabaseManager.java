@@ -212,4 +212,24 @@ public class DatabaseManager {
             return null;
         }
     }
+
+    public List<CardModel> queryAllCards() {
+        DaoMaster daoMaster = new DaoMaster(helper.getReadableDatabase());
+        daoSession = daoMaster.newSession();
+        cardDao = daoSession.getCardDao();
+
+        List<Card> cardList
+                = cardDao.queryBuilder()
+                .where(CardDao.Properties.CardId.isNotNull())
+                .list();
+        if (cardList.size() != 0) {
+            List<CardModel> cardModelList = new ArrayList<>();
+            for (Card card : cardList) {
+                cardModelList.add(modelMapper.map(card, CardModel.class));
+            }
+            return cardModelList;
+        } else {
+            return null;
+        }
+    }
 }

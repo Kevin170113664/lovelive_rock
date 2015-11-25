@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -17,10 +18,12 @@ import com.thoughtworks.lhli.lovelive_rock.bus.SmallCardEvent;
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 import com.thoughtworks.lhli.lovelive_rock.task.LoadActivityData;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import de.greenrobot.event.EventBus;
 
 public class CardActivity extends AppCompatActivity {
@@ -28,13 +31,32 @@ public class CardActivity extends AppCompatActivity {
     @Bind(R.id.small_card_list)
     protected ListView listView;
 
+    @OnClick({R.id.filter_n, R.id.filter_r, R.id.filter_sr, R.id.filter_ur})
+    public void filterCardByRarity(View view) {
+        switch (((Button) view).getText().toString()) {
+            case "N":
+                filterCardByRarity("N");
+                break;
+            case "R":
+                filterCardByRarity("R");
+                break;
+            case "SR":
+                filterCardByRarity("SR");
+                break;
+            case "UR":
+                filterCardByRarity("UR");
+                break;
+            default:
+                break;
+        }
+    }
+
     private List<CardModel> cardModelList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card);
-        ButterKnife.bind(this);
         EventBus.getDefault().register(this);
         Glide.with(this).load(R.drawable.loading).asGif()
                 .into((ImageView) findViewById(R.id.loading_icon));
@@ -43,18 +65,17 @@ public class CardActivity extends AppCompatActivity {
 
     public void onEventMainThread(SmallCardEvent smallCardEvent) {
         findViewById(R.id.loading_icon).setVisibility(View.GONE);
+        ButterKnife.bind(this);
         cardModelList = smallCardEvent.getCardModelList();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(CardActivity.this, CardDetailActivity.class);
-                intent.putExtra("cardId", cardModelList.get(position).getCardId());
+                intent.putExtra("cardId", ((List<CardModel>) ((ListView) parent).getAdapter().getItem(0)).get(position).getCardId());
                 startActivity(intent);
             }
         });
-
-        listView.setAdapter(new SmallCardListAdapter(CardActivity.this, cardModelList));
     }
 
     @Override
@@ -64,5 +85,15 @@ public class CardActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void filterCardByRarity(String rarity) {
+        List<CardModel> rarityCardModelList = new ArrayList<>();
+        for (CardModel cardModel : cardModelList) {
+            if (cardModel.getRarity().equals(rarity)) {
+                rarityCardModelList.add(cardModel);
+            }
+        }
+        listView.setAdapter(new SmallCardListAdapter(CardActivity.this, rarityCardModelList));
     }
 }
