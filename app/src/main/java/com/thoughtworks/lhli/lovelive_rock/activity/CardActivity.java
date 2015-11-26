@@ -3,6 +3,7 @@ package com.thoughtworks.lhli.lovelive_rock.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -94,5 +95,11 @@ public class CardActivity extends BaseActivity {
             }
         }
         listView.setAdapter(new SmallCardListAdapter(CardActivity.this, rarityCardModelList));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_card, menu);
+        return true;
     }
 }
