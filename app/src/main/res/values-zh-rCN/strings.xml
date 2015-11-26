@@ -9,6 +9,7 @@
 
     <string name="card_layout_label">卡牌</string>
     <string name="card_detail_layout_label">卡牌详情</string>
+    <string name="card_full_screen_label">卡面</string>
     <string name="card_collection_default_text">无卡牌主题</string>
     <string name="card_skill_default_text">未知</string>
     <string name="card_release_date_default_text">出现日期未知</string>

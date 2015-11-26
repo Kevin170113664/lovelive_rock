@@ -34,5 +34,4 @@ public class CardDetailActivity extends BaseActivity {
         cardModelList.add(cardModel);
         listView.setAdapter(new MediumCardListAdapter(CardDetailActivity.this, cardModelList));
     }
-
 }

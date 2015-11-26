@@ -1,17 +1,17 @@
 package com.thoughtworks.lhli.lovelive_rock.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.thoughtworks.lhli.lovelive_rock.R;
+import com.thoughtworks.lhli.lovelive_rock.activity.FullScreenCardActivity;
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 
 import java.util.List;
@@ -100,16 +100,7 @@ public class MediumCardListAdapter extends BaseAdapter {
         viewHolder.mediumCardIdolizedImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (zoomOut) {
-                    idolizedImageView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                    idolizedImageView.setPadding(20, 20, 20, 20);
-                    zoomOut = false;
-                } else {
-                    idolizedImageView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
-                    idolizedImageView.setScaleType(ImageView.ScaleType.FIT_XY);
-                    idolizedImageView.setPadding(0, 10, 0, 200);
-                    zoomOut = true;
-                }
+                createFullScreenActivity();
             }
         });
 
@@ -118,19 +109,17 @@ public class MediumCardListAdapter extends BaseAdapter {
             viewHolder.mediumCardImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (zoomOut) {
-                        imageView.setLayoutParams(new LinearLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
-                        imageView.setPadding(20, 20, 20, 20);
-                        zoomOut = false;
-                    } else {
-                        imageView.setLayoutParams(new LinearLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
-                        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-                        imageView.setPadding(0, 10, 0, 200);
-                        zoomOut = true;
-                    }
+                    createFullScreenActivity();
                 }
             });
         }
+    }
+
+    private void createFullScreenActivity() {
+        Intent intent = new Intent(context, FullScreenCardActivity.class);
+        intent.putExtra("CardImage", cardModelList.get(0).getCardImage());
+        intent.putExtra("IdolizedCardImage", cardModelList.get(0).getCardIdolizedImage());
+        context.startActivity(intent);
     }
 
     private void bindItemView(View convertView, ViewHolder viewHolder) {

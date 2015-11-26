@@ -29,6 +29,8 @@
         <activity
             android:name=".activity.CardDetailActivity"
             android:label="@string/card_detail_layout_label" />
+        <activity android:name=".activity.FullScreenCardActivity"
+            android:label="@string/card_full_screen_label"/>
     </application>
 
 </manifest>

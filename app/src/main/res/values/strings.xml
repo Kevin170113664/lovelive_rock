@@ -9,6 +9,7 @@
 
     <string name="card_layout_label">Card</string>
     <string name="card_detail_layout_label">Card Detail</string>
+    <string name="card_full_screen_label">Preview</string>
     <string name="card_collection_default_text">No Collection</string>
     <string name="card_statistics_default_text">0</string>
     <string name="card_skill_default_text">Unknown skill</string>
