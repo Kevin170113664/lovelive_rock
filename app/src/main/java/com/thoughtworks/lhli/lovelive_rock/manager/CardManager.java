@@ -91,9 +91,8 @@ public class CardManager {
                             databaseManager.cacheCard(cardModel);
                         }
                     }
-                    String lastCardId = cardModelList.get(cardModelList.size()).getCardId();
+                    String lastCardId = cardModelList.get(cardModelList.size() - 1).getCardId();
                     if (lastCardId.equals(MAX_CARD_NUMBER.toString())) {
-                        cardModelList = databaseManager.queryAllCards();
                         EventBus.getDefault().post(new SmallCardEvent(cardModelList));
                     }
                 }

@@ -89,7 +89,8 @@ public class LoadActivityData extends AsyncTask<Void, Void, Void> {
     public void onEvent(EventEvent eventEvent) throws IOException {
         CardManager cardManager = new CardManager(new ArrayList<CardModel>(), activity);
 
-        if (readLatestEventSrId().equals("0")) {
+        if (readLatestEventSrId().equals("0")
+                && eventEvent.getEventModelList().get(0).getCards() != null) {
             Integer cardId = eventEvent.getEventModelList().get(0).getCards()[1];
             cardManager.getCardById(cardId.toString());
             saveLatestEventSrId(cardId.toString());
