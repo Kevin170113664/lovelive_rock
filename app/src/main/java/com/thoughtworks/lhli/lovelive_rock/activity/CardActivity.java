@@ -85,8 +85,7 @@ public class CardActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
-        int id = item.getItemId();
-        isGridView = id != R.id.action_menu;
+        isGridView = item.getItemId() != R.id.action_menu;
         invalidateOptionsMenu();
         return true;
     }
