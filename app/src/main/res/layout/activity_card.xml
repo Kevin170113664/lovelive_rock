@@ -61,13 +61,25 @@
             android:text="UR"
             android:textColor="@color/colorBackground"
             android:textSize="15pt" />
-
     </LinearLayout>
 
     <ListView
         android:id="@+id/small_card_list"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:background="@color/colorBackground"
         android:divider="@android:color/transparent" />
+
+    <GridView
+        android:id="@+id/grid_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnWidth="90dp"
+        android:gravity="center"
+        android:horizontalSpacing="10dp"
+        android:numColumns="4"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"/>
 </LinearLayout>

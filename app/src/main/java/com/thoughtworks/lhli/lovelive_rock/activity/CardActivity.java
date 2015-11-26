@@ -7,11 +7,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.bumptech.glide.Glide;
 import com.thoughtworks.lhli.lovelive_rock.R;
+import com.thoughtworks.lhli.lovelive_rock.adapter.GridCardListAdapter;
 import com.thoughtworks.lhli.lovelive_rock.adapter.SmallCardListAdapter;
 import com.thoughtworks.lhli.lovelive_rock.bus.SmallCardEvent;
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
@@ -29,6 +31,9 @@ public class CardActivity extends BaseActivity {
 
     @Bind(R.id.small_card_list)
     protected ListView listView;
+
+    @Bind(R.id.grid_view)
+    protected GridView gridView;
 
     @Bind(R.id.loading_icon)
     protected ImageView loadingIcon;
@@ -56,6 +61,7 @@ public class CardActivity extends BaseActivity {
     private boolean isGridView = false;
 
     private List<CardModel> cardModelList;
+    private List<CardModel> visibleCardModelList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,13 +97,13 @@ public class CardActivity extends BaseActivity {
     }
 
     private void filterCardByRarity(String rarity) {
-        List<CardModel> rarityCardModelList = new ArrayList<>();
+        visibleCardModelList.clear();
         for (CardModel cardModel : cardModelList) {
             if (cardModel.getRarity().equals(rarity)) {
-                rarityCardModelList.add(cardModel);
+                visibleCardModelList.add(cardModel);
             }
         }
-        listView.setAdapter(new SmallCardListAdapter(CardActivity.this, rarityCardModelList));
+        loadCardView();
     }
 
     @Override
@@ -105,6 +111,18 @@ public class CardActivity extends BaseActivity {
         getMenuInflater().inflate(R.menu.menu_card, menu);
         menu.findItem(R.id.action_grid).setVisible(!isGridView);
         menu.findItem(R.id.action_menu).setVisible(isGridView);
+        loadCardView();
         return true;
+    }
+
+    private void loadCardView() {
+        List<CardModel> emptyCardModelList = new ArrayList<>();
+        if (isGridView) {
+            listView.setAdapter(new SmallCardListAdapter(CardActivity.this, emptyCardModelList));
+            gridView.setAdapter(new GridCardListAdapter(CardActivity.this, visibleCardModelList));
+        } else {
+            gridView.setAdapter(new GridCardListAdapter(CardActivity.this, emptyCardModelList));
+            listView.setAdapter(new SmallCardListAdapter(CardActivity.this, visibleCardModelList));
+        }
     }
 }
