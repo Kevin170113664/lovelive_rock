@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -20,10 +21,12 @@ public class MediumCardListAdapter extends BaseAdapter {
     private Context context;
     private List<CardModel> cardModelList;
     private boolean zoomOut = false;
+    private boolean isPromo;
 
     public MediumCardListAdapter(Context context, List<CardModel> cardModelList) {
         this.context = context;
         this.cardModelList = cardModelList;
+        this.isPromo = cardModelList.get(0).getCardImage() == null;
     }
 
     @Override
@@ -47,7 +50,11 @@ public class MediumCardListAdapter extends BaseAdapter {
 
         if (convertView == null) {
             viewHolder = new ViewHolder();
-            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.medium_card_list_item, parent, false);
+            if (isPromo) {
+                convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.medium_card_list_item_promo, parent, false);
+            } else {
+                convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.medium_card_list_item_default, parent, false);
+            }
             bindItemView(convertView, viewHolder);
             convertView.setTag(viewHolder);
         } else {
@@ -60,9 +67,14 @@ public class MediumCardListAdapter extends BaseAdapter {
     }
 
     private void setItemView(int position, ViewHolder viewHolder) {
+        if (!isPromo) {
+            Picasso.with(context)
+                    .load(cardModelList.get(position).getCardImage())
+                    .into(viewHolder.mediumCardImage);
+        }
         Picasso.with(context)
                 .load(cardModelList.get(position).getCardIdolizedImage())
-                .into(viewHolder.mediumCardImage);
+                .into(viewHolder.mediumCardIdolizedImage);
         setImageZoomEvent(viewHolder);
         viewHolder.mediumCardIdolName.setText(cardModelList.get(position).getJapaneseName());
         viewHolder.mediumCardMinSmile.setText(cardModelList.get(position).getMinimumStatisticsSmile());
@@ -84,26 +96,48 @@ public class MediumCardListAdapter extends BaseAdapter {
     }
 
     private void setImageZoomEvent(ViewHolder viewHolder) {
-        final ImageView imageView = viewHolder.mediumCardImage;
-        viewHolder.mediumCardImage.setOnClickListener(new View.OnClickListener() {
+        final ImageView idolizedImageView = viewHolder.mediumCardIdolizedImage;
+        viewHolder.mediumCardIdolizedImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (zoomOut) {
-                    imageView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                    imageView.setPadding(20, 20, 20, 20);
+                    idolizedImageView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                    idolizedImageView.setPadding(20, 20, 20, 20);
                     zoomOut = false;
                 } else {
-                    imageView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
-                    imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-                    imageView.setPadding(0, 10, 0, 200);
+                    idolizedImageView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+                    idolizedImageView.setScaleType(ImageView.ScaleType.FIT_XY);
+                    idolizedImageView.setPadding(0, 10, 0, 200);
                     zoomOut = true;
                 }
             }
         });
+
+        if (!isPromo) {
+            final ImageView imageView = viewHolder.mediumCardImage;
+            viewHolder.mediumCardImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (zoomOut) {
+                        imageView.setLayoutParams(new LinearLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
+                        imageView.setPadding(20, 20, 20, 20);
+                        zoomOut = false;
+                    } else {
+                        imageView.setLayoutParams(new LinearLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
+                        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+                        imageView.setPadding(0, 10, 0, 200);
+                        zoomOut = true;
+                    }
+                }
+            });
+        }
     }
 
     private void bindItemView(View convertView, ViewHolder viewHolder) {
-        viewHolder.mediumCardImage = (ImageView) convertView.findViewById(R.id.medium_card_image);
+        if (!isPromo) {
+            viewHolder.mediumCardImage = (ImageView) convertView.findViewById(R.id.medium_card_image);
+        }
+        viewHolder.mediumCardIdolizedImage = (ImageView) convertView.findViewById(R.id.medium_card_idolized_image);
         viewHolder.mediumCardIdolName = (TextView) convertView.findViewById(R.id.medium_card_idol_name);
         viewHolder.mediumCardMinSmile = (TextView) convertView.findViewById(R.id.medium_card_min_smile);
         viewHolder.mediumCardMinPure = (TextView) convertView.findViewById(R.id.medium_card_min_pure);
@@ -124,6 +158,7 @@ public class MediumCardListAdapter extends BaseAdapter {
 
     public class ViewHolder {
         public ImageView mediumCardImage;
+        public ImageView mediumCardIdolizedImage;
         public TextView mediumCardIdolName;
         public TextView mediumCardMinSmile;
         public TextView mediumCardMinPure;
