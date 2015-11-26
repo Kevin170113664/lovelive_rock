@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
@@ -71,6 +72,8 @@ public class MainActivity extends BaseActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_song || id == R.id.action_event) {
+            Toast.makeText(getApplicationContext(), getString(R.string.toast_function_not_complete),
+                    Toast.LENGTH_SHORT).show();
             return true;
         }
         if (item.getItemId() == R.id.action_card) {

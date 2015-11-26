@@ -5,6 +5,8 @@
     <string name="action_song">歌曲</string>
     <string name="action_event">活动</string>
 
+    <string name="toast_function_not_complete">对不起哟，这部分功能尚未完成</string>
+
     <string name="card_layout_label">卡牌</string>
     <string name="card_detail_layout_label">卡牌详情</string>
     <string name="card_collection_default_text">无卡牌主题</string>
