@@ -3,7 +3,6 @@ package com.thoughtworks.lhli.lovelive_rock.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,7 +25,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.greenrobot.event.EventBus;
 
-public class CardActivity extends AppCompatActivity {
+public class CardActivity extends BaseActivity {
 
     @Bind(R.id.small_card_list)
     protected ListView listView;

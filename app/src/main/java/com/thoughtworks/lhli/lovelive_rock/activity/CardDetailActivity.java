@@ -1,7 +1,6 @@
 package com.thoughtworks.lhli.lovelive_rock.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -16,7 +15,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
 
-public class CardDetailActivity extends AppCompatActivity {
+public class CardDetailActivity extends BaseActivity {
 
     @Bind(R.id.medium_card_list)
     protected ListView listView;
