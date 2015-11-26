@@ -13,8 +13,9 @@
         <ImageView
             android:id="@+id/medium_card_image"
             android:layout_width="171dp"
+            android:adjustViewBounds="true"
             android:layout_height="240dp"
-            android:padding="10dp" />
+            android:padding="20px" />
 
         <LinearLayout
             android:layout_width="match_parent"

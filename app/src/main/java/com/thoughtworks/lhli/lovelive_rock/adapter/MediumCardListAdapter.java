@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -18,6 +19,7 @@ public class MediumCardListAdapter extends BaseAdapter {
 
     private Context context;
     private List<CardModel> cardModelList;
+    private boolean zoomOut = false;
 
     public MediumCardListAdapter(Context context, List<CardModel> cardModelList) {
         this.context = context;
@@ -59,8 +61,9 @@ public class MediumCardListAdapter extends BaseAdapter {
 
     private void setItemView(int position, ViewHolder viewHolder) {
         Picasso.with(context)
-               .load(cardModelList.get(position).getCardIdolizedImage())
-               .into(viewHolder.mediumCardImage);
+                .load(cardModelList.get(position).getCardIdolizedImage())
+                .into(viewHolder.mediumCardImage);
+        setImageZoomEvent(viewHolder);
         viewHolder.mediumCardIdolName.setText(cardModelList.get(position).getJapaneseName());
         viewHolder.mediumCardMinSmile.setText(cardModelList.get(position).getMinimumStatisticsSmile());
         viewHolder.mediumCardMinPure.setText(cardModelList.get(position).getMinimumStatisticsPure());
@@ -78,6 +81,25 @@ public class MediumCardListAdapter extends BaseAdapter {
         viewHolder.mediumCardCenterSkillDetail.setText(cardModelList.get(position).getJapaneseCenterSkillDetails());
         viewHolder.mediumCardSkill.setText(cardModelList.get(position).getJapaneseSkill());
         viewHolder.mediumCardSkillDetail.setText(cardModelList.get(position).getJapaneseSkillDetails());
+    }
+
+    private void setImageZoomEvent(ViewHolder viewHolder) {
+        final ImageView imageView = viewHolder.mediumCardImage;
+        viewHolder.mediumCardImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (zoomOut) {
+                    imageView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                    imageView.setPadding(20, 20, 20, 20);
+                    zoomOut = false;
+                } else {
+                    imageView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+                    imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+                    imageView.setPadding(0, 10, 0, 200);
+                    zoomOut = true;
+                }
+            }
+        });
     }
 
     private void bindItemView(View convertView, ViewHolder viewHolder) {
