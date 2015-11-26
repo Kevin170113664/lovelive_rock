@@ -4,12 +4,12 @@
     <item
         android:id="@+id/action_grid"
         android:icon="@mipmap/ic_view_comfy_white_48pt"
-        app:showAsAction="ifRoom"
-        android:title="Grid View" />
+        android:title="Grid View"
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_menu"
         android:icon="@mipmap/ic_menu_white_48pt"
-        app:showAsAction="ifRoom"
-        android:title="Menu View" />
+        android:title="Menu View"
+        app:showAsAction="ifRoom" />
 </menu>

@@ -2,7 +2,6 @@ package com.thoughtworks.lhli.lovelive_rock.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,6 +30,9 @@ public class CardActivity extends BaseActivity {
     @Bind(R.id.small_card_list)
     protected ListView listView;
 
+    @Bind(R.id.loading_icon)
+    protected ImageView loadingIcon;
+
     @OnClick({R.id.filter_n, R.id.filter_r, R.id.filter_sr, R.id.filter_ur})
     public void filterCardByRarity(View view) {
         switch (((Button) view).getText().toString()) {
@@ -51,21 +53,23 @@ public class CardActivity extends BaseActivity {
         }
     }
 
+    private boolean isGridView = false;
+
     private List<CardModel> cardModelList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card);
+        ButterKnife.bind(this);
         EventBus.getDefault().register(this);
         Glide.with(this).load(R.drawable.loading).asGif()
-                .into((ImageView) findViewById(R.id.loading_icon));
+                .into(loadingIcon);
         new LoadActivityData(this).execute();
     }
 
     public void onEventMainThread(SmallCardEvent smallCardEvent) {
         findViewById(R.id.loading_icon).setVisibility(View.GONE);
-        ButterKnife.bind(this);
         cardModelList = smallCardEvent.getCardModelList();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -80,11 +84,11 @@ public class CardActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            NavUtils.navigateUpFromSameTask(this);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        super.onOptionsItemSelected(item);
+        int id = item.getItemId();
+        isGridView = id != R.id.action_menu;
+        invalidateOptionsMenu();
+        return true;
     }
 
     private void filterCardByRarity(String rarity) {
@@ -100,6 +104,8 @@ public class CardActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_card, menu);
+        menu.findItem(R.id.action_grid).setVisible(!isGridView);
+        menu.findItem(R.id.action_menu).setVisible(isGridView);
         return true;
     }
 }
