@@ -10,11 +10,13 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.adapter.GridCardListAdapter;
 import com.thoughtworks.lhli.lovelive_rock.adapter.SmallCardListAdapter;
+import com.thoughtworks.lhli.lovelive_rock.bus.FetchProcessEvent;
 import com.thoughtworks.lhli.lovelive_rock.bus.SmallCardEvent;
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 import com.thoughtworks.lhli.lovelive_rock.task.LoadActivityData;
@@ -77,8 +79,17 @@ public class CardActivity extends BaseActivity {
         findViewById(R.id.loading_mask).setVisibility(View.GONE);
         loadingIcon.setVisibility(View.GONE);
         cardModelList = smallCardEvent.getCardModelList();
+        setListViewClickListener();
+        setGridViewClickListener();
+    }
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    public void onEventMainThread(FetchProcessEvent fetchProcessEvent) {
+        Toast.makeText(getApplicationContext(), fetchProcessEvent.getProcess(),
+                Toast.LENGTH_SHORT);
+    }
+
+    private void setGridViewClickListener() {
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(CardActivity.this, CardDetailActivity.class);
@@ -87,8 +98,10 @@ public class CardActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+    }
 
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    private void setListViewClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(CardActivity.this, CardDetailActivity.class);

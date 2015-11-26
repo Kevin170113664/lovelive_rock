@@ -2,7 +2,9 @@ package com.thoughtworks.lhli.lovelive_rock.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class CvModel {
+import java.io.Serializable;
+
+public class CvModel implements Serializable {
     @SerializedName("url")
     private String url;
 

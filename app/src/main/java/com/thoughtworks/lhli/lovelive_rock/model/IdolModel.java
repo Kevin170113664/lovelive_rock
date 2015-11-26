@@ -2,7 +2,9 @@ package com.thoughtworks.lhli.lovelive_rock.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class IdolModel {
+import java.io.Serializable;
+
+public class IdolModel implements Serializable {
 
     @SerializedName("name")
     private String name;

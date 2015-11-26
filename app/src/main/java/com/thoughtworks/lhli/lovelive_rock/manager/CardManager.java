@@ -6,12 +6,14 @@ import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 
 import com.thoughtworks.lhli.lovelive_rock.Retrofit;
+import com.thoughtworks.lhli.lovelive_rock.bus.FetchProcessEvent;
 import com.thoughtworks.lhli.lovelive_rock.bus.MainCardEvent;
 import com.thoughtworks.lhli.lovelive_rock.bus.SmallCardEvent;
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 import com.thoughtworks.lhli.lovelive_rock.model.MultipleCards;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 
@@ -89,8 +91,8 @@ public class CardManager {
                             databaseManager.cacheCard(cardModel);
                         }
                     }
-                    String lastCardId = cardModelList.get(cardModelList.size() - 1).getCardId();
-                    if (lastCardId.equals(MAX_CARD_NUMBER.toString())) {
+                    sendFetchProcessEvent(cardModelList.size());
+                    if (cardModelList.size() == MAX_CARD_NUMBER) {
                         EventBus.getDefault().post(new SmallCardEvent(cardModelList));
                     }
                 }
@@ -120,5 +122,11 @@ public class CardManager {
                 System.out.print("getCardByIdCallback failed.");
             }
         };
+    }
+
+    private void sendFetchProcessEvent(int gottenCardNumber) {
+        Double percentage = 100 * gottenCardNumber / Double.parseDouble(MAX_CARD_NUMBER.toString());
+        String percentageMsg = new DecimalFormat("0").format(percentage) + "%";
+        EventBus.getDefault().post(new FetchProcessEvent(percentageMsg));
     }
 }

@@ -2,7 +2,9 @@ package com.thoughtworks.lhli.lovelive_rock.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class EventModel {
+import java.io.Serializable;
+
+public class EventModel implements Serializable {
     @SerializedName("japanese_name")
     private String japaneseName;
 
