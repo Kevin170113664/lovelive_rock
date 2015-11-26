@@ -29,7 +29,7 @@ public class GridCardListAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public List<CardModel> getItem(int position) {
         return cardModelList == null ? null : cardModelList;
     }
 

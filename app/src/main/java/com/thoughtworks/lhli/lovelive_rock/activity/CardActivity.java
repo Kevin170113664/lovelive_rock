@@ -86,6 +86,15 @@ public class CardActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(CardActivity.this, CardDetailActivity.class);
+                intent.putExtra("cardId", ((List<CardModel>) ((GridView) parent).getAdapter().getItem(0)).get(position).getCardId());
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
