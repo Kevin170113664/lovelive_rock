@@ -2,7 +2,9 @@ package com.thoughtworks.lhli.lovelive_rock.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class CardModel {
+import java.io.Serializable;
+
+public class CardModel implements Serializable {
 
     @SerializedName("id")
     private String cardId;

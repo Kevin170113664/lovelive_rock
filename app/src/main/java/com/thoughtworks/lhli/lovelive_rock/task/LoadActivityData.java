@@ -7,7 +7,6 @@ import android.os.AsyncTask;
 
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.activity.CardActivity;
-import com.thoughtworks.lhli.lovelive_rock.activity.CardDetailActivity;
 import com.thoughtworks.lhli.lovelive_rock.activity.MainActivity;
 import com.thoughtworks.lhli.lovelive_rock.bus.EventEvent;
 import com.thoughtworks.lhli.lovelive_rock.manager.CardManager;
@@ -35,20 +34,8 @@ public class LoadActivityData extends AsyncTask<Void, Void, Void> {
             loadMainActivityData();
         } else if (activity.getClass().equals(CardActivity.class)) {
             loadCardActivityData();
-        } else if (activity.getClass().equals(CardDetailActivity.class)) {
-            loadCardDetailActivityData();
         }
         return null;
-    }
-
-    private void loadCardDetailActivityData() {
-        CardManager cardManager = new CardManager(new ArrayList<CardModel>(), activity);
-        try {
-            String cardId = activity.getIntent().getStringExtra("cardId");
-            cardManager.getCardById(cardId);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     private void loadCardActivityData() {

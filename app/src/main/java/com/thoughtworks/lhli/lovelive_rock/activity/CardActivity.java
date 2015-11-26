@@ -82,7 +82,8 @@ public class CardActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(CardActivity.this, CardDetailActivity.class);
-                intent.putExtra("cardId", ((List<CardModel>) ((ListView) parent).getAdapter().getItem(0)).get(position).getCardId());
+                CardModel cardModel = ((List<CardModel>) parent.getAdapter().getItem(0)).get(position);
+                intent.putExtra("CardModel", cardModel);
                 startActivity(intent);
             }
         });
@@ -91,7 +92,8 @@ public class CardActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(CardActivity.this, CardDetailActivity.class);
-                intent.putExtra("cardId", ((List<CardModel>) ((GridView) parent).getAdapter().getItem(0)).get(position).getCardId());
+                CardModel cardModel = ((List<CardModel>) parent.getAdapter().getItem(0)).get(position);
+                intent.putExtra("CardModel", cardModel);
                 startActivity(intent);
             }
         });
