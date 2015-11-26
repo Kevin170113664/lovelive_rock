@@ -69,13 +69,13 @@ public class CardActivity extends BaseActivity {
         setContentView(R.layout.activity_card);
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
-        Glide.with(this).load(R.drawable.loading).asGif()
-                .into(loadingIcon);
+        Glide.with(this).load(R.drawable.loading).asGif().into(loadingIcon);
         new LoadActivityData(this).execute();
     }
 
     public void onEventMainThread(SmallCardEvent smallCardEvent) {
-        findViewById(R.id.loading_icon).setVisibility(View.GONE);
+        findViewById(R.id.loading_mask).setVisibility(View.GONE);
+        loadingIcon.setVisibility(View.GONE);
         cardModelList = smallCardEvent.getCardModelList();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
