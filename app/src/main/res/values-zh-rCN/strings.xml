@@ -17,9 +17,6 @@
     <string name="card_center_skill_detail_default_text">主唱技能详情未知</string>
     <string name="card_skill_name_default_text">技能名称未知</string>
     <string name="card_skill_detail_default_text">技能详情未知</string>
-    <string name="card_collection">卡牌主题：</string>
-    <string name="card_max_stat">最高属性：</string>
-    <string name="card_skill_type">技能类型：</string>
 
     <string name="skill_healer">回血</string>
     <string name="skill_perfect_lock">判定</string>
@@ -34,4 +31,8 @@
     <string name="skill_rhythmical_charm">连击加分</string>
     <string name="skill_perfect_yell">完美回血</string>
     <string name="skill_perfect_charm">完美加分</string>
+
+    <string name="small_card_collection_title">卡牌主题：</string>
+    <string name="small_card_max_stat_title">最高属性：</string>
+    <string name="small_card_skill_type_title">技能类型：</string>
 </resources>

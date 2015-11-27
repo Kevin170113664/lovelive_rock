@@ -1,55 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorBackground"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+    <ImageView
+        android:id="@+id/small_card_image"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:padding="@dimen/small_card_padding_top" />
 
-        <ImageView
-            android:id="@+id/small_card_image"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:padding="@dimen/small_card_padding_top" />
+    <TextView
+        android:id="@+id/small_card_collection_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/small_card_image"
+        android:paddingTop="@dimen/small_text_padding_top"
+        android:text="@string/small_card_collection_title"
+        android:textSize="@dimen/text_size_default" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingBottom="8dp"
-            android:paddingLeft="@dimen/small_text_paddint_left">
+    <TextView
+        android:id="@+id/small_card_collection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/small_card_collection_title"
+        android:paddingTop="@dimen/small_text_padding_top"
+        android:text="@string/card_collection_default_text"
+        android:textSize="@dimen/text_size_default" />
 
-            <TextView
-                android:id="@+id/small_card_collection"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingTop="@dimen/small_text_padding_top"
-                android:text="@string/card_collection_default_text"
-                android:textSize="@dimen/text_size_default" />
+    <TextView
+        android:id="@+id/small_card_max_statistics_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/small_card_collection_title"
+        android:layout_toRightOf="@+id/small_card_image"
+        android:paddingTop="@dimen/small_text_padding_top"
+        android:text="@string/small_card_max_stat_title"
+        android:textSize="@dimen/text_size_default" />
 
-            <TextView
-                android:id="@+id/small_card_max_statistics"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingTop="@dimen/small_text_line_paddint_top"
-                android:text="@string/card_statistics_default_text"
-                android:textSize="@dimen/text_size_default" />
+    <TextView
+        android:id="@+id/small_card_max_statistics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/small_card_collection_title"
+        android:layout_toRightOf="@id/small_card_max_statistics_title"
+        android:paddingTop="@dimen/small_text_padding_top"
+        android:text="@string/card_statistics_default_text"
+        android:textSize="@dimen/text_size_default" />
 
-            <TextView
-                android:id="@+id/small_card_skill"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/card_skill_default_text"
-                android:paddingTop="@dimen/small_text_line_paddint_top"
-                android:textSize="@dimen/text_size_default" />
-        </LinearLayout>
-    </LinearLayout>
+    <TextView
+        android:id="@+id/small_card_skill_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/small_card_max_statistics_title"
+        android:layout_toRightOf="@+id/small_card_image"
+        android:paddingTop="@dimen/small_text_padding_top"
+        android:text="@string/small_card_skill_type_title"
+        android:textSize="@dimen/text_size_default" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/small_card_skill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/small_card_max_statistics"
+        android:layout_toRightOf="@id/small_card_skill_title"
+        android:paddingTop="@dimen/small_text_padding_top"
+        android:text="@string/card_skill_default_text"
+        android:textSize="@dimen/text_size_default" />
+
+</RelativeLayout>

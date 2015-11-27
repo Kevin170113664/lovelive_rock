@@ -35,4 +35,8 @@
     <string name="skill_rhythmical_charm">Rhythmical Charm</string>
     <string name="skill_perfect_yell">Perfect Yell</string>
     <string name="skill_perfect_charm">Perfect Charm</string>
+
+    <string name="small_card_collection_title">Collection:</string>
+    <string name="small_card_max_stat_title">Max Stat:</string>
+    <string name="small_card_skill_type_title">Skill Type:</string>
 </resources>

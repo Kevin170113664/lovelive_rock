@@ -76,67 +76,73 @@ public class MediumCardListAdapter extends BaseAdapter {
                 .load(cardModelList.get(position).getCardIdolizedImage())
                 .into(viewHolder.mediumCardIdolizedImage);
         setImageClickEvent(viewHolder);
-        viewHolder.mediumCardIdolName.setText(cardModelList.get(position).getJapaneseName());
-        viewHolder.mediumCardMinSmile.setText(cardModelList.get(position).getMinimumStatisticsSmile());
-        viewHolder.mediumCardMinPure.setText(cardModelList.get(position).getMinimumStatisticsPure());
-        viewHolder.mediumCardMinCool.setText(cardModelList.get(position).getMinimumStatisticsCool());
-        viewHolder.mediumCardNonIdolizedMaxSmile.setText(cardModelList.get(position).getNonIdolizedMaximumStatisticsSmile());
-        viewHolder.mediumCardNonIdolizedMaxPure.setText(cardModelList.get(position).getNonIdolizedMaximumStatisticsPure());
-        viewHolder.mediumCardNonIdolizedMaxCool.setText(cardModelList.get(position).getNonIdolizedMaximumStatisticsCool());
-        viewHolder.mediumCardIdolizedMaxSmile.setText(cardModelList.get(position).getIdolizedMaximumStatisticsSmile());
-        viewHolder.mediumCardIdolizedMaxPure.setText(cardModelList.get(position).getIdolizedMaximumStatisticsPure());
-        viewHolder.mediumCardIdolizedMaxCool.setText(cardModelList.get(position).getIdolizedMaximumStatisticsCool());
+        setSkillType(viewHolder.mediumCardSkillType, cardModelList.get(position).getSkill());
 
-        setSkillType(position, viewHolder);
-
-        viewHolder.mediumCardReleaseDate.setText(cardModelList.get(position).getReleaseDate());
-        viewHolder.mediumCardCenterSkill.setText(cardModelList.get(position).getJapaneseCenterSkill());
-        viewHolder.mediumCardCenterSkill.setText(cardModelList.get(position).getJapaneseCenterSkill());
-        viewHolder.mediumCardCenterSkillDetail.setText(cardModelList.get(position).getJapaneseCenterSkillDetails());
-        viewHolder.mediumCardSkill.setText(cardModelList.get(position).getJapaneseSkill());
-        viewHolder.mediumCardSkillDetail.setText(cardModelList.get(position).getJapaneseSkillDetails());
+        setTextView(viewHolder.mediumCardIdolName, cardModelList.get(position).getJapaneseName());
+        setTextView(viewHolder.mediumCardIdolName, cardModelList.get(position).getJapaneseName());
+        setTextView(viewHolder.mediumCardMinSmile, cardModelList.get(position).getMinimumStatisticsSmile());
+        setTextView(viewHolder.mediumCardMinPure, cardModelList.get(position).getMinimumStatisticsPure());
+        setTextView(viewHolder.mediumCardMinCool, cardModelList.get(position).getMinimumStatisticsCool());
+        setTextView(viewHolder.mediumCardNonIdolizedMaxSmile, cardModelList.get(position).getNonIdolizedMaximumStatisticsSmile());
+        setTextView(viewHolder.mediumCardNonIdolizedMaxPure, cardModelList.get(position).getNonIdolizedMaximumStatisticsPure());
+        setTextView(viewHolder.mediumCardNonIdolizedMaxCool, cardModelList.get(position).getNonIdolizedMaximumStatisticsCool());
+        setTextView(viewHolder.mediumCardIdolizedMaxSmile, cardModelList.get(position).getIdolizedMaximumStatisticsSmile());
+        setTextView(viewHolder.mediumCardIdolizedMaxPure, cardModelList.get(position).getIdolizedMaximumStatisticsPure());
+        setTextView(viewHolder.mediumCardIdolizedMaxCool, cardModelList.get(position).getIdolizedMaximumStatisticsCool());
+        setTextView(viewHolder.mediumCardReleaseDate, cardModelList.get(position).getReleaseDate());
+        setTextView(viewHolder.mediumCardCenterSkill, cardModelList.get(position).getJapaneseCenterSkill());
+        setTextView(viewHolder.mediumCardCenterSkill, cardModelList.get(position).getJapaneseCenterSkill());
+        setTextView(viewHolder.mediumCardCenterSkillDetail, cardModelList.get(position).getJapaneseCenterSkillDetails());
+        setTextView(viewHolder.mediumCardSkill, cardModelList.get(position).getJapaneseSkill());
+        setTextView(viewHolder.mediumCardSkillDetail, cardModelList.get(position).getJapaneseSkillDetails());
     }
 
-    private void setSkillType(int position, ViewHolder viewHolder) {
-        switch (cardModelList.get(position).getSkill()) {
+    public static void setTextView(TextView textView, String value) {
+        if (value != null && !value.equals("")) {
+            textView.setText(value);
+        }
+    }
+
+    public static void setSkillType(TextView textView, String value) {
+        switch (value) {
             case "Healer":
-                viewHolder.mediumCardSkillType.setText(R.string.skill_healer);
+                textView.setText(R.string.skill_healer);
                 break;
             case "Perfect Lock":
-                viewHolder.mediumCardSkillType.setText(R.string.skill_perfect_lock);
+                textView.setText(R.string.skill_perfect_lock);
                 break;
             case "Score Up":
-                viewHolder.mediumCardSkillType.setText(R.string.skill_score_up);
+                textView.setText(R.string.skill_score_up);
                 break;
             case "Total Yell":
-                viewHolder.mediumCardSkillType.setText(R.string.skill_total_yell);
+                textView.setText(R.string.skill_total_yell);
                 break;
             case "Total Trick":
-                viewHolder.mediumCardSkillType.setText(R.string.skill_total_trick);
+                textView.setText(R.string.skill_total_trick);
                 break;
             case "Total Charm":
-                viewHolder.mediumCardSkillType.setText(R.string.skill_total_charm);
+                textView.setText(R.string.skill_total_charm);
                 break;
             case "Timer Yell":
-                viewHolder.mediumCardSkillType.setText(R.string.skill_timer_yell);
+                textView.setText(R.string.skill_timer_yell);
                 break;
             case "Timer Trick":
-                viewHolder.mediumCardSkillType.setText(R.string.skill_timer_trick);
+                textView.setText(R.string.skill_timer_trick);
                 break;
             case "Timer Charm":
-                viewHolder.mediumCardSkillType.setText(R.string.skill_timer_charm);
+                textView.setText(R.string.skill_timer_charm);
                 break;
             case "Rhythmical Yell":
-                viewHolder.mediumCardSkillType.setText(R.string.skill_rhythmical_yell);
+                textView.setText(R.string.skill_rhythmical_yell);
                 break;
             case "Rhythmical Charm":
-                viewHolder.mediumCardSkillType.setText(R.string.skill_rhythmical_charm);
+                textView.setText(R.string.skill_rhythmical_charm);
                 break;
             case "Perfect Yell":
-                viewHolder.mediumCardSkillType.setText(R.string.skill_perfect_yell);
+                textView.setText(R.string.skill_perfect_yell);
                 break;
             case "Perfect Charm":
-                viewHolder.mediumCardSkillType.setText(R.string.skill_perfect_charm);
+                textView.setText(R.string.skill_perfect_charm);
                 break;
             default:
                 break;
