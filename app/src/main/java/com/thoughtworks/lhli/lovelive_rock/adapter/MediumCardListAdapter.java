@@ -75,7 +75,7 @@ public class MediumCardListAdapter extends BaseAdapter {
         Picasso.with(context)
                 .load(cardModelList.get(position).getCardIdolizedImage())
                 .into(viewHolder.mediumCardIdolizedImage);
-        setImageZoomEvent(viewHolder);
+        setImageClickEvent(viewHolder);
         viewHolder.mediumCardIdolName.setText(cardModelList.get(position).getJapaneseName());
         viewHolder.mediumCardMinSmile.setText(cardModelList.get(position).getMinimumStatisticsSmile());
         viewHolder.mediumCardMinPure.setText(cardModelList.get(position).getMinimumStatisticsPure());
@@ -86,7 +86,9 @@ public class MediumCardListAdapter extends BaseAdapter {
         viewHolder.mediumCardIdolizedMaxSmile.setText(cardModelList.get(position).getIdolizedMaximumStatisticsSmile());
         viewHolder.mediumCardIdolizedMaxPure.setText(cardModelList.get(position).getIdolizedMaximumStatisticsPure());
         viewHolder.mediumCardIdolizedMaxCool.setText(cardModelList.get(position).getIdolizedMaximumStatisticsCool());
-        viewHolder.mediumCardSkillType.setText(cardModelList.get(position).getSkill());
+
+        setSkillType(position, viewHolder);
+
         viewHolder.mediumCardReleaseDate.setText(cardModelList.get(position).getReleaseDate());
         viewHolder.mediumCardCenterSkill.setText(cardModelList.get(position).getJapaneseCenterSkill());
         viewHolder.mediumCardCenterSkill.setText(cardModelList.get(position).getJapaneseCenterSkill());
@@ -95,7 +97,53 @@ public class MediumCardListAdapter extends BaseAdapter {
         viewHolder.mediumCardSkillDetail.setText(cardModelList.get(position).getJapaneseSkillDetails());
     }
 
-    private void setImageZoomEvent(ViewHolder viewHolder) {
+    private void setSkillType(int position, ViewHolder viewHolder) {
+        switch (cardModelList.get(position).getSkill()) {
+            case "Healer":
+                viewHolder.mediumCardSkillType.setText(R.string.skill_healer);
+                break;
+            case "Perfect Lock":
+                viewHolder.mediumCardSkillType.setText(R.string.skill_perfect_lock);
+                break;
+            case "Score Up":
+                viewHolder.mediumCardSkillType.setText(R.string.skill_score_up);
+                break;
+            case "Total Yell":
+                viewHolder.mediumCardSkillType.setText(R.string.skill_total_yell);
+                break;
+            case "Total Trick":
+                viewHolder.mediumCardSkillType.setText(R.string.skill_total_trick);
+                break;
+            case "Total Charm":
+                viewHolder.mediumCardSkillType.setText(R.string.skill_total_charm);
+                break;
+            case "Timer Yell":
+                viewHolder.mediumCardSkillType.setText(R.string.skill_timer_yell);
+                break;
+            case "Timer Trick":
+                viewHolder.mediumCardSkillType.setText(R.string.skill_timer_trick);
+                break;
+            case "Timer Charm":
+                viewHolder.mediumCardSkillType.setText(R.string.skill_timer_charm);
+                break;
+            case "Rhythmical Yell":
+                viewHolder.mediumCardSkillType.setText(R.string.skill_rhythmical_yell);
+                break;
+            case "Rhythmical Charm":
+                viewHolder.mediumCardSkillType.setText(R.string.skill_rhythmical_charm);
+                break;
+            case "Perfect Yell":
+                viewHolder.mediumCardSkillType.setText(R.string.skill_perfect_yell);
+                break;
+            case "Perfect Charm":
+                viewHolder.mediumCardSkillType.setText(R.string.skill_perfect_charm);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void setImageClickEvent(ViewHolder viewHolder) {
         final ImageView idolizedImageView = viewHolder.mediumCardIdolizedImage;
         viewHolder.mediumCardIdolizedImage.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -21,4 +21,18 @@
     <string name="card_collection">Collection:</string>
     <string name="card_max_stat">Max Stat:</string>
     <string name="card_skill_type">Skill Type:</string>
+
+    <string name="skill_healer">Healer</string>
+    <string name="skill_perfect_lock">Perfect Lock</string>
+    <string name="skill_score_up">Score Up</string>
+    <string name="skill_total_yell">Total Yell</string>
+    <string name="skill_total_trick">Total Trick</string>
+    <string name="skill_total_charm">Total Charm</string>
+    <string name="skill_timer_yell">Timer Yell</string>
+    <string name="skill_timer_trick">Timer Trick</string>
+    <string name="skill_timer_charm">Timer Charm</string>
+    <string name="skill_rhythmical_yell">Rhythmical Yell</string>
+    <string name="skill_rhythmical_charm">Rhythmical Charm</string>
+    <string name="skill_perfect_yell">Perfect Yell</string>
+    <string name="skill_perfect_charm">Perfect Charm</string>
 </resources>

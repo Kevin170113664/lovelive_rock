@@ -20,4 +20,18 @@
     <string name="card_collection">卡牌主题：</string>
     <string name="card_max_stat">最高属性：</string>
     <string name="card_skill_type">技能类型：</string>
+
+    <string name="skill_healer">回血</string>
+    <string name="skill_perfect_lock">判定</string>
+    <string name="skill_score_up">加分</string>
+    <string name="skill_total_yell">图标回血</string>
+    <string name="skill_total_trick">图标小判定</string>
+    <string name="skill_total_charm">图标加分</string>
+    <string name="skill_timer_yell">时间回血</string>
+    <string name="skill_timer_trick">时间小判定</string>
+    <string name="skill_timer_charm">时间加分</string>
+    <string name="skill_rhythmical_yell">连击回血</string>
+    <string name="skill_rhythmical_charm">连击加分</string>
+    <string name="skill_perfect_yell">完美回血</string>
+    <string name="skill_perfect_charm">完美加分</string>
 </resources>
