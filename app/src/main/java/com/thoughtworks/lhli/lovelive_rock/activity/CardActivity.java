@@ -42,25 +42,6 @@ public class CardActivity extends BaseActivity {
     @Bind(R.id.loading_icon)
     protected ImageView loadingIcon;
 
-    //    @OnClick({R.id.filter_n, R.id.filter_r, R.id.filter_sr, R.id.filter_ur})
-//    public void filterCardByRarity(View view) {
-//        switch (((Button) view).getText().toString()) {
-//            case "N":
-//                filterCardByRarity("N");
-//                break;
-//            case "R":
-//                filterCardByRarity("R");
-//                break;
-//            case "SR":
-//                filterCardByRarity("SR");
-//                break;
-//            case "UR":
-//                filterCardByRarity("UR");
-//                break;
-//            default:
-//                break;
-//        }
-//    }
     private boolean isGridView = false;
     private HashMap<Integer, String> filterMap;
     private List<CardModel> cardModelList;
@@ -135,7 +116,15 @@ public class CardActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
         if (item.getItemId() == R.id.action_filter) {
+//            Bundle args = new Bundle();
+//            args.putString(String.format("%s", R.id.rarity_spinner), filterMap.get(R.id.rarity_spinner));
+//            args.putString(String.format("%s", R.id.attribute_spinner), filterMap.get(R.id.attribute_spinner));
+//            args.putString(String.format("%s", R.id.grade_spinner), filterMap.get(R.id.grade_spinner));
+//            args.putString(String.format("%s", R.id.idol_spinner), filterMap.get(R.id.idol_spinner));
+//            args.putString(String.format("%s", R.id.sub_team_spinner), filterMap.get(R.id.sub_team_spinner));
+//            args.putString(String.format("%s", R.id.skill_type_spinner), filterMap.get(R.id.skill_type_spinner));
             DialogFragment filterDialogFragment = new FilterDialogFragment();
+//            filterDialogFragment.setArguments(args);
             filterDialogFragment.show(getFragmentManager(), "dialog");
         } else {
             isGridView = item.getItemId() != R.id.action_menu;
@@ -165,8 +154,14 @@ public class CardActivity extends BaseActivity {
     }
 
     public void onEvent(FilterEvent filterEvent) {
+        if (cardModelList == null || cardModelList.size() == 0) return;
         filterMap.put(filterEvent.getFilterKey(), filterEvent.getFilterValue());
-        visibleCardModelList = new FilterFactory(filterMap, cardModelList).filterCardModelList();
+        visibleCardModelList = new ArrayList<>();
+        visibleCardModelList = FilterFactory.filterByRarity(cardModelList, filterMap);
+        visibleCardModelList = FilterFactory.filterByIdol(visibleCardModelList, filterMap);
+        visibleCardModelList = FilterFactory.filterByAttribute(visibleCardModelList, filterMap);
+        visibleCardModelList = FilterFactory.filterByGrade(visibleCardModelList, filterMap);
+        visibleCardModelList = FilterFactory.filterBySubTeam(visibleCardModelList, filterMap);
         loadCardView();
     }
 }

@@ -60,6 +60,9 @@ public class FilterDialogFragment extends DialogFragment {
         super.onActivityCreated(savedInstanceState);
         ButterKnife.bind(this, getView());
         setDropDownList();
+
+//        Bundle mArgs = getArguments();
+//        String rarity = mArgs.getString(String.format("%s", R.id.rarity_spinner));
         setDropDownListSelectedEvent();
     }
 

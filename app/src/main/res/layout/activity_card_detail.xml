@@ -9,6 +9,7 @@
         android:id="@+id/medium_card_list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_marginBottom="5dp"
         android:background="@color/colorBackground"
         android:divider="@android:color/transparent" />
 
