@@ -108,7 +108,7 @@ public class FilterFactory {
     }
 
     private List<CardModel> filterBySkillType(List<CardModel> cardModelList, HashMap<Integer, String> filterMap) {
-        if (!filterMap.get(R.id.sub_team_spinner).equals(skillTypeArray[0])) {
+        if (!filterMap.get(R.id.skill_type_spinner).equals(skillTypeArray[0])) {
             List<CardModel> visibleCardModelList = new ArrayList<>();
             HashMap<String, String[]> skillTypeMap = getSkillMap();
             List<String> skills = Arrays.asList(skillTypeMap.get(filterMap.get(R.id.skill_type_spinner)));
