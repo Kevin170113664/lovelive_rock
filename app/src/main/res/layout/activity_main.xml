@@ -22,15 +22,14 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="?attr/actionBarSize"
-        android:orientation="vertical">
+        android:layout_marginTop="?attr/actionBarSize">
 
         <ImageView
             android:id="@+id/loading_icon"
-            android:layout_width="48dp"
+            android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_gravity="center"
             android:layout_marginTop="100dp" />
@@ -43,6 +42,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/latest_event_image"
             android:orientation="horizontal">
 
             <ImageView
@@ -58,11 +58,12 @@
                 android:id="@+id/latest_event_idolized_Sr_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/latest_event_Sr_image"
                 android:layout_weight="1"
                 android:paddingBottom="10dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="10dp" />
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>
