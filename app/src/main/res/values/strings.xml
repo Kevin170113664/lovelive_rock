@@ -62,15 +62,15 @@
     </string-array>
     <string-array name="idol_array">
         <item>Idol</item>
-        <item>Kousaka Honoka</item>
-        <item>Minami Kotori</item>
-        <item>Sonoda Umi</item>
-        <item>Koizumi Hanayo</item>
-        <item>Nishikino Maki</item>
-        <item>Hoshizora Rin</item>
-        <item>Toujou Nozomi</item>
-        <item>Yazawa Nico</item>
-        <item>Ayase Eli</item>
+        <item>高坂穂乃果</item>
+        <item>南ことり</item>
+        <item>園田海未</item>
+        <item>小泉花陽</item>
+        <item>西木野真姫</item>
+        <item>星空凛</item>
+        <item>東條希</item>
+        <item>矢澤にこ</item>
+        <item>絢瀬絵里</item>
     </string-array>
     <string-array name="sub_team_array">
         <item>Sub-Team</item>
@@ -85,34 +85,52 @@
         <item>Healer</item>
     </string-array>
     <string-array name="first_grade_member">
-        <item>Koizumi Hanayo</item>
-        <item>Hoshizora Rin</item>
-        <item>Nishikino Maki</item>
+        <item>小泉花陽</item>
+        <item>星空凛</item>
+        <item>西木野真姫</item>
     </string-array>
     <string-array name="second_grade_member">
-        <item>Kousaka Honoka</item>
-        <item>Minami Kotori</item>
-        <item>Sonoda Umi</item>
+        <item>高坂穂乃果</item>
+        <item>南ことり</item>
+        <item>園田海未</item>
     </string-array>
     <string-array name="third_grade_member">
-        <item>Toujou Nozomi</item>
-        <item>Yazawa Nico</item>
-        <item>Ayase Eli</item>
+        <item>東條希</item>
+        <item>矢澤にこ</item>
+        <item>絢瀬絵里</item>
     </string-array>
     <string-array name="printemps_member">
-        <item>Kousaka Honoka</item>
-        <item>Minami Kotori</item>
-        <item>Koizumi Hanayo</item>
+        <item>高坂穂乃果</item>
+        <item>南ことり</item>
+        <item>小泉花陽</item>
     </string-array>
     <string-array name="bibi_member">
-        <item>Yazawa Nico</item>
-        <item>Ayase Eli</item>
-        <item>Nishikino Maki</item>
+        <item>矢澤にこ</item>
+        <item>絢瀬絵里</item>
+        <item>西木野真姫</item>
     </string-array>
     <string-array name="lily_white_member">
-        <item>Toujou Nozomi</item>
-        <item>Hoshizora Rin</item>
-        <item>Sonoda Umi</item>
+        <item>東條希</item>
+        <item>星空凛</item>
+        <item>園田海未</item>
     </string-array>
-
+    <string-array name="score_up_skill">
+        <item>Score Up</item>
+        <item>Total Charm</item>
+        <item>Timer Charm</item>
+        <item>Rhythmical Charm</item>
+        <item>Perfect Charm</item>
+    </string-array>
+    <string-array name="perfect_lock_skill">
+        <item>Perfect Lock</item>
+        <item>Total Trick</item>
+        <item>Timer Trick</item>
+    </string-array>
+    <string-array name="healer_skill">
+        <item>Healer</item>
+        <item>Total Yell</item>
+        <item>Timer Yell</item>
+        <item>Rhythmical Yell</item>
+        <item>Perfect Yell</item>
+    </string-array>
 </resources>

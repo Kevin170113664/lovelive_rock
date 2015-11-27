@@ -23,6 +23,9 @@ public class FilterFactory {
     private String[] printempsMember = LoveLiveApp.getInstance().getResources().getStringArray(R.array.printemps_member);
     private String[] bibiMember = LoveLiveApp.getInstance().getResources().getStringArray(R.array.bibi_member);
     private String[] lilyWhiteMember = LoveLiveApp.getInstance().getResources().getStringArray(R.array.lily_white_member);
+    private String[] scoreUpSkill = LoveLiveApp.getInstance().getResources().getStringArray(R.array.score_up_skill);
+    private String[] perfectLockSkill = LoveLiveApp.getInstance().getResources().getStringArray(R.array.perfect_lock_skill);
+    private String[] healerSkill = LoveLiveApp.getInstance().getResources().getStringArray(R.array.healer_skill);
 
     public List<CardModel> filterCards(List<CardModel> cardModelList, HashMap<Integer, String> filterMap) {
         List<CardModel> visibleCardModelList;
@@ -31,6 +34,7 @@ public class FilterFactory {
         visibleCardModelList = filterByAttribute(visibleCardModelList, filterMap);
         visibleCardModelList = filterByGrade(visibleCardModelList, filterMap);
         visibleCardModelList = filterBySubTeam(visibleCardModelList, filterMap);
+        visibleCardModelList = filterBySkillType(visibleCardModelList, filterMap);
         return visibleCardModelList;
     }
 
@@ -101,6 +105,29 @@ public class FilterFactory {
             return visibleCardModelList;
         }
         return cardModelList;
+    }
+
+    private List<CardModel> filterBySkillType(List<CardModel> cardModelList, HashMap<Integer, String> filterMap) {
+        if (!filterMap.get(R.id.sub_team_spinner).equals(skillTypeArray[0])) {
+            List<CardModel> visibleCardModelList = new ArrayList<>();
+            HashMap<String, String[]> skillTypeMap = getSkillMap();
+            List<String> skills = Arrays.asList(skillTypeMap.get(filterMap.get(R.id.skill_type_spinner)));
+            for (CardModel c : cardModelList) {
+                if (skills.contains(c.getSkill())) {
+                    visibleCardModelList.add(c);
+                }
+            }
+            return visibleCardModelList;
+        }
+        return cardModelList;
+    }
+
+    private HashMap<String, String[]> getSkillMap() {
+        HashMap<String, String[]> skillMap = new HashMap<>();
+        skillMap.put(skillTypeArray[1], scoreUpSkill);
+        skillMap.put(skillTypeArray[2], perfectLockSkill);
+        skillMap.put(skillTypeArray[3], healerSkill);
+        return skillMap;
     }
 
     @NonNull
