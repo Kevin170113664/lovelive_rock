@@ -39,4 +39,47 @@
     <string name="small_card_collection_title">Collection:</string>
     <string name="small_card_max_stat_title">Max Stat:</string>
     <string name="small_card_skill_type_title">Skill Type:</string>
+    <string-array name="rarity_array">
+        <item>Rarity</item>
+        <item>N</item>
+        <item>R</item>
+        <item>SR</item>
+        <item>UR</item>
+    </string-array>
+    <string-array name="attribute_array">
+        <item>Attribute</item>
+        <item>Smile</item>
+        <item>Pure</item>
+        <item>Cool</item>
+    </string-array>
+    <string-array name="grade_array">
+        <item>Grade</item>
+        <item>Grade One</item>
+        <item>Grade Two</item>
+        <item>Grade Three</item>
+    </string-array>
+    <string-array name="idol_array">
+        <item>Idol</item>
+        <item>Kousaka Honoka</item>
+        <item>Minami Kotori</item>
+        <item>Sonoda Umi</item>
+        <item>Koizumi Hanayo</item>
+        <item>Nishikino Maki</item>
+        <item>Hoshizora Rin</item>
+        <item>Toujou Nozomi</item>
+        <item>Yazawa Nico</item>
+        <item>Ayase Eli</item>
+    </string-array>
+    <string-array name="sub_team_array">
+        <item>sub-team</item>
+        <item>Printemps</item>
+        <item>BiBi</item>
+        <item>Lily White</item>
+    </string-array>
+    <string-array name="skill_array">
+        <item>Skill Type</item>
+        <item>Score Up</item>
+        <item>Perfect Lock</item>
+        <item>Healer</item>
+    </string-array>
 </resources>

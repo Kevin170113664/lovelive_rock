@@ -18,21 +18,64 @@
     <string name="card_skill_name_default_text">技能名称未知</string>
     <string name="card_skill_detail_default_text">技能详情未知</string>
 
-    <string name="skill_healer">回血</string>
+    <string name="skill_healer">回复</string>
     <string name="skill_perfect_lock">判定</string>
     <string name="skill_score_up">加分</string>
-    <string name="skill_total_yell">图标回血</string>
+    <string name="skill_total_yell">图标回复</string>
     <string name="skill_total_trick">图标小判定</string>
     <string name="skill_total_charm">图标加分</string>
-    <string name="skill_timer_yell">时间回血</string>
+    <string name="skill_timer_yell">时间回复</string>
     <string name="skill_timer_trick">时间小判定</string>
     <string name="skill_timer_charm">时间加分</string>
-    <string name="skill_rhythmical_yell">连击回血</string>
+    <string name="skill_rhythmical_yell">连击回复</string>
     <string name="skill_rhythmical_charm">连击加分</string>
-    <string name="skill_perfect_yell">完美回血</string>
+    <string name="skill_perfect_yell">完美回复</string>
     <string name="skill_perfect_charm">完美加分</string>
 
     <string name="small_card_collection_title">卡牌主题：</string>
     <string name="small_card_max_stat_title">最高属性：</string>
     <string name="small_card_skill_type_title">技能类型：</string>
+    <string-array name="rarity_array">
+        <item>稀有度</item>
+        <item>N</item>
+        <item>R</item>
+        <item>SR</item>
+        <item>UR</item>
+    </string-array>
+    <string-array name="attribute_array">
+        <item>属性</item>
+        <item>Smile</item>
+        <item>Pure</item>
+        <item>Cool</item>
+    </string-array>
+    <string-array name="grade_array">
+        <item>年级</item>
+        <item>一年级</item>
+        <item>二年级</item>
+        <item>三年级</item>
+    </string-array>
+    <string-array name="idol_array">
+        <item>角色</item>
+        <item>高坂穂乃果</item>
+        <item>南ことり</item>
+        <item>園田海未</item>
+        <item>小泉花陽</item>
+        <item>西木野真姫</item>
+        <item>星空凛</item>
+        <item>東條希</item>
+        <item>矢澤にこ</item>
+        <item>絢瀬絵里</item>
+    </string-array>
+    <string-array name="sub_team_array">
+        <item>小组</item>
+        <item>Printemps</item>
+        <item>BiBi</item>
+        <item>Lily White</item>
+    </string-array>
+    <string-array name="skill_array">
+        <item>技能类型</item>
+        <item>加分</item>
+        <item>判定</item>
+        <item>回复</item>
+    </string-array>
 </resources>

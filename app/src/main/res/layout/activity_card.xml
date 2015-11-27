@@ -18,65 +18,112 @@
             android:background="@android:color/transparent" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/rarity_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Spinner
+            android:id="@+id/idol_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Spinner
+            android:id="@+id/attribute_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="5dp">
+        android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/filter_n"
+        <Spinner
+            android:id="@+id/grade_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/btn_dark_orange"
-            android:text="N"
-            android:textColor="@color/colorBackground"
-            android:textSize="15pt" />
+            android:layout_weight="1" />
 
-        <Button
-            android:id="@+id/filter_r"
+        <Spinner
+            android:id="@+id/sub_team_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/btn_dark_orange"
-            android:text="R"
-            android:textColor="@color/colorBackground"
-            android:textSize="15pt" />
+            android:layout_weight="1" />
 
-        <Button
-            android:id="@+id/filter_sr"
+        <Spinner
+            android:id="@+id/skill_type_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/btn_dark_orange"
-            android:text="SR"
-            android:textColor="@color/colorBackground"
-            android:textSize="15pt" />
-
-        <Button
-            android:id="@+id/filter_ur"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/btn_dark_orange"
-            android:text="UR"
-            android:textColor="@color/colorBackground"
-            android:textSize="15pt" />
+            android:layout_weight="1" />
     </LinearLayout>
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:padding="5dp">-->
+
+    <!--<Button-->
+    <!--android:id="@+id/filter_n"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="5dp"-->
+    <!--android:layout_weight="1"-->
+    <!--android:background="@drawable/btn_dark_orange"-->
+    <!--android:text="N"-->
+    <!--android:textColor="@color/colorBackground"-->
+    <!--android:textSize="15pt" />-->
+
+    <!--<Button-->
+    <!--android:id="@+id/filter_r"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="5dp"-->
+    <!--android:layout_weight="1"-->
+    <!--android:background="@drawable/btn_dark_orange"-->
+    <!--android:text="R"-->
+    <!--android:textColor="@color/colorBackground"-->
+    <!--android:textSize="15pt" />-->
+
+    <!--<Button-->
+    <!--android:id="@+id/filter_sr"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="5dp"-->
+    <!--android:layout_weight="1"-->
+    <!--android:background="@drawable/btn_dark_orange"-->
+    <!--android:text="SR"-->
+    <!--android:textColor="@color/colorBackground"-->
+    <!--android:textSize="15pt" />-->
+
+    <!--<Button-->
+    <!--android:id="@+id/filter_ur"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="5dp"-->
+    <!--android:layout_weight="1"-->
+    <!--android:background="@drawable/btn_dark_orange"-->
+    <!--android:text="UR"-->
+    <!--android:textColor="@color/colorBackground"-->
+    <!--android:textSize="15pt" />-->
+    <!--</LinearLayout>-->
 
     <ListView
         android:id="@+id/small_card_list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorBackground"
-        android:dividerHeight="1dp"
-        android:divider="@color/colorDivider" />
+        android:divider="@color/colorDivider"
+        android:dividerHeight="1dp" />
 
     <GridView
         android:id="@+id/grid_view"

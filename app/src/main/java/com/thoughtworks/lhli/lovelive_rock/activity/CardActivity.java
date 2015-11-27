@@ -6,10 +6,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -26,7 +27,6 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import de.greenrobot.event.EventBus;
 
 public class CardActivity extends BaseActivity {
@@ -40,26 +40,44 @@ public class CardActivity extends BaseActivity {
     @Bind(R.id.loading_icon)
     protected ImageView loadingIcon;
 
-    @OnClick({R.id.filter_n, R.id.filter_r, R.id.filter_sr, R.id.filter_ur})
-    public void filterCardByRarity(View view) {
-        switch (((Button) view).getText().toString()) {
-            case "N":
-                filterCardByRarity("N");
-                break;
-            case "R":
-                filterCardByRarity("R");
-                break;
-            case "SR":
-                filterCardByRarity("SR");
-                break;
-            case "UR":
-                filterCardByRarity("UR");
-                break;
-            default:
-                break;
-        }
-    }
+    @Bind(R.id.rarity_spinner)
+    protected Spinner raritySpinner;
 
+    @Bind(R.id.idol_spinner)
+    protected Spinner idolSpinner;
+
+    @Bind(R.id.attribute_spinner)
+    protected Spinner attributeSpinner;
+
+    @Bind(R.id.grade_spinner)
+    protected Spinner gradeSpinner;
+
+    @Bind(R.id.sub_team_spinner)
+    protected Spinner subTeamSpinner;
+
+    @Bind(R.id.skill_type_spinner)
+    protected Spinner skillTypeSpinner;
+
+    //    @OnClick({R.id.filter_n, R.id.filter_r, R.id.filter_sr, R.id.filter_ur})
+//    public void filterCardByRarity(View view) {
+//        switch (((Button) view).getText().toString()) {
+//            case "N":
+//                filterCardByRarity("N");
+//                break;
+//            case "R":
+//                filterCardByRarity("R");
+//                break;
+//            case "SR":
+//                filterCardByRarity("SR");
+//                break;
+//            case "UR":
+//                filterCardByRarity("UR");
+//                break;
+//            default:
+//                break;
+//        }
+//    }
+    private ArrayAdapter<CharSequence> adapter;
     private boolean isGridView = false;
 
     private List<CardModel> cardModelList;
@@ -73,6 +91,39 @@ public class CardActivity extends BaseActivity {
         EventBus.getDefault().register(this);
         Glide.with(this).load(R.drawable.loading).asGif().into(loadingIcon);
         new LoadActivityData(this).execute();
+        setDropDownList();
+    }
+
+    private void setDropDownList() {
+        adapter = ArrayAdapter.createFromResource(this,
+                R.array.rarity_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        raritySpinner.setAdapter(adapter);
+
+        adapter = ArrayAdapter.createFromResource(this,
+                R.array.idol_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        idolSpinner.setAdapter(adapter);
+
+        adapter = ArrayAdapter.createFromResource(this,
+                R.array.attribute_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        attributeSpinner.setAdapter(adapter);
+
+        adapter = ArrayAdapter.createFromResource(this,
+                R.array.grade_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        gradeSpinner.setAdapter(adapter);
+
+        adapter = ArrayAdapter.createFromResource(this,
+                R.array.sub_team_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        subTeamSpinner.setAdapter(adapter);
+
+        adapter = ArrayAdapter.createFromResource(this,
+                R.array.skill_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        skillTypeSpinner.setAdapter(adapter);
     }
 
     public void onEventMainThread(SmallCardEvent smallCardEvent) {
@@ -85,7 +136,7 @@ public class CardActivity extends BaseActivity {
 
     public void onEventMainThread(FetchProcessEvent fetchProcessEvent) {
         Toast.makeText(getApplicationContext(), fetchProcessEvent.getProcess(),
-                Toast.LENGTH_SHORT);
+                Toast.LENGTH_SHORT).show();
     }
 
     private void setGridViewClickListener() {
