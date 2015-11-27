@@ -1,5 +1,7 @@
 package com.thoughtworks.lhli.lovelive_rock;
 
+import android.support.annotation.NonNull;
+
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 
 import java.util.ArrayList;
@@ -33,8 +35,8 @@ public class FilterFactory {
     }
 
     private List<CardModel> filterByRarity(List<CardModel> cardModelList, HashMap<Integer, String> filterMap) {
-        List<CardModel> visibleCardModelList = new ArrayList<>();
         if (!filterMap.get(R.id.rarity_spinner).equals(rarityArray[0])) {
+            List<CardModel> visibleCardModelList = new ArrayList<>();
             for (CardModel c : cardModelList) {
                 if (c.getRarity().equals(filterMap.get(R.id.rarity_spinner))) {
                     visibleCardModelList.add(c);
@@ -46,8 +48,8 @@ public class FilterFactory {
     }
 
     private List<CardModel> filterByIdol(List<CardModel> cardModelList, HashMap<Integer, String> filterMap) {
-        List<CardModel> visibleCardModelList = new ArrayList<>();
         if (!filterMap.get(R.id.idol_spinner).equals(idolArray[0])) {
+            List<CardModel> visibleCardModelList = new ArrayList<>();
             for (CardModel c : cardModelList) {
                 if (c.getJapaneseName().equals(filterMap.get(R.id.idol_spinner))) {
                     visibleCardModelList.add(c);
@@ -59,8 +61,8 @@ public class FilterFactory {
     }
 
     private List<CardModel> filterByAttribute(List<CardModel> cardModelList, HashMap<Integer, String> filterMap) {
-        List<CardModel> visibleCardModelList = new ArrayList<>();
         if (!filterMap.get(R.id.attribute_spinner).equals(attributeArray[0])) {
+            List<CardModel> visibleCardModelList = new ArrayList<>();
             for (CardModel c : cardModelList) {
                 if (c.getAttribute().equals(filterMap.get(R.id.attribute_spinner))) {
                     visibleCardModelList.add(c);
@@ -72,42 +74,27 @@ public class FilterFactory {
     }
 
     private List<CardModel> filterByGrade(List<CardModel> cardModelList, HashMap<Integer, String> filterMap) {
-        List<CardModel> visibleCardModelList = new ArrayList<>();
         if (!filterMap.get(R.id.grade_spinner).equals(gradeArray[0])) {
+            List<CardModel> visibleCardModelList = new ArrayList<>();
+            HashMap<String, String[]> gradeMap = getGradeMap();
+            List<String> gradeMember = Arrays.asList(gradeMap.get(filterMap.get(R.id.grade_spinner)));
             for (CardModel c : cardModelList) {
-                if (filterMap.get(R.id.grade_spinner).equals(gradeArray[1])
-                        && Arrays.asList(firstGradeMember).contains(c.getJapaneseName())) {
-                    visibleCardModelList.add(c);
-                }
-                if (filterMap.get(R.id.grade_spinner).equals(gradeArray[2])
-                        && Arrays.asList(secondGradeMember).contains(c.getJapaneseName())) {
-                    visibleCardModelList.add(c);
-                }
-                if (filterMap.get(R.id.grade_spinner).equals(gradeArray[3])
-                        && Arrays.asList(thirdGradeMember).contains(c.getJapaneseName())) {
+                if (gradeMember.contains(c.getJapaneseName())) {
                     visibleCardModelList.add(c);
                 }
             }
             return visibleCardModelList;
         }
-
         return cardModelList;
     }
 
     private List<CardModel> filterBySubTeam(List<CardModel> cardModelList, HashMap<Integer, String> filterMap) {
-        List<CardModel> visibleCardModelList = new ArrayList<>();
         if (!filterMap.get(R.id.sub_team_spinner).equals(subTeamArray[0])) {
+            List<CardModel> visibleCardModelList = new ArrayList<>();
+            HashMap<String, String[]> subTeamMap = getSubTeamMap();
+            List<String> subTeamMember = Arrays.asList(subTeamMap.get(filterMap.get(R.id.sub_team_spinner)));
             for (CardModel c : cardModelList) {
-                if (filterMap.get(R.id.sub_team_spinner).equals(subTeamArray[1])
-                        && Arrays.asList(printempsMember).contains(c.getJapaneseName())) {
-                    visibleCardModelList.add(c);
-                }
-                if (filterMap.get(R.id.sub_team_spinner).equals(subTeamArray[2])
-                        && Arrays.asList(bibiMember).contains(c.getJapaneseName())) {
-                    visibleCardModelList.add(c);
-                }
-                if (filterMap.get(R.id.sub_team_spinner).equals(subTeamArray[3])
-                        && Arrays.asList(lilyWhiteMember).contains(c.getJapaneseName())) {
+                if (subTeamMember.contains(c.getJapaneseName())) {
                     visibleCardModelList.add(c);
                 }
             }
@@ -116,4 +103,21 @@ public class FilterFactory {
         return cardModelList;
     }
 
+    @NonNull
+    private HashMap<String, String[]> getGradeMap() {
+        HashMap<String, String[]> gradeMap = new HashMap<>();
+        gradeMap.put(gradeArray[1], firstGradeMember);
+        gradeMap.put(gradeArray[2], secondGradeMember);
+        gradeMap.put(gradeArray[3], thirdGradeMember);
+        return gradeMap;
+    }
+
+    @NonNull
+    private HashMap<String, String[]> getSubTeamMap() {
+        HashMap<String, String[]> subTeamMap = new HashMap<>();
+        subTeamMap.put(subTeamArray[1], printempsMember);
+        subTeamMap.put(subTeamArray[2], bibiMember);
+        subTeamMap.put(subTeamArray[3], lilyWhiteMember);
+        return subTeamMap;
+    }
 }
