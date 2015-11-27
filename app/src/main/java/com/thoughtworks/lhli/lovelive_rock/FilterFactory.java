@@ -90,30 +90,22 @@ public class FilterFactory extends Activity {
         List<CardModel> visibleCardModelList = new ArrayList<>();
         if (!filterMap.get(R.id.sub_team_spinner).equals(subTeamArray[0])) {
             for (CardModel c : cardModelList) {
-                if (filterMap.get(R.id.sub_team_spinner).equals("Printemps")) {
-                    if (c.getJapaneseName().equals("小泉花陽")
-                            || c.getJapaneseName().equals("南ことり")
-                            || c.getJapaneseName().equals("高坂穂乃果")) {
-                        visibleCardModelList.add(c);
-                    }
+                if (filterMap.get(R.id.sub_team_spinner).equals(subTeamArray[1])
+                        && Arrays.asList(printempsMember).contains(c.getJapaneseName())) {
+                    visibleCardModelList.add(c);
                 }
-                if (filterMap.get(R.id.sub_team_spinner).equals("BiBi")) {
-                    if (c.getJapaneseName().equals("西木野真姫")
-                            || c.getJapaneseName().equals("矢澤にこ")
-                            || c.getJapaneseName().equals("絢瀬絵里")) {
-                        visibleCardModelList.add(c);
-                    }
+                if (filterMap.get(R.id.sub_team_spinner).equals(subTeamArray[2])
+                        && Arrays.asList(bibiMember).contains(c.getJapaneseName())) {
+                    visibleCardModelList.add(c);
                 }
-                if (filterMap.get(R.id.sub_team_spinner).equals("Lily White")) {
-                    if (c.getJapaneseName().equals("東條希")
-                            || c.getJapaneseName().equals("星空凛")
-                            || c.getJapaneseName().equals("園田海未")) {
-                        visibleCardModelList.add(c);
-                    }
+                if (filterMap.get(R.id.sub_team_spinner).equals(subTeamArray[3])
+                        && Arrays.asList(lilyWhiteMember).contains(c.getJapaneseName())) {
+                    visibleCardModelList.add(c);
                 }
             }
             return visibleCardModelList;
         }
         return cardModelList;
     }
+
 }
