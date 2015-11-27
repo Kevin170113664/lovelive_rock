@@ -157,12 +157,7 @@ public class CardActivity extends BaseActivity {
         if (cardModelList == null || cardModelList.size() == 0) return;
         filterMap.put(filterEvent.getFilterKey(), filterEvent.getFilterValue());
         visibleCardModelList = new ArrayList<>();
-        FilterFactory filterFactory = new FilterFactory();
-        visibleCardModelList = filterFactory.filterByRarity(cardModelList, filterMap);
-        visibleCardModelList = filterFactory.filterByIdol(visibleCardModelList, filterMap);
-        visibleCardModelList = filterFactory.filterByAttribute(visibleCardModelList, filterMap);
-        visibleCardModelList = filterFactory.filterByGrade(visibleCardModelList, filterMap);
-        visibleCardModelList = filterFactory.filterBySubTeam(visibleCardModelList, filterMap);
+        visibleCardModelList = new FilterFactory().filterCards(cardModelList, filterMap);
         loadCardView();
     }
 }

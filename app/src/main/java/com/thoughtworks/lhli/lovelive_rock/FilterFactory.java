@@ -1,7 +1,5 @@
 package com.thoughtworks.lhli.lovelive_rock;
 
-import android.app.Activity;
-
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 
 import java.util.ArrayList;
@@ -9,7 +7,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class FilterFactory extends Activity {
+public class FilterFactory {
 
     private String[] rarityArray = LoveLiveApp.getInstance().getResources().getStringArray(R.array.rarity_array);
     private String[] gradeArray = LoveLiveApp.getInstance().getResources().getStringArray(R.array.grade_array);
@@ -24,7 +22,17 @@ public class FilterFactory extends Activity {
     private String[] bibiMember = LoveLiveApp.getInstance().getResources().getStringArray(R.array.bibi_member);
     private String[] lilyWhiteMember = LoveLiveApp.getInstance().getResources().getStringArray(R.array.lily_white_member);
 
-    public List<CardModel> filterByRarity(List<CardModel> cardModelList, HashMap<Integer, String> filterMap) {
+    public List<CardModel> filterCards(List<CardModel> cardModelList, HashMap<Integer, String> filterMap) {
+        List<CardModel> visibleCardModelList;
+        visibleCardModelList = filterByRarity(cardModelList, filterMap);
+        visibleCardModelList = filterByIdol(visibleCardModelList, filterMap);
+        visibleCardModelList = filterByAttribute(visibleCardModelList, filterMap);
+        visibleCardModelList = filterByGrade(visibleCardModelList, filterMap);
+        visibleCardModelList = filterBySubTeam(visibleCardModelList, filterMap);
+        return visibleCardModelList;
+    }
+
+    private List<CardModel> filterByRarity(List<CardModel> cardModelList, HashMap<Integer, String> filterMap) {
         List<CardModel> visibleCardModelList = new ArrayList<>();
         if (!filterMap.get(R.id.rarity_spinner).equals(rarityArray[0])) {
             for (CardModel c : cardModelList) {
@@ -37,7 +45,7 @@ public class FilterFactory extends Activity {
         return cardModelList;
     }
 
-    public List<CardModel> filterByIdol(List<CardModel> cardModelList, HashMap<Integer, String> filterMap) {
+    private List<CardModel> filterByIdol(List<CardModel> cardModelList, HashMap<Integer, String> filterMap) {
         List<CardModel> visibleCardModelList = new ArrayList<>();
         if (!filterMap.get(R.id.idol_spinner).equals(idolArray[0])) {
             for (CardModel c : cardModelList) {
@@ -50,7 +58,7 @@ public class FilterFactory extends Activity {
         return cardModelList;
     }
 
-    public List<CardModel> filterByAttribute(List<CardModel> cardModelList, HashMap<Integer, String> filterMap) {
+    private List<CardModel> filterByAttribute(List<CardModel> cardModelList, HashMap<Integer, String> filterMap) {
         List<CardModel> visibleCardModelList = new ArrayList<>();
         if (!filterMap.get(R.id.attribute_spinner).equals(attributeArray[0])) {
             for (CardModel c : cardModelList) {
@@ -63,7 +71,7 @@ public class FilterFactory extends Activity {
         return cardModelList;
     }
 
-    public List<CardModel> filterByGrade(List<CardModel> cardModelList, HashMap<Integer, String> filterMap) {
+    private List<CardModel> filterByGrade(List<CardModel> cardModelList, HashMap<Integer, String> filterMap) {
         List<CardModel> visibleCardModelList = new ArrayList<>();
         if (!filterMap.get(R.id.grade_spinner).equals(gradeArray[0])) {
             for (CardModel c : cardModelList) {
@@ -86,7 +94,7 @@ public class FilterFactory extends Activity {
         return cardModelList;
     }
 
-    public List<CardModel> filterBySubTeam(List<CardModel> cardModelList, HashMap<Integer, String> filterMap) {
+    private List<CardModel> filterBySubTeam(List<CardModel> cardModelList, HashMap<Integer, String> filterMap) {
         List<CardModel> visibleCardModelList = new ArrayList<>();
         if (!filterMap.get(R.id.sub_team_spinner).equals(subTeamArray[0])) {
             for (CardModel c : cardModelList) {
