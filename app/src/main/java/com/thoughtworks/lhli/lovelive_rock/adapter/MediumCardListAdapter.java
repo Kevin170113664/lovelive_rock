@@ -104,6 +104,9 @@ public class MediumCardListAdapter extends BaseAdapter {
     }
 
     public static void setSkillType(TextView textView, String value) {
+        if (textView == null || value == null) {
+            return;
+        }
         switch (value) {
             case "Healer":
                 textView.setText(R.string.skill_healer);
