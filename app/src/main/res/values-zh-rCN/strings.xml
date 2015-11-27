@@ -4,6 +4,7 @@
     <string name="action_card">卡牌</string>
     <string name="action_song">歌曲</string>
     <string name="action_event">活动</string>
+    <string name="filter_dialog_title">筛选</string>
 
     <string name="toast_function_not_complete">对不起哟，这部分功能尚未完成</string>
 

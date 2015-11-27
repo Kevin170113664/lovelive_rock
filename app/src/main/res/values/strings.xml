@@ -3,6 +3,7 @@
     <string name="action_card">Card</string>
     <string name="action_song">Song</string>
     <string name="action_event">Event</string>
+    <string name="filter_dialog_title">Filter</string>
 
     <string name="toast_function_not_complete">Sorry, this is unavailable now.</string>
     <string name="latest_event_Sr_id">latest event SR id</string>
