@@ -1,10 +1,8 @@
 package com.thoughtworks.lhli.lovelive_rock.manager;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 
+import com.thoughtworks.lhli.lovelive_rock.LoveLiveApp;
 import com.thoughtworks.lhli.lovelive_rock.Retrofit;
 import com.thoughtworks.lhli.lovelive_rock.bus.FetchProcessEvent;
 import com.thoughtworks.lhli.lovelive_rock.bus.MainCardEvent;
@@ -28,13 +26,11 @@ public class CardManager {
     private final Integer MAX_CARD_PAGE = 74;
 
     private List<CardModel> cardModelList;
-    private Context context;
     DatabaseManager databaseManager;
 
-    public CardManager(List<CardModel> cardModelList, Context context) {
+    public CardManager(List<CardModel> cardModelList) {
         this.cardModelList = cardModelList;
-        this.context = context;
-        this.databaseManager = new DatabaseManager(context);
+        this.databaseManager = new DatabaseManager();
     }
 
     public List<CardModel> getCardModelList() {
@@ -47,13 +43,32 @@ public class CardManager {
             EventBus.getDefault().post(new SmallCardEvent(cardModelList));
         } else {
             for (int page = 1; page <= MAX_CARD_PAGE; page++) {
-                if (isNetworkAvailable(context)) {
+                if (LoveLiveApp.getInstance().isNetworkAvailable()) {
                     Call<MultipleCards> call = Retrofit.getInstance().getCardService().getCardList(page);
-                    call.enqueue(getCardListCallback());
+                    Response<MultipleCards> cardsResponse = call.execute();
+                    saveCardsToDB(cardsResponse);
                 } else {
                     System.out.print("Get all cards failed.");
                 }
             }
+        }
+    }
+
+    private void saveCardsToDB(Response<MultipleCards> response) {
+        if (response.isSuccess()) {
+            cardModelList.addAll(Arrays.asList(response.body().getResults()));
+            for (CardModel cardModel : cardModelList) {
+                CardModel queriedCardModel = databaseManager.queryCardById(cardModel.getCardId());
+                if (queriedCardModel == null) {
+                    databaseManager.cacheCard(cardModel);
+                }
+            }
+            sendFetchProcessEvent(cardModelList.size());
+            if (cardModelList.size() == MAX_CARD_NUMBER) {
+                EventBus.getDefault().post(new SmallCardEvent(cardModelList));
+            }
+        }  else {
+            System.out.print("getCardByIdCallback failed.");
         }
     }
 
@@ -63,46 +78,12 @@ public class CardManager {
         if (cardModel != null && cardModel.getCardId() != null) {
             cardModelList.add(cardModel);
             EventBus.getDefault().post(new MainCardEvent(cardModelList));
-        } else if (isNetworkAvailable(context)) {
+        } else if (LoveLiveApp.getInstance().isNetworkAvailable()) {
             Call<CardModel> call = Retrofit.getInstance().getCardService().getCardById(cardId);
             call.enqueue(getCardByIdCallback());
         } else {
             System.out.print("Get cardModel by id failed.");
         }
-    }
-
-    protected static Boolean isNetworkAvailable(Context context) {
-        ConnectivityManager connMgr = (ConnectivityManager) context
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        return networkInfo != null && networkInfo.isConnected();
-    }
-
-    @NonNull
-    private Callback<MultipleCards> getCardListCallback() {
-        return new Callback<MultipleCards>() {
-            @Override
-            public void onResponse(Response<MultipleCards> response, retrofit.Retrofit retrofit) {
-                if (response.isSuccess()) {
-                    cardModelList.addAll(Arrays.asList(response.body().getResults()));
-                    for (CardModel cardModel : cardModelList) {
-                        CardModel queriedCardModel = databaseManager.queryCardById(cardModel.getCardId());
-                        if (queriedCardModel == null) {
-                            databaseManager.cacheCard(cardModel);
-                        }
-                    }
-                    sendFetchProcessEvent(cardModelList.size());
-                    if (cardModelList.size() == MAX_CARD_NUMBER) {
-                        EventBus.getDefault().post(new SmallCardEvent(cardModelList));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-                System.out.print("getCardListCallback failed.");
-            }
-        };
     }
 
     @NonNull

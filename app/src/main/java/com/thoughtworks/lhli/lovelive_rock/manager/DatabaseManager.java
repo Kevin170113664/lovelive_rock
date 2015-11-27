@@ -1,7 +1,6 @@
 package com.thoughtworks.lhli.lovelive_rock.manager;
 
-import android.content.Context;
-
+import com.thoughtworks.lhli.lovelive_rock.LoveLiveApp;
 import com.thoughtworks.lhli.lovelive_rock.data.Card;
 import com.thoughtworks.lhli.lovelive_rock.data.CardDao;
 import com.thoughtworks.lhli.lovelive_rock.data.CharacterVoice;
@@ -34,8 +33,8 @@ public class DatabaseManager {
     private CharacterVoiceDao characterVoiceDao;
     private ModelMapper modelMapper = new ModelMapper();
 
-    public DatabaseManager(Context context) {
-        this.helper = new DaoMaster.DevOpenHelper(context, "lovelive-db", null);
+    public DatabaseManager() {
+        this.helper = new DaoMaster.DevOpenHelper(LoveLiveApp.getInstance(), "lovelive-db", null);
     }
 
     public void cacheLatestEvent(List<EventModel> eventModelList) {

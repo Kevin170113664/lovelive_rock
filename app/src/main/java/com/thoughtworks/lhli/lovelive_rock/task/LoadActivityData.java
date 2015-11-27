@@ -3,7 +3,6 @@ package com.thoughtworks.lhli.lovelive_rock.task;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.activity.CardActivity;
@@ -17,9 +16,7 @@ import com.thoughtworks.lhli.lovelive_rock.model.EventModel;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import de.greenrobot.event.EventBus;
-
-public class LoadActivityData extends AsyncTask<Void, Void, Void> {
+public class LoadActivityData implements Runnable{
 
     private Activity activity;
 
@@ -27,19 +24,8 @@ public class LoadActivityData extends AsyncTask<Void, Void, Void> {
         this.activity = activity;
     }
 
-    @Override
-    protected Void doInBackground(Void... voids) {
-        EventBus.getDefault().register(this);
-        if (activity.getClass().equals(MainActivity.class)) {
-            loadMainActivityData();
-        } else if (activity.getClass().equals(CardActivity.class)) {
-            loadCardActivityData();
-        }
-        return null;
-    }
-
     private void loadCardActivityData() {
-        CardManager cardManager = new CardManager(new ArrayList<CardModel>(), activity);
+        CardManager cardManager = new CardManager(new ArrayList<CardModel>());
         try {
             cardManager.getAllCards();
         } catch (IOException e) {
@@ -48,17 +34,12 @@ public class LoadActivityData extends AsyncTask<Void, Void, Void> {
     }
 
     private void loadMainActivityData() {
-        EventManager eventManager = new EventManager(new ArrayList<EventModel>(), activity);
+        EventManager eventManager = new EventManager(new ArrayList<EventModel>());
         try {
             eventManager.getLatestEvent();
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    protected void onPostExecute(Void v) {
-        super.onPostExecute(v);
     }
 
     protected void saveLatestEventSrId(String cardId) {
@@ -74,7 +55,7 @@ public class LoadActivityData extends AsyncTask<Void, Void, Void> {
     }
 
     public void onEvent(EventEvent eventEvent) throws IOException {
-        CardManager cardManager = new CardManager(new ArrayList<CardModel>(), activity);
+        CardManager cardManager = new CardManager(new ArrayList<CardModel>());
 
         if (readLatestEventSrId().equals("0")
                 && eventEvent.getEventModelList().get(0).getCards() != null) {
@@ -83,6 +64,15 @@ public class LoadActivityData extends AsyncTask<Void, Void, Void> {
             saveLatestEventSrId(cardId.toString());
         } else {
             cardManager.getCardById(readLatestEventSrId());
+        }
+    }
+
+    @Override
+    public void run() {
+        if (activity.getClass().equals(MainActivity.class)) {
+            loadMainActivityData();
+        } else if (activity.getClass().equals(CardActivity.class)) {
+            loadCardActivityData();
         }
     }
 }

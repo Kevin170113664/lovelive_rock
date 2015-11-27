@@ -1,8 +1,8 @@
 package com.thoughtworks.lhli.lovelive_rock.manager;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.thoughtworks.lhli.lovelive_rock.LoveLiveApp;
 import com.thoughtworks.lhli.lovelive_rock.Retrofit;
 import com.thoughtworks.lhli.lovelive_rock.bus.EventEvent;
 import com.thoughtworks.lhli.lovelive_rock.model.EventModel;
@@ -20,13 +20,11 @@ import retrofit.Response;
 public class EventManager {
 
     private List<EventModel> eventModelList;
-    private Context context;
     DatabaseManager databaseManager;
 
-    public EventManager(List<EventModel> eventModelList, Context context) {
+    public EventManager(List<EventModel> eventModelList) {
         this.eventModelList = eventModelList;
-        this.context = context;
-        this.databaseManager = new DatabaseManager(context);
+        this.databaseManager = new DatabaseManager();
     }
 
     public List<EventModel> getEventModelList() {
@@ -39,7 +37,7 @@ public class EventManager {
         if (eventModel != null && eventModel.getJapaneseName() != null) {
             eventModelList.add(eventModel);
             EventBus.getDefault().post(new EventEvent(eventModelList));
-        } else if (CardManager.isNetworkAvailable(context)) {
+        } else if (LoveLiveApp.getInstance().isNetworkAvailable()) {
             Call<MultipleEvents> call =
                     Retrofit.getInstance().getEventService().getLatestEvent("-beginning", 1);
             call.enqueue(getLatestCallback());

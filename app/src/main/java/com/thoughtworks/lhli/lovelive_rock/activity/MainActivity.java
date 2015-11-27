@@ -38,7 +38,8 @@ public class MainActivity extends BaseActivity {
         EventBus.getDefault().register(this);
         Glide.with(this).load(R.drawable.loading).asGif()
                 .into((ImageView) findViewById(R.id.loading_icon));
-        new LoadActivityData(this).execute();
+
+        new Thread(new LoadActivityData(this)).start();
     }
 
     @Override

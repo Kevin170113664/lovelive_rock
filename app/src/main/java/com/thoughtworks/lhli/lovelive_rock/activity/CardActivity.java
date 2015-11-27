@@ -58,7 +58,7 @@ public class CardActivity extends BaseActivity {
     @Bind(R.id.skill_type_spinner)
     protected Spinner skillTypeSpinner;
 
-    //    @OnClick({R.id.filter_n, R.id.filter_r, R.id.filter_sr, R.id.filter_ur})
+//    @OnClick({R.id.filter_n, R.id.filter_r, R.id.filter_sr, R.id.filter_ur})
 //    public void filterCardByRarity(View view) {
 //        switch (((Button) view).getText().toString()) {
 //            case "N":
@@ -84,13 +84,20 @@ public class CardActivity extends BaseActivity {
     private List<CardModel> visibleCardModelList = new ArrayList<>();
 
     @Override
+    protected void onDestroy() {
+        Thread.currentThread().interrupt();
+        super.onDestroy();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card);
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
         Glide.with(this).load(R.drawable.loading).asGif().into(loadingIcon);
-        new LoadActivityData(this).execute();
+        new Thread(new LoadActivityData(this)).start();
+
         setDropDownList();
     }
 
