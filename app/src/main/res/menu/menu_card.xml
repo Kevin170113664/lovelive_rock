@@ -2,14 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/action_filter"
+        android:icon="@mipmap/ic_search_white"
+        android:title="Filter"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/action_grid"
-        android:icon="@mipmap/ic_view_comfy_white_48pt"
+        android:icon="@mipmap/ic_view_comfy_white"
         android:title="Grid View"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_menu"
-        android:icon="@mipmap/ic_menu_white_48pt"
+        android:icon="@mipmap/ic_menu_white"
         android:title="Menu View"
         app:showAsAction="ifRoom" />
 </menu>
