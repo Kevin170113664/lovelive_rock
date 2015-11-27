@@ -66,7 +66,7 @@ public class CardActivity extends BaseActivity {
         filterMap.put(R.id.grade_spinner, getResources().getStringArray(R.array.grade_array)[0]);
         filterMap.put(R.id.idol_spinner, getResources().getStringArray(R.array.idol_array)[0]);
         filterMap.put(R.id.sub_team_spinner, getResources().getStringArray(R.array.sub_team_array)[0]);
-        filterMap.put(R.id.skill_type_spinner, getResources().getStringArray(R.array.skill_array)[0]);
+        filterMap.put(R.id.skill_type_spinner, getResources().getStringArray(R.array.skill_type_array)[0]);
     }
 
     @Override

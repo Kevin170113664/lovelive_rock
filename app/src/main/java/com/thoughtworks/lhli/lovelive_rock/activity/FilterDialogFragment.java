@@ -93,7 +93,7 @@ public class FilterDialogFragment extends DialogFragment {
         subTeamSpinner.setAdapter(adapter);
 
         adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.skill_array, android.R.layout.simple_spinner_item);
+                R.array.skill_type_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         skillTypeSpinner.setAdapter(adapter);
     }

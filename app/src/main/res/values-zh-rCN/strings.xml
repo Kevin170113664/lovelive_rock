@@ -36,6 +36,7 @@
     <string name="small_card_collection_title">卡牌主题：</string>
     <string name="small_card_max_stat_title">最高属性：</string>
     <string name="small_card_skill_type_title">技能类型：</string>
+
     <string-array name="rarity_array">
         <item>稀有度</item>
         <item>N</item>
@@ -73,10 +74,40 @@
         <item>BiBi</item>
         <item>Lily White</item>
     </string-array>
-    <string-array name="skill_array">
+    <string-array name="skill_type_array">
         <item>技能类型</item>
         <item>加分</item>
         <item>判定</item>
         <item>回复</item>
+    </string-array>
+    <string-array name="first_grade_member">
+        <item>小泉花陽</item>
+        <item>星空凛</item>
+        <item>Nishikino Maki</item>
+    </string-array>
+    <string-array name="second_grade_member">
+        <item>高坂穂乃果</item>
+        <item>南ことり</item>
+        <item>園田海未</item>
+    </string-array>
+    <string-array name="third_grade_member">
+        <item>東條希</item>
+        <item>矢澤にこ</item>
+        <item>絢瀬絵里</item>
+    </string-array>
+    <string-array name="printemps_member">
+        <item>高坂穂乃果</item>
+        <item>南ことり</item>
+        <item>小泉花陽</item>
+    </string-array>
+    <string-array name="bibi_member">
+        <item>矢澤にこ</item>
+        <item>絢瀬絵里</item>
+        <item>Nishikino Maki</item>
+    </string-array>
+    <string-array name="lily_white_member">
+        <item>東條希</item>
+        <item>星空凛</item>
+        <item>園田海未</item>
     </string-array>
 </resources>

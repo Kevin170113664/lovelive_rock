@@ -40,6 +40,7 @@
     <string name="small_card_collection_title">Collection:</string>
     <string name="small_card_max_stat_title">Max Stat:</string>
     <string name="small_card_skill_type_title">Skill Type:</string>
+
     <string-array name="rarity_array">
         <item>Rarity</item>
         <item>N</item>
@@ -72,15 +73,46 @@
         <item>Ayase Eli</item>
     </string-array>
     <string-array name="sub_team_array">
-        <item>sub-team</item>
+        <item>Sub-Team</item>
         <item>Printemps</item>
         <item>BiBi</item>
         <item>Lily White</item>
     </string-array>
-    <string-array name="skill_array">
+    <string-array name="skill_type_array">
         <item>Skill Type</item>
         <item>Score Up</item>
         <item>Perfect Lock</item>
         <item>Healer</item>
     </string-array>
+    <string-array name="first_grade_member">
+        <item>Koizumi Hanayo</item>
+        <item>Hoshizora Rin</item>
+        <item>Nishikino Maki</item>
+    </string-array>
+    <string-array name="second_grade_member">
+        <item>Kousaka Honoka</item>
+        <item>Minami Kotori</item>
+        <item>Sonoda Umi</item>
+    </string-array>
+    <string-array name="third_grade_member">
+        <item>Toujou Nozomi</item>
+        <item>Yazawa Nico</item>
+        <item>Ayase Eli</item>
+    </string-array>
+    <string-array name="printemps_member">
+        <item>Kousaka Honoka</item>
+        <item>Minami Kotori</item>
+        <item>Koizumi Hanayo</item>
+    </string-array>
+    <string-array name="bibi_member">
+        <item>Yazawa Nico</item>
+        <item>Ayase Eli</item>
+        <item>Nishikino Maki</item>
+    </string-array>
+    <string-array name="lily_white_member">
+        <item>Toujou Nozomi</item>
+        <item>Hoshizora Rin</item>
+        <item>Sonoda Umi</item>
+    </string-array>
+
 </resources>
