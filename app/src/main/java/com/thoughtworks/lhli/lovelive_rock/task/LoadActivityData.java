@@ -61,7 +61,7 @@ public class LoadActivityData implements Runnable {
     protected void saveLatestEvent(HashMap<String, String> eventMap) {
         SharedPreferences sharedPreferences = activity.getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(activity.getString(R.string.latest_event_SR_id), eventMap.get(activity.getString(R.string.latest_event_SR_id)));
+        editor.putString(activity.getString(R.string.latest_event_name), eventMap.get(activity.getString(R.string.latest_event_name)));
         editor.putString(activity.getString(R.string.latest_event_N_id), eventMap.get(activity.getString(R.string.latest_event_N_id)));
         editor.putString(activity.getString(R.string.latest_event_SR_id), eventMap.get(activity.getString(R.string.latest_event_SR_id)));
         editor.apply();
