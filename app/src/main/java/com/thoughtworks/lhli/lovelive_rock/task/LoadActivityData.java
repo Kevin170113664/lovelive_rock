@@ -16,6 +16,8 @@ import com.thoughtworks.lhli.lovelive_rock.model.EventModel;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import de.greenrobot.event.EventBus;
+
 public class LoadActivityData implements Runnable{
 
     private Activity activity;
@@ -69,6 +71,7 @@ public class LoadActivityData implements Runnable{
 
     @Override
     public void run() {
+        EventBus.getDefault().register(this);
         if (activity.getClass().equals(MainActivity.class)) {
             loadMainActivityData();
         } else if (activity.getClass().equals(CardActivity.class)) {
