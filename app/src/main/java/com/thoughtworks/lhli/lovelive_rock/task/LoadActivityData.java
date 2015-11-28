@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 import de.greenrobot.event.EventBus;
 
-public class LoadActivityData implements Runnable{
+public class LoadActivityData implements Runnable {
 
     private Activity activity;
 

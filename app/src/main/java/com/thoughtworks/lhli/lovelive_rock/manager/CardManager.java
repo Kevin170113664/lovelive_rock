@@ -67,7 +67,7 @@ public class CardManager {
             if (cardModelList.size() == MAX_CARD_NUMBER) {
                 EventBus.getDefault().post(new SmallCardEvent(cardModelList));
             }
-        }  else {
+        } else {
             System.out.print("getCardByIdCallback failed.");
         }
     }
