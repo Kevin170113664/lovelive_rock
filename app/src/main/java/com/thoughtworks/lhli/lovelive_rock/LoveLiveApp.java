@@ -6,7 +6,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 public class LoveLiveApp extends Application {
+
     private static LoveLiveApp instance;
+    private String maxCardNumber = "738";
 
     @Override
     public void onCreate() {
@@ -16,6 +18,14 @@ public class LoveLiveApp extends Application {
 
     public static LoveLiveApp getInstance() {
         return instance;
+    }
+
+    public void setMaxCardNumber(String maxCardNumber) {
+        this.maxCardNumber = maxCardNumber;
+    }
+
+    public String getMaxCardNumber() {
+        return maxCardNumber;
     }
 
     public Boolean isNetworkAvailable() {

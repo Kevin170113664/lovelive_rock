@@ -11,11 +11,11 @@ import retrofit.http.Query;
 public interface CardService {
 
     @GET("cards")
-    Call<MultipleCards> getCardList();
-
-    @GET("cards")
     Call<MultipleCards> getCardList(@Query("page") Integer page);
 
     @GET("cards/{id}")
     Call<CardModel> getCardById(@Path("id") String cardId);
+
+    @GET("cardids")
+    Call<Integer[]> getCardId();
 }

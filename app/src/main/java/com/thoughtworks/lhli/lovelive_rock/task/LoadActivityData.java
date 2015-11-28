@@ -36,9 +36,19 @@ public class LoadActivityData implements Runnable {
     }
 
     private void loadMainActivityData() {
+        loadLatestCardNumber();
         EventManager eventManager = new EventManager(new ArrayList<EventModel>());
         try {
             eventManager.getLatestEvent();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadLatestCardNumber() {
+        CardManager cardManager = new CardManager(new ArrayList<CardModel>());
+        try {
+            cardManager.getLatestCardNumber();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,7 +63,8 @@ public class LoadActivityData implements Runnable {
 
     protected String readLatestEventSrId() {
         SharedPreferences sharedPreferences = activity.getPreferences(Context.MODE_PRIVATE);
-        return sharedPreferences.getString(activity.getString(R.string.latest_event_Sr_id), "0");
+        return sharedPreferences.getString(activity.getString(R.string.latest_event_Sr_id),
+                activity.getString(R.string.event_sr_id_default));
     }
 
     public void onEvent(EventEvent eventEvent) throws IOException {

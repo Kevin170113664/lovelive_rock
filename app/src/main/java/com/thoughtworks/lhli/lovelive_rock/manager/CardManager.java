@@ -22,8 +22,8 @@ import retrofit.Response;
 
 public class CardManager {
 
-    private final Integer MAX_CARD_NUMBER = 738;
-    private final Integer MAX_CARD_PAGE = 74;
+    private Integer maxCardNumber;
+    private Integer maxCardPage;
 
     private List<CardModel> cardModelList;
     DatabaseManager databaseManager;
@@ -31,19 +31,21 @@ public class CardManager {
     public CardManager(List<CardModel> cardModelList) {
         this.cardModelList = cardModelList;
         this.databaseManager = new DatabaseManager();
+        maxCardNumber = Integer.parseInt(LoveLiveApp.getInstance().getMaxCardNumber());
+        maxCardPage = calculateMaxCardPage(maxCardNumber);
     }
 
-    public List<CardModel> getCardModelList() {
-        return cardModelList;
+    private Integer calculateMaxCardPage(Integer maxCardNumber) {
+        return maxCardNumber == 0 ? 0 : Integer.parseInt(new DecimalFormat("0").format(maxCardNumber / 10.0 + 1));
     }
 
     public void getAllCards() throws IOException {
         List<CardModel> cardModelList = databaseManager.queryAllCards();
-        if (cardModelList != null && cardModelList.size() == MAX_CARD_NUMBER) {
+        if (cardModelList != null && cardModelList.size() == maxCardNumber) {
             EventBus.getDefault().post(new SmallCardEvent(cardModelList));
             EventBus.getDefault().post(new FetchProcessEvent("100"));
         } else {
-            for (int page = 1; page <= MAX_CARD_PAGE; page++) {
+            for (int page = 1; page <= maxCardPage; page++) {
                 if (LoveLiveApp.getInstance().isNetworkAvailable()) {
                     Call<MultipleCards> call = Retrofit.getInstance().getCardService().getCardList(page);
                     Response<MultipleCards> cardsResponse = call.execute();
@@ -65,7 +67,7 @@ public class CardManager {
                 }
             }
             sendFetchProcessEvent(cardModelList.size());
-            if (cardModelList.size() == MAX_CARD_NUMBER) {
+            if (cardModelList.size() == maxCardNumber) {
                 EventBus.getDefault().post(new SmallCardEvent(cardModelList));
             }
         } else {
@@ -84,6 +86,18 @@ public class CardManager {
             call.enqueue(getCardByIdCallback());
         } else {
             System.out.print("Get cardModel by id failed.");
+        }
+    }
+
+    public void getLatestCardNumber() throws IOException {
+        if (LoveLiveApp.getInstance().isNetworkAvailable()) {
+            Call<Integer[]> call = Retrofit.getInstance().getCardService().getCardId();
+            Response<Integer[]> cardIdResponse = call.execute();
+            List<Integer> cardIdList = Arrays.asList(cardIdResponse.body());
+            String lastCardId = cardIdList.get(cardIdList.size() - 1).toString();
+            LoveLiveApp.getInstance().setMaxCardNumber(lastCardId);
+        } else {
+            System.out.print("Get latest card number failed.");
         }
     }
 
@@ -107,7 +121,7 @@ public class CardManager {
     }
 
     private void sendFetchProcessEvent(int gottenCardNumber) {
-        Double percentage = 100 * gottenCardNumber / Double.parseDouble(MAX_CARD_NUMBER.toString());
+        Double percentage = 100 * gottenCardNumber / Double.parseDouble(maxCardNumber.toString());
         String percentageMsg = new DecimalFormat("0").format(percentage);
         EventBus.getDefault().post(new FetchProcessEvent(percentageMsg));
     }
