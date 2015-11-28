@@ -101,7 +101,7 @@ public class CardActivity extends BaseActivity {
             progressBar.setVisibility(View.VISIBLE);
             downloadProgress.setVisibility(View.VISIBLE);
             progressBar.setProgress(Integer.parseInt(fetchProcessEvent.getProcess()));
-            downloadProgress.setText(fetchProcessEvent.getProcess() + "%");
+            downloadProgress.setText(String.format("%s%%", fetchProcessEvent.getProcess()));
         }
     }
 

@@ -24,9 +24,9 @@
             android:id="@+id/download_tips"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:gravity="center"
-            android:text="第一次下载所有卡牌文本信息大约需要5~7分钟"
+            android:padding="20dp"
+            android:text="@string/first_download_tips"
             android:visibility="invisible" />
 
         <ProgressBar
@@ -36,7 +36,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:layout_marginTop="20dp"
             android:visibility="invisible" />
 
         <TextView
