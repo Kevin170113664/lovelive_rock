@@ -19,12 +19,14 @@ import retrofit.Response;
 
 public class EventManager {
 
+    private String latestEventName;
     private List<EventModel> eventModelList;
     DatabaseManager databaseManager;
 
     public EventManager(List<EventModel> eventModelList) {
         this.eventModelList = eventModelList;
         this.databaseManager = new DatabaseManager();
+        this.latestEventName = LoveLiveApp.getInstance().getLatestEventName();
     }
 
     public List<EventModel> getEventModelList() {
@@ -32,17 +34,16 @@ public class EventManager {
     }
 
     public void getLatestEvent() throws IOException {
-        EventModel eventModel = databaseManager.queryLatestEvent("Score Match Round 22");
-
-        if (eventModel != null && eventModel.getJapaneseName() != null) {
-            eventModelList.add(eventModel);
-            EventBus.getDefault().post(new EventEvent(eventModelList));
-        } else if (LoveLiveApp.getInstance().isNetworkAvailable()) {
+        if (LoveLiveApp.getInstance().isNetworkAvailable()) {
             Call<MultipleEvents> call =
                     Retrofit.getInstance().getEventService().getLatestEvent("-beginning", 1);
             call.enqueue(getLatestCallback());
         } else {
-            System.out.print("Network is not available.");
+            EventModel eventModel = databaseManager.queryLatestEvent(latestEventName);
+            if (eventModel != null && eventModel.getJapaneseName() != null) {
+                eventModelList.add(eventModel);
+                EventBus.getDefault().post(new EventEvent(eventModelList));
+            }
         }
     }
 
@@ -53,8 +54,9 @@ public class EventManager {
             public void onResponse(Response<MultipleEvents> response, retrofit.Retrofit retrofit) {
                 if (response.isSuccess()) {
                     eventModelList.addAll(Arrays.asList(response.body().getResults()));
-                    databaseManager.cacheLatestEvent(eventModelList);
                     EventBus.getDefault().post(new EventEvent(eventModelList));
+                    LoveLiveApp.getInstance().setLatestEventName(eventModelList.get(0).getJapaneseName());
+//                    databaseManager.cacheLatestEvent(eventModelList);
                 }
             }
 

@@ -9,6 +9,7 @@ public class LoveLiveApp extends Application {
 
     private static LoveLiveApp instance;
     private String maxCardNumber = "738";
+    private String latestEventName = "Score Match Round 22";
 
     @Override
     public void onCreate() {
@@ -26,6 +27,14 @@ public class LoveLiveApp extends Application {
 
     public String getMaxCardNumber() {
         return maxCardNumber;
+    }
+
+    public void setLatestEventName(String latestEventName) {
+        this.latestEventName = latestEventName;
+    }
+
+    public String getLatestEventName() {
+        return latestEventName;
     }
 
     public Boolean isNetworkAvailable() {

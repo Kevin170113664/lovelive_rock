@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.thoughtworks.lhli.lovelive_rock.LoveLiveApp;
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.activity.CardActivity;
 import com.thoughtworks.lhli.lovelive_rock.activity.MainActivity;
@@ -15,6 +16,7 @@ import com.thoughtworks.lhli.lovelive_rock.model.EventModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import de.greenrobot.event.EventBus;
 
@@ -36,48 +38,71 @@ public class LoadActivityData implements Runnable {
     }
 
     private void loadMainActivityData() {
-        loadLatestCardNumber();
+        loadMaxCardNumber();
         EventManager eventManager = new EventManager(new ArrayList<EventModel>());
         try {
+            String latestEventName = readLatestEvent().get(activity.getString(R.string.latest_event_name));
+            LoveLiveApp.getInstance().setLatestEventName(latestEventName);
             eventManager.getLatestEvent();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void loadLatestCardNumber() {
+    private void loadMaxCardNumber() {
         CardManager cardManager = new CardManager(new ArrayList<CardModel>());
         try {
-            cardManager.getLatestCardNumber();
+            cardManager.getMaxCardNumber();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    protected void saveLatestEventSrId(String cardId) {
+    protected void saveLatestEvent(HashMap<String, String> eventMap) {
         SharedPreferences sharedPreferences = activity.getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(activity.getString(R.string.latest_event_Sr_id), cardId);
+        editor.putString(activity.getString(R.string.latest_event_SR_id), eventMap.get(activity.getString(R.string.latest_event_SR_id)));
+        editor.putString(activity.getString(R.string.latest_event_N_id), eventMap.get(activity.getString(R.string.latest_event_N_id)));
+        editor.putString(activity.getString(R.string.latest_event_SR_id), eventMap.get(activity.getString(R.string.latest_event_SR_id)));
         editor.apply();
     }
 
-    protected String readLatestEventSrId() {
+    protected HashMap<String, String> readLatestEvent() {
         SharedPreferences sharedPreferences = activity.getPreferences(Context.MODE_PRIVATE);
-        return sharedPreferences.getString(activity.getString(R.string.latest_event_Sr_id),
-                activity.getString(R.string.event_sr_id_default));
+        HashMap<String, String> eventMap = new HashMap<>();
+        eventMap.put(activity.getString(R.string.latest_event_name),
+                sharedPreferences.getString(activity.getString(R.string.latest_event_name),
+                        activity.getString(R.string.event_default_value)));
+        eventMap.put(activity.getString(R.string.latest_event_N_id),
+                sharedPreferences.getString(activity.getString(R.string.latest_event_N_id),
+                        activity.getString(R.string.event_default_value)));
+        eventMap.put(activity.getString(R.string.latest_event_SR_id),
+                sharedPreferences.getString(activity.getString(R.string.latest_event_SR_id),
+                        activity.getString(R.string.event_default_value)));
+        return eventMap;
     }
 
     public void onEvent(EventEvent eventEvent) throws IOException {
+        EventModel latestEvent = eventEvent.getEventModelList().get(0);
         CardManager cardManager = new CardManager(new ArrayList<CardModel>());
 
-        if (readLatestEventSrId().equals("0")
-                && eventEvent.getEventModelList().get(0).getCards() != null) {
-            Integer cardId = eventEvent.getEventModelList().get(0).getCards()[1];
-            cardManager.getCardById(cardId.toString());
-            saveLatestEventSrId(cardId.toString());
+        if (LoveLiveApp.getInstance().isNetworkAvailable()) {
+            Integer srId = latestEvent.getCards()[1];
+            cardManager.getCardById(srId.toString());
+            cacheLatestEvent(latestEvent);
         } else {
-            cardManager.getCardById(readLatestEventSrId());
+            cardManager.getCardById(readLatestEvent().get(activity.getString(R.string.latest_event_SR_id)));
         }
+    }
+
+    private void cacheLatestEvent(EventModel latestEvent) throws IOException {
+        HashMap<String, String> eventMap = new HashMap<>();
+        Integer nId = latestEvent.getCards()[0];
+        Integer srId = latestEvent.getCards()[1];
+        eventMap.put(activity.getString(R.string.latest_event_name), latestEvent.getJapaneseName());
+        eventMap.put(activity.getString(R.string.latest_event_N_id), nId.toString());
+        eventMap.put(activity.getString(R.string.latest_event_SR_id), srId.toString());
+        saveLatestEvent(eventMap);
     }
 
     @Override

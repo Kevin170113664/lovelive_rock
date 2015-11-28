@@ -89,7 +89,7 @@ public class CardManager {
         }
     }
 
-    public void getLatestCardNumber() throws IOException {
+    public void getMaxCardNumber() throws IOException {
         if (LoveLiveApp.getInstance().isNetworkAvailable()) {
             Call<Integer[]> call = Retrofit.getInstance().getCardService().getCardId();
             Response<Integer[]> cardIdResponse = call.execute();

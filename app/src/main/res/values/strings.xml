@@ -6,7 +6,9 @@
     <string name="filter_dialog_title">Filter</string>
 
     <string name="toast_function_not_complete">Sorry, this is unavailable now.</string>
-    <string name="latest_event_Sr_id">latest event SR id</string>
+    <string name="latest_event_name">latest event name</string>
+    <string name="latest_event_N_id">latest event N id</string>
+    <string name="latest_event_SR_id">latest event SR id</string>
     <string name="max_card_number">max card number</string>
 
     <string name="card_layout_label">Card</string>
@@ -43,7 +45,7 @@
     <string name="small_card_skill_type_title">Skill Type:</string>
     <string name="first_download_tips">Download all the card texts may need 3 to 5 minutes at the first time.</string>
     <string name="max_card_number_default">0</string>
-    <string name="event_sr_id_default">0</string>
+    <string name="event_default_value">0</string>
 
     <string-array name="rarity_array">
         <item>Rarity</item>
