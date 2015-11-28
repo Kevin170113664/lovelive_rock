@@ -10,7 +10,8 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.thoughtworks.lhli.lovelive_rock.FilterFactory;
@@ -41,6 +42,15 @@ public class CardActivity extends BaseActivity {
 
     @Bind(R.id.loading_icon)
     protected ImageView loadingIcon;
+
+    @Bind(R.id.download_progress)
+    protected TextView downloadProgress;
+
+    @Bind(R.id.download_tips)
+    protected TextView downloadTips;
+
+    @Bind(R.id.progress_bar)
+    protected ProgressBar progressBar;
 
     private boolean isGridView = false;
     private HashMap<Integer, String> filterMap;
@@ -86,8 +96,13 @@ public class CardActivity extends BaseActivity {
     }
 
     public void onEventMainThread(FetchProcessEvent fetchProcessEvent) {
-        Toast.makeText(getApplicationContext(), fetchProcessEvent.getProcess(),
-                Toast.LENGTH_SHORT).show();
+        if (!fetchProcessEvent.getProcess().equals("100")) {
+            downloadTips.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.VISIBLE);
+            downloadProgress.setVisibility(View.VISIBLE);
+            progressBar.setProgress(Integer.parseInt(fetchProcessEvent.getProcess()));
+            downloadProgress.setText(fetchProcessEvent.getProcess() + "%");
+        }
     }
 
     private void setGridViewClickListener() {

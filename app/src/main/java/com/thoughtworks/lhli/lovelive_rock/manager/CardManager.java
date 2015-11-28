@@ -41,12 +41,13 @@ public class CardManager {
         List<CardModel> cardModelList = databaseManager.queryAllCards();
         if (cardModelList != null && cardModelList.size() == MAX_CARD_NUMBER) {
             EventBus.getDefault().post(new SmallCardEvent(cardModelList));
+            EventBus.getDefault().post(new FetchProcessEvent("100"));
         } else {
             for (int page = 1; page <= MAX_CARD_PAGE; page++) {
                 if (LoveLiveApp.getInstance().isNetworkAvailable()) {
                     Call<MultipleCards> call = Retrofit.getInstance().getCardService().getCardList(page);
                     Response<MultipleCards> cardsResponse = call.execute();
-                    saveCardsToDB(cardsResponse);
+                    saveCardsToDatabase(cardsResponse);
                 } else {
                     System.out.print("Get all cards failed.");
                 }
@@ -54,7 +55,7 @@ public class CardManager {
         }
     }
 
-    private void saveCardsToDB(Response<MultipleCards> response) {
+    private void saveCardsToDatabase(Response<MultipleCards> response) {
         if (response.isSuccess()) {
             cardModelList.addAll(Arrays.asList(response.body().getResults()));
             for (CardModel cardModel : cardModelList) {
@@ -107,7 +108,7 @@ public class CardManager {
 
     private void sendFetchProcessEvent(int gottenCardNumber) {
         Double percentage = 100 * gottenCardNumber / Double.parseDouble(MAX_CARD_NUMBER.toString());
-        String percentageMsg = new DecimalFormat("0").format(percentage) + "%";
+        String percentageMsg = new DecimalFormat("0").format(percentage);
         EventBus.getDefault().post(new FetchProcessEvent(percentageMsg));
     }
 }
