@@ -43,6 +43,9 @@ public class FilterDialogFragment extends DialogFragment {
     @Bind(R.id.event_spinner)
     protected Spinner eventSpinner;
 
+    @Bind(R.id.promo_spinner)
+    protected Spinner promoSpinner;
+
     private ArrayAdapter<CharSequence> adapter;
 
     @Override
@@ -63,9 +66,6 @@ public class FilterDialogFragment extends DialogFragment {
         super.onActivityCreated(savedInstanceState);
         ButterKnife.bind(this, getView());
         setDropDownList();
-
-//        Bundle mArgs = getArguments();
-//        String rarity = mArgs.getString(String.format("%s", R.id.rarity_spinner));
         setDropDownListSelectedEvent();
     }
 
@@ -104,6 +104,11 @@ public class FilterDialogFragment extends DialogFragment {
                 R.array.event_card_or_not, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         eventSpinner.setAdapter(adapter);
+
+        adapter = ArrayAdapter.createFromResource(getActivity(),
+                R.array.is_promo_or_not, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        promoSpinner.setAdapter(adapter);
     }
 
     @Override
@@ -181,6 +186,16 @@ public class FilterDialogFragment extends DialogFragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 sendFilterToCardActivity(parent, eventSpinner.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+
+        promoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                sendFilterToCardActivity(parent, promoSpinner.getSelectedItem().toString());
             }
 
             @Override
