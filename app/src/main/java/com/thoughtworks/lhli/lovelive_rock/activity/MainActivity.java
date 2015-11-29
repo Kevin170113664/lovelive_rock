@@ -18,24 +18,26 @@ import com.thoughtworks.lhli.lovelive_rock.task.LoadActivityData;
 
 import java.io.IOException;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
 
 public class MainActivity extends BaseActivity {
 
+    @Bind(R.id.toolbar)
+    protected Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+        EventBus.getDefault().register(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         }
-
-        ButterKnife.bind(this);
-        EventBus.getDefault().register(this);
         Glide.with(this).load(R.drawable.loading).asGif()
                 .into((ImageView) findViewById(R.id.loading_icon));
 
