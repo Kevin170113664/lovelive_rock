@@ -122,6 +122,10 @@ public class FilterFactory {
         return cardModelList;
     }
 
+    private List<CardModel> filterByIsEventCardOrNot(List<CardModel> cardModelList, HashMap<Integer, String> filterMap) {
+        return cardModelList;
+    }
+
     private HashMap<String, String[]> getSkillMap() {
         HashMap<String, String[]> skillMap = new HashMap<>();
         skillMap.put(skillTypeArray[1], scoreUpSkill);

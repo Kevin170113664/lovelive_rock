@@ -40,6 +40,9 @@ public class FilterDialogFragment extends DialogFragment {
     @Bind(R.id.skill_type_spinner)
     protected Spinner skillTypeSpinner;
 
+    @Bind(R.id.event_spinner)
+    protected Spinner eventSpinner;
+
     private ArrayAdapter<CharSequence> adapter;
 
     @Override
@@ -96,6 +99,11 @@ public class FilterDialogFragment extends DialogFragment {
                 R.array.skill_type_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         skillTypeSpinner.setAdapter(adapter);
+
+        adapter = ArrayAdapter.createFromResource(getActivity(),
+                R.array.event_card_or_not, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        eventSpinner.setAdapter(adapter);
     }
 
     @Override
@@ -163,6 +171,16 @@ public class FilterDialogFragment extends DialogFragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 sendFilterToCardActivity(parent, skillTypeSpinner.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+
+        eventSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                sendFilterToCardActivity(parent, eventSpinner.getSelectedItem().toString());
             }
 
             @Override
