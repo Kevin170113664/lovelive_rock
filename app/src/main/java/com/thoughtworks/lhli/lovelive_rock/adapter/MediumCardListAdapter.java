@@ -20,13 +20,12 @@ public class MediumCardListAdapter extends BaseAdapter {
 
     private Context context;
     private List<CardModel> cardModelList;
-    private boolean zoomOut = false;
     private boolean isPromo;
 
     public MediumCardListAdapter(Context context, List<CardModel> cardModelList) {
         this.context = context;
         this.cardModelList = cardModelList;
-        this.isPromo = cardModelList.get(0).getCardImage() == null;
+        this.isPromo = cardModelList.get(0).getCardImage() == null || cardModelList.get(0).isPromo();
     }
 
     @Override
