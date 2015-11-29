@@ -78,7 +78,7 @@ public class DatabaseManager {
 
         cardModel.setEventModel(null);
         cardModel.setIdolModel(null);
-        Card card = modelMapper.map(cardModel, Card.class);
+        Card card = com.thoughtworks.lhli.lovelive_rock.ModelMapper.mapCard(cardModel);
         card.setIdolId(idolId);
         card.setEventId(eventId);
         cardDao.insert(card);
@@ -193,7 +193,7 @@ public class DatabaseManager {
                 .where(CardDao.Properties.CardId.eq(cardId))
                 .list();
         if (cardList.size() != 0) {
-            return modelMapper.map(cardList.get(0), CardModel.class);
+            return com.thoughtworks.lhli.lovelive_rock.ModelMapper.mapCard(cardList.get(0));
         }
         return null;
     }
@@ -214,7 +214,7 @@ public class DatabaseManager {
         if (cardList.size() != 0) {
             List<CardModel> cardModelList = new ArrayList<>();
             for (Card card : cardList) {
-                cardModelList.add(modelMapper.map(card, CardModel.class));
+                cardModelList.add(com.thoughtworks.lhli.lovelive_rock.ModelMapper.mapCard(card));
             }
             return cardModelList;
         } else {
@@ -234,7 +234,7 @@ public class DatabaseManager {
         if (cardList.size() != 0) {
             List<CardModel> cardModelList = new ArrayList<>();
             for (Card card : cardList) {
-                cardModelList.add(modelMapper.map(card, CardModel.class));
+                cardModelList.add(com.thoughtworks.lhli.lovelive_rock.ModelMapper.mapCard(card));
             }
             return cardModelList;
         } else {
