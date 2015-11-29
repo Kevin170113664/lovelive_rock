@@ -86,6 +86,11 @@
         <item>是</item>
         <item>否</item>
     </string-array>
+    <string-array name="is_promo_or_not">
+        <item>特典卡</item>
+        <item>是</item>
+        <item>否</item>
+    </string-array>
     <string-array name="first_grade_member">
         <item>小泉花陽</item>
         <item>星空凛</item>

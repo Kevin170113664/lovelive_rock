@@ -95,6 +95,11 @@
         <item>Yes</item>
         <item>No</item>
     </string-array>
+    <string-array name="is_promo_or_not">
+        <item>Promo Card</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
     <string-array name="first_grade_member">
         <item>小泉花陽</item>
         <item>星空凛</item>
