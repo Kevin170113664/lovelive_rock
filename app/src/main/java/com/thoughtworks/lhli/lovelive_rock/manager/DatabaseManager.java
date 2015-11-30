@@ -41,13 +41,15 @@ public class DatabaseManager {
         Long characterVoiceId = NULL_FIELD_FOR_FOREIGN_KEY;
         Long idolId = NULL_FIELD_FOR_FOREIGN_KEY;
         Long eventId = NULL_FIELD_FOR_FOREIGN_KEY;
-        if (cardModel.getIdolModel() != null && queryCharacterVoiceByName(cardModel) == null) {
+        if (cardModel.getIdolModel() != null
+                && cardModel.getIdolModel().getCvModel() != null
+                && queryCharacterVoiceByName(cardModel) == null) {
             characterVoiceId = insertCv(cardModel.getIdolModel().getCvModel());
         }
-        if (queryIdolByName(cardModel) == null) {
+        if (cardModel.getIdolModel() != null && queryIdolByName(cardModel) == null) {
             idolId = insertIdol(cardModel.getIdolModel(), characterVoiceId);
         }
-        if (queryEventByName(cardModel) == null) {
+        if (cardModel.getEventModel() != null && queryEventByName(cardModel) == null) {
             eventId = insertEvent(cardModel.getEventModel());
         }
         insertCard(cardModel, idolId, eventId);
@@ -71,11 +73,7 @@ public class DatabaseManager {
         daoSession = daoMaster.newSession();
         eventDao = daoSession.getEventDao();
 
-        if (eventModel != null) {
-            return eventDao.insert(modelMapper.map(eventModel, Event.class));
-        } else {
-            return NULL_FIELD_FOR_FOREIGN_KEY;
-        }
+        return eventDao.insert(modelMapper.map(eventModel, Event.class));
     }
 
     private Long insertIdol(IdolModel idolModel, Long characterVoiceId) {
@@ -83,14 +81,10 @@ public class DatabaseManager {
         daoSession = daoMaster.newSession();
         idolDao = daoSession.getIdolDao();
 
-        if (idolModel == null) {
-            return NULL_FIELD_FOR_FOREIGN_KEY;
-        } else {
-            idolModel.setCvModel(null);
-            Idol idol = modelMapper.map(idolModel, Idol.class);
-            idol.setCharacterVoiceId(characterVoiceId);
-            return idolDao.insert(idol);
-        }
+        idolModel.setCvModel(null);
+        Idol idol = modelMapper.map(idolModel, Idol.class);
+        idol.setCharacterVoiceId(characterVoiceId);
+        return idolDao.insert(idol);
     }
 
     private Long insertCv(CvModel cvModel) {
@@ -98,11 +92,7 @@ public class DatabaseManager {
         daoSession = daoMaster.newSession();
         characterVoiceDao = daoSession.getCharacterVoiceDao();
 
-        if (cvModel == null) {
-            return NULL_FIELD_FOR_FOREIGN_KEY;
-        } else {
-            return characterVoiceDao.insert(modelMapper.map(cvModel, CharacterVoice.class));
-        }
+        return characterVoiceDao.insert(modelMapper.map(cvModel, CharacterVoice.class));
     }
 
     public EventModel queryEventByName(CardModel cardModel) {
