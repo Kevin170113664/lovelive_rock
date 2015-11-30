@@ -102,11 +102,37 @@ public class DatabaseManager {
         }
     }
 
+    public EventModel queryEventById(String id) {
+        getEventDao(helper.getReadableDatabase());
+
+        List<Event> eventList = eventDao.queryBuilder()
+                .where(EventDao.Properties.Id.eq(id))
+                .list();
+        if (eventList.size() != 0) {
+            return modelMapper.map(eventList.get(0), EventModel.class);
+        } else {
+            return null;
+        }
+    }
+
     public IdolModel queryIdolByName(CardModel cardModel) {
         getIdolDao(helper.getReadableDatabase());
 
         List<Idol> idolList = idolDao.queryBuilder()
                 .where(IdolDao.Properties.JapaneseName.eq(cardModel.getIdolModel().getJapaneseName()))
+                .list();
+        if (idolList.size() != 0) {
+            return modelMapper.map(idolList.get(0), IdolModel.class);
+        } else {
+            return null;
+        }
+    }
+
+    public IdolModel queryIdolById(String id) {
+        getIdolDao(helper.getReadableDatabase());
+
+        List<Idol> idolList = idolDao.queryBuilder()
+                .where(IdolDao.Properties.Id.eq(id))
                 .list();
         if (idolList.size() != 0) {
             return modelMapper.map(idolList.get(0), IdolModel.class);
@@ -129,7 +155,16 @@ public class DatabaseManager {
     }
 
     public CvModel queryCharacterVoiceById(String id) {
-        return null;
+        getCvDao(helper.getReadableDatabase());
+
+        List<CharacterVoice> characterVoiceList = characterVoiceDao.queryBuilder()
+                .where(CharacterVoiceDao.Properties.Id.eq(id))
+                .list();
+        if (characterVoiceList.size() != 0) {
+            return modelMapper.map(characterVoiceList.get(0), CvModel.class);
+        } else {
+            return null;
+        }
     }
 
     public EventModel queryLatestEvent(String japaneseName) {
