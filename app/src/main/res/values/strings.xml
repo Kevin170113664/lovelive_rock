@@ -90,7 +90,7 @@
         <item>Perfect Lock</item>
         <item>Healer</item>
     </string-array>
-    <string-array name="event_card_or_not">
+    <string-array name="is_event_card_or_not">
         <item>Event Card</item>
         <item>Yes</item>
         <item>No</item>

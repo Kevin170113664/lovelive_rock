@@ -17,7 +17,7 @@ public class FilterFactory {
     private String[] subTeamArray = LoveLiveApp.getInstance().getResources().getStringArray(R.array.sub_team_array);
     private String[] attributeArray = LoveLiveApp.getInstance().getResources().getStringArray(R.array.attribute_array);
     private String[] skillTypeArray = LoveLiveApp.getInstance().getResources().getStringArray(R.array.skill_type_array);
-    private String[] eventCardOrNot = LoveLiveApp.getInstance().getResources().getStringArray(R.array.event_card_or_not);
+    private String[] isEventCardOrNot = LoveLiveApp.getInstance().getResources().getStringArray(R.array.is_event_card_or_not);
     private String[] isPromoOrNot = LoveLiveApp.getInstance().getResources().getStringArray(R.array.is_promo_or_not);
     private String[] firstGradeMember = LoveLiveApp.getInstance().getResources().getStringArray(R.array.first_grade_member);
     private String[] secondGradeMember = LoveLiveApp.getInstance().getResources().getStringArray(R.array.second_grade_member);
@@ -127,6 +127,16 @@ public class FilterFactory {
     }
 
     private List<CardModel> filterByIsEventCardOrNot(List<CardModel> cardModelList, HashMap<Integer, String> filterMap) {
+        if (!filterMap.get(R.id.event_spinner).equals(isEventCardOrNot[0])) {
+            List<CardModel> visibleCardModelList = new ArrayList<>();
+            HashMap<String, Boolean> eventCardMap = getEventCardMap();
+            for (CardModel c : cardModelList) {
+                if (c.getEventModel() != null == eventCardMap.get(filterMap.get(R.id.event_spinner))) {
+                    visibleCardModelList.add(c);
+                }
+            }
+            return visibleCardModelList;
+        }
         return cardModelList;
     }
 
@@ -142,6 +152,13 @@ public class FilterFactory {
             return visibleCardModelList;
         }
         return cardModelList;
+    }
+
+    private HashMap<String, Boolean> getEventCardMap() {
+        HashMap<String, Boolean> eventCardMap = new HashMap<>();
+        eventCardMap.put(isEventCardOrNot[1], true);
+        eventCardMap.put(isEventCardOrNot[2], false);
+        return eventCardMap;
     }
 
     private HashMap<String, Boolean> getPromoMap() {

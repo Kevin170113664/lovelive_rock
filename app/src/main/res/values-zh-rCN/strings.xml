@@ -81,7 +81,7 @@
         <item>判定</item>
         <item>回复</item>
     </string-array>
-    <string-array name="event_card_or_not">
+    <string-array name="is_event_card_or_not">
         <item>活动卡</item>
         <item>是</item>
         <item>否</item>

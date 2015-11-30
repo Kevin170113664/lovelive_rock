@@ -41,21 +41,43 @@ public class DatabaseManager {
     }
 
     public void cacheCard(CardModel cardModel) {
-        Long characterVoiceId = NULL_FIELD_FOR_FOREIGN_KEY;
-        Long idolId = NULL_FIELD_FOR_FOREIGN_KEY;
-        Long eventId = NULL_FIELD_FOR_FOREIGN_KEY;
-        if (cardModel.getIdolModel() != null
-                && cardModel.getIdolModel().getCvModel() != null
-                && queryCharacterVoiceByName(cardModel) == null) {
-            characterVoiceId = insertCv(cardModel.getIdolModel().getCvModel());
-        }
-        if (cardModel.getIdolModel() != null && queryIdolByName(cardModel) == null) {
-            idolId = insertIdol(cardModel.getIdolModel(), characterVoiceId);
-        }
-        if (cardModel.getEventModel() != null && queryEventByName(cardModel) == null) {
-            eventId = insertEvent(cardModel.getEventModel());
-        }
+        Long characterVoiceId = getCharacterVoiceId(cardModel);
+        Long idolId = getIdolId(cardModel, characterVoiceId);
+        Long eventId = getEventId(cardModel);
         insertCard(cardModel, idolId, eventId);
+    }
+
+    private Long getEventId(CardModel cardModel) {
+        Long eventId = NULL_FIELD_FOR_FOREIGN_KEY;
+        if (cardModel.getEventModel() != null) {
+            eventId = queryEventByName(cardModel);
+            if (eventId.equals(NULL_FIELD_FOR_FOREIGN_KEY)) {
+                eventId = insertEvent(cardModel.getEventModel());
+            }
+        }
+        return eventId;
+    }
+
+    private Long getIdolId(CardModel cardModel, Long characterVoiceId) {
+        Long idolId = NULL_FIELD_FOR_FOREIGN_KEY;
+        if (cardModel.getIdolModel() != null) {
+            idolId = queryIdolByName(cardModel);
+            if (idolId.equals(NULL_FIELD_FOR_FOREIGN_KEY)) {
+                idolId = insertIdol(cardModel.getIdolModel(), characterVoiceId);
+            }
+        }
+        return idolId;
+    }
+
+    private Long getCharacterVoiceId(CardModel cardModel) {
+        Long characterVoiceId = NULL_FIELD_FOR_FOREIGN_KEY;
+        if (cardModel.getIdolModel() != null && cardModel.getIdolModel().getCvModel() != null) {
+            characterVoiceId = queryCharacterVoiceByName(cardModel);
+            if (characterVoiceId.equals(NULL_FIELD_FOR_FOREIGN_KEY)) {
+                characterVoiceId = insertCv(cardModel.getIdolModel().getCvModel());
+            }
+        }
+        return characterVoiceId;
     }
 
     private void insertCard(CardModel cardModel, Long idolId, Long eventId) {
@@ -104,16 +126,16 @@ public class DatabaseManager {
         }
     }
 
-    public EventModel queryEventByName(CardModel cardModel) {
+    public Long queryEventByName(CardModel cardModel) {
         getEventDao(helper.getReadableDatabase());
 
         List<Event> eventList = eventDao.queryBuilder()
                 .where(EventDao.Properties.JapaneseName.eq(cardModel.getEventModel().getJapaneseName()))
                 .list();
         if (eventList.size() != 0) {
-            return modelMapper.map(eventList.get(0), EventModel.class);
+            return eventList.get(0).getId();
         } else {
-            return null;
+            return NULL_FIELD_FOR_FOREIGN_KEY;
         }
     }
 
@@ -130,16 +152,16 @@ public class DatabaseManager {
         }
     }
 
-    public IdolModel queryIdolByName(CardModel cardModel) {
+    public Long queryIdolByName(CardModel cardModel) {
         getIdolDao(helper.getReadableDatabase());
 
         List<Idol> idolList = idolDao.queryBuilder()
                 .where(IdolDao.Properties.JapaneseName.eq(cardModel.getIdolModel().getJapaneseName()))
                 .list();
         if (idolList.size() != 0) {
-            return modelMapper.map(idolList.get(0), IdolModel.class);
+            return idolList.get(0).getId();
         } else {
-            return null;
+            return NULL_FIELD_FOR_FOREIGN_KEY;
         }
     }
 
@@ -156,16 +178,16 @@ public class DatabaseManager {
         }
     }
 
-    public CvModel queryCharacterVoiceByName(CardModel cardModel) {
+    public Long queryCharacterVoiceByName(CardModel cardModel) {
         getCvDao(helper.getReadableDatabase());
 
         List<CharacterVoice> characterVoiceList = characterVoiceDao.queryBuilder()
                 .where(CharacterVoiceDao.Properties.Name.eq(cardModel.getIdolModel().getCvModel().getName()))
                 .list();
         if (characterVoiceList.size() != 0) {
-            return modelMapper.map(characterVoiceList.get(0), CvModel.class);
+            return characterVoiceList.get(0).getId();
         } else {
-            return null;
+            return NULL_FIELD_FOR_FOREIGN_KEY;
         }
     }
 

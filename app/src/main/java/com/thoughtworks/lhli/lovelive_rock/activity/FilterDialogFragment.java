@@ -101,7 +101,7 @@ public class FilterDialogFragment extends DialogFragment {
         skillTypeSpinner.setAdapter(adapter);
 
         adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.event_card_or_not, android.R.layout.simple_spinner_item);
+                R.array.is_event_card_or_not, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         eventSpinner.setAdapter(adapter);
 
