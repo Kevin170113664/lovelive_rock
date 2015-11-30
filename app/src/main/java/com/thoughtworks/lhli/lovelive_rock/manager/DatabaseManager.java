@@ -1,5 +1,7 @@
 package com.thoughtworks.lhli.lovelive_rock.manager;
 
+import android.database.sqlite.SQLiteDatabase;
+
 import com.thoughtworks.lhli.lovelive_rock.LoveLiveApp;
 import com.thoughtworks.lhli.lovelive_rock.data.Card;
 import com.thoughtworks.lhli.lovelive_rock.data.CardDao;
@@ -56,9 +58,7 @@ public class DatabaseManager {
     }
 
     private void insertCard(CardModel cardModel, Long idolId, Long eventId) {
-        DaoMaster daoMaster = new DaoMaster(helper.getWritableDatabase());
-        daoSession = daoMaster.newSession();
-        cardDao = daoSession.getCardDao();
+        getCardDao(helper.getWritableDatabase());
 
         cardModel.setEventModel(null);
         cardModel.setIdolModel(null);
@@ -69,17 +69,13 @@ public class DatabaseManager {
     }
 
     private Long insertEvent(EventModel eventModel) {
-        DaoMaster daoMaster = new DaoMaster(helper.getWritableDatabase());
-        daoSession = daoMaster.newSession();
-        eventDao = daoSession.getEventDao();
+        getEventDao(helper.getWritableDatabase());
 
         return eventDao.insert(modelMapper.map(eventModel, Event.class));
     }
 
     private Long insertIdol(IdolModel idolModel, Long characterVoiceId) {
-        DaoMaster daoMaster = new DaoMaster(helper.getWritableDatabase());
-        daoSession = daoMaster.newSession();
-        idolDao = daoSession.getIdolDao();
+        getIdolDao(helper.getWritableDatabase());
 
         idolModel.setCvModel(null);
         Idol idol = modelMapper.map(idolModel, Idol.class);
@@ -88,17 +84,13 @@ public class DatabaseManager {
     }
 
     private Long insertCv(CvModel cvModel) {
-        DaoMaster daoMaster = new DaoMaster(helper.getWritableDatabase());
-        daoSession = daoMaster.newSession();
-        characterVoiceDao = daoSession.getCharacterVoiceDao();
+        getCvDao(helper.getWritableDatabase());
 
         return characterVoiceDao.insert(modelMapper.map(cvModel, CharacterVoice.class));
     }
 
     public EventModel queryEventByName(CardModel cardModel) {
-        DaoMaster daoMaster = new DaoMaster(helper.getReadableDatabase());
-        daoSession = daoMaster.newSession();
-        eventDao = daoSession.getEventDao();
+        getEventDao(helper.getReadableDatabase());
 
         List<Event> eventList = eventDao.queryBuilder()
                 .where(EventDao.Properties.JapaneseName.eq(cardModel.getEventModel().getJapaneseName()))
@@ -111,9 +103,7 @@ public class DatabaseManager {
     }
 
     public IdolModel queryIdolByName(CardModel cardModel) {
-        DaoMaster daoMaster = new DaoMaster(helper.getReadableDatabase());
-        daoSession = daoMaster.newSession();
-        idolDao = daoSession.getIdolDao();
+        getIdolDao(helper.getReadableDatabase());
 
         List<Idol> idolList = idolDao.queryBuilder()
                 .where(IdolDao.Properties.JapaneseName.eq(cardModel.getIdolModel().getJapaneseName()))
@@ -126,9 +116,7 @@ public class DatabaseManager {
     }
 
     public CvModel queryCharacterVoiceByName(CardModel cardModel) {
-        DaoMaster daoMaster = new DaoMaster(helper.getReadableDatabase());
-        daoSession = daoMaster.newSession();
-        characterVoiceDao = daoSession.getCharacterVoiceDao();
+        getCvDao(helper.getReadableDatabase());
 
         List<CharacterVoice> characterVoiceList = characterVoiceDao.queryBuilder()
                 .where(CharacterVoiceDao.Properties.Name.eq(cardModel.getIdolModel().getCvModel().getName()))
@@ -140,10 +128,12 @@ public class DatabaseManager {
         }
     }
 
+    public CvModel queryCharacterVoiceById(String id) {
+        return null;
+    }
+
     public EventModel queryLatestEvent(String japaneseName) {
-        DaoMaster daoMaster = new DaoMaster(helper.getReadableDatabase());
-        daoSession = daoMaster.newSession();
-        eventDao = daoSession.getEventDao();
+        getEventDao(helper.getReadableDatabase());
 
         List<Event> eventList = eventDao.queryBuilder()
                 .where(EventDao.Properties.JapaneseName.eq(japaneseName))
@@ -155,9 +145,7 @@ public class DatabaseManager {
     }
 
     public CardModel queryCardById(String cardId) {
-        DaoMaster daoMaster = new DaoMaster(helper.getReadableDatabase());
-        daoSession = daoMaster.newSession();
-        cardDao = daoSession.getCardDao();
+        getCardDao(helper.getReadableDatabase());
 
         List<Card> cardList
                 = cardDao.queryBuilder()
@@ -170,9 +158,7 @@ public class DatabaseManager {
     }
 
     public List<CardModel> queryCardByPage(String page) {
-        DaoMaster daoMaster = new DaoMaster(helper.getReadableDatabase());
-        daoSession = daoMaster.newSession();
-        cardDao = daoSession.getCardDao();
+        getCardDao(helper.getReadableDatabase());
 
         Integer startId = Integer.parseInt(page) * MAX_CARDS_AMOUNT_IN_ONE_PAGE
                 - (MAX_CARDS_AMOUNT_IN_ONE_PAGE - 1);
@@ -194,9 +180,7 @@ public class DatabaseManager {
     }
 
     public List<CardModel> queryAllCards() {
-        DaoMaster daoMaster = new DaoMaster(helper.getReadableDatabase());
-        daoSession = daoMaster.newSession();
-        cardDao = daoSession.getCardDao();
+        getCardDao(helper.getReadableDatabase());
 
         List<Card> cardList
                 = cardDao.queryBuilder()
@@ -211,5 +195,30 @@ public class DatabaseManager {
         } else {
             return null;
         }
+    }
+
+    private void getCardDao(SQLiteDatabase database) {
+        openSession(database);
+        cardDao = daoSession.getCardDao();
+    }
+
+    private void getEventDao(SQLiteDatabase database) {
+        openSession(database);
+        eventDao = daoSession.getEventDao();
+    }
+
+    private void getIdolDao(SQLiteDatabase database) {
+        openSession(database);
+        idolDao = daoSession.getIdolDao();
+    }
+
+    private void getCvDao(SQLiteDatabase database) {
+        openSession(database);
+        characterVoiceDao = daoSession.getCharacterVoiceDao();
+    }
+
+    private void openSession(SQLiteDatabase database) {
+        DaoMaster daoMaster = new DaoMaster(database);
+        daoSession = daoMaster.newSession();
     }
 }
