@@ -1,6 +1,7 @@
 package com.thoughtworks.lhli.lovelive_rock.manager;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
 
 import com.thoughtworks.lhli.lovelive_rock.LoveLiveApp;
 import com.thoughtworks.lhli.lovelive_rock.data.Card;
@@ -89,6 +90,20 @@ public class DatabaseManager {
         return characterVoiceDao.insert(modelMapper.map(cvModel, CharacterVoice.class));
     }
 
+    public CardModel queryCardById(String cardId) {
+        getCardDao(helper.getReadableDatabase());
+
+        List<Card> cardList
+                = cardDao.queryBuilder()
+                .where(CardDao.Properties.CardId.eq(cardId))
+                .list();
+        if (cardList.size() != 0) {
+            return com.thoughtworks.lhli.lovelive_rock.ModelMapper.mapCard(cardList.get(0));
+        } else {
+            return null;
+        }
+    }
+
     public EventModel queryEventByName(CardModel cardModel) {
         getEventDao(helper.getReadableDatabase());
 
@@ -135,7 +150,7 @@ public class DatabaseManager {
                 .where(IdolDao.Properties.Id.eq(id))
                 .list();
         if (idolList.size() != 0) {
-            return modelMapper.map(idolList.get(0), IdolModel.class);
+            return generateIdolModel(idolList);
         } else {
             return null;
         }
@@ -179,19 +194,6 @@ public class DatabaseManager {
         return null;
     }
 
-    public CardModel queryCardById(String cardId) {
-        getCardDao(helper.getReadableDatabase());
-
-        List<Card> cardList
-                = cardDao.queryBuilder()
-                .where(CardDao.Properties.CardId.eq(cardId))
-                .list();
-        if (cardList.size() != 0) {
-            return com.thoughtworks.lhli.lovelive_rock.ModelMapper.mapCard(cardList.get(0));
-        }
-        return null;
-    }
-
     public List<CardModel> queryCardByPage(String page) {
         getCardDao(helper.getReadableDatabase());
 
@@ -224,12 +226,29 @@ public class DatabaseManager {
         if (cardList.size() != 0) {
             List<CardModel> cardModelList = new ArrayList<>();
             for (Card card : cardList) {
-                cardModelList.add(com.thoughtworks.lhli.lovelive_rock.ModelMapper.mapCard(card));
+                cardModelList.add(generateCardModel(card));
             }
             return cardModelList;
         } else {
             return null;
         }
+    }
+
+    @NonNull
+    private IdolModel generateIdolModel(List<Idol> idolList) {
+        IdolModel idolModel = modelMapper.map(idolList.get(0), IdolModel.class);
+        idolModel.setCvModel(queryCharacterVoiceById(String.format("%s", idolList.get(0).getCharacterVoiceId())));
+        return idolModel;
+    }
+
+    @NonNull
+    private CardModel generateCardModel(Card card) {
+        IdolModel idolModel = queryIdolById(String.format("%s", card.getIdolId()));
+        EventModel eventModel = queryEventById(String.format("%s", card.getEventId()));
+        CardModel cardModel = com.thoughtworks.lhli.lovelive_rock.ModelMapper.mapCard(card);
+        cardModel.setIdolModel(idolModel);
+        cardModel.setEventModel(eventModel);
+        return cardModel;
     }
 
     private void getCardDao(SQLiteDatabase database) {
