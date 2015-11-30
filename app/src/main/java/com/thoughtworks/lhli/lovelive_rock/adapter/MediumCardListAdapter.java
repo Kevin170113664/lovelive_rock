@@ -78,7 +78,7 @@ public class MediumCardListAdapter extends BaseAdapter {
         setSkillType(viewHolder.mediumCardSkillType, cardModelList.get(position).getSkill());
 
         setTextView(viewHolder.mediumCardIdolName, cardModelList.get(position).getJapaneseName());
-        setTextView(viewHolder.mediumCardIdolName, cardModelList.get(position).getJapaneseName());
+        setTextView(viewHolder.mediumCardId, cardModelList.get(position).getCardId());
         setTextView(viewHolder.mediumCardMinSmile, cardModelList.get(position).getMinimumStatisticsSmile());
         setTextView(viewHolder.mediumCardMinPure, cardModelList.get(position).getMinimumStatisticsPure());
         setTextView(viewHolder.mediumCardMinCool, cardModelList.get(position).getMinimumStatisticsCool());
@@ -89,7 +89,6 @@ public class MediumCardListAdapter extends BaseAdapter {
         setTextView(viewHolder.mediumCardIdolizedMaxPure, cardModelList.get(position).getIdolizedMaximumStatisticsPure());
         setTextView(viewHolder.mediumCardIdolizedMaxCool, cardModelList.get(position).getIdolizedMaximumStatisticsCool());
         setTextView(viewHolder.mediumCardReleaseDate, cardModelList.get(position).getReleaseDate());
-        setTextView(viewHolder.mediumCardCenterSkill, cardModelList.get(position).getJapaneseCenterSkill());
         setTextView(viewHolder.mediumCardCenterSkill, cardModelList.get(position).getJapaneseCenterSkill());
         setTextView(viewHolder.mediumCardCenterSkillDetail, cardModelList.get(position).getJapaneseCenterSkillDetails());
         setTextView(viewHolder.mediumCardSkill, cardModelList.get(position).getJapaneseSkill());
@@ -152,7 +151,6 @@ public class MediumCardListAdapter extends BaseAdapter {
     }
 
     private void setImageClickEvent(ViewHolder viewHolder) {
-        final ImageView idolizedImageView = viewHolder.mediumCardIdolizedImage;
         viewHolder.mediumCardIdolizedImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -161,7 +159,6 @@ public class MediumCardListAdapter extends BaseAdapter {
         });
 
         if (!isPromo) {
-            final ImageView imageView = viewHolder.mediumCardImage;
             viewHolder.mediumCardImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -184,6 +181,7 @@ public class MediumCardListAdapter extends BaseAdapter {
         }
         viewHolder.mediumCardIdolizedImage = (ImageView) convertView.findViewById(R.id.medium_card_idolized_image);
         viewHolder.mediumCardIdolName = (TextView) convertView.findViewById(R.id.medium_card_idol_name);
+        viewHolder.mediumCardId = (TextView) convertView.findViewById(R.id.medium_card_id);
         viewHolder.mediumCardMinSmile = (TextView) convertView.findViewById(R.id.medium_card_min_smile);
         viewHolder.mediumCardMinPure = (TextView) convertView.findViewById(R.id.medium_card_min_pure);
         viewHolder.mediumCardMinCool = (TextView) convertView.findViewById(R.id.medium_card_min_cool);
@@ -205,6 +203,7 @@ public class MediumCardListAdapter extends BaseAdapter {
         public ImageView mediumCardImage;
         public ImageView mediumCardIdolizedImage;
         public TextView mediumCardIdolName;
+        public TextView mediumCardId;
         public TextView mediumCardMinSmile;
         public TextView mediumCardMinPure;
         public TextView mediumCardMinCool;

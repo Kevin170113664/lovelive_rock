@@ -13,8 +13,8 @@
         <ImageView
             android:id="@+id/medium_card_idolized_image"
             android:layout_width="171dp"
-            android:adjustViewBounds="true"
             android:layout_height="240dp"
+            android:adjustViewBounds="true"
             android:padding="20px" />
 
         <LinearLayout
@@ -22,15 +22,34 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/medium_card_idol_name"
-                android:layout_width="210dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingLeft="9dp"
-                android:paddingTop="17dp"
-                android:text=""
-                android:textSize="@dimen/text_size_default" />
+                android:orientation="horizontal"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:id="@+id/medium_card_idol_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="17dp"
+                    android:text=""
+                    android:textSize="@dimen/text_size_default" />
+
+                <TextView
+                    android:id="@+id/medium_card_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:paddingRight="15dp"
+                    android:paddingTop="17dp"
+                    android:text=""
+                    android:textSize="@dimen/text_size_default" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
