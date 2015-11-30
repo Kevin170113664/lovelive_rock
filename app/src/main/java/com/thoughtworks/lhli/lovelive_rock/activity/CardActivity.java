@@ -79,6 +79,7 @@ public class CardActivity extends BaseActivity {
         filterMap.put(R.id.skill_type_spinner, getResources().getStringArray(R.array.skill_type_array)[0]);
         filterMap.put(R.id.event_spinner, getResources().getStringArray(R.array.is_event_card_or_not)[0]);
         filterMap.put(R.id.promo_spinner, getResources().getStringArray(R.array.is_promo_or_not)[0]);
+        filterMap.put(R.id.collection_spinner, getResources().getStringArray(R.array.collection_array)[0]);
     }
 
     @Override

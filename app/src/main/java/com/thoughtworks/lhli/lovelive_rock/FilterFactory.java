@@ -19,6 +19,8 @@ public class FilterFactory {
     private String[] skillTypeArray = LoveLiveApp.getInstance().getResources().getStringArray(R.array.skill_type_array);
     private String[] isEventCardOrNot = LoveLiveApp.getInstance().getResources().getStringArray(R.array.is_event_card_or_not);
     private String[] isPromoOrNot = LoveLiveApp.getInstance().getResources().getStringArray(R.array.is_promo_or_not);
+    private String[] collectionArray = LoveLiveApp.getInstance().getResources().getStringArray(R.array.collection_array);
+
     private String[] firstGradeMember = LoveLiveApp.getInstance().getResources().getStringArray(R.array.first_grade_member);
     private String[] secondGradeMember = LoveLiveApp.getInstance().getResources().getStringArray(R.array.second_grade_member);
     private String[] thirdGradeMember = LoveLiveApp.getInstance().getResources().getStringArray(R.array.third_grade_member);
@@ -39,6 +41,7 @@ public class FilterFactory {
         visibleCardModelList = filterBySkillType(visibleCardModelList, filterMap);
         visibleCardModelList = filterByIsEventCardOrNot(visibleCardModelList, filterMap);
         visibleCardModelList = filterByIsPromoOrNot(visibleCardModelList, filterMap);
+        visibleCardModelList = filterByCollection(visibleCardModelList, filterMap);
         return visibleCardModelList;
     }
 
@@ -146,6 +149,20 @@ public class FilterFactory {
             HashMap<String, Boolean> promoMap = getPromoMap();
             for (CardModel c : cardModelList) {
                 if (c.isPromo() == promoMap.get(filterMap.get(R.id.promo_spinner))) {
+                    visibleCardModelList.add(c);
+                }
+            }
+            return visibleCardModelList;
+        }
+        return cardModelList;
+    }
+
+    private List<CardModel> filterByCollection(List<CardModel> cardModelList, HashMap<Integer, String> filterMap) {
+        if (!filterMap.get(R.id.collection_spinner).equals(collectionArray[0])) {
+            List<CardModel> visibleCardModelList = new ArrayList<>();
+            for (CardModel c : cardModelList) {
+                if (c.getJapaneseCollection() != null &&
+                        c.getJapaneseCollection().equals(filterMap.get(R.id.collection_spinner))) {
                     visibleCardModelList.add(c);
                 }
             }

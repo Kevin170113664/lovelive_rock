@@ -100,6 +100,36 @@
         <item>Yes</item>
         <item>No</item>
     </string-array>
+    <string-array name="collection_array">
+        <item>Collection</item>
+        <item>マリン編</item>
+        <item>手品師編</item>
+        <item>サイバー編</item>
+        <item>職業編Part2</item>
+        <item>ホワイトデー編</item>
+        <item>バレンタイン編</item>
+        <item>七福神編</item>
+        <item>雪山編</item>
+        <item>星座編</item>
+        <item>ハロウィン編</item>
+        <item>カフェメイド編</item>
+        <item>チャイナドレス編</item>
+        <item>7月編</item>
+        <item>6月編</item>
+        <item>5月編</item>
+        <item>4月編</item>
+        <item>3月編</item>
+        <item>2月編</item>
+        <item>1月編</item>
+        <item>12月編</item>
+        <item>11月編</item>
+        <item>10月編</item>
+        <item>9月編</item>
+        <item>8月編</item>
+        <item>動物編</item>
+        <item>職業編</item>
+        <item>初期</item>
+    </string-array>
     <string-array name="first_grade_member">
         <item>小泉花陽</item>
         <item>星空凛</item>

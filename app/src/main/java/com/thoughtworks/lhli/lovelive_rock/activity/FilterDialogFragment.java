@@ -46,6 +46,9 @@ public class FilterDialogFragment extends DialogFragment {
     @Bind(R.id.promo_spinner)
     protected Spinner promoSpinner;
 
+    @Bind(R.id.collection_spinner)
+    protected Spinner collectionSpinner;
+
     private ArrayAdapter<CharSequence> adapter;
 
     @Override
@@ -109,6 +112,11 @@ public class FilterDialogFragment extends DialogFragment {
                 R.array.is_promo_or_not, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         promoSpinner.setAdapter(adapter);
+
+        adapter = ArrayAdapter.createFromResource(getActivity(),
+                R.array.collection_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        collectionSpinner.setAdapter(adapter);
     }
 
     @Override
@@ -196,6 +204,16 @@ public class FilterDialogFragment extends DialogFragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 sendFilterToCardActivity(parent, promoSpinner.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+
+        collectionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                sendFilterToCardActivity(parent, collectionSpinner.getSelectedItem().toString());
             }
 
             @Override
