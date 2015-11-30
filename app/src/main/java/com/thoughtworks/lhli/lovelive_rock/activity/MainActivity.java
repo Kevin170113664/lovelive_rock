@@ -14,6 +14,7 @@ import com.squareup.picasso.Picasso;
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.bus.EventEvent;
 import com.thoughtworks.lhli.lovelive_rock.bus.MainCardEvent;
+import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 import com.thoughtworks.lhli.lovelive_rock.task.LoadActivityData;
 
 import java.io.IOException;
@@ -26,6 +27,12 @@ public class MainActivity extends BaseActivity {
 
     @Bind(R.id.toolbar)
     protected Toolbar toolbar;
+
+    @Bind(R.id.latest_event_Sr_image)
+    protected ImageView srImage;
+
+    @Bind(R.id.latest_event_idolized_Sr_image)
+    protected ImageView srIdolizedImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,16 +65,39 @@ public class MainActivity extends BaseActivity {
                 .into((ImageView) findViewById(R.id.latest_event_image));
     }
 
-    public void onEventMainThread(MainCardEvent mainCardEvent) {
+    public void onEventMainThread(final MainCardEvent mainCardEvent) {
         findViewById(R.id.loading_icon).setVisibility(View.GONE);
+        final CardModel cardModel = mainCardEvent.getCardModelList().get(0);
 
         Picasso.with(this)
-                .load(mainCardEvent.getCardModelList().get(0).getCardImage())
-                .into((ImageView) findViewById(R.id.latest_event_Sr_image));
+                .load(cardModel.getCardImage())
+                .into(srImage);
 
         Picasso.with(this)
-                .load(mainCardEvent.getCardModelList().get(0).getCardIdolizedImage())
-                .into((ImageView) findViewById(R.id.latest_event_idolized_Sr_image));
+                .load(cardModel.getCardIdolizedImage())
+                .into(srIdolizedImage);
+
+        setImageClickListener(cardModel);
+    }
+
+    private void setImageClickListener(final CardModel cardModel) {
+        srImage.setOnClickListener(new ImageView.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CardDetailActivity.class);
+                intent.putExtra("CardModel", cardModel);
+                startActivity(intent);
+            }
+        });
+
+        srIdolizedImage.setOnClickListener(new ImageView.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CardDetailActivity.class);
+                intent.putExtra("CardModel", cardModel);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
