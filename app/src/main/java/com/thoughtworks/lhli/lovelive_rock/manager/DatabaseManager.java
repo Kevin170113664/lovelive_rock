@@ -37,36 +37,18 @@ public class DatabaseManager {
         this.helper = new DaoMaster.DevOpenHelper(LoveLiveApp.getInstance(), "lovelive-db", null);
     }
 
-    public void cacheLatestEvent(List<EventModel> eventModelList) {
-        DaoMaster daoMaster = new DaoMaster(helper.getWritableDatabase());
-        daoSession = daoMaster.newSession();
-        eventDao = daoSession.getEventDao();
-
-        for (EventModel e : eventModelList) {
-            Event event = modelMapper.map(e, Event.class);
-            eventDao.insert(event);
-        }
-    }
-
-    public void cacheCardsByPage(List<CardModel> cardModelList) {
-        for (CardModel cardModel : cardModelList) {
-            cacheCard(cardModel);
-        }
-    }
-
     public void cacheCard(CardModel cardModel) {
         Long characterVoiceId = NULL_FIELD_FOR_FOREIGN_KEY;
         Long idolId = NULL_FIELD_FOR_FOREIGN_KEY;
         Long eventId = NULL_FIELD_FOR_FOREIGN_KEY;
-        if (cardModel.getIdolModel() != null && cardModel.getIdolModel().getCvModel() != null
-                && queryCharacterVoiceByName(cardModel) == null) {
-            characterVoiceId = insertCv(cardModel);
+        if (cardModel.getIdolModel() != null && queryCharacterVoiceByName(cardModel) == null) {
+            characterVoiceId = insertCv(cardModel.getIdolModel().getCvModel());
         }
-        if (cardModel.getIdolModel() != null && queryIdolByName(cardModel) == null) {
-            idolId = insertIdol(cardModel, characterVoiceId);
+        if (queryIdolByName(cardModel) == null) {
+            idolId = insertIdol(cardModel.getIdolModel(), characterVoiceId);
         }
-        if (cardModel.getEventModel() != null && queryEventByName(cardModel) == null) {
-            eventId = insertEvent(cardModel);
+        if (queryEventByName(cardModel) == null) {
+            eventId = insertEvent(cardModel.getEventModel());
         }
         insertCard(cardModel, idolId, eventId);
     }
@@ -84,43 +66,42 @@ public class DatabaseManager {
         cardDao.insert(card);
     }
 
-    private Long insertEvent(CardModel cardModel) {
+    private Long insertEvent(EventModel eventModel) {
         DaoMaster daoMaster = new DaoMaster(helper.getWritableDatabase());
         daoSession = daoMaster.newSession();
         eventDao = daoSession.getEventDao();
 
-        if (cardModel.getEventModel() != null) {
-            return eventDao.insert(modelMapper.map(cardModel.getEventModel(), Event.class));
+        if (eventModel != null) {
+            return eventDao.insert(modelMapper.map(eventModel, Event.class));
         } else {
             return NULL_FIELD_FOR_FOREIGN_KEY;
         }
     }
 
-    private Long insertIdol(CardModel cardModel, Long characterVoiceId) {
+    private Long insertIdol(IdolModel idolModel, Long characterVoiceId) {
         DaoMaster daoMaster = new DaoMaster(helper.getWritableDatabase());
         daoSession = daoMaster.newSession();
         idolDao = daoSession.getIdolDao();
 
-        if (cardModel.getIdolModel() == null) {
+        if (idolModel == null) {
             return NULL_FIELD_FOR_FOREIGN_KEY;
         } else {
-            cardModel.getIdolModel().setCvModel(null);
-            Idol idol = modelMapper.map(cardModel.getIdolModel(), Idol.class);
+            idolModel.setCvModel(null);
+            Idol idol = modelMapper.map(idolModel, Idol.class);
             idol.setCharacterVoiceId(characterVoiceId);
             return idolDao.insert(idol);
         }
     }
 
-    private Long insertCv(CardModel cardModel) {
+    private Long insertCv(CvModel cvModel) {
         DaoMaster daoMaster = new DaoMaster(helper.getWritableDatabase());
         daoSession = daoMaster.newSession();
         characterVoiceDao = daoSession.getCharacterVoiceDao();
 
-        if (cardModel.getIdolModel() == null || cardModel.getIdolModel().getCvModel() == null) {
+        if (cvModel == null) {
             return NULL_FIELD_FOR_FOREIGN_KEY;
         } else {
-            return characterVoiceDao.insert(
-                    modelMapper.map(cardModel.getIdolModel().getCvModel(), CharacterVoice.class));
+            return characterVoiceDao.insert(modelMapper.map(cvModel, CharacterVoice.class));
         }
     }
 
