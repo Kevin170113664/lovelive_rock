@@ -41,7 +41,7 @@ public class CardManager {
 
     public void getAllCards() throws IOException {
         List<CardModel> cardModelList = databaseManager.queryAllCards();
-        if (cardModelList != null && cardModelList.size() == maxCardNumber) {
+        if (cardModelList != null && cardModelList.size() >= maxCardNumber) {
             EventBus.getDefault().post(new SmallCardEvent(cardModelList));
             EventBus.getDefault().post(new FetchProcessEvent("100"));
         } else {
