@@ -57,9 +57,9 @@
                     android:id="@+id/latest_event_image"
                     android:layout_width="match_parent"
                     android:layout_height="105dp"
+                    android:layout_marginBottom="10dp"
                     android:scaleType="fitCenter"
-                    tools:src="@mipmap/medley_festival_7"
-                    android:layout_marginBottom="10dp"/>
+                    tools:src="@mipmap/medley_festival_7" />
 
                 <LinearLayout
                     android:id="@+id/image_container"
@@ -71,7 +71,7 @@
                     <ImageView
                         android:id="@+id/latest_event_Sr_image"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="250dp"
                         android:layout_marginRight="20dp"
                         android:layout_weight="1"
                         tools:src="@mipmap/idolized_kotori_315" />
@@ -79,7 +79,7 @@
                     <ImageView
                         android:id="@+id/latest_event_idolized_Sr_image"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="250dp"
                         android:layout_marginLeft="20dp"
                         android:layout_weight="1"
                         tools:src="@mipmap/idolized_kotori_315" />
@@ -93,9 +93,9 @@
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            card_view:cardElevation="10dp"
             card_view:cardBackgroundColor="@color/colorOrange100"
-            card_view:cardCornerRadius="3dp">
+            card_view:cardCornerRadius="3dp"
+            card_view:cardElevation="10dp">
 
             <ImageView
                 android:layout_width="match_parent"
