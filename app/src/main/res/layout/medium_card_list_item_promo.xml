@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorBackground"
@@ -15,221 +16,252 @@
             android:layout_width="171dp"
             android:layout_height="240dp"
             android:adjustViewBounds="true"
+            android:layout_marginLeft="5dp"
             android:padding="20px" />
+
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_stat_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/colorOrange100"
+            card_view:cardElevation="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:background="@color/colorOrange100"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/medium_card_idol_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="17dp"
+                        android:text=""
+                        android:textAlignment="center"
+                        android:textSize="@dimen/text_size_default" />
+
+                    <TextView
+                        android:id="@+id/medium_card_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:paddingTop="17dp"
+                        android:text=""
+                        android:textAlignment="center"
+                        android:textSize="@dimen/text_size_default" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:paddingRight="10dp">
+
+                    <TextView
+                        android:id="@+id/medium_card_min_smile"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="10dp"
+                        android:text="@string/card_statistics_default_text"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorSmile"
+                        android:textSize="@dimen/text_size_default" />
+
+                    <TextView
+                        android:id="@+id/medium_card_min_pure"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="10dp"
+                        android:text="@string/card_statistics_default_text"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPure"
+                        android:textSize="@dimen/text_size_default" />
+
+                    <TextView
+                        android:id="@+id/medium_card_min_cool"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="10dp"
+                        android:text="@string/card_statistics_default_text"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorCool"
+                        android:textSize="@dimen/text_size_default" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:paddingRight="10dp">
+
+                    <TextView
+                        android:id="@+id/medium_card_non_idolized_max_smile"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="10dp"
+                        android:text="@string/card_statistics_default_text"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorSmile"
+                        android:textSize="@dimen/text_size_default" />
+
+                    <TextView
+                        android:id="@+id/medium_card_non_idolized_max_pure"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="10dp"
+                        android:text="@string/card_statistics_default_text"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPure"
+                        android:textSize="@dimen/text_size_default" />
+
+                    <TextView
+                        android:id="@+id/medium_card_non_idolized_max_cool"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="10dp"
+                        android:text="@string/card_statistics_default_text"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorCool"
+                        android:textSize="@dimen/text_size_default" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:paddingRight="10dp">
+
+                    <TextView
+                        android:id="@+id/medium_card_idolized_max_smile"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="10dp"
+                        android:text="@string/card_statistics_default_text"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorSmile"
+                        android:textSize="@dimen/text_size_default" />
+
+                    <TextView
+                        android:id="@+id/medium_card_idolized_max_pure"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="10dp"
+                        android:text="@string/card_statistics_default_text"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPure"
+                        android:textSize="@dimen/text_size_default" />
+
+                    <TextView
+                        android:id="@+id/medium_card_idolized_max_cool"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="10dp"
+                        android:text="@string/card_statistics_default_text"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorCool"
+                        android:textSize="@dimen/text_size_default" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/medium_card_center_skill_type"
+                    android:layout_width="210dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="9dp"
+                    android:paddingTop="10dp"
+                    android:text="@string/card_skill_default_text"
+                    android:textSize="@dimen/text_size_default" />
+
+                <TextView
+                    android:id="@+id/medium_card_release_date"
+                    android:layout_width="210dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="15dp"
+                    android:paddingLeft="9dp"
+                    android:paddingTop="10dp"
+                    android:text="@string/card_release_date_default_text"
+                    android:textSize="@dimen/text_size_default" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_skill_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        card_view:cardElevation="10dp"
+        android:background="@color/colorOrange100">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:paddingRight="10dp">
-
-                <TextView
-                    android:id="@+id/medium_card_idol_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingLeft="15dp"
-                    android:paddingTop="17dp"
-                    android:text=""
-                    android:textSize="@dimen/text_size_default" />
-
-                <TextView
-                    android:id="@+id/medium_card_id"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:paddingRight="15dp"
-                    android:paddingTop="17dp"
-                    android:text=""
-                    android:textSize="@dimen/text_size_default" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:paddingRight="10dp">
-
-                <TextView
-                    android:id="@+id/medium_card_min_smile"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="10dp"
-                    android:text="@string/card_statistics_default_text"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorSmile"
-                    android:textSize="@dimen/text_size_default" />
-
-                <TextView
-                    android:id="@+id/medium_card_min_pure"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="10dp"
-                    android:text="@string/card_statistics_default_text"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorPure"
-                    android:textSize="@dimen/text_size_default" />
-
-                <TextView
-                    android:id="@+id/medium_card_min_cool"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="10dp"
-                    android:text="@string/card_statistics_default_text"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorCool"
-                    android:textSize="@dimen/text_size_default" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:paddingRight="10dp">
-
-                <TextView
-                    android:id="@+id/medium_card_non_idolized_max_smile"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="10dp"
-                    android:text="@string/card_statistics_default_text"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorSmile"
-                    android:textSize="@dimen/text_size_default" />
-
-                <TextView
-                    android:id="@+id/medium_card_non_idolized_max_pure"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="10dp"
-                    android:text="@string/card_statistics_default_text"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorPure"
-                    android:textSize="@dimen/text_size_default" />
-
-                <TextView
-                    android:id="@+id/medium_card_non_idolized_max_cool"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="10dp"
-                    android:text="@string/card_statistics_default_text"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorCool"
-                    android:textSize="@dimen/text_size_default" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:paddingRight="10dp">
-
-                <TextView
-                    android:id="@+id/medium_card_idolized_max_smile"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="10dp"
-                    android:text="@string/card_statistics_default_text"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorSmile"
-                    android:textSize="@dimen/text_size_default" />
-
-                <TextView
-                    android:id="@+id/medium_card_idolized_max_pure"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="10dp"
-                    android:text="@string/card_statistics_default_text"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorPure"
-                    android:textSize="@dimen/text_size_default" />
-
-                <TextView
-                    android:id="@+id/medium_card_idolized_max_cool"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="10dp"
-                    android:text="@string/card_statistics_default_text"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorCool"
-                    android:textSize="@dimen/text_size_default" />
-            </LinearLayout>
+            android:layout_height="wrap_content"
+            android:background="@color/colorOrange100"
+            android:orientation="vertical"
+            android:padding="20dp">
 
             <TextView
-                android:id="@+id/medium_card_center_skill_type"
-                android:layout_width="210dp"
+                android:id="@+id/medium_card_center_skill"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingLeft="9dp"
-                android:paddingTop="10dp"
-                android:text="@string/card_skill_default_text"
+                android:paddingLeft="10dp"
+                android:text="@string/card_center_skill_default_text"
                 android:textSize="@dimen/text_size_default" />
 
             <TextView
-                android:id="@+id/medium_card_release_date"
-                android:layout_width="210dp"
+                android:id="@+id/medium_card_center_skill_detail"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingBottom="15dp"
-                android:paddingLeft="9dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/card_center_skill_detail_default_text"
+                android:textSize="@dimen/text_size_small" />
+
+            <TextView
+                android:id="@+id/medium_card_skill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
                 android:paddingTop="10dp"
-                android:text="@string/card_release_date_default_text"
+                android:text="@string/card_skill_name_default_text"
                 android:textSize="@dimen/text_size_default" />
+
+            <TextView
+                android:id="@+id/medium_card_skill_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/card_skill_detail_default_text"
+                android:textSize="@dimen/text_size_small" />
         </LinearLayout>
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/medium_card_center_skill"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:text="@string/card_center_skill_default_text"
-        android:textSize="@dimen/text_size_default" />
-
-    <TextView
-        android:id="@+id/medium_card_center_skill_detail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:text="@string/card_center_skill_detail_default_text"
-        android:textSize="@dimen/text_size_small" />
-
-    <TextView
-        android:id="@+id/medium_card_skill"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp"
-        android:text="@string/card_skill_name_default_text"
-        android:textSize="@dimen/text_size_default" />
-
-    <TextView
-        android:id="@+id/medium_card_skill_detail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:text="@string/card_skill_detail_default_text"
-        android:textSize="@dimen/text_size_small" />
-
+    </android.support.v7.widget.CardView>
 </LinearLayout>
