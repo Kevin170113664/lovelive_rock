@@ -1,49 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorBackground"
     android:orientation="vertical">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/medium_card_image"
-            android:layout_width="171dp"
-            android:layout_height="240dp"
-            android:layout_weight="1"
-            android:adjustViewBounds="true"
-            android:padding="20px" />
-
-        <ImageView
-            android:id="@+id/medium_card_idolized_image"
-            android:layout_width="171dp"
-            android:layout_height="240dp"
-            android:layout_weight="1"
-            android:adjustViewBounds="true"
-            android:padding="20px" />
-    </LinearLayout>
 
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_stat_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        card_view:cardElevation="10dp">
-
+        android:layout_marginTop="20dp"
+        card_view:cardElevation="10dp"
+        card_view:cardCornerRadius="3dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorOrange100"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/medium_card_image"
+                    android:layout_width="171dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    tools:src="@mipmap/idolized_kotori_155" />
+
+                <ImageView
+                    android:id="@+id/medium_card_idolized_image"
+                    android:layout_width="171dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    tools:src="@mipmap/idolized_kotori_155" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -58,20 +59,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textAlignment="center"
                     android:paddingTop="17dp"
-                    android:text="矢澤にこ"
-                    android:textSize="@dimen/text_size_default" />
+                    android:textAlignment="center"
+                    android:textSize="@dimen/text_size_default"
+                    tools:text="矢澤にこ" />
 
                 <TextView
                     android:id="@+id/medium_card_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textAlignment="center"
                     android:paddingTop="17dp"
-                    android:text="777"
-                    android:textSize="@dimen/text_size_default" />
+                    android:textAlignment="center"
+                    android:textSize="@dimen/text_size_default"
+                    tools:text="777" />
             </LinearLayout>
 
             <LinearLayout
@@ -206,7 +207,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="20dp"
-        card_view:cardElevation="10dp">
+        card_view:cardElevation="10dp"
+        card_view:cardCornerRadius="3dp">
 
         <LinearLayout
             android:layout_width="match_parent"
