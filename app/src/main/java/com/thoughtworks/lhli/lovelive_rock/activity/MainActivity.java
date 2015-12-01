@@ -55,6 +55,13 @@ public class MainActivity extends BaseActivity {
                 .into((ImageView) findViewById(R.id.loading_icon));
 
         new Thread(new LoadActivityData(this)).start();
+
+        cardNavigator.setOnClickListener(new ImageView.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, CardActivity.class));
+            }
+        });
     }
 
     @Override
@@ -102,13 +109,6 @@ public class MainActivity extends BaseActivity {
                 Intent intent = new Intent(MainActivity.this, CardDetailActivity.class);
                 intent.putExtra("CardModel", cardModel);
                 startActivity(intent);
-            }
-        });
-
-        cardNavigator.setOnClickListener(new ImageView.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, CardActivity.class));
             }
         });
     }
