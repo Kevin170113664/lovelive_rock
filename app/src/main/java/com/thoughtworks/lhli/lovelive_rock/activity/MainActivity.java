@@ -28,6 +28,9 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.toolbar)
     protected Toolbar toolbar;
 
+    @Bind(R.id.loading_icon)
+    protected ImageView loadingIcon;
+
     @Bind(R.id.latest_event_Sr_image)
     protected ImageView srImage;
 
@@ -61,7 +64,7 @@ public class MainActivity extends BaseActivity {
     }
 
     public void onEventMainThread(EventEvent eventEvent) throws IOException {
-        findViewById(R.id.loading_icon).setVisibility(View.GONE);
+        loadingIcon.setVisibility(View.GONE);
 
         Picasso.with(this)
                 .load(eventEvent.getEventModelList().get(0).getImage())
@@ -69,7 +72,7 @@ public class MainActivity extends BaseActivity {
     }
 
     public void onEventMainThread(final MainCardEvent mainCardEvent) {
-        findViewById(R.id.loading_icon).setVisibility(View.GONE);
+        loadingIcon.setVisibility(View.GONE);
         final CardModel cardModel = mainCardEvent.getCardModelList().get(0);
 
         Picasso.with(this)
