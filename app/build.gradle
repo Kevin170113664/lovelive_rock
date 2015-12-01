@@ -27,6 +27,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     testCompile 'org.robolectric:robolectric:3.0'
     testCompile 'org.mockito:mockito-all:2.0.2-beta'
+    testCompile 'info.cukes:cucumber-android:1.2.4'
     compile 'com.squareup.retrofit:converter-gson:2.0.0-beta2'
     compile 'com.squareup.retrofit:retrofit:2.0.0-beta2'
     compile 'com.google.code.gson:gson:2.4'
@@ -41,5 +42,4 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.6.1'
     compile 'com.android.support:support-v4:23.1.1'
     compile 'com.android.support:cardview-v7:23.1.1'
-    compile 'info.cukes:cucumber-android:1.2.4'
 }
