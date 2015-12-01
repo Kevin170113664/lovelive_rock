@@ -34,6 +34,9 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.latest_event_idolized_Sr_image)
     protected ImageView srIdolizedImage;
 
+    @Bind(R.id.card_navigator)
+    protected ImageView cardNavigator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +99,13 @@ public class MainActivity extends BaseActivity {
                 Intent intent = new Intent(MainActivity.this, CardDetailActivity.class);
                 intent.putExtra("CardModel", cardModel);
                 startActivity(intent);
+            }
+        });
+
+        cardNavigator.setOnClickListener(new ImageView.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, CardActivity.class));
             }
         });
     }
