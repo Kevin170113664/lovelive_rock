@@ -15,8 +15,8 @@
             android:id="@+id/medium_card_idolized_image"
             android:layout_width="171dp"
             android:layout_height="240dp"
-            android:adjustViewBounds="true"
             android:layout_marginLeft="5dp"
+            android:adjustViewBounds="true"
             android:padding="20px" />
 
         <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -31,21 +31,20 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:background="@color/colorOrange100"
                 android:layout_height="match_parent"
+                android:background="@color/colorOrange100"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/medium_card_idol_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight=".3"
                         android:paddingTop="17dp"
                         android:text=""
                         android:textAlignment="center"
@@ -55,20 +54,17 @@
                         android:id="@+id/medium_card_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="end"
+                        android:layout_gravity="start"
+                        android:layout_weight=".7"
                         android:paddingTop="17dp"
                         android:text=""
-                        android:textAlignment="center"
                         android:textSize="@dimen/text_size_default" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:paddingRight="10dp">
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/medium_card_min_smile"
@@ -107,9 +103,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:paddingRight="10dp">
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/medium_card_non_idolized_max_smile"
@@ -148,9 +142,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:paddingRight="10dp">
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/medium_card_idolized_max_smile"
@@ -215,11 +207,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="20dp"
-        card_view:cardElevation="10dp"
-        android:background="@color/colorOrange100">
+        android:background="@color/colorOrange100"
+        card_view:cardElevation="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
