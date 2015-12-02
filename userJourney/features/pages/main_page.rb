@@ -7,7 +7,7 @@ class MainPage < Calabash::ABase
     tap_when_element_exists "* id:'card_navigator'"
   end
 
-  def filter_action_should_appear
+  def click_filter_action
     tap_when_element_exists "* id:'action_filter'"
   end
 end

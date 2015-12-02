@@ -3,4 +3,5 @@
 
   Scenario: Show latest event image in the main page
     When I click card navigator
-    Then Card page starts
+    And I should see Card
+    Then I can click filter action
