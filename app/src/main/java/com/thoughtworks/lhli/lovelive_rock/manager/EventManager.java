@@ -2,7 +2,8 @@ package com.thoughtworks.lhli.lovelive_rock.manager;
 
 import com.thoughtworks.lhli.lovelive_rock.LoveLiveApp;
 import com.thoughtworks.lhli.lovelive_rock.Retrofit;
-import com.thoughtworks.lhli.lovelive_rock.bus.EventEvent;
+import com.thoughtworks.lhli.lovelive_rock.bus.EventListEvent;
+import com.thoughtworks.lhli.lovelive_rock.bus.LatestEventEvent;
 import com.thoughtworks.lhli.lovelive_rock.model.EventModel;
 import com.thoughtworks.lhli.lovelive_rock.model.MultipleEvents;
 
@@ -26,8 +27,9 @@ public class EventManager {
         this.latestEventName = LoveLiveApp.getInstance().getLatestEventName();
     }
 
-    public List<EventModel> getEventModelList() {
-        return eventModelList;
+    public void getEventModelList() throws IOException {
+        List<EventModel> eventModelListFromDB = databaseManager.queryAllEvents();
+        EventBus.getDefault().post(new EventListEvent(eventModelListFromDB));
     }
 
     public void getLatestEvent() throws IOException {
@@ -44,7 +46,7 @@ public class EventManager {
         Response<MultipleEvents> response = call.execute();
         if (response.isSuccess()) {
             eventModelList.addAll(Arrays.asList(response.body().getResults()));
-            EventBus.getDefault().post(new EventEvent(eventModelList));
+            EventBus.getDefault().post(new LatestEventEvent(eventModelList));
             LoveLiveApp.getInstance().setLatestEventName(eventModelList.get(0).getJapaneseName());
         }
     }
@@ -53,7 +55,7 @@ public class EventManager {
         EventModel eventModel = databaseManager.queryLatestEvent(latestEventName);
         if (eventModel != null && eventModel.getJapaneseName() != null) {
             eventModelList.add(eventModel);
-            EventBus.getDefault().post(new EventEvent(eventModelList));
+            EventBus.getDefault().post(new LatestEventEvent(eventModelList));
         }
     }
 }

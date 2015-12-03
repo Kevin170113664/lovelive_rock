@@ -7,8 +7,9 @@ import android.content.SharedPreferences;
 import com.thoughtworks.lhli.lovelive_rock.LoveLiveApp;
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.activity.CardActivity;
+import com.thoughtworks.lhli.lovelive_rock.activity.EventActivity;
 import com.thoughtworks.lhli.lovelive_rock.activity.MainActivity;
-import com.thoughtworks.lhli.lovelive_rock.bus.EventEvent;
+import com.thoughtworks.lhli.lovelive_rock.bus.LatestEventEvent;
 import com.thoughtworks.lhli.lovelive_rock.manager.CardManager;
 import com.thoughtworks.lhli.lovelive_rock.manager.EventManager;
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
@@ -49,6 +50,15 @@ public class LoadActivityData implements Runnable {
         }
     }
 
+    private void loadEventActivityData() {
+        EventManager eventManager = new EventManager(new ArrayList<EventModel>());
+        try {
+            eventManager.getEventModelList();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void loadMaxCardNumber() {
         CardManager cardManager = new CardManager(new ArrayList<CardModel>());
         try {
@@ -82,8 +92,8 @@ public class LoadActivityData implements Runnable {
         return eventMap;
     }
 
-    public void onEvent(EventEvent eventEvent) throws IOException {
-        EventModel latestEvent = eventEvent.getEventModelList().get(0);
+    public void onEvent(LatestEventEvent latestEventEvent) throws IOException {
+        EventModel latestEvent = latestEventEvent.getEventModelList().get(0);
         CardManager cardManager = new CardManager(new ArrayList<CardModel>());
 
         if (LoveLiveApp.getInstance().isNetworkAvailable()) {
@@ -112,6 +122,8 @@ public class LoadActivityData implements Runnable {
             loadMainActivityData();
         } else if (activity.getClass().equals(CardActivity.class)) {
             loadCardActivityData();
+        } else if (activity.getClass().equals(EventActivity.class)) {
+            loadEventActivityData();
         }
     }
 }

@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 import com.thoughtworks.lhli.lovelive_rock.R;
-import com.thoughtworks.lhli.lovelive_rock.bus.EventEvent;
+import com.thoughtworks.lhli.lovelive_rock.bus.LatestEventEvent;
 import com.thoughtworks.lhli.lovelive_rock.bus.MainCardEvent;
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 import com.thoughtworks.lhli.lovelive_rock.task.LoadActivityData;
@@ -70,11 +70,11 @@ public class MainActivity extends BaseActivity {
         return true;
     }
 
-    public void onEventMainThread(EventEvent eventEvent) throws IOException {
+    public void onEventMainThread(LatestEventEvent latestEventEvent) throws IOException {
         loadingIcon.setVisibility(View.GONE);
 
         Picasso.with(this)
-                .load(eventEvent.getEventModelList().get(0).getImage())
+                .load(latestEventEvent.getEventModelList().get(0).getImage())
                 .into((ImageView) findViewById(R.id.latest_event_image));
     }
 

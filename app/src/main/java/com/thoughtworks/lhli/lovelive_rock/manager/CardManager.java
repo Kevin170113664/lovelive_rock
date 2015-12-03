@@ -63,7 +63,7 @@ public class CardManager {
                 Response<MultipleCards> cardsResponse = call.execute();
                 saveCardsAndSendEvents(cardsResponse);
             } else {
-                System.out.print("Get all cards failed.");
+                System.out.print("Get cards from " + page + " pages failed.");
             }
         }
     }

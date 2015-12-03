@@ -4,11 +4,10 @@ import com.thoughtworks.lhli.lovelive_rock.model.EventModel;
 
 import java.util.List;
 
-public class EventEvent {
-
+public class EventListEvent {
     public List<EventModel> eventModelList;
 
-    public EventEvent(List<EventModel> eventModelList) {
+    public EventListEvent(List<EventModel> eventModelList) {
         this.eventModelList = eventModelList;
     }
 

@@ -256,6 +256,23 @@ public class DatabaseManager {
         }
     }
 
+    public List<EventModel> queryAllEvents() {
+        getEventDao(helper.getReadableDatabase());
+
+        List<Event> eventList = eventDao.queryBuilder()
+                .where(EventDao.Properties.JapaneseName.isNotNull())
+                .list();
+        if (eventList.size() != 0) {
+            List<EventModel> eventModelList = new ArrayList<>();
+            for (Event event : eventList) {
+                eventModelList.add(modelMapper.map(event, EventModel.class));
+            }
+            return eventModelList;
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
     @NonNull
     private IdolModel generateIdolModel(List<Idol> idolList) {
         IdolModel idolModel = modelMapper.map(idolList.get(0), IdolModel.class);
