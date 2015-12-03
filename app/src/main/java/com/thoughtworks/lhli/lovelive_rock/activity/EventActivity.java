@@ -47,7 +47,8 @@ public class EventActivity extends BaseActivity {
 
         eventModelList = eventListEvent.getEventModelList();
         eventModelList = Lists.reverse(eventModelList);
-        listView.setAdapter(new EventListAdapter(EventActivity.this, eventModelList));
-
+        List<List<EventModel>> list;
+        list = Lists.partition(eventModelList, 10);
+        listView.setAdapter(new EventListAdapter(EventActivity.this, list.get(0)));
     }
 }

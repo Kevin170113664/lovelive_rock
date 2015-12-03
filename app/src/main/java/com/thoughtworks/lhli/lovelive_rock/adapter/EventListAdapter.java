@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.thoughtworks.lhli.lovelive_rock.R;
@@ -40,20 +41,33 @@ public class EventListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ImageView imageView;
+        ViewHolder viewHolder;
 
         if (convertView == null) {
+            viewHolder = new ViewHolder();
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.event_list_item, parent, false);
-            imageView = (ImageView) convertView.findViewById(R.id.event_image);
-            convertView.setTag(imageView);
+            viewHolder.imageView = (ImageView) convertView.findViewById(R.id.event_image);
+            viewHolder.eventNameText = (TextView) convertView.findViewById(R.id.event_name);
+            convertView.setTag(viewHolder);
         } else {
-            imageView = (ImageView) convertView.getTag();
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+
+        String imageUrl = eventModelList.get(position).getEnglishImage();
+        if (imageUrl == null || imageUrl.equals("")) {
+            imageUrl = eventModelList.get(position).getImage();
         }
 
         Picasso.with(context)
-                .load(eventModelList.get(position).getEnglishImage())
-                .into(imageView);
+                .load(imageUrl)
+                .into(viewHolder.imageView);
+        viewHolder.eventNameText.setText(eventModelList.get(position).getJapaneseName());
 
         return convertView;
+    }
+
+    public class ViewHolder {
+        ImageView imageView;
+        TextView eventNameText;
     }
 }
