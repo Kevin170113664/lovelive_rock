@@ -23,6 +23,7 @@ import retrofit.Response;
 public class CardManager {
 
     private Integer maxCardNumber;
+    private Integer minCardPage;
     private Integer maxCardPage;
 
     private List<CardModel> cardModelList;
@@ -39,20 +40,29 @@ public class CardManager {
         return maxCardNumber == 0 ? 0 : Integer.parseInt(new DecimalFormat("0").format(maxCardNumber / 10.0 + 1));
     }
 
+    private Integer calculateMinCardPage() {
+        return cardModelList == null ? 1 : Integer.parseInt(new DecimalFormat("0").format(cardModelList.size() / 10.0));
+    }
+
     public void getAllCards() throws IOException {
         List<CardModel> cardModelList = databaseManager.queryAllCards();
         if (cardModelList != null && cardModelList.size() >= maxCardNumber) {
             EventBus.getDefault().post(new SmallCardEvent(cardModelList));
             EventBus.getDefault().post(new FetchProcessEvent("100"));
         } else {
-            for (int page = 1; page <= maxCardPage; page++) {
-                if (LoveLiveApp.getInstance().isNetworkAvailable()) {
-                    Call<MultipleCards> call = Retrofit.getInstance().getCardService().getCardList(page);
-                    Response<MultipleCards> cardsResponse = call.execute();
-                    saveCardsToDatabase(cardsResponse);
-                } else {
-                    System.out.print("Get all cards failed.");
-                }
+            getCardByPages();
+        }
+    }
+
+    private void getCardByPages() throws IOException {
+        minCardPage = calculateMinCardPage();
+        for (int page = minCardPage; page <= maxCardPage; page++) {
+            if (LoveLiveApp.getInstance().isNetworkAvailable()) {
+                Call<MultipleCards> call = Retrofit.getInstance().getCardService().getCardList(page);
+                Response<MultipleCards> cardsResponse = call.execute();
+                saveCardsToDatabase(cardsResponse);
+            } else {
+                System.out.print("Get all cards failed.");
             }
         }
     }
