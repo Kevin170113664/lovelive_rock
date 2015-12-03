@@ -252,7 +252,7 @@ public class DatabaseManager {
             }
             return cardModelList;
         } else {
-            return null;
+            return new ArrayList<>();
         }
     }
 

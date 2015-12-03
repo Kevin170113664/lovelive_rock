@@ -40,22 +40,23 @@ public class CardManager {
         return maxCardNumber == 0 ? 0 : Integer.parseInt(new DecimalFormat("0").format(maxCardNumber / 10.0 + 1));
     }
 
-    private Integer calculateMinCardPage() {
-        return cardModelList == null ? 1 : Integer.parseInt(new DecimalFormat("0").format(cardModelList.size() / 10.0));
+    private Integer calculateMinCardPage(List<CardModel> cardModelListFromDB) {
+        return cardModelListFromDB.size() == 0 ? 1 : Integer.parseInt(new DecimalFormat("0").format(cardModelListFromDB.size() / 10.0));
     }
 
     public void getAllCards() throws IOException {
-        List<CardModel> cardModelList = databaseManager.queryAllCards();
-        if (cardModelList != null && cardModelList.size() >= maxCardNumber) {
-            EventBus.getDefault().post(new SmallCardEvent(cardModelList));
+        List<CardModel> cardModelListFromDB = databaseManager.queryAllCards();
+        if (cardModelListFromDB.size() >= maxCardNumber) {
+            EventBus.getDefault().post(new SmallCardEvent(cardModelListFromDB));
             EventBus.getDefault().post(new FetchProcessEvent("100"));
         } else {
+            minCardPage = calculateMinCardPage(cardModelListFromDB);
+            cardModelList.addAll(cardModelListFromDB);
             getCardByPages();
         }
     }
 
     private void getCardByPages() throws IOException {
-        minCardPage = calculateMinCardPage();
         for (int page = minCardPage; page <= maxCardPage; page++) {
             if (LoveLiveApp.getInstance().isNetworkAvailable()) {
                 Call<MultipleCards> call = Retrofit.getInstance().getCardService().getCardList(page);
@@ -77,7 +78,7 @@ public class CardManager {
                 }
             }
             sendFetchProcessEvent(cardModelList.size());
-            if (cardModelList.size() == maxCardNumber) {
+            if (cardModelList.size() >= maxCardNumber) {
                 EventBus.getDefault().post(new SmallCardEvent(cardModelList));
             }
         } else {
@@ -132,6 +133,9 @@ public class CardManager {
 
     private void sendFetchProcessEvent(int gottenCardNumber) {
         Double percentage = 100 * gottenCardNumber / Double.parseDouble(maxCardNumber.toString());
+        if (percentage > 100.0) {
+            percentage = 100.0;
+        }
         String percentageMsg = new DecimalFormat("0").format(percentage);
         EventBus.getDefault().post(new FetchProcessEvent(percentageMsg));
     }
