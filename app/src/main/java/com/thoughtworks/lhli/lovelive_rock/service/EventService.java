@@ -11,4 +11,7 @@ public interface EventService {
     @GET("events")
     Call<MultipleEvents> getLatestEvent(@Query("ordering") String ordering,
                                         @Query("page_size") Integer pageSize);
+
+    @GET("events")
+    Call<MultipleEvents> getEventList(@Query("page") Integer page);
 }
