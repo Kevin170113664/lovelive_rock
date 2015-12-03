@@ -61,28 +61,30 @@ public class CardManager {
             if (LoveLiveApp.getInstance().isNetworkAvailable()) {
                 Call<MultipleCards> call = Retrofit.getInstance().getCardService().getCardList(page);
                 Response<MultipleCards> cardsResponse = call.execute();
-                saveCardsToDatabase(cardsResponse);
+                saveCardsAndSendEvents(cardsResponse);
             } else {
                 System.out.print("Get all cards failed.");
             }
         }
     }
 
-    private void saveCardsToDatabase(Response<MultipleCards> response) {
+    private void saveCardsAndSendEvents(Response<MultipleCards> response) {
         if (response.isSuccess()) {
             cardModelList.addAll(Arrays.asList(response.body().getResults()));
-            for (CardModel cardModel : cardModelList) {
-                CardModel queriedCardModel = databaseManager.queryCardById(cardModel.getCardId());
-                if (queriedCardModel == null) {
-                    databaseManager.cacheCard(cardModel);
-                }
-            }
+            cacheOnePageCards();
             sendFetchProcessEvent(cardModelList.size());
-            if (cardModelList.size() >= maxCardNumber) {
-                EventBus.getDefault().post(new SmallCardEvent(cardModelList));
-            }
+            sendSmallCardEvent();
         } else {
             System.out.print("getCardByIdCallback failed.");
+        }
+    }
+
+    private void cacheOnePageCards() {
+        for (CardModel cardModel : cardModelList) {
+            CardModel queriedCardModel = databaseManager.queryCardById(cardModel.getCardId());
+            if (queriedCardModel == null) {
+                databaseManager.cacheCard(cardModel);
+            }
         }
     }
 
@@ -133,10 +135,13 @@ public class CardManager {
 
     private void sendFetchProcessEvent(int gottenCardNumber) {
         Double percentage = 100 * gottenCardNumber / Double.parseDouble(maxCardNumber.toString());
-        if (percentage > 100.0) {
-            percentage = 100.0;
-        }
-        String percentageMsg = new DecimalFormat("0").format(percentage);
+        String percentageMsg = new DecimalFormat("0").format((Double) (percentage > 100.0 ? 100.0 : percentage));
         EventBus.getDefault().post(new FetchProcessEvent(percentageMsg));
+    }
+
+    private void sendSmallCardEvent() {
+        if (cardModelList.size() >= maxCardNumber) {
+            EventBus.getDefault().post(new SmallCardEvent(cardModelList));
+        }
     }
 }
