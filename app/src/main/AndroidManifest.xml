@@ -32,5 +32,8 @@
         <activity
             android:name=".activity.FullScreenCardActivity"
             android:label="@string/card_full_screen_label" />
+        <activity
+            android:name=".activity.EventActivity"
+            android:label="@string/event_layout_label" />
     </application>
 </manifest>

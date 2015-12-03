@@ -4,11 +4,11 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.bumptech.glide.Glide;
 import com.thoughtworks.lhli.lovelive_rock.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import de.greenrobot.event.EventBus;
 
 public class EventActivity extends BaseActivity {
 
@@ -23,6 +23,7 @@ public class EventActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
         ButterKnife.bind(this);
-        EventBus.getDefault().register(this);
+        Glide.with(this).load(R.drawable.loading).asGif()
+                .into((ImageView) findViewById(R.id.loading_icon));
     }
 }

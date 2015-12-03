@@ -117,13 +117,17 @@ public class MainActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_song || id == R.id.action_event) {
+        if (id == R.id.action_song) {
             Toast.makeText(getApplicationContext(), getString(R.string.toast_function_not_complete),
                     Toast.LENGTH_SHORT).show();
             return true;
         }
-        if (item.getItemId() == R.id.action_card) {
+        if (id == R.id.action_card) {
             startActivity(new Intent(this, CardActivity.class));
+            return true;
+        }
+        if (id == R.id.action_event) {
+            startActivity(new Intent(this, EventActivity.class));
             return true;
         }
 
