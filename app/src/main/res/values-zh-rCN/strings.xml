@@ -38,7 +38,7 @@
     <string name="small_card_collection_title">卡牌主题：</string>
     <string name="small_card_max_stat_title">最高属性：</string>
     <string name="small_card_skill_type_title">技能类型：</string>
-    <string name="first_download_tips">第一次下载所有卡牌文本信息大约需要3~5分钟。</string>
+    <string name="first_download_tips">第一次下载所有数据大约需要3~5分钟。</string>
 
     <string-array name="rarity_array">
         <item>稀有度</item>

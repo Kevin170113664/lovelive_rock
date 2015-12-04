@@ -45,7 +45,7 @@
     <string name="small_card_collection_title">Collection:</string>
     <string name="small_card_max_stat_title">Max Stat:</string>
     <string name="small_card_skill_type_title">Skill Type:</string>
-    <string name="first_download_tips">Download all the card texts may need 3 to 5 minutes at the first time.</string>
+    <string name="first_download_tips">Download all the data may need 3 to 5 minutes at the first time.</string>
     <string name="max_card_number_default">0</string>
     <string name="event_default_value">0</string>
 
