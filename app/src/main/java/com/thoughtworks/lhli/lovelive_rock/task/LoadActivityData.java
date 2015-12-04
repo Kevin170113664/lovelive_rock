@@ -96,7 +96,7 @@ public class LoadActivityData implements Runnable {
         EventModel latestEvent = latestEventEvent.getEventModelList().get(0);
         CardManager cardManager = new CardManager(new ArrayList<CardModel>());
 
-        if (LoveLiveApp.getInstance().isNetworkAvailable()) {
+        if (LoveLiveApp.getInstance().isNetworkAvailable() && latestEvent.getCards().length != 0) {
             Integer srId = latestEvent.getCards()[1];
             cardManager.getCardById(srId.toString());
             cacheLatestEvent(latestEvent);

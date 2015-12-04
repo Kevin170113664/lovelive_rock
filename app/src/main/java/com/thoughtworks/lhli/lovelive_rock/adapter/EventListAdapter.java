@@ -46,24 +46,27 @@ public class EventListAdapter extends BaseAdapter {
         if (convertView == null) {
             viewHolder = new ViewHolder();
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.event_list_item, parent, false);
-            viewHolder.imageView = (ImageView) convertView.findViewById(R.id.event_image);
-            viewHolder.eventNameText = (TextView) convertView.findViewById(R.id.event_name);
+            bindItemView(convertView, viewHolder);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        String imageUrl = eventModelList.get(position).getEnglishImage();
-        if (imageUrl == null || imageUrl.equals("")) {
-            imageUrl = eventModelList.get(position).getImage();
-        }
-
-        Picasso.with(context)
-                .load(imageUrl)
-                .into(viewHolder.imageView);
-        viewHolder.eventNameText.setText(eventModelList.get(position).getJapaneseName());
+        setItemView(position, viewHolder);
 
         return convertView;
+    }
+
+    private void setItemView(int position, ViewHolder viewHolder) {
+        Picasso.with(context)
+                .load(eventModelList.get(position).getImage())
+                .into(viewHolder.imageView);
+        viewHolder.eventNameText.setText(eventModelList.get(position).getJapaneseName());
+    }
+
+    private void bindItemView(View convertView, ViewHolder viewHolder) {
+        viewHolder.imageView = (ImageView) convertView.findViewById(R.id.event_image);
+        viewHolder.eventNameText = (TextView) convertView.findViewById(R.id.event_name);
     }
 
     public class ViewHolder {

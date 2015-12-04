@@ -6,7 +6,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.bumptech.glide.Glide;
-import com.google.common.collect.Lists;
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.adapter.EventListAdapter;
 import com.thoughtworks.lhli.lovelive_rock.bus.EventListEvent;
@@ -14,6 +13,8 @@ import com.thoughtworks.lhli.lovelive_rock.model.EventModel;
 import com.thoughtworks.lhli.lovelive_rock.task.LoadActivityData;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import butterknife.Bind;
@@ -46,9 +47,21 @@ public class EventActivity extends BaseActivity {
         loadingIcon.setVisibility(View.GONE);
 
         eventModelList = eventListEvent.getEventModelList();
-        eventModelList = Lists.reverse(eventModelList);
-        List<List<EventModel>> list;
-        list = Lists.partition(eventModelList, 10);
-        listView.setAdapter(new EventListAdapter(EventActivity.this, list.get(0)));
+        sortEventList();
+        listView.setAdapter(new EventListAdapter(EventActivity.this, eventModelList));
+    }
+
+    private void sortEventList() {
+        Collections.sort(eventModelList, new Comparator<EventModel>() {
+            @Override
+            public int compare(EventModel firstEvent, EventModel secondEvent) {
+                return secondEvent.getEnd().compareTo(firstEvent.getEnd());
+            }
+
+            @Override
+            public boolean equals(Object object) {
+                return false;
+            }
+        });
     }
 }
