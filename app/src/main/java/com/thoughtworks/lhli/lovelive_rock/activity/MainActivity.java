@@ -31,6 +31,9 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.loading_icon)
     protected ImageView loadingIcon;
 
+    @Bind(R.id.latest_event_image)
+    protected ImageView latestEventImage;
+
     @Bind(R.id.latest_event_Sr_image)
     protected ImageView srImage;
 
@@ -75,7 +78,9 @@ public class MainActivity extends BaseActivity {
 
         Picasso.with(this)
                 .load(latestEventEvent.getEventModelList().get(0).getImage())
-                .into((ImageView) findViewById(R.id.latest_event_image));
+                .into(latestEventImage);
+
+        setEventImageClickListener();
     }
 
     public void onEventMainThread(final MainCardEvent mainCardEvent) {
@@ -90,10 +95,19 @@ public class MainActivity extends BaseActivity {
                 .load(cardModel.getCardIdolizedImage())
                 .into(srIdolizedImage);
 
-        setImageClickListener(cardModel);
+        setEventSrImageClickListener(cardModel);
     }
 
-    private void setImageClickListener(final CardModel cardModel) {
+    private void setEventImageClickListener() {
+        latestEventImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, EventActivity.class));
+            }
+        });
+    }
+
+    private void setEventSrImageClickListener(final CardModel cardModel) {
         srImage.setOnClickListener(new ImageView.OnClickListener() {
             @Override
             public void onClick(View v) {
