@@ -96,10 +96,12 @@ public class LoadActivityData implements Runnable {
         EventModel latestEvent = latestEventEvent.getEventModelList().get(0);
         CardManager cardManager = new CardManager(new ArrayList<CardModel>());
 
-        if (LoveLiveApp.getInstance().isNetworkAvailable() && latestEvent.getCards().length != 0) {
-            Integer srId = latestEvent.getCards()[1];
-            cardManager.getCardById(srId.toString());
-            cacheLatestEvent(latestEvent);
+        if (LoveLiveApp.getInstance().isNetworkAvailable()) {
+           if (latestEvent.getCards().length != 0) {
+               Integer srId = latestEvent.getCards()[1];
+               cardManager.getCardById(srId.toString());
+               cacheLatestEvent(latestEvent);
+           }
         } else {
             cardManager.getCardById(readLatestEvent().get(activity.getString(R.string.latest_event_SR_id)));
         }

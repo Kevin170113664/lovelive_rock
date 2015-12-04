@@ -92,7 +92,12 @@ public class MediumCardListAdapter extends BaseAdapter {
         setTextView(viewHolder.mediumCardCenterSkill, cardModelList.get(position).getJapaneseCenterSkill());
         setTextView(viewHolder.mediumCardCenterSkillDetail, cardModelList.get(position).getJapaneseCenterSkillDetails());
         setTextView(viewHolder.mediumCardSkill, cardModelList.get(position).getJapaneseSkill());
-        setTextView(viewHolder.mediumCardSkillDetail, cardModelList.get(position).getJapaneseSkillDetails());
+
+        if (isPromo) {
+            setTextView(viewHolder.mediumCardSkillDetail, cardModelList.get(position).getSkillDetails());
+        } else {
+            setTextView(viewHolder.mediumCardSkillDetail, cardModelList.get(position).getJapaneseSkillDetails());
+        }
     }
 
     public static void setTextView(TextView textView, String value) {
