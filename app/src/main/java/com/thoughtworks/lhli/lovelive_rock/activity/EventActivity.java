@@ -1,7 +1,9 @@
 package com.thoughtworks.lhli.lovelive_rock.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -49,6 +51,19 @@ public class EventActivity extends BaseActivity {
         eventModelList = eventListEvent.getEventModelList();
         sortEventList();
         listView.setAdapter(new EventListAdapter(EventActivity.this, eventModelList));
+        setListViewOnItemClickListener();
+    }
+
+    private void setListViewOnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(EventActivity.this, EventDetailActivity.class);
+                EventModel eventModel = ((List<EventModel>) parent.getAdapter().getItem(0)).get(position);
+                intent.putExtra("EventModel", eventModel);
+                startActivity(intent);
+            }
+        });
     }
 
     private void sortEventList() {
