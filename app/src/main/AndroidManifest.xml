@@ -35,5 +35,7 @@
         <activity
             android:name=".activity.EventActivity"
             android:label="@string/event_layout_label" />
+        <activity android:name=".activity.EventDetailActivity"
+            android:label="@string/event_detail_label"/>
     </application>
 </manifest>
