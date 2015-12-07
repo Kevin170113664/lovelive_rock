@@ -49,9 +49,13 @@ public class EventActivity extends BaseActivity {
         loadingIcon.setVisibility(View.GONE);
 
         eventModelList = eventListEvent.getEventModelList();
-        sortEventList();
-        listView.setAdapter(new EventListAdapter(EventActivity.this, eventModelList));
-        setListViewOnItemClickListener();
+        if (eventModelList.size() < 2) {
+            startActivity(new Intent(this, CardActivity.class));
+        } else {
+            sortEventListByTime();
+            listView.setAdapter(new EventListAdapter(EventActivity.this, eventModelList));
+            setListViewOnItemClickListener();
+        }
     }
 
     private void setListViewOnItemClickListener() {
@@ -66,7 +70,7 @@ public class EventActivity extends BaseActivity {
         });
     }
 
-    private void sortEventList() {
+    private void sortEventListByTime() {
         Collections.sort(eventModelList, new Comparator<EventModel>() {
             @Override
             public int compare(EventModel firstEvent, EventModel secondEvent) {
