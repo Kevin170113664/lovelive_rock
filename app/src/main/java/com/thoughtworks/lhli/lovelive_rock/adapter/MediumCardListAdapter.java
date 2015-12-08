@@ -93,11 +93,15 @@ public class MediumCardListAdapter extends BaseAdapter {
         setTextView(viewHolder.mediumCardCenterSkillDetail, cardModelList.get(position).getJapaneseCenterSkillDetails());
         setTextView(viewHolder.mediumCardSkill, cardModelList.get(position).getJapaneseSkill());
 
-        if (isPromo) {
+        if (isPromo || isJapaneseSkillDetailEmpty(position)) {
             setTextView(viewHolder.mediumCardSkillDetail, cardModelList.get(position).getSkillDetails());
         } else {
             setTextView(viewHolder.mediumCardSkillDetail, cardModelList.get(position).getJapaneseSkillDetails());
         }
+    }
+
+    private boolean isJapaneseSkillDetailEmpty(int position) {
+        return cardModelList.get(position).getJapaneseSkillDetails() == null || cardModelList.get(position).getJapaneseSkillDetails().equals("");
     }
 
     public static void setTextView(TextView textView, String value) {
