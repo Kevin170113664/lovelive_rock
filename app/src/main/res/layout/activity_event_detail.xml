@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:gravity="center"
-                android:textSize="12pt"
+                android:textSize="@dimen/text_size_large"
                 tools:text="Event Name" />
 
             <TextView
@@ -104,7 +104,7 @@
                 android:layout_marginBottom="10dp"
                 android:gravity="start"
                 android:paddingLeft="20dp"
-                android:textSize="8pt"
+                android:textSize="@dimen/text_size_default"
                 tools:text="This is a note." />
 
             <GridView
