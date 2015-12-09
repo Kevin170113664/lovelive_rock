@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
+
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_mf_calculator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="0dp"
+        card_view:cardBackgroundColor="@color/colorOrange100"
+        card_view:cardCornerRadius="3dp"
+        card_view:cardElevation="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/objective_points_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="目标点数"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/objective_points_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/objective_points_label"
+                android:layout_toRightOf="@id/objective_points_label"
+                android:text="0"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/existing_points_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/objective_points_label"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="已有点数"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/existing_points_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/existing_points_label"
+                android:layout_toRightOf="@id/existing_points_label"
+                android:text="0"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/current_rank_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/existing_points_label"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="当前等级"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/current_rank_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/current_rank_label"
+                android:layout_toRightOf="@id/current_rank_label"
+                android:text="0"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/song_amount_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/current_rank_label"
+                android:paddingBottom="5dp"
+                android:paddingTop="10dp"
+                android:text="曲目数"
+                android:textSize="16sp" />
+
+            <Spinner
+                android:id="@+id/song_amount_spinner"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_alignBottom="@id/song_amount_label"
+                android:layout_toRightOf="@id/song_amount_label"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/difficulty_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/song_amount_label"
+                android:layout_toRightOf="@id/song_amount_spinner"
+                android:paddingBottom="5dp"
+                android:paddingTop="10dp"
+                android:text="难度"
+                android:textSize="16sp" />
+
+            <Spinner
+                android:id="@+id/difficulty_spinner"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_alignBottom="@id/song_amount_label"
+                android:layout_toRightOf="@id/difficulty_label"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:id="@+id/button_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/song_amount_label">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:background="@color/colorOrange100"
+                    android:text="高级选项" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:background="@color/colorOrange100"
+                    android:text="活动时间" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/advanced_options"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/button_group"
+                android:layout_marginTop="5dp"
+                tools:visibility="gone">
+
+                <TextView
+                    android:id="@+id/wasted_lp_every_day_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="每天浪费LP"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/wasted_lp_every_day_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/wasted_lp_every_day_label"
+                    android:layout_toRightOf="@id/wasted_lp_every_day_label"
+                    android:text="0"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:id="@+id/addition_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/wasted_lp_every_day_label">
+
+                    <TextView
+                        android:id="@+id/event_points_addition_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".5"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="10dp"
+                        android:text="活动点数加成"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/event_points_addition"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/experience_addition_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".5"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="10dp"
+                        android:text="活动经验加成"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/experience_addition"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/song_rank_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/addition_group"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="10dp"
+                    android:text="歌曲等级"
+                    android:textSize="16sp" />
+
+                <Spinner
+                    android:id="@+id/song_rank_spinner"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:layout_alignBottom="@id/song_rank_label"
+                    android:layout_toRightOf="@id/song_rank_label"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/song_rank_addition_ratio_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/song_rank_spinner"
+                    android:layout_toRightOf="@id/song_rank_spinner"
+                    android:paddingBottom="5dp"
+                    android:text="加成倍率："
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/song_rank_addition_ratio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/song_rank_addition_ratio_label"
+                    android:layout_toRightOf="@id/song_rank_addition_ratio_label"
+                    android:paddingBottom="5dp"
+                    android:text="1.2"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/combo_rank_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/song_rank_label"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="10dp"
+                    android:text="连击等级"
+                    android:textSize="16sp" />
+
+                <Spinner
+                    android:id="@+id/combo_rank_spinner"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:layout_alignBottom="@id/combo_rank_label"
+                    android:layout_toRightOf="@id/combo_rank_label"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/combo_rank_addition_ratio_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/combo_rank_spinner"
+                    android:layout_toRightOf="@id/combo_rank_spinner"
+                    android:paddingBottom="5dp"
+                    android:text="加成倍率："
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/combo_rank_addition_ratio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/combo_rank_addition_ratio_label"
+                    android:layout_toRightOf="@id/combo_rank_addition_ratio_label"
+                    android:paddingBottom="5dp"
+                    android:text="1.06"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/combo_rank_label">
+
+                    <TextView
+                        android:id="@+id/current_last_lp_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:text="剩余LP"
+
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/current_last_lp_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".5"
+                        android:text="0"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/current_experience_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:text="当前经验"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/current_experience_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".5"
+                        android:text="0"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/event_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/button_group"
+                android:layout_marginTop="5dp"
+                tools:visibility="gone">
+
+                <LinearLayout
+                    android:id="@+id/event_end_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/event_end_time_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:text="活动结束时间"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/event_end_day_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".5"
+                        android:text="0"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/event_end_time_day_unit_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:text="日"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/event_end_hour_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".5"
+                        android:text="0"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/event_end_time_hour_unit_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:text="时"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/event_last_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/event_end_time">
+
+                    <TextView
+                        android:id="@+id/event_last_time_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:text="活动剩余时间"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/event_last_time_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".5"
+                        android:text="0"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/event_last_time_hour_unit_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:text="时"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <Button
+        android:id="@+id/calculate_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:background="@color/colorOrange100"
+        android:text="开始计算" />
+
+</RelativeLayout>
