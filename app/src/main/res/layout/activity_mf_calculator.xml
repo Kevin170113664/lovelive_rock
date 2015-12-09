@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
-                android:text="目标点数"
+                android:text="@string/objective_points"
                 android:textSize="16sp" />
 
             <EditText
@@ -43,21 +43,21 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/existing_points_label"
+                android:id="@+id/current_points_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/objective_points_label"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
-                android:text="已有点数"
+                android:text="@string/current_points"
                 android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/existing_points_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/existing_points_label"
-                android:layout_toRightOf="@id/existing_points_label"
+                android:layout_alignBottom="@id/current_points_label"
+                android:layout_toRightOf="@id/current_points_label"
                 android:inputType="number"
                 android:text="0"
                 android:textSize="14sp" />
@@ -66,10 +66,10 @@
                 android:id="@+id/current_rank_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/existing_points_label"
+                android:layout_below="@id/current_points_label"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
-                android:text="当前等级"
+                android:text="@string/current_rank"
                 android:textSize="16sp" />
 
 
@@ -96,7 +96,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:text="曲目数"
+                    android:text="@string/song_amount"
                     android:textSize="16sp" />
 
                 <Spinner
@@ -112,7 +112,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:text="难度"
+                    android:text="@string/difficulty"
                     android:textSize="16sp" />
 
                 <Spinner
@@ -137,15 +137,15 @@
                     android:layout_height="wrap_content"
                     android:layout_weight=".5"
                     android:background="@color/colorOrange100"
-                    android:text="高级选项" />
+                    android:text="@string/advanced_options" />
 
                 <Button
-                    android:id="@+id/event_end_time_button"
+                    android:id="@+id/event_time_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight=".5"
                     android:background="@color/colorOrange100"
-                    android:text="活动时间" />
+                    android:text="@string/event_time" />
             </LinearLayout>
 
             <RelativeLayout
@@ -154,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/button_group"
                 android:layout_marginTop="5dp"
-                tools:visibility="visible">
+                tools:visibility="gone">
 
                 <TextView
                     android:id="@+id/wasted_lp_every_day_label"
@@ -162,7 +162,7 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="10dp"
                     android:paddingTop="10dp"
-                    android:text="每天浪费LP"
+                    android:text="@string/wasted_lp_every_day"
                     android:textSize="16sp" />
 
                 <EditText
@@ -188,7 +188,7 @@
                         android:layout_weight=".5"
                         android:paddingBottom="5dp"
                         android:paddingTop="10dp"
-                        android:text="活动点数加成"
+                        android:text="@string/event_points_addition"
                         android:textSize="16sp" />
 
                     <CheckBox
@@ -204,7 +204,7 @@
                         android:layout_weight=".5"
                         android:paddingBottom="5dp"
                         android:paddingTop="10dp"
-                        android:text="活动经验加成"
+                        android:text="@string/experience_addition"
                         android:textSize="16sp" />
 
                     <CheckBox
@@ -220,12 +220,12 @@
                     android:layout_below="@id/addition_group"
                     android:paddingBottom="5dp"
                     android:paddingTop="10dp"
-                    android:text="歌曲等级"
+                    android:text="@string/song_rank"
                     android:textSize="16sp" />
 
                 <Spinner
                     android:id="@+id/song_rank_spinner"
-                    android:layout_width="100dp"
+                    android:layout_width="70dp"
                     android:layout_height="30dp"
                     android:layout_alignBottom="@id/song_rank_label"
                     android:layout_toRightOf="@id/song_rank_label"
@@ -238,7 +238,7 @@
                     android:layout_alignBottom="@id/song_rank_spinner"
                     android:layout_toRightOf="@id/song_rank_spinner"
                     android:paddingBottom="5dp"
-                    android:text="加成倍率："
+                    android:text="@string/song_rank_addition_ratio"
                     android:textSize="14sp" />
 
                 <TextView
@@ -248,7 +248,7 @@
                     android:layout_alignBottom="@id/song_rank_addition_ratio_label"
                     android:layout_toRightOf="@id/song_rank_addition_ratio_label"
                     android:paddingBottom="5dp"
-                    android:text="1.2"
+                    tools:text="1.2"
                     android:textSize="14sp" />
 
                 <TextView
@@ -258,12 +258,12 @@
                     android:layout_below="@id/song_rank_label"
                     android:paddingBottom="5dp"
                     android:paddingTop="10dp"
-                    android:text="连击等级"
+                    android:text="@string/combo_rank"
                     android:textSize="16sp" />
 
                 <Spinner
                     android:id="@+id/combo_rank_spinner"
-                    android:layout_width="100dp"
+                    android:layout_width="70dp"
                     android:layout_height="30dp"
                     android:layout_alignBottom="@id/combo_rank_label"
                     android:layout_toRightOf="@id/combo_rank_label"
@@ -276,7 +276,7 @@
                     android:layout_alignBottom="@id/combo_rank_spinner"
                     android:layout_toRightOf="@id/combo_rank_spinner"
                     android:paddingBottom="5dp"
-                    android:text="加成倍率："
+                    android:text="@string/combo_rank_addition"
                     android:textSize="14sp" />
 
                 <TextView
@@ -286,7 +286,7 @@
                     android:layout_alignBottom="@id/combo_rank_addition_ratio_label"
                     android:layout_toRightOf="@id/combo_rank_addition_ratio_label"
                     android:paddingBottom="5dp"
-                    android:text="1.06"
+                    tools:text="1.06"
                     android:textSize="14sp" />
 
                 <LinearLayout
@@ -300,8 +300,7 @@
                         android:layout_height="wrap_content"
                         android:paddingBottom="10dp"
                         android:paddingTop="10dp"
-                        android:text="剩余LP"
-
+                        android:text="@string/current_last_lp"
                         android:textSize="16sp" />
 
                     <EditText
@@ -319,7 +318,7 @@
                         android:layout_height="wrap_content"
                         android:paddingBottom="10dp"
                         android:paddingTop="10dp"
-                        android:text="当前经验"
+                        android:text="@string/current_experience"
                         android:textSize="16sp" />
 
                     <EditText
@@ -340,7 +339,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/button_group"
                 android:layout_marginTop="5dp"
-                tools:visibility="gone">
+                tools:visibility="visible">
 
                 <LinearLayout
                     android:id="@+id/event_end_time"
@@ -353,7 +352,7 @@
                         android:layout_height="wrap_content"
                         android:paddingBottom="10dp"
                         android:paddingTop="10dp"
-                        android:text="活动结束时间"
+                        android:text="@string/event_end_time"
                         android:textSize="16sp" />
 
                     <EditText
@@ -371,7 +370,7 @@
                         android:layout_height="wrap_content"
                         android:paddingBottom="10dp"
                         android:paddingTop="10dp"
-                        android:text="日"
+                        android:text="@string/day_unit"
                         android:textSize="16sp" />
 
                     <EditText
@@ -389,7 +388,7 @@
                         android:layout_height="wrap_content"
                         android:paddingBottom="10dp"
                         android:paddingTop="10dp"
-                        android:text="时"
+                        android:text="@string/hour_unit"
                         android:textSize="16sp" />
 
                 </LinearLayout>
@@ -406,7 +405,7 @@
                         android:layout_height="wrap_content"
                         android:paddingBottom="10dp"
                         android:paddingTop="10dp"
-                        android:text="活动剩余时间"
+                        android:text="@string/event_last_time"
                         android:textSize="16sp" />
 
                     <EditText
@@ -424,7 +423,7 @@
                         android:layout_height="wrap_content"
                         android:paddingBottom="10dp"
                         android:paddingTop="10dp"
-                        android:text="时"
+                        android:text="@string/hour_unit"
                         android:textSize="16sp" />
 
                 </LinearLayout>
@@ -440,6 +439,6 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="20dp"
         android:background="@color/colorOrange100"
-        android:text="开始计算" />
+        android:text="@string/calculate" />
 
 </RelativeLayout>

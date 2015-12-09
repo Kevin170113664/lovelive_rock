@@ -52,6 +52,27 @@
     <string name="max_card_number_default">0</string>
     <string name="event_default_value">0</string>
     <string name="medley_festival_calculator_label">MF calculator</string>
+    <string name="objective_points">Objective Points</string>
+    <string name="current_points">Current Points</string>
+    <string name="current_rank">Current Rank</string>
+    <string name="song_amount">Song Amount</string>
+    <string name="difficulty">Difficulty</string>
+    <string name="advanced_options">Advanced Options</string>
+    <string name="event_time">Event Time</string>
+    <string name="wasted_lp_every_day">Wasted LP Every Day</string>
+    <string name="event_points_addition">Pt Addition</string>
+    <string name="experience_addition">Exp Addition</string>
+    <string name="song_rank">Song Rank</string>
+    <string name="song_rank_addition_ratio">Addition Ratio:</string>
+    <string name="combo_rank">Combo Rank</string>
+    <string name="combo_rank_addition">Addition:</string>
+    <string name="current_last_lp">Current Last LP</string>
+    <string name="current_experience">Current Exp</string>
+    <string name="event_end_time">Event End Time</string>
+    <string name="event_last_time">Event Last Time</string>
+    <string name="day_unit">Day</string>
+    <string name="hour_unit">Hour</string>
+    <string name="calculate">Calculate</string>
 
     <string-array name="rarity_array">
         <item>Rarity</item>

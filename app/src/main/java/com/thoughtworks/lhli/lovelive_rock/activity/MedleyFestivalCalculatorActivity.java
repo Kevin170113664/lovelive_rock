@@ -17,7 +17,7 @@ public class MedleyFestivalCalculatorActivity extends BaseActivity {
     @Bind(R.id.advanced_options_button)
     Button advancedOptionsButton;
 
-    @Bind(R.id.event_end_time_button)
+    @Bind(R.id.event_time_button)
     Button eventEndTimeButton;
 
     @Bind(R.id.advanced_options)
