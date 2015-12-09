@@ -38,6 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/objective_points_label"
                 android:layout_toRightOf="@id/objective_points_label"
+                android:inputType="number"
                 android:text="0"
                 android:textSize="14sp" />
 
@@ -57,6 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/existing_points_label"
                 android:layout_toRightOf="@id/existing_points_label"
+                android:inputType="number"
                 android:text="0"
                 android:textSize="14sp" />
 
@@ -70,59 +72,67 @@
                 android:text="当前等级"
                 android:textSize="16sp" />
 
+
             <EditText
                 android:id="@+id/current_rank_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/current_rank_label"
                 android:layout_toRightOf="@id/current_rank_label"
+                android:inputType="number"
                 android:text="0"
                 android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/song_amount_label"
-                android:layout_width="wrap_content"
+
+            <LinearLayout
+                android:id="@+id/song_and_difficulty"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/current_rank_label"
-                android:paddingBottom="5dp"
-                android:paddingTop="10dp"
-                android:text="曲目数"
-                android:textSize="16sp" />
+                android:orientation="horizontal">
 
-            <Spinner
-                android:id="@+id/song_amount_spinner"
-                android:layout_width="80dp"
-                android:layout_height="30dp"
-                android:layout_alignBottom="@id/song_amount_label"
-                android:layout_toRightOf="@id/song_amount_label"
-                android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/song_amount_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="曲目数"
+                    android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/difficulty_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/song_amount_label"
-                android:layout_toRightOf="@id/song_amount_spinner"
-                android:paddingBottom="5dp"
-                android:paddingTop="10dp"
-                android:text="难度"
-                android:textSize="16sp" />
+                <Spinner
+                    android:id="@+id/song_amount_spinner"
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:layout_weight=".5"
+                    android:layout_marginRight="5dp"
+                    android:textSize="14sp" />
 
-            <Spinner
-                android:id="@+id/difficulty_spinner"
-                android:layout_width="80dp"
-                android:layout_height="30dp"
-                android:layout_alignBottom="@id/song_amount_label"
-                android:layout_toRightOf="@id/difficulty_label"
-                android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/difficulty_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="难度"
+                    android:textSize="16sp" />
+
+                <Spinner
+                    android:id="@+id/difficulty_spinner"
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:layout_weight=".5"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/button_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/song_amount_label">
+                android:layout_marginTop="5dp"
+                android:layout_below="@id/song_and_difficulty">
 
                 <Button
+                    android:id="@+id/advanced_options_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight=".5"
@@ -130,6 +140,7 @@
                     android:text="高级选项" />
 
                 <Button
+                    android:id="@+id/event_end_time_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight=".5"
@@ -160,6 +171,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@id/wasted_lp_every_day_label"
                     android:layout_toRightOf="@id/wasted_lp_every_day_label"
+                    android:inputType="number"
                     android:text="0"
                     android:textSize="14sp" />
 
@@ -182,7 +194,8 @@
                     <CheckBox
                         android:id="@+id/event_points_addition"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:checked="true" />
 
                     <TextView
                         android:id="@+id/experience_addition_label"
@@ -296,6 +309,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight=".5"
+                        android:inputType="number"
                         android:text="0"
                         android:textSize="14sp" />
 
@@ -313,6 +327,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight=".5"
+                        android:inputType="number"
                         android:text="0"
                         android:textSize="14sp" />
 
@@ -325,7 +340,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/button_group"
                 android:layout_marginTop="5dp"
-                tools:visibility="gone">
+                tools:visibility="visible">
 
                 <LinearLayout
                     android:id="@+id/event_end_time"
@@ -346,6 +361,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight=".5"
+                        android:inputType="number"
                         android:text="0"
                         android:textSize="14sp" />
 
@@ -363,6 +379,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight=".5"
+                        android:inputType="number"
                         android:text="0"
                         android:textSize="14sp" />
 
@@ -397,6 +414,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight=".5"
+                        android:inputType="number"
                         android:text="0"
                         android:textSize="14sp" />
 

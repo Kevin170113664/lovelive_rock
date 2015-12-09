@@ -144,6 +144,10 @@ public class MainActivity extends BaseActivity {
             startActivity(new Intent(this, EventActivity.class));
             return true;
         }
+        if (id == R.id.action_mf_calculator) {
+            startActivity(new Intent(this, MedleyFestivalCalculatorActivity.class));
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }

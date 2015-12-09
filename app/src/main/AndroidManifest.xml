@@ -25,22 +25,27 @@
         </activity>
         <activity
             android:name=".activity.CardActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/card_layout_label" />
+            android:label="@string/card_layout_label"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.CardDetailActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/card_detail_layout_label" />
+            android:label="@string/card_detail_layout_label"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.FullScreenCardActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/card_full_screen_label" />
+            android:label="@string/card_full_screen_label"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.EventActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/event_layout_label" />
-        <activity android:name=".activity.EventDetailActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/event_detail_label"/>
+            android:label="@string/event_layout_label"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.EventDetailActivity"
+            android:label="@string/event_detail_label"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.MedleyFestivalCalculatorActivity"
+            android:label="@string/medley_festival_calculator_label"
+            android:screenOrientation="portrait" />
     </application>
 </manifest>

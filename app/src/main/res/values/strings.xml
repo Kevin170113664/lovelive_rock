@@ -3,6 +3,7 @@
     <string name="action_card">Card</string>
     <string name="action_song">Song</string>
     <string name="action_event">Event</string>
+    <string name="action_mf_calculator">MF calculator</string>
     <string name="filter_dialog_title">Filter</string>
 
     <string name="toast_function_not_complete">Sorry, this is unavailable now.</string>
@@ -50,6 +51,7 @@
     <string name="first_download_tips">Download all the data may need 3 to 5 minutes at the first time.</string>
     <string name="max_card_number_default">0</string>
     <string name="event_default_value">0</string>
+    <string name="medley_festival_calculator_label">MF calculator</string>
 
     <string-array name="rarity_array">
         <item>Rarity</item>
@@ -182,5 +184,44 @@
         <item>Timer Yell</item>
         <item>Rhythmical Yell</item>
         <item>Perfect Yell</item>
+    </string-array>
+    <string-array name="song_amount">
+        <item>3</item>
+        <item>2</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="difficulty">
+        <item>Expert</item>
+        <item>Hard</item>
+        <item>Normal</item>
+        <item>Easy</item>
+    </string-array>
+    <string-array name="song_rank">
+        <item>S</item>
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>-</item>
+    </string-array>
+    <string-array name="song_rank_ratio">
+        <item>1.2</item>
+        <item>1.15</item>
+        <item>1.1</item>
+        <item>1.05</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="combo_rank">
+        <item>S</item>
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>-</item>
+    </string-array>
+    <string-array name="combo_rank_ratio">
+        <item>1.08</item>
+        <item>1.06</item>
+        <item>1.04</item>
+        <item>1.02</item>
+        <item>1</item>
     </string-array>
 </resources>
