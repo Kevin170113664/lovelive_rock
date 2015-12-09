@@ -95,7 +95,7 @@
                     android:id="@+id/song_amount_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:text="曲目数"
                     android:textSize="16sp" />
 
@@ -111,7 +111,7 @@
                     android:id="@+id/difficulty_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:text="难度"
                     android:textSize="16sp" />
 
@@ -154,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/button_group"
                 android:layout_marginTop="5dp"
-                tools:visibility="gone">
+                tools:visibility="visible">
 
                 <TextView
                     android:id="@+id/wasted_lp_every_day_label"
@@ -340,7 +340,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/button_group"
                 android:layout_marginTop="5dp"
-                tools:visibility="visible">
+                tools:visibility="gone">
 
                 <LinearLayout
                     android:id="@+id/event_end_time"
