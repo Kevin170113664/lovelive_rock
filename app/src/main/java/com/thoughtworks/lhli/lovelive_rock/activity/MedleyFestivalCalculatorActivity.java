@@ -2,12 +2,16 @@ package com.thoughtworks.lhli.lovelive_rock.activity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.thoughtworks.lhli.lovelive_rock.R;
+
+import java.util.HashMap;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -38,7 +42,15 @@ public class MedleyFestivalCalculatorActivity extends BaseActivity {
     @Bind(R.id.combo_rank_spinner)
     Spinner comboRankSpinner;
 
+    @Bind(R.id.song_rank_addition_ratio)
+    TextView songRankAdditionRatio;
+
+    @Bind(R.id.combo_rank_addition_ratio)
+    TextView comboRankAdditionRatio;
+
     private ArrayAdapter<CharSequence> adapter;
+    HashMap<String, String> songRankMap = new HashMap<>();
+    HashMap<String, String> comboRankMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +61,48 @@ public class MedleyFestivalCalculatorActivity extends BaseActivity {
         advancedOptionsLayout.setVisibility(View.GONE);
         eventTimeLayout.setVisibility(View.GONE);
 
+        initialiseRankMap();
         setDropdownList();
         setButtonOnClickListener();
+        setSpinnerSelectedListener();
+    }
+
+    private void setSpinnerSelectedListener() {
+        songRankSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                songRankAdditionRatio.setText(songRankMap.get(songRankSpinner.getSelectedItem().toString()));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        comboRankSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                comboRankAdditionRatio.setText(comboRankMap.get(comboRankSpinner.getSelectedItem().toString()));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+    }
+
+    private void initialiseRankMap() {
+        songRankMap.put("S", "1.2");
+        songRankMap.put("A", "1.15");
+        songRankMap.put("B", "1.1");
+        songRankMap.put("C", "1.05");
+        songRankMap.put("-", "1");
+
+        comboRankMap.put("S", "1.08");
+        comboRankMap.put("A", "1.06");
+        comboRankMap.put("B", "1.04");
+        comboRankMap.put("C", "1.02");
+        comboRankMap.put("-", "1");
     }
 
     private void setDropdownList() {

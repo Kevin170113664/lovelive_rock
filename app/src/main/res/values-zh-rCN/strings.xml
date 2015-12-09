@@ -63,6 +63,7 @@
     <string name="event_last_time">活动剩余时间</string>
     <string name="day_unit">日</string>
     <string name="hour_unit">时</string>
+    <string name="calculate">开始计算</string>
 
     <string-array name="rarity_array">
         <item>稀有度</item>
