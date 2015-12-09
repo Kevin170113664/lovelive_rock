@@ -73,50 +73,22 @@ public class FilterDialogFragment extends DialogFragment {
     }
 
     private void setDropDownList() {
-        adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.rarity_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        raritySpinner.setAdapter(adapter);
+        setSpinnerAdapter(raritySpinner, R.array.rarity_array);
+        setSpinnerAdapter(idolSpinner, R.array.idol_array);
+        setSpinnerAdapter(attributeSpinner, R.array.attribute_array);
+        setSpinnerAdapter(gradeSpinner, R.array.grade_array);
+        setSpinnerAdapter(subTeamSpinner, R.array.sub_team_array);
+        setSpinnerAdapter(skillTypeSpinner, R.array.skill_type_array);
+        setSpinnerAdapter(eventSpinner, R.array.is_event_card_or_not);
+        setSpinnerAdapter(promoSpinner, R.array.is_promo_or_not);
+        setSpinnerAdapter(collectionSpinner, R.array.collection_array);
+    }
 
+    private void setSpinnerAdapter(Spinner spinner, int resourceId) {
         adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.idol_array, android.R.layout.simple_spinner_item);
+                resourceId, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        idolSpinner.setAdapter(adapter);
-
-        adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.attribute_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        attributeSpinner.setAdapter(adapter);
-
-        adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.grade_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        gradeSpinner.setAdapter(adapter);
-
-        adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.sub_team_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        subTeamSpinner.setAdapter(adapter);
-
-        adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.skill_type_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        skillTypeSpinner.setAdapter(adapter);
-
-        adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.is_event_card_or_not, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        eventSpinner.setAdapter(adapter);
-
-        adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.is_promo_or_not, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        promoSpinner.setAdapter(adapter);
-
-        adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.collection_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        collectionSpinner.setAdapter(adapter);
+        spinner.setAdapter(adapter);
     }
 
     @Override
