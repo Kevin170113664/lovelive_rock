@@ -77,9 +77,9 @@
     <string name="final_points">Final Points</string>
     <string name="final_rank">Final Rank</string>
     <string name="final_experience">Final Experience</string>
-    <string name="game_frequency">Game Frequency</string>
-    <string name="game_time">Total Game Time</string>
-    <string name="game_time_ratio">Game Time Ratio</string>
+    <string name="play_frequency">Play Frequency</string>
+    <string name="play_time">Total Play Time</string>
+    <string name="play_time_ratio">Play Time Ratio</string>
     <string name="calculation_report_default">-</string>
     <string name="result_report">Report</string>
 

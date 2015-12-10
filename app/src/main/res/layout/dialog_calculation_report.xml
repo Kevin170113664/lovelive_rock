@@ -98,11 +98,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
-            android:text="@string/game_frequency"
+            android:text="@string/play_frequency"
             android:textSize="@dimen/text_size_default" />
 
         <TextView
-            android:id="@+id/game_frequency_text"
+            android:id="@+id/play_frequency_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/calculation_report_default"
@@ -119,7 +119,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
-            android:text="@string/game_time"
+            android:text="@string/play_time"
             android:textSize="@dimen/text_size_default" />
 
         <TextView
@@ -140,11 +140,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
-            android:text="@string/game_time_ratio"
+            android:text="@string/play_time_ratio"
             android:textSize="@dimen/text_size_default" />
 
         <TextView
-            android:id="@+id/game_time_ratio_text"
+            android:id="@+id/play_time_ratio_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/calculation_report_default"

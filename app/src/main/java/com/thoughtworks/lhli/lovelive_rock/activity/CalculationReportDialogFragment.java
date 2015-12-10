@@ -30,14 +30,14 @@ public class CalculationReportDialogFragment extends DialogFragment {
     @Bind(R.id.final_experience_text)
     protected TextView finalExperienceText;
 
-    @Bind(R.id.game_frequency_text)
-    protected TextView gameFrequencyText;
+    @Bind(R.id.play_frequency_text)
+    protected TextView playFrequencyText;
 
     @Bind(R.id.total_time_text)
     protected TextView totalTimeText;
 
-    @Bind(R.id.game_time_ratio_text)
-    protected TextView gameTimeRatioText;
+    @Bind(R.id.play_time_ratio_text)
+    protected TextView playTimeRatioText;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

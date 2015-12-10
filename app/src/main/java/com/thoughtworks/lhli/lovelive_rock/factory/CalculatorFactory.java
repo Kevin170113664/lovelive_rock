@@ -80,32 +80,8 @@ public class CalculatorFactory {
         }
     }
 
-    protected long getPointsWithinOncePlay() {
-        double points = getMfBasicPoints();
-        points = points * songRankRatio * comboRankRatio;
-        return pointAddition ? Math.round(points * 1.1) : Math.round(points);
-    }
-
-    protected long getExperienceWithinOncePlay() {
-        HashMap<String, Long> experienceMap = new HashMap<>();
-
-        experienceMap.put("Easy", 12L);
-        experienceMap.put("Normal", 26L);
-        experienceMap.put("Hard", 46L);
-        experienceMap.put("Expert", 83L);
-
-        long basicExperience = experienceMap.get(difficulty) * songAmount;
-        basicExperience = songRankRatio == 1 ? basicExperience / 2 : basicExperience;
-
-        return experienceAddition ? Math.round(basicExperience * 1.1) : basicExperience;
-    }
-
-    protected long getTotalExperience() {
-        return getTimesNeedToPlay() * getExperienceWithinOncePlay();
-    }
-
-    public long getTimesNeedToPlay() {
-        return Math.round((objectivePoints - currentPoints) / getPointsWithinOncePlay());
+    public long getFinalPoints() {
+        return currentPoints + getTotalPoints();
     }
 
     public long getFinalRank() {
@@ -134,6 +110,56 @@ public class CalculatorFactory {
 
         currentRank = originCurrentRank;
         return experience;
+    }
+
+    public long getTimesNeedToPlay() {
+        return Math.round((objectivePoints - currentPoints) / getPointsWithinOncePlay());
+    }
+
+    public long getTotalPlayMinutes() {
+        return getMinutesWithinOncePlay() * getTimesNeedToPlay();
+    }
+
+    public long getPlayTimeRatio() {
+        return Math.round(getTotalPlayMinutes() / eventLastTime * 60 * 100);
+    }
+
+    protected long getMinutesWithinOncePlay() {
+        HashMap<Integer, Integer> consumeTimeMap = new HashMap<>();
+
+        consumeTimeMap.put(1, 3);
+        consumeTimeMap.put(2, 5);
+        consumeTimeMap.put(3, 7);
+
+        return consumeTimeMap.get(songAmount);
+    }
+
+    protected long getPointsWithinOncePlay() {
+        double points = getMfBasicPoints();
+        points = points * songRankRatio * comboRankRatio;
+        return pointAddition ? Math.round(points * 1.1) : Math.round(points);
+    }
+
+    protected long getExperienceWithinOncePlay() {
+        HashMap<String, Long> experienceMap = new HashMap<>();
+
+        experienceMap.put("Easy", 12L);
+        experienceMap.put("Normal", 26L);
+        experienceMap.put("Hard", 46L);
+        experienceMap.put("Expert", 83L);
+
+        long basicExperience = experienceMap.get(difficulty) * songAmount;
+        basicExperience = songRankRatio == 1 ? basicExperience / 2 : basicExperience;
+
+        return experienceAddition ? Math.round(basicExperience * 1.1) : basicExperience;
+    }
+
+    protected long getTotalPoints() {
+        return getTimesNeedToPlay() * getPointsWithinOncePlay();
+    }
+
+    protected long getTotalExperience() {
+        return getTimesNeedToPlay() * getExperienceWithinOncePlay();
     }
 
     protected long getRankUpExp() {

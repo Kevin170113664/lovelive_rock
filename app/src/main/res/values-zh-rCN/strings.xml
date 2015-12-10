@@ -68,9 +68,9 @@
     <string name="final_points">最终点数</string>
     <string name="final_rank">最终等级</string>
     <string name="final_experience">最终经验</string>
-    <string name="game_frequency">游戏次数</string>
-    <string name="game_time">游戏时间</string>
-    <string name="game_time_ratio">游戏时间覆盖率</string>
+    <string name="play_frequency">游戏次数</string>
+    <string name="play_time">游戏时间</string>
+    <string name="play_time_ratio">游戏时间覆盖率</string>
     <string name="result_report">结果报告</string>
 
     <string-array name="rarity_array">
