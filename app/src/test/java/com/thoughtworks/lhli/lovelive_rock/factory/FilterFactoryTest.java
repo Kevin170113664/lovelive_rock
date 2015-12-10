@@ -1,6 +1,8 @@
-package com.thoughtworks.lhli.lovelive_rock;
+package com.thoughtworks.lhli.lovelive_rock.factory;
 
-import com.thoughtworks.lhli.lovelive_rock.factory.FilterFactory;
+import com.thoughtworks.lhli.lovelive_rock.BuildConfig;
+import com.thoughtworks.lhli.lovelive_rock.LoveLiveApp;
+import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 import com.thoughtworks.lhli.lovelive_rock.model.EventModel;
 
