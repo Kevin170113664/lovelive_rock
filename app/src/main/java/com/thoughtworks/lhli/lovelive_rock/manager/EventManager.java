@@ -47,8 +47,14 @@ public class EventManager {
         if (response.isSuccess()) {
             eventModelList.addAll(Arrays.asList(response.body().getResults()));
             EventBus.getDefault().post(new LatestEventEvent(eventModelList));
-            LoveLiveApp.getInstance().setLatestEventName(eventModelList.get(0).getJapaneseName());
+            setLatestEventInfo();
         }
+    }
+
+    private void setLatestEventInfo() {
+        LoveLiveApp.getInstance().setLatestEventName(eventModelList.get(0).getJapaneseName());
+        LoveLiveApp.getInstance().setLatestEventBeginning(eventModelList.get(0).getBeginning());
+        LoveLiveApp.getInstance().setLatestEventEnd(eventModelList.get(0).getEnd());
     }
 
     private void queryEventFromDatabase() {

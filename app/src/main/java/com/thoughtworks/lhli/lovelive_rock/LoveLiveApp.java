@@ -8,8 +8,10 @@ import android.net.NetworkInfo;
 public class LoveLiveApp extends Application {
 
     private static LoveLiveApp instance;
-    private String maxCardNumber = "738";
-    private String latestEventName = "Score Match Round 22";
+    private String maxCardNumber;
+    private String latestEventName;
+    private String latestEventBeginning;
+    private String latestEventEnd;
 
     @Override
     public void onCreate() {
@@ -35,6 +37,22 @@ public class LoveLiveApp extends Application {
 
     public String getLatestEventName() {
         return latestEventName;
+    }
+
+    public String getLatestEventEnd() {
+        return latestEventEnd;
+    }
+
+    public void setLatestEventEnd(String latestEventEnd) {
+        this.latestEventEnd = latestEventEnd;
+    }
+
+    public String getLatestEventBeginning() {
+        return latestEventBeginning;
+    }
+
+    public void setLatestEventBeginning(String latestEventBeginning) {
+        this.latestEventBeginning = latestEventBeginning;
     }
 
     public Boolean isNetworkAvailable() {

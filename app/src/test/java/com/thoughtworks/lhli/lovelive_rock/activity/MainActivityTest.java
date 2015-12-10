@@ -1,10 +1,10 @@
-package com.thoughtworks.lhli.lovelive_rock;
+package com.thoughtworks.lhli.lovelive_rock.activity;
 
 import android.content.Intent;
 import android.view.MenuItem;
 
-import com.thoughtworks.lhli.lovelive_rock.activity.CardActivity;
-import com.thoughtworks.lhli.lovelive_rock.activity.MainActivity;
+import com.thoughtworks.lhli.lovelive_rock.BuildConfig;
+import com.thoughtworks.lhli.lovelive_rock.R;
 
 import org.junit.Before;
 import org.junit.Test;

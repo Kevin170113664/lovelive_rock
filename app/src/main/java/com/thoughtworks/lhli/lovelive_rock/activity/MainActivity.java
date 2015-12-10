@@ -131,22 +131,20 @@ public class MainActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_song) {
-            Toast.makeText(getApplicationContext(), getString(R.string.toast_function_not_complete),
-                    Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        if (id == R.id.action_card) {
-            startActivity(new Intent(this, CardActivity.class));
-            return true;
-        }
-        if (id == R.id.action_event) {
-            startActivity(new Intent(this, EventActivity.class));
-            return true;
-        }
-        if (id == R.id.action_mf_calculator) {
-            startActivity(new Intent(this, MedleyFestivalCalculatorActivity.class));
-            return true;
+        switch (id) {
+            case R.id.action_song:
+                Toast.makeText(getApplicationContext(), getString(R.string.toast_function_not_complete),
+                        Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.action_card:
+                startActivity(new Intent(this, CardActivity.class));
+                return true;
+            case R.id.action_event:
+                startActivity(new Intent(this, EventActivity.class));
+                return true;
+            case R.id.action_mf_calculator:
+                startActivity(new Intent(this, MedleyFestivalCalculatorActivity.class));
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
