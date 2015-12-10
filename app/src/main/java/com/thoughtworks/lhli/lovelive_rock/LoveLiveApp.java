@@ -9,9 +9,9 @@ public class LoveLiveApp extends Application {
 
     private static LoveLiveApp instance;
     private String maxCardNumber = "0";
-    private String latestEventName;
-    private String latestEventBeginning;
-    private String latestEventEnd;
+    private String latestEventName = "";
+    private String latestEventBeginning = "";
+    private String latestEventEnd = "";
 
     @Override
     public void onCreate() {

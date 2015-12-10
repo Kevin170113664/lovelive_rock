@@ -17,14 +17,12 @@ import retrofit.Response;
 
 public class EventManager {
 
-    private String latestEventName;
     private List<EventModel> eventModelList;
     DatabaseManager databaseManager;
 
     public EventManager(List<EventModel> eventModelList) {
         this.eventModelList = eventModelList;
         this.databaseManager = new DatabaseManager();
-        this.latestEventName = LoveLiveApp.getInstance().getLatestEventName();
     }
 
     public void getEventModelList() throws IOException {
@@ -58,7 +56,7 @@ public class EventManager {
     }
 
     private void queryEventFromDatabase() {
-        EventModel eventModel = databaseManager.queryLatestEvent(latestEventName);
+        EventModel eventModel = databaseManager.queryLatestEvent();
         if (eventModel != null && eventModel.getJapaneseName() != null) {
             eventModelList.add(eventModel);
             EventBus.getDefault().post(new LatestEventEvent(eventModelList));

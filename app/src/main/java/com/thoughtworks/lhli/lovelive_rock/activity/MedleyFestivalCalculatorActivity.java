@@ -13,8 +13,7 @@ import com.thoughtworks.lhli.lovelive_rock.LoveLiveApp;
 import com.thoughtworks.lhli.lovelive_rock.R;
 
 import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
-import org.joda.time.LocalDateTime;
+import org.joda.time.Duration;
 
 import java.util.HashMap;
 
@@ -59,6 +58,9 @@ public class MedleyFestivalCalculatorActivity extends BaseActivity {
     @Bind(R.id.event_end_hour_text)
     TextView eventEndHourText;
 
+    @Bind(R.id.event_last_time_text)
+    TextView eventLastTimeText;
+
     HashMap<String, String> songRankMap = new HashMap<>();
     HashMap<String, String> comboRankMap = new HashMap<>();
 
@@ -79,11 +81,15 @@ public class MedleyFestivalCalculatorActivity extends BaseActivity {
     }
 
     protected void setEventEndTime() {
-        LocalDateTime japaneseDateTime = new LocalDateTime(DateTime.parse(LoveLiveApp.getInstance().getLatestEventEnd()));
-        DateTime localDateTime = new LocalDateTime(japaneseDateTime).toDateTime(DateTimeZone.UTC);
+        if (!LoveLiveApp.getInstance().getLatestEventEnd().equals("")) {
+            DateTime japaneseDateTime = DateTime.parse(LoveLiveApp.getInstance().getLatestEventEnd());
+            eventEndDayText.setText(String.format("%s", japaneseDateTime.getDayOfMonth()));
+            eventEndHourText.setText(String.format("%s", japaneseDateTime.getHourOfDay() - 1));
 
-        eventEndDayText.setText(String.format("%s", localDateTime.getDayOfMonth()));
-        eventEndHourText.setText(String.format("%s", localDateTime.getHourOfDay() - 1));
+            DateTime today = new DateTime();
+            Duration duration = new Duration(today, japaneseDateTime);
+            eventLastTimeText.setText(String.format("%s", duration.getStandardHours()));
+        }
     }
 
     private void setSpinnerSelectedListener() {

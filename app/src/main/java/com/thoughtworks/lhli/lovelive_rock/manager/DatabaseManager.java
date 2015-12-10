@@ -204,11 +204,11 @@ public class DatabaseManager {
         }
     }
 
-    public EventModel queryLatestEvent(String japaneseName) {
+    public EventModel queryLatestEvent() {
         getEventDao(helper.getReadableDatabase());
 
         List<Event> eventList = eventDao.queryBuilder()
-                .where(EventDao.Properties.JapaneseName.eq(japaneseName))
+                .where(EventDao.Properties.JapanCurrent.eq(true))
                 .list();
         if (eventList.size() != 0) {
             return modelMapper.map(eventList.get(0), EventModel.class);
