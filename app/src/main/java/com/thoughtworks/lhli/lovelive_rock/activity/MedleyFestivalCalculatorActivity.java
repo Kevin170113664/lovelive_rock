@@ -13,6 +13,8 @@ import com.thoughtworks.lhli.lovelive_rock.LoveLiveApp;
 import com.thoughtworks.lhli.lovelive_rock.R;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.LocalDateTime;
 
 import java.util.HashMap;
 
@@ -77,10 +79,11 @@ public class MedleyFestivalCalculatorActivity extends BaseActivity {
     }
 
     protected void setEventEndTime() {
-        String originEventEndTime = LoveLiveApp.getInstance().getLatestEventEnd();
-        DateTime d = DateTime.parse(LoveLiveApp.getInstance().getLatestEventEnd());
-        int day = d.getDayOfMonth();
-        int hour = d.getHourOfDay();
+        LocalDateTime japaneseDateTime = new LocalDateTime(DateTime.parse(LoveLiveApp.getInstance().getLatestEventEnd()));
+        DateTime localDateTime = new LocalDateTime(japaneseDateTime).toDateTime(DateTimeZone.UTC);
+
+        eventEndDayText.setText(String.format("%s", localDateTime.getDayOfMonth()));
+        eventEndHourText.setText(String.format("%s", localDateTime.getHourOfDay() - 1));
     }
 
     private void setSpinnerSelectedListener() {
