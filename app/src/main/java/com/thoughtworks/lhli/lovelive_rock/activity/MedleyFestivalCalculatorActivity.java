@@ -9,7 +9,10 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.thoughtworks.lhli.lovelive_rock.LoveLiveApp;
 import com.thoughtworks.lhli.lovelive_rock.R;
+
+import org.joda.time.DateTime;
 
 import java.util.HashMap;
 
@@ -48,7 +51,12 @@ public class MedleyFestivalCalculatorActivity extends BaseActivity {
     @Bind(R.id.combo_rank_addition_ratio)
     TextView comboRankAdditionRatio;
 
-    private ArrayAdapter<CharSequence> adapter;
+    @Bind(R.id.event_end_day_text)
+    TextView eventEndDayText;
+
+    @Bind(R.id.event_end_hour_text)
+    TextView eventEndHourText;
+
     HashMap<String, String> songRankMap = new HashMap<>();
     HashMap<String, String> comboRankMap = new HashMap<>();
 
@@ -65,6 +73,14 @@ public class MedleyFestivalCalculatorActivity extends BaseActivity {
         setDropdownList();
         setButtonOnClickListener();
         setSpinnerSelectedListener();
+        setEventEndTime();
+    }
+
+    protected void setEventEndTime() {
+        String originEventEndTime = LoveLiveApp.getInstance().getLatestEventEnd();
+        DateTime d = DateTime.parse(LoveLiveApp.getInstance().getLatestEventEnd());
+        int day = d.getDayOfMonth();
+        int hour = d.getHourOfDay();
     }
 
     private void setSpinnerSelectedListener() {
@@ -113,7 +129,8 @@ public class MedleyFestivalCalculatorActivity extends BaseActivity {
     }
 
     private void setSpinnerAdapter(Spinner spinner, int resourceId) {
-        adapter = ArrayAdapter.createFromResource(this, resourceId, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, resourceId,
+                android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }

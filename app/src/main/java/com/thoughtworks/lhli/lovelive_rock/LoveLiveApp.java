@@ -8,7 +8,7 @@ import android.net.NetworkInfo;
 public class LoveLiveApp extends Application {
 
     private static LoveLiveApp instance;
-    private String maxCardNumber;
+    private String maxCardNumber = "0";
     private String latestEventName;
     private String latestEventBeginning;
     private String latestEventEnd;
