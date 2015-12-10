@@ -81,6 +81,7 @@
     <string name="game_time">Total Game Time</string>
     <string name="game_time_ratio">Game Time Ratio</string>
     <string name="calculation_report_default">-</string>
+    <string name="result_report">Report</string>
 
     <string-array name="rarity_array">
         <item>Rarity</item>

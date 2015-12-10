@@ -1,5 +1,6 @@
 package com.thoughtworks.lhli.lovelive_rock.activity;
 
+import android.app.DialogFragment;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,46 +21,49 @@ import butterknife.ButterKnife;
 public class MedleyFestivalCalculatorActivity extends BaseActivity {
 
     @Bind(R.id.advanced_options_button)
-    Button advancedOptionsButton;
+    protected Button advancedOptionsButton;
 
     @Bind(R.id.event_time_button)
-    Button eventEndTimeButton;
+    protected Button eventEndTimeButton;
 
     @Bind(R.id.advanced_options)
-    RelativeLayout advancedOptionsLayout;
+    protected RelativeLayout advancedOptionsLayout;
 
     @Bind(R.id.event_time)
-    RelativeLayout eventTimeLayout;
+    protected RelativeLayout eventTimeLayout;
 
     @Bind(R.id.song_amount_spinner)
-    Spinner songAmountSpinner;
+    protected Spinner songAmountSpinner;
 
     @Bind(R.id.difficulty_spinner)
-    Spinner difficultySpinner;
+    protected Spinner difficultySpinner;
 
     @Bind(R.id.song_rank_spinner)
-    Spinner songRankSpinner;
+    protected Spinner songRankSpinner;
 
     @Bind(R.id.combo_rank_spinner)
-    Spinner comboRankSpinner;
+    protected Spinner comboRankSpinner;
 
     @Bind(R.id.song_rank_addition_ratio)
-    TextView songRankAdditionRatio;
+    protected TextView songRankAdditionRatio;
 
     @Bind(R.id.combo_rank_addition_ratio)
-    TextView comboRankAdditionRatio;
+    protected TextView comboRankAdditionRatio;
 
     @Bind(R.id.event_end_day_text)
-    TextView eventEndDayText;
+    protected TextView eventEndDayText;
 
     @Bind(R.id.event_end_hour_text)
-    TextView eventEndHourText;
+    protected TextView eventEndHourText;
 
     @Bind(R.id.event_last_time_text)
-    TextView eventLastTimeText;
+    protected TextView eventLastTimeText;
 
-    HashMap<String, String> songRankMap = new HashMap<>();
-    HashMap<String, String> comboRankMap = new HashMap<>();
+    @Bind(R.id.calculate_button)
+    protected Button calculateButton;
+
+    private HashMap<String, String> songRankMap = new HashMap<>();
+    private HashMap<String, String> comboRankMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +79,14 @@ public class MedleyFestivalCalculatorActivity extends BaseActivity {
         setButtonOnClickListener();
         setSpinnerSelectedListener();
         setEventTimeFields();
+
+        calculateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment calculationReportDialogFragment = new CalculationReportDialogFragment();
+                calculationReportDialogFragment.show(getFragmentManager(), "dialog");
+            }
+        });
     }
 
     protected void setEventTimeFields() {

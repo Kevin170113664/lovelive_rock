@@ -52,8 +52,7 @@ public class FilterDialogFragment extends DialogFragment {
     private ArrayAdapter<CharSequence> adapter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Window window = getDialog().getWindow();
         window.setGravity(Gravity.TOP | Gravity.LEFT);
         WindowManager.LayoutParams params = window.getAttributes();

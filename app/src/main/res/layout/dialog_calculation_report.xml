@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
     android:orientation="vertical"
     android:padding="20dp">
 
@@ -16,14 +15,14 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:text="@string/necessary_loveca"
-            android:textSize="@dimen/text_size_large" />
+            android:textSize="@dimen/text_size_medium" />
 
         <TextView
             android:id="@+id/necessary_loveca_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/calculation_report_default"
-            android:textSize="@dimen/text_size_large" />
+            android:textSize="@dimen/text_size_medium" />
 
     </LinearLayout>
 
@@ -37,14 +36,14 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:text="@string/final_points"
-            android:textSize="@dimen/text_size_large" />
+            android:textSize="@dimen/text_size_medium" />
 
         <TextView
             android:id="@+id/final_points_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/calculation_report_default"
-            android:textSize="@dimen/text_size_large" />
+            android:textSize="@dimen/text_size_medium" />
 
     </LinearLayout>
 
@@ -58,14 +57,14 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:text="@string/final_rank"
-            android:textSize="@dimen/text_size_large" />
+            android:textSize="@dimen/text_size_medium" />
 
         <TextView
             android:id="@+id/final_rank_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/calculation_report_default"
-            android:textSize="@dimen/text_size_large" />
+            android:textSize="@dimen/text_size_medium" />
 
     </LinearLayout>
 
@@ -79,14 +78,14 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:text="@string/final_experience"
-            android:textSize="@dimen/text_size_large" />
+            android:textSize="@dimen/text_size_medium" />
 
         <TextView
             android:id="@+id/final_experience_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/calculation_report_default"
-            android:textSize="@dimen/text_size_large" />
+            android:textSize="@dimen/text_size_medium" />
 
     </LinearLayout>
 
@@ -100,14 +99,14 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:text="@string/game_frequency"
-            android:textSize="@dimen/text_size_large" />
+            android:textSize="@dimen/text_size_medium" />
 
         <TextView
             android:id="@+id/game_frequency_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/calculation_report_default"
-            android:textSize="@dimen/text_size_large" />
+            android:textSize="@dimen/text_size_medium" />
 
     </LinearLayout>
 
@@ -121,14 +120,14 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:text="@string/game_time"
-            android:textSize="@dimen/text_size_large" />
+            android:textSize="@dimen/text_size_medium" />
 
         <TextView
             android:id="@+id/total_time_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/calculation_report_default"
-            android:textSize="@dimen/text_size_large" />
+            android:textSize="@dimen/text_size_medium" />
 
     </LinearLayout>
 
@@ -142,14 +141,14 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:text="@string/game_time_ratio"
-            android:textSize="@dimen/text_size_large" />
+            android:textSize="@dimen/text_size_medium" />
 
         <TextView
-            android:id="@+id/game_time_ratio"
+            android:id="@+id/game_time_ratio_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/calculation_report_default"
-            android:textSize="@dimen/text_size_large" />
+            android:textSize="@dimen/text_size_medium" />
 
     </LinearLayout>
 </LinearLayout>
