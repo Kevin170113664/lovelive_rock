@@ -61,7 +61,7 @@ public class FilterDialogFragment extends DialogFragment {
         params.y = 150;
         window.setAttributes(params);
 
-        return inflater.inflate(R.layout.filter_dialog, container, false);
+        return inflater.inflate(R.layout.dialog_filter, container, false);
     }
 
     @Override

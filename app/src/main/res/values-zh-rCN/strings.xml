@@ -64,6 +64,13 @@
     <string name="day_unit">日</string>
     <string name="hour_unit">时</string>
     <string name="calculate">开始计算</string>
+    <string name="necessary_loveca">需要心数</string>
+    <string name="final_points">最终点数</string>
+    <string name="final_rank">最终等级</string>
+    <string name="final_experience">最终经验</string>
+    <string name="game_frequency">游戏次数</string>
+    <string name="game_time">游戏时间</string>
+    <string name="game_time_ratio">游戏时间覆盖率</string>
 
     <string-array name="rarity_array">
         <item>稀有度</item>
