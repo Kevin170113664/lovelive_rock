@@ -80,14 +80,60 @@ public class CalculatorFactory {
         }
     }
 
-    public long getPointsWithinOncePlay() {
+    protected long getPointsWithinOncePlay() {
         double points = getMfBasicPoints();
         points = points * songRankRatio * comboRankRatio;
         return pointAddition ? Math.round(points * 1.1) : Math.round(points);
     }
 
+    protected long getExperienceWithinOncePlay() {
+        HashMap<String, Long> experienceMap = new HashMap<>();
+
+        experienceMap.put("Easy", 12L);
+        experienceMap.put("Normal", 26L);
+        experienceMap.put("Hard", 46L);
+        experienceMap.put("Expert", 83L);
+
+        long basicExperience = experienceMap.get(difficulty) * songAmount;
+        basicExperience = songRankRatio == 1 ? basicExperience / 2 : basicExperience;
+
+        return experienceAddition ? Math.round(basicExperience * 1.1) : basicExperience;
+    }
+
+    protected long getTotalExperience() {
+        return getTimesNeedToPlay() * getExperienceWithinOncePlay();
+    }
+
     public long getTimesNeedToPlay() {
-        return 0L;
+        return Math.round((objectivePoints - currentPoints) / getPointsWithinOncePlay());
+    }
+
+    public long getFinalRank() {
+        long originCurrentRank = currentRank;
+        long finalRank = currentRank;
+        long experience = getTotalExperience() + currentExperience;
+
+        while (experience > getRankUpExp()) {
+            finalRank += 1;
+            currentRank += 1;
+            experience -= getRankUpExp();
+        }
+
+        currentRank = originCurrentRank;
+        return finalRank;
+    }
+
+    public long getFinalExperience() {
+        long originCurrentRank = currentRank;
+        long experience = getTotalExperience() + currentExperience;
+
+        while (experience > getRankUpExp()) {
+            currentRank += 1;
+            experience -= getRankUpExp();
+        }
+
+        currentRank = originCurrentRank;
+        return experience;
     }
 
     protected long getRankUpExp() {
