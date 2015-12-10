@@ -14,7 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.thoughtworks.lhli.lovelive_rock.FilterFactory;
+import com.thoughtworks.lhli.lovelive_rock.factory.FilterFactory;
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.adapter.GridCardListAdapter;
 import com.thoughtworks.lhli.lovelive_rock.adapter.SmallCardListAdapter;

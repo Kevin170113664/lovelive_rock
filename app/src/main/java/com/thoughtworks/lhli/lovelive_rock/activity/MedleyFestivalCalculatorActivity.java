@@ -9,11 +9,8 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.thoughtworks.lhli.lovelive_rock.LoveLiveApp;
 import com.thoughtworks.lhli.lovelive_rock.R;
-
-import org.joda.time.DateTime;
-import org.joda.time.Duration;
+import com.thoughtworks.lhli.lovelive_rock.factory.CalculatorFactory;
 
 import java.util.HashMap;
 
@@ -77,19 +74,14 @@ public class MedleyFestivalCalculatorActivity extends BaseActivity {
         setDropdownList();
         setButtonOnClickListener();
         setSpinnerSelectedListener();
-        setEventEndTime();
+        setEventTimeFields();
     }
 
-    protected void setEventEndTime() {
-        if (!LoveLiveApp.getInstance().getLatestEventEnd().equals("")) {
-            DateTime japaneseDateTime = DateTime.parse(LoveLiveApp.getInstance().getLatestEventEnd());
-            eventEndDayText.setText(String.format("%s", japaneseDateTime.getDayOfMonth()));
-            eventEndHourText.setText(String.format("%s", japaneseDateTime.getHourOfDay() - 1));
-
-            DateTime today = new DateTime();
-            Duration duration = new Duration(today, japaneseDateTime);
-            eventLastTimeText.setText(String.format("%s", duration.getStandardHours()));
-        }
+    protected void setEventTimeFields() {
+        CalculatorFactory calculatorFactory = new CalculatorFactory();
+        eventEndDayText.setText(calculatorFactory.getEventEndDay());
+        eventEndHourText.setText(calculatorFactory.getEventEndHour());
+        eventLastTimeText.setText(calculatorFactory.getEventLastTime());
     }
 
     private void setSpinnerSelectedListener() {

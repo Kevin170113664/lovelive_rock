@@ -14,7 +14,7 @@ public class MedleyFestivalCalculatorActivityTest {
 //    @Test
 //    public void shouldLoadEventEndTimeCorrectly() {
 //        stub(LoveLiveApp.getInstance().getLatestEventEnd()).toReturn("2015-12-15T15:00:00+09:00");
-//        activity.setEventEndTime();
+//        activity.setEventTimeFields();
 //
 //        assertEquals("15", activity.findViewById(R.id.event_end_day_text).toString());
 //        assertEquals("14", activity.findViewById(R.id.event_end_hour_text).toString());

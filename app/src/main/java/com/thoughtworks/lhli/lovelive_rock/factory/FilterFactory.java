@@ -1,7 +1,9 @@
-package com.thoughtworks.lhli.lovelive_rock;
+package com.thoughtworks.lhli.lovelive_rock.factory;
 
 import android.support.annotation.NonNull;
 
+import com.thoughtworks.lhli.lovelive_rock.LoveLiveApp;
+import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 
 import java.util.ArrayList;

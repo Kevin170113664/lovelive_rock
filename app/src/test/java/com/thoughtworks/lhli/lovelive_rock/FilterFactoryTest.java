@@ -1,5 +1,6 @@
 package com.thoughtworks.lhli.lovelive_rock;
 
+import com.thoughtworks.lhli.lovelive_rock.factory.FilterFactory;
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 import com.thoughtworks.lhli.lovelive_rock.model.EventModel;
 
