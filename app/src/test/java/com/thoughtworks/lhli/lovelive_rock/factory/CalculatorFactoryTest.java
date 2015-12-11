@@ -194,4 +194,56 @@ public class CalculatorFactoryTest {
 
         assertEquals("5小时38分钟", calculatorFactory.getTotalPlayTime());
     }
+
+    @Test
+    public void shouldCalculateTotalRankUpLpCorrectly() {
+        calculatorFactory = new CalculatorFactory() {
+            public long getFinalRank() {
+                return 303L;
+            }
+        };
+        calculatorFactory.setCurrentRank(298L);
+
+        assertEquals(873, calculatorFactory.getTotalRankUpLp());
+    }
+
+    @Test
+    public void shouldCalculateTotalWastedLpCorrectly() {
+        calculatorFactory.setWastedLpEveryDay(7L);
+        calculatorFactory.setEventEndDay(4L);
+
+        assertEquals(28, calculatorFactory.getTotalWastedLp());
+    }
+
+    @Test
+    public void shouldCalculateTotalRecoveryLpCorrectly() {
+        calculatorFactory.setEventLastTime(99.9);
+
+        assertEquals(999, calculatorFactory.getTotalRecoveryLp());
+    }
+
+    @Test
+    public void shouldCalculateLovecaAmountCorrectly() {
+        calculatorFactory = new CalculatorFactory() {
+            public long getLpShortage() {
+                return 2100L;
+            }
+
+            public long getBiggestLP() {
+                return 125L;
+            }
+        };
+        assertEquals(17, calculatorFactory.getLovecaAmount());
+
+        calculatorFactory = new CalculatorFactory() {
+            public long getLpShortage() {
+                return -3L;
+            }
+
+            public long getBiggestLP() {
+                return 125L;
+            }
+        };
+        assertEquals(0, calculatorFactory.getLovecaAmount());
+    }
 }

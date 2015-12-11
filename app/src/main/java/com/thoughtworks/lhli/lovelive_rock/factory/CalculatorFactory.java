@@ -81,7 +81,9 @@ public class CalculatorFactory {
     }
 
     public long getLovecaAmount() {
-        return 0L;
+        long lovecaAmount = getLpShortage() / getBiggestLP();
+        lovecaAmount = getLpShortage() % getBiggestLP() <= 0 ? lovecaAmount : lovecaAmount + 1;
+        return lovecaAmount < 0 ? 0 : lovecaAmount;
     }
 
     public long getFinalPoints() {
@@ -126,6 +128,34 @@ public class CalculatorFactory {
 
     public String getPlayTimeRatio() {
         return new DecimalFormat("0.0").format(getPlayTimeMinutes() / (eventLastTime * 60.0) * 100);
+    }
+
+    protected long getTotalRankUpLp() {
+        long rankUpLp = 0;
+        long originalRank = currentRank;
+
+        while (currentRank + 1 <= getFinalRank()) {
+            rankUpLp += getBiggestLP();
+            currentRank += 1;
+        }
+
+        currentRank = originalRank;
+        return rankUpLp;
+    }
+
+    protected long getTotalWastedLp() {
+        return wastedLpEveryDay * eventEndDay;
+    }
+
+    protected long getTotalRecoveryLp() {
+        return Math.round(eventLastTime * 10);
+    }
+
+    protected long getLpShortage() {
+        long necessaryLp = getTimesNeedToPlay() * songAmount * getMfConsumeLp();
+        long freeLp = currentLp + getTotalRankUpLp() + getTotalRecoveryLp() - getTotalWastedLp();
+
+        return necessaryLp - freeLp;
     }
 
     protected long getPlayTimeMinutes() {
