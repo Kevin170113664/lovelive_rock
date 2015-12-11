@@ -80,6 +80,10 @@ public class CalculatorFactory {
         }
     }
 
+    public long getLovecaAmount() {
+        return 0L;
+    }
+
     public long getFinalPoints() {
         return currentPoints + getTotalPoints();
     }
@@ -90,9 +94,9 @@ public class CalculatorFactory {
         long experience = getTotalExperience() + currentExperience;
 
         while (experience > getRankUpExp()) {
+            experience -= getRankUpExp();
             finalRank += 1;
             currentRank += 1;
-            experience -= getRankUpExp();
         }
 
         currentRank = originCurrentRank;
@@ -104,8 +108,8 @@ public class CalculatorFactory {
         long experience = getTotalExperience() + currentExperience;
 
         while (experience > getRankUpExp()) {
-            currentRank += 1;
             experience -= getRankUpExp();
+            currentRank += 1;
         }
 
         currentRank = originCurrentRank;
@@ -113,15 +117,19 @@ public class CalculatorFactory {
     }
 
     public long getTimesNeedToPlay() {
-        return Math.round((objectivePoints - currentPoints) / getPointsWithinOncePlay());
+        return Math.round((objectivePoints - currentPoints) / getPointsWithinOncePlay()) + 1;
     }
 
-    public long getTotalPlayMinutes() {
+    public String getTotalPlayTime() {
+        return String.format("%s小时%s分钟", getPlayTimeMinutes() / 60, getPlayTimeMinutes() % 60);
+    }
+
+    public String getPlayTimeRatio() {
+        return new DecimalFormat("0.0").format(getPlayTimeMinutes() / (eventLastTime * 60.0) * 100);
+    }
+
+    protected long getPlayTimeMinutes() {
         return getMinutesWithinOncePlay() * getTimesNeedToPlay();
-    }
-
-    public long getPlayTimeRatio() {
-        return Math.round(getTotalPlayMinutes() / eventLastTime * 60 * 100);
     }
 
     protected long getMinutesWithinOncePlay() {

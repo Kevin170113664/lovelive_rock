@@ -116,15 +116,18 @@ public class CalculatorFactoryTest {
         assertEquals(571, calculatorFactory.getPointsWithinOncePlay());
     }
 
-//    TODO
-//    @Test
-//    public void shouldCalculateTimesNeedToPlayCorrectly() {
-//        calculatorFactory.setObjectivePoints(101000);
-//        calculatorFactory.setCurrentPoints(0);
-//        stub(getPointsWithinOncePlay()).toReturn(1108L);
-//
-//        assertEquals(1, calculatorFactory.getTimesNeedToPlay());
-//    }
+    @Test
+    public void shouldCalculateTimesNeedToPlayCorrectly() {
+        calculatorFactory = new CalculatorFactory() {
+            public long getPointsWithinOncePlay() {
+                return 1108L;
+            }
+        };
+        calculatorFactory.setObjectivePoints(2222);
+        calculatorFactory.setCurrentPoints(0);
+
+        assertEquals(3, calculatorFactory.getTimesNeedToPlay());
+    }
 
     @Test
     public void shouldCalculateExpWithinEveryPlayCorrectly() {
@@ -143,21 +146,52 @@ public class CalculatorFactoryTest {
         assertEquals(249, calculatorFactory.getExperienceWithinOncePlay());
     }
 
-//    @Test
-//    public void shouldCalculateFinalRankCorrectly() {
-//        calculatorFactory.setCurrentRank(98);
-//        calculatorFactory.setCurrentExperience(500);
-//        stub(getTotalExperience()).toReturn(10000L);
-//
-//        assertEquals(101, calculatorFactory.getFinalRank());
-//    }
+    @Test
+    public void shouldCalculateFinalRankCorrectly() {
+        calculatorFactory = new CalculatorFactory() {
+            public long getTotalExperience() {
+                return 10000L;
+            }
+        };
+        calculatorFactory.setCurrentRank(98);
+        calculatorFactory.setCurrentExperience(500);
 
-//    @Test
-//    public void shouldCalculateFinalExperienceCorrectly() {
-//        calculatorFactory.setCurrentRank(98);
-//        calculatorFactory.setCurrentExperience(500);
-//        stub(getTotalExperience()).toReturn(10000L);
-//
-//        assertEquals(1834, calculatorFactory.getFinalExperience());
-//    }
+        assertEquals(102, calculatorFactory.getFinalRank());
+    }
+
+    @Test
+    public void shouldCalculateFinalExperienceCorrectly() {
+        calculatorFactory = new CalculatorFactory() {
+            public long getTotalExperience() {
+                return 10000L;
+            }
+        };
+        calculatorFactory.setCurrentRank(98);
+        calculatorFactory.setCurrentExperience(500);
+
+        assertEquals(1835, calculatorFactory.getFinalExperience());
+    }
+
+    @Test
+    public void shouldCalculatePlayTimeRatioCorrectly() {
+        calculatorFactory = new CalculatorFactory() {
+            public long getPlayTimeMinutes() {
+                return 1000L;
+            }
+        };
+        calculatorFactory.setEventLastTime(100.5);
+
+        assertEquals("16.6", calculatorFactory.getPlayTimeRatio());
+    }
+
+    @Test
+    public void shouldCalculateTotalPlayTimeCorrectly() {
+        calculatorFactory = new CalculatorFactory() {
+            public long getPlayTimeMinutes() {
+                return 338L;
+            }
+        };
+
+        assertEquals("5小时38分钟", calculatorFactory.getTotalPlayTime());
+    }
 }
