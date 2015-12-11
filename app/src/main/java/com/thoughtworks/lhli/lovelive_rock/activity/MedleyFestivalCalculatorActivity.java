@@ -125,18 +125,23 @@ public class MedleyFestivalCalculatorActivity extends BaseActivity {
                         eventEndHourText.getText().toString(), eventLastTimeText.getText().toString());
 
                 Bundle calculationReport = new Bundle();
+                setReportFields(calculatorFactory, calculationReport);
+
+                DialogFragment calculationReportDialogFragment = new CalculationReportDialogFragment();
+                calculationReportDialogFragment.setArguments(calculationReport);
+                calculationReportDialogFragment.show(getFragmentManager(), "dialog");
+            }
+
+            private void setReportFields(CalculatorFactory calculatorFactory, Bundle calculationReport) {
                 calculationReport.putString("necessary_loveca", String.format("%s", calculatorFactory.getLovecaAmount()));
                 calculationReport.putString("final_points", String.format("%s", calculatorFactory.getFinalPoints()));
                 calculationReport.putString("final_rank", String.format("%s", calculatorFactory.getFinalRank()));
                 calculationReport.putString("final_experience", String.format("%s/%s",
                         calculatorFactory.getFinalExperience(), calculatorFactory.getFinalRankUpExp()));
+                calculationReport.putString("final_lp", String.format("%s", calculatorFactory.getFinalLp()));
                 calculationReport.putString("play_frequency", String.format("%s", calculatorFactory.getTimesNeedToPlay()));
                 calculationReport.putString("total_time", calculatorFactory.getTotalPlayTime());
                 calculationReport.putString("play_time_ratio", calculatorFactory.getPlayTimeRatio() + "%");
-
-                DialogFragment calculationReportDialogFragment = new CalculationReportDialogFragment();
-                calculationReportDialogFragment.setArguments(calculationReport);
-                calculationReportDialogFragment.show(getFragmentManager(), "dialog");
             }
         });
     }
@@ -195,6 +200,8 @@ public class MedleyFestivalCalculatorActivity extends BaseActivity {
         setSpinnerAdapter(difficultySpinner, R.array.difficulty);
         setSpinnerAdapter(songRankSpinner, R.array.song_rank);
         setSpinnerAdapter(comboRankSpinner, R.array.combo_rank);
+
+        comboRankSpinner.setSelection(1);
     }
 
     private void setSpinnerAdapter(Spinner spinner, int resourceId) {

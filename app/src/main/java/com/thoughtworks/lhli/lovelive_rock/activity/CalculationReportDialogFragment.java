@@ -30,6 +30,9 @@ public class CalculationReportDialogFragment extends DialogFragment {
     @Bind(R.id.final_experience_text)
     protected TextView finalExperienceText;
 
+    @Bind(R.id.final_lp_text)
+    protected TextView finalLpText;
+
     @Bind(R.id.play_frequency_text)
     protected TextView playFrequencyText;
 
@@ -62,6 +65,7 @@ public class CalculationReportDialogFragment extends DialogFragment {
         finalPointsText.setText(getArguments().getString("final_points"));
         finalRankText.setText(getArguments().getString("final_rank"));
         finalExperienceText.setText(getArguments().getString("final_experience"));
+        finalLpText.setText(getArguments().getString("final_lp"));
         playFrequencyText.setText(getArguments().getString("play_frequency"));
         totalTimeText.setText(getArguments().getString("total_time"));
         playTimeRatioText.setText(getArguments().getString("play_time_ratio"));

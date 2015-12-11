@@ -68,6 +68,7 @@
     <string name="final_points">最终点数</string>
     <string name="final_rank">最终等级</string>
     <string name="final_experience">最终经验</string>
+    <string name="final_lp">最终ＬＰ</string>
     <string name="play_frequency">游戏次数</string>
     <string name="play_time">游戏时间</string>
     <string name="play_time_ratio">游戏时间覆盖率</string>

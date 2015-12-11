@@ -25,11 +25,20 @@ public class CalculatorFactory {
     private double eventLastTime;
     private String eventEndTime;
 
+    private long finalPoints;
+    private long finalRank;
+    private long finalExperience;
+    private long finalLp;
+    private long timesNeedToPlay;
+    private long totalPlayTime;
+    private double playTimeRatio;
+
     public CalculatorFactory(String eventEndTime) {
         this.eventEndTime = eventEndTime;
     }
 
-    public CalculatorFactory() {}
+    public CalculatorFactory() {
+    }
 
     public CalculatorFactory(String objectivePoints, String currentPoints, String currentRank,
                              String songAmount, String difficulty, String wastedLpEveryDay,
@@ -87,38 +96,6 @@ public class CalculatorFactory {
         return lovecaAmount < 0 ? 0 : lovecaAmount;
     }
 
-    public long getFinalPoints() {
-        return currentPoints + getTotalPoints();
-    }
-
-    public long getFinalRank() {
-        long originCurrentRank = currentRank;
-        long finalRank = currentRank;
-        long experience = getTotalExperience() + currentExperience;
-
-        while (experience > getRankUpExp()) {
-            experience -= getRankUpExp();
-            finalRank += 1;
-            currentRank += 1;
-        }
-
-        currentRank = originCurrentRank;
-        return finalRank;
-    }
-
-    public long getFinalExperience() {
-        long originCurrentRank = currentRank;
-        long experience = getTotalExperience() + currentExperience;
-
-        while (experience > getRankUpExp()) {
-            experience -= getRankUpExp();
-            currentRank += 1;
-        }
-
-        currentRank = originCurrentRank;
-        return experience;
-    }
-
     public long getFinalRankUpExp() {
         if (getFinalRank() < 1L) {
             return 0L;
@@ -135,40 +112,60 @@ public class CalculatorFactory {
         return 0L;
     }
 
-    public long getTimesNeedToPlay() {
-        return Math.round((objectivePoints - currentPoints) / getPointsWithinOncePlay()) + 1;
-    }
-
-    public String getTotalPlayTime() {
-        return String.format("%s小时%s分钟", getPlayTimeMinutes() / 60, getPlayTimeMinutes() % 60);
-    }
-
-    public String getPlayTimeRatio() {
-        return new DecimalFormat("0.0").format(getPlayTimeMinutes() / (eventLastTime * 60.0) * 100);
+    protected double getRecoveryLp() {
+        return eventLastTime * 10 - getTotalWastedLp();
     }
 
     protected long getPredictLovecaAmount() {
-        long lpShortage = getLpShortage();
-        long originCurrentRank = currentRank;
-        double experience = (double) currentExperience;
+        long originalRank = currentRank;
         long lovecaAmount = 0L;
+        long lp = currentLp + Math.round(getRecoveryLp());
+        long experience = currentExperience;
+        long points = currentPoints;
+        long playTimes = 0L;
 
-        while (lpShortage > 0) {
+        while (lp > getLpWithinOncePlay()) {
+            lp -= getLpWithinOncePlay();
+            playTimes += 1;
+            points += getPointsWithinOncePlay();
+            experience += getExperienceWithinOncePlay();
             if (experience > getRankUpExp()) {
                 experience -= getRankUpExp();
                 currentRank += 1;
+                lp += getBiggestLP();
             }
-            lovecaAmount += 1;
-            lpShortage -= getBiggestLP();
-            experience += getExperienceByLp(getBiggestLP());
         }
 
-        currentRank = originCurrentRank;
-        return lovecaAmount;
-    }
+        while (true) {
+            while (lp > getLpWithinOncePlay()) {
+                lp -= getLpWithinOncePlay();
+                playTimes += 1;
+                points += getPointsWithinOncePlay();
+                experience += getExperienceWithinOncePlay();
+                if (experience > getRankUpExp()) {
+                    experience -= getRankUpExp();
+                    currentRank += 1;
+                    lp += getBiggestLP();
+                }
+            }
+            if (points < objectivePoints) {
+                lovecaAmount += 1;
+                lp += getBiggestLP();
+            } else {
+                break;
+            }
+        }
 
-    protected double getExperienceByLp(long lp) {
-        return lp * getExperienceWithinOncePlay() / (double) (songAmount * getMfConsumeLp());
+        finalPoints = points;
+        finalRank = currentRank;
+        finalExperience = experience;
+        finalLp = lp;
+        timesNeedToPlay = playTimes;
+        totalPlayTime = playTimes * getMinutesWithinOncePlay();
+        playTimeRatio = totalPlayTime / (eventLastTime * 60.0);
+
+        currentRank = originalRank;
+        return lovecaAmount;
     }
 
     protected long getTotalRankUpLp() {
@@ -189,17 +186,6 @@ public class CalculatorFactory {
         return wastedLpEveryDay * eventEndDay;
     }
 
-    protected long getTotalRecoveryLp() {
-        return Math.round(eventLastTime * 10);
-    }
-
-    protected long getLpShortage() {
-        long necessaryLp = getTimesNeedToPlay() * songAmount * getMfConsumeLp();
-        long freeLp = currentLp + getTotalRankUpLp() + getTotalRecoveryLp() - getTotalWastedLp();
-
-        return necessaryLp - freeLp;
-    }
-
     protected long getPlayTimeMinutes() {
         return getMinutesWithinOncePlay() * getTimesNeedToPlay();
     }
@@ -212,6 +198,10 @@ public class CalculatorFactory {
         consumeTimeMap.put(3L, 7L);
 
         return consumeTimeMap.get(songAmount);
+    }
+
+    protected long getLpWithinOncePlay() {
+        return songAmount * getMfConsumeLp();
     }
 
     protected long getPointsWithinOncePlay() {
@@ -232,14 +222,6 @@ public class CalculatorFactory {
         basicExperience = songRankRatio == 1 ? basicExperience / 2 : basicExperience;
 
         return experienceAddition ? Math.round(basicExperience * 1.1) : basicExperience;
-    }
-
-    protected long getTotalPoints() {
-        return getTimesNeedToPlay() * getPointsWithinOncePlay();
-    }
-
-    protected long getTotalExperience() {
-        return getTimesNeedToPlay() * getExperienceWithinOncePlay();
     }
 
     protected long getRankUpExp() {
@@ -361,5 +343,33 @@ public class CalculatorFactory {
 
     public void setEventEndTime(String eventEndTime) {
         this.eventEndTime = eventEndTime;
+    }
+
+    public long getFinalPoints() {
+        return finalPoints;
+    }
+
+    public long getFinalRank() {
+        return finalRank;
+    }
+
+    public long getFinalExperience() {
+        return finalExperience;
+    }
+
+    public long getFinalLp() {
+        return finalLp;
+    }
+
+    public long getTimesNeedToPlay() {
+        return timesNeedToPlay;
+    }
+
+    public String getTotalPlayTime() {
+        return String.format("%s小时%s分钟", totalPlayTime / 60, totalPlayTime % 60);
+    }
+
+    public String getPlayTimeRatio() {
+        return new DecimalFormat("0.0").format(getPlayTimeMinutes() / (eventLastTime * 60.0) * 100);
     }
 }
