@@ -23,6 +23,9 @@ public class CalculatorFactoryTest {
 
     @Test
     public void shouldCalculateRankUpExpCorrectly() {
+        calculatorFactory.setCurrentRank(33L);
+        assertEquals(305L, calculatorFactory.getRankUpExp());
+
         calculatorFactory.setCurrentRank(99L);
         assertEquals(1430L, calculatorFactory.getRankUpExp());
 
@@ -224,26 +227,17 @@ public class CalculatorFactoryTest {
 
     @Test
     public void shouldCalculateLovecaAmountCorrectly() {
-        calculatorFactory = new CalculatorFactory() {
-            public long getLpShortage() {
-                return 2100L;
-            }
+        calculatorFactory.setDifficulty("Expert");
+        calculatorFactory.setSongAmount(3);
+        calculatorFactory.setObjectivePoints(35000);
+        calculatorFactory.setEventLastTime(1.0);
+        calculatorFactory.setSongRankRatio(1.2);
+        calculatorFactory.setComboRankRatio(1.08);
+        calculatorFactory.setPointAddition(true);
+        calculatorFactory.setExperienceAddition(true);
+        calculatorFactory.setCurrentExperience(0);
+        calculatorFactory.setCurrentRank(2);
 
-            public long getBiggestLP() {
-                return 125L;
-            }
-        };
-        assertEquals(17, calculatorFactory.getLovecaAmount());
-
-        calculatorFactory = new CalculatorFactory() {
-            public long getLpShortage() {
-                return -3L;
-            }
-
-            public long getBiggestLP() {
-                return 125L;
-            }
-        };
-        assertEquals(0, calculatorFactory.getLovecaAmount());
+        assertEquals(11, calculatorFactory.getLovecaAmount());
     }
 }

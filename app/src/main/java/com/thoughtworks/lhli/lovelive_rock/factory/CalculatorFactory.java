@@ -84,8 +84,7 @@ public class CalculatorFactory {
         if (getBiggestLP() == 0) {
             return 0;
         }
-        long lovecaAmount = getLpShortage() / getBiggestLP();
-        lovecaAmount = getLpShortage() % getBiggestLP() <= 0 ? lovecaAmount : lovecaAmount + 1;
+        long lovecaAmount = getPredictLovecaAmount();
         return lovecaAmount < 0 ? 0 : lovecaAmount;
     }
 
@@ -121,6 +120,22 @@ public class CalculatorFactory {
         return experience;
     }
 
+    public long getFinalRankUpExp() {
+        if (getFinalRank() < 1L) {
+            return 0L;
+        }
+        if (getFinalRank() < 34L) {
+            return Math.round(getFinalRank() * getFinalRank() * 0.28);
+        }
+        if (getFinalRank() < 100L) {
+            return Math.round((34.45 * getFinalRank() - 551) / 2);
+        }
+        if (getFinalRank() >= 100L) {
+            return Math.round(34.45 * getFinalRank() - 551);
+        }
+        return 0L;
+    }
+
     public long getTimesNeedToPlay() {
         return Math.round((objectivePoints - currentPoints) / getPointsWithinOncePlay()) + 1;
     }
@@ -131,6 +146,30 @@ public class CalculatorFactory {
 
     public String getPlayTimeRatio() {
         return new DecimalFormat("0.0").format(getPlayTimeMinutes() / (eventLastTime * 60.0) * 100);
+    }
+
+    protected long getPredictLovecaAmount() {
+        long lpShortage = getLpShortage();
+        long originCurrentRank = currentRank;
+        double experience = (double) currentExperience;
+        long lovecaAmount = 0L;
+
+        while (lpShortage > 0) {
+            if (experience > getRankUpExp()) {
+                experience -= getRankUpExp();
+                currentRank += 1;
+            }
+            lovecaAmount += 1;
+            lpShortage -= getBiggestLP();
+            experience += getExperienceByLp(getBiggestLP());
+        }
+
+        currentRank = originCurrentRank;
+        return lovecaAmount;
+    }
+
+    protected double getExperienceByLp(long lp) {
+        return lp * getExperienceWithinOncePlay() / (double) (songAmount * getMfConsumeLp());
     }
 
     protected long getTotalRankUpLp() {
@@ -204,22 +243,20 @@ public class CalculatorFactory {
         return getTimesNeedToPlay() * getExperienceWithinOncePlay();
     }
 
-    public long getFinalRankUpExp() {
-        if (getFinalRank() < 1L) {
-            return 0L;
-        }
-        return getFinalRank() >= 100L ?
-                Math.round(34.45 * getFinalRank() - 551) :
-                Math.round((34.45 * getFinalRank() - 551) / 2);
-    }
-
     protected long getRankUpExp() {
         if (currentRank < 1L) {
             return 0L;
         }
-        return currentRank >= 100L ?
-                Math.round(34.45 * currentRank - 551) :
-                Math.round((34.45 * currentRank - 551) / 2);
+        if (currentRank < 34L) {
+            return Math.round(currentRank * currentRank * 0.28);
+        }
+        if (currentRank < 100L) {
+            return Math.round((34.45 * currentRank - 551) / 2);
+        }
+        if (currentRank >= 100L) {
+            return Math.round(34.45 * currentRank - 551);
+        }
+        return 0L;
     }
 
     protected long getBiggestLP() {
