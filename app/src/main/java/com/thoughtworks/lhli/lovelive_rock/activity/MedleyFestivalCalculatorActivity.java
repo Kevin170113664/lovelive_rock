@@ -2,6 +2,7 @@ package com.thoughtworks.lhli.lovelive_rock.activity;
 
 import android.app.DialogFragment;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -140,8 +141,12 @@ public class MedleyFestivalCalculatorActivity extends BaseActivity {
         });
     }
 
+    protected String readLatestEventEndTime() {
+        return PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("latestEventEndTime", null);
+    }
+
     protected void setEventTimeFields() {
-        CalculatorFactory calculatorFactory = new CalculatorFactory();
+        CalculatorFactory calculatorFactory = new CalculatorFactory(readLatestEventEndTime());
         eventEndDayText.setText(calculatorFactory.getEventEndDay());
         eventEndHourText.setText(calculatorFactory.getEventEndHour());
         eventLastTimeText.setText(calculatorFactory.getEventLastTime());

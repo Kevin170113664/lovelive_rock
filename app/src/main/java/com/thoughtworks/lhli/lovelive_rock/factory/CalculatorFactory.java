@@ -1,7 +1,5 @@
 package com.thoughtworks.lhli.lovelive_rock.factory;
 
-import com.thoughtworks.lhli.lovelive_rock.LoveLiveApp;
-
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
 
@@ -27,10 +25,11 @@ public class CalculatorFactory {
     private double eventLastTime;
     private String eventEndTime;
 
-    public CalculatorFactory() {
-        this.eventEndTime = !LoveLiveApp.getInstance().getLatestEventEnd().equals("") ?
-                LoveLiveApp.getInstance().getLatestEventEnd() : null;
+    public CalculatorFactory(String eventEndTime) {
+        this.eventEndTime = eventEndTime;
     }
+
+    public CalculatorFactory() {}
 
     public CalculatorFactory(String objectivePoints, String currentPoints, String currentRank,
                              String songAmount, String difficulty, String wastedLpEveryDay,

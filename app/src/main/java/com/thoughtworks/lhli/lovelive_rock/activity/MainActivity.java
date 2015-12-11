@@ -1,7 +1,9 @@
 package com.thoughtworks.lhli.lovelive_rock.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -73,8 +75,15 @@ public class MainActivity extends BaseActivity {
         return true;
     }
 
+    protected void saveLatestEventEndTime(String eventEndTime) {
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
+        editor.putString("latestEventEndTime", eventEndTime);
+        editor.apply();
+    }
+
     public void onEventMainThread(LatestEventEvent latestEventEvent) throws IOException {
         loadingIcon.setVisibility(View.GONE);
+        saveLatestEventEndTime(latestEventEvent.getEventModelList().get(0).getEnd());
 
         Picasso.with(this)
                 .load(latestEventEvent.getEventModelList().get(0).getImage())
