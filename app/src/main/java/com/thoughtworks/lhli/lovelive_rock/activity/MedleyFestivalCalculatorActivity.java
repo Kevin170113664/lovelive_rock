@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -19,6 +21,30 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MedleyFestivalCalculatorActivity extends BaseActivity {
+
+    @Bind(R.id.objective_points_text)
+    protected EditText objectivePointsText;
+
+    @Bind(R.id.current_points_text)
+    protected EditText currentPointsText;
+
+    @Bind(R.id.current_rank_text)
+    protected EditText currentRankText;
+
+    @Bind(R.id.points_addition)
+    protected CheckBox pointsAddition;
+
+    @Bind(R.id.experience_addition)
+    protected CheckBox experienceAddition;
+
+    @Bind(R.id.wasted_lp_every_day_text)
+    protected EditText wastedLpEveryDayText;
+
+    @Bind(R.id.current_lp_text)
+    protected EditText currentLpText;
+
+    @Bind(R.id.current_experience_text)
+    protected EditText currentExperienceText;
 
     @Bind(R.id.advanced_options_button)
     protected Button advancedOptionsButton;
@@ -51,13 +77,13 @@ public class MedleyFestivalCalculatorActivity extends BaseActivity {
     protected TextView comboRankAdditionRatio;
 
     @Bind(R.id.event_end_day_text)
-    protected TextView eventEndDayText;
+    protected EditText eventEndDayText;
 
     @Bind(R.id.event_end_hour_text)
-    protected TextView eventEndHourText;
+    protected EditText eventEndHourText;
 
     @Bind(R.id.event_last_time_text)
-    protected TextView eventLastTimeText;
+    protected EditText eventLastTimeText;
 
     @Bind(R.id.calculate_button)
     protected Button calculateButton;
@@ -70,20 +96,45 @@ public class MedleyFestivalCalculatorActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mf_calculator);
         ButterKnife.bind(this);
+        initialiseActivityData();
+    }
 
-        advancedOptionsLayout.setVisibility(View.GONE);
-        eventTimeLayout.setVisibility(View.GONE);
-
-        initialiseRankMap();
+    private void initialiseActivityData() {
+        setRankMap();
         setDropdownList();
         setButtonOnClickListener();
         setSpinnerSelectedListener();
         setEventTimeFields();
+        setCalculateButtonClickListener();
+        advancedOptionsLayout.setVisibility(View.GONE);
+        eventTimeLayout.setVisibility(View.GONE);
+    }
 
+    private void setCalculateButtonClickListener() {
         calculateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                CalculatorFactory calculatorFactory = new CalculatorFactory(objectivePointsText.getText().toString(),
+                        currentPointsText.getText().toString(), currentRankText.getText().toString(),
+                        songAmountSpinner.getSelectedItem().toString(), difficultySpinner.getSelectedItem().toString(),
+                        wastedLpEveryDayText.getText().toString(), pointsAddition.isChecked(),
+                        experienceAddition.isChecked(), songRankMap.get(songRankSpinner.getSelectedItem().toString()),
+                        comboRankMap.get(comboRankSpinner.getSelectedItem().toString()), currentLpText.getText().toString(),
+                        currentExperienceText.getText().toString(), eventEndDayText.getText().toString(),
+                        eventEndHourText.getText().toString(), eventLastTimeText.getText().toString());
+
+                Bundle calculationReport = new Bundle();
+                calculationReport.putString("necessary_loveca", String.format("%s", calculatorFactory.getLovecaAmount()));
+                calculationReport.putString("final_points", String.format("%s", calculatorFactory.getFinalPoints()));
+                calculationReport.putString("final_rank", String.format("%s", calculatorFactory.getFinalRank()));
+                calculationReport.putString("final_experience", String.format("%s/%s",
+                        calculatorFactory.getFinalExperience(), calculatorFactory.getFinalRankUpExp()));
+                calculationReport.putString("play_frequency", String.format("%s", calculatorFactory.getTimesNeedToPlay()));
+                calculationReport.putString("total_time", calculatorFactory.getTotalPlayTime());
+                calculationReport.putString("play_time_ratio", calculatorFactory.getPlayTimeRatio() + "%");
+
                 DialogFragment calculationReportDialogFragment = new CalculationReportDialogFragment();
+                calculationReportDialogFragment.setArguments(calculationReport);
                 calculationReportDialogFragment.show(getFragmentManager(), "dialog");
             }
         });
@@ -120,7 +171,7 @@ public class MedleyFestivalCalculatorActivity extends BaseActivity {
         });
     }
 
-    private void initialiseRankMap() {
+    private void setRankMap() {
         songRankMap.put("S", "1.2");
         songRankMap.put("A", "1.15");
         songRankMap.put("B", "1.1");

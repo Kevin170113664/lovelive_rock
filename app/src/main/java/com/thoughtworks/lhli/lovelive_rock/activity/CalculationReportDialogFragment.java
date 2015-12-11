@@ -57,6 +57,14 @@ public class CalculationReportDialogFragment extends DialogFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         ButterKnife.bind(this, getView());
+
+        necessaryLovecaText.setText(getArguments().getString("necessary_loveca"));
+        finalPointsText.setText(getArguments().getString("final_points"));
+        finalRankText.setText(getArguments().getString("final_rank"));
+        finalExperienceText.setText(getArguments().getString("final_experience"));
+        playFrequencyText.setText(getArguments().getString("play_frequency"));
+        totalTimeText.setText(getArguments().getString("total_time"));
+        playTimeRatioText.setText(getArguments().getString("play_time_ratio"));
     }
 
     @Override

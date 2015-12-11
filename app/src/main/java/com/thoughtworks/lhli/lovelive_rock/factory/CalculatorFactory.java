@@ -81,6 +81,9 @@ public class CalculatorFactory {
     }
 
     public long getLovecaAmount() {
+        if (getBiggestLP() == 0) {
+            return 0;
+        }
         long lovecaAmount = getLpShortage() / getBiggestLP();
         lovecaAmount = getLpShortage() % getBiggestLP() <= 0 ? lovecaAmount : lovecaAmount + 1;
         return lovecaAmount < 0 ? 0 : lovecaAmount;
@@ -133,8 +136,9 @@ public class CalculatorFactory {
     protected long getTotalRankUpLp() {
         long rankUpLp = 0;
         long originalRank = currentRank;
+        long finalRank = getFinalRank();
 
-        while (currentRank + 1 <= getFinalRank()) {
+        while (currentRank + 1 <= finalRank) {
             rankUpLp += getBiggestLP();
             currentRank += 1;
         }
@@ -163,18 +167,18 @@ public class CalculatorFactory {
     }
 
     protected long getMinutesWithinOncePlay() {
-        HashMap<Integer, Integer> consumeTimeMap = new HashMap<>();
+        HashMap<Long, Long> consumeTimeMap = new HashMap<>();
 
-        consumeTimeMap.put(1, 3);
-        consumeTimeMap.put(2, 5);
-        consumeTimeMap.put(3, 7);
+        consumeTimeMap.put(1L, 3L);
+        consumeTimeMap.put(2L, 5L);
+        consumeTimeMap.put(3L, 7L);
 
         return consumeTimeMap.get(songAmount);
     }
 
     protected long getPointsWithinOncePlay() {
-        double points = getMfBasicPoints();
-        points = points * songRankRatio * comboRankRatio;
+        double points = getMfBasicPoints() * songRankRatio * comboRankRatio;
+
         return pointAddition ? Math.round(points * 1.1) : Math.round(points);
     }
 
@@ -198,6 +202,15 @@ public class CalculatorFactory {
 
     protected long getTotalExperience() {
         return getTimesNeedToPlay() * getExperienceWithinOncePlay();
+    }
+
+    public long getFinalRankUpExp() {
+        if (getFinalRank() < 1L) {
+            return 0L;
+        }
+        return getFinalRank() >= 100L ?
+                Math.round(34.45 * getFinalRank() - 551) :
+                Math.round((34.45 * getFinalRank() - 551) / 2);
     }
 
     protected long getRankUpExp() {
