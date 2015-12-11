@@ -120,19 +120,6 @@ public class CalculatorFactoryTest {
     }
 
     @Test
-    public void shouldCalculateTimesNeedToPlayCorrectly() {
-        calculatorFactory = new CalculatorFactory() {
-            public long getPointsWithinOncePlay() {
-                return 1108L;
-            }
-        };
-        calculatorFactory.setObjectivePoints(2222);
-        calculatorFactory.setCurrentPoints(0);
-
-        assertEquals(3, calculatorFactory.getTimesNeedToPlay());
-    }
-
-    @Test
     public void shouldCalculateExpWithinEveryPlayCorrectly() {
         calculatorFactory.setDifficulty("Expert");
         calculatorFactory.setSongAmount(1);
@@ -150,32 +137,6 @@ public class CalculatorFactoryTest {
     }
 
     @Test
-    public void shouldCalculateFinalRankCorrectly() {
-        calculatorFactory = new CalculatorFactory() {
-            public long getTotalExperience() {
-                return 10000L;
-            }
-        };
-        calculatorFactory.setCurrentRank(98);
-        calculatorFactory.setCurrentExperience(500);
-
-        assertEquals(102, calculatorFactory.getFinalRank());
-    }
-
-    @Test
-    public void shouldCalculateFinalExperienceCorrectly() {
-        calculatorFactory = new CalculatorFactory() {
-            public long getTotalExperience() {
-                return 10000L;
-            }
-        };
-        calculatorFactory.setCurrentRank(98);
-        calculatorFactory.setCurrentExperience(500);
-
-        assertEquals(1835, calculatorFactory.getFinalExperience());
-    }
-
-    @Test
     public void shouldCalculatePlayTimeRatioCorrectly() {
         calculatorFactory = new CalculatorFactory() {
             public long getPlayTimeMinutes() {
@@ -189,11 +150,7 @@ public class CalculatorFactoryTest {
 
     @Test
     public void shouldCalculateTotalPlayTimeCorrectly() {
-        calculatorFactory = new CalculatorFactory() {
-            public long getPlayTimeMinutes() {
-                return 338L;
-            }
-        };
+        calculatorFactory.setTotalPlayTime(338L);
 
         assertEquals("5小时38分钟", calculatorFactory.getTotalPlayTime());
     }
@@ -216,28 +173,5 @@ public class CalculatorFactoryTest {
         calculatorFactory.setEventEndDay(4L);
 
         assertEquals(28, calculatorFactory.getTotalWastedLp());
-    }
-
-    @Test
-    public void shouldCalculateTotalRecoveryLpCorrectly() {
-        calculatorFactory.setEventLastTime(99.9);
-
-        assertEquals(999, calculatorFactory.getTotalRecoveryLp());
-    }
-
-    @Test
-    public void shouldCalculateLovecaAmountCorrectly() {
-        calculatorFactory.setDifficulty("Expert");
-        calculatorFactory.setSongAmount(3);
-        calculatorFactory.setObjectivePoints(35000);
-        calculatorFactory.setEventLastTime(1.0);
-        calculatorFactory.setSongRankRatio(1.2);
-        calculatorFactory.setComboRankRatio(1.08);
-        calculatorFactory.setPointAddition(true);
-        calculatorFactory.setExperienceAddition(true);
-        calculatorFactory.setCurrentExperience(0);
-        calculatorFactory.setCurrentRank(2);
-
-        assertEquals(11, calculatorFactory.getLovecaAmount());
     }
 }

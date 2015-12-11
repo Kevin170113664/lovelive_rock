@@ -345,6 +345,10 @@ public class CalculatorFactory {
         this.eventEndTime = eventEndTime;
     }
 
+    public void setTotalPlayTime(long totalPlayTime) {
+        this.totalPlayTime = totalPlayTime;
+    }
+
     public long getFinalPoints() {
         return finalPoints;
     }
