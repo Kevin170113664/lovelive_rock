@@ -63,6 +63,7 @@
     <string name="event_last_time">活动剩余时间</string>
     <string name="day_unit">日</string>
     <string name="hour_unit">时</string>
+    <string name="minute_unit">分</string>
     <string name="calculate">开始计算</string>
     <string name="necessary_loveca">需要心数</string>
     <string name="final_points">最终点数</string>

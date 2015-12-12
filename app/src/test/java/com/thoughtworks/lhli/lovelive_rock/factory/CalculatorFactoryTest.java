@@ -231,12 +231,7 @@ public class CalculatorFactoryTest {
 
     @Test
     public void shouldCalculatePlayTimeRatio() {
-        calculatorFactory = new CalculatorFactory() {
-            public long getPlayTimeMinutes() {
-                return 1000L;
-            }
-        };
-        calculatorFactory.setEventLastTime(100.5);
+        calculatorFactory.setPlayTimeRatio(0.166);
 
         assertEquals("16.6%", calculatorFactory.getPlayTimeRatio());
     }
@@ -257,7 +252,7 @@ public class CalculatorFactoryTest {
     public void shouldCalculateTotalPlayTime() {
         calculatorFactory.setTotalPlayTime(338L);
 
-        assertEquals("5小时38分钟", calculatorFactory.getTotalPlayTime());
+        assertEquals("5Hour(s)38Minute(s)", calculatorFactory.getTotalPlayTime());
     }
 
     @Test

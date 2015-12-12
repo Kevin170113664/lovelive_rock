@@ -1,5 +1,8 @@
 package com.thoughtworks.lhli.lovelive_rock.factory;
 
+import com.thoughtworks.lhli.lovelive_rock.LoveLiveApp;
+import com.thoughtworks.lhli.lovelive_rock.R;
+
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
 
@@ -394,10 +397,11 @@ public class CalculatorFactory {
     }
 
     public String getTotalPlayTime() {
-        return String.format("%s小时%s分钟", totalPlayTime / 60, totalPlayTime % 60);
+        return String.format("%s" + LoveLiveApp.getInstance().getString(R.string.hour_unit) + "%s" + LoveLiveApp.getInstance().getString(R.string.minute_unit),
+                totalPlayTime / 60, totalPlayTime % 60);
     }
 
     public String getPlayTimeRatio() {
-        return new DecimalFormat("0.0").format(getPlayTimeMinutes() / (eventLastTime * 60.0) * 100) + "%";
+        return new DecimalFormat("0.0").format(playTimeRatio * 100) + "%";
     }
 }
