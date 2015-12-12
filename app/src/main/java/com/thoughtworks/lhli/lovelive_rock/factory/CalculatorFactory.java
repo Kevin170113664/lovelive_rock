@@ -94,9 +94,6 @@ public class CalculatorFactory {
     }
 
     public long getLovecaAmount() {
-        if (getBiggestLp() == 0) {
-            return 0;
-        }
         return lovecaAmount < 0 ? 0 : lovecaAmount;
     }
 
@@ -105,6 +102,9 @@ public class CalculatorFactory {
     }
 
     public void calculateEventProcess() {
+        if (getBiggestLp() == 0) {
+            return;
+        }
         long originalRank = currentRank;
         initialisePredictFields();
         playWithFreeLp();
