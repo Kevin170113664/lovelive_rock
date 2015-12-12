@@ -141,7 +141,7 @@ public class MedleyFestivalCalculatorActivity extends BaseActivity {
                 calculationReport.putString("final_lp", String.format("%s", calculatorFactory.getFinalLp()));
                 calculationReport.putString("play_frequency", String.format("%s", calculatorFactory.getTimesNeedToPlay()));
                 calculationReport.putString("total_time", calculatorFactory.getTotalPlayTime());
-                calculationReport.putString("play_time_ratio", calculatorFactory.getPlayTimeRatio() + "%");
+                calculationReport.putString("play_time_ratio", calculatorFactory.getPlayTimeRatio());
             }
         });
     }

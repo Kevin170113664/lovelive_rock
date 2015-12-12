@@ -62,24 +62,28 @@ public class CalculatorFactory {
         this.eventLastTime = parseDoubleField(eventLastTime);
     }
 
-    private double parseDoubleField(String value) {
-        return value != null && !value.equals("") ? Double.parseDouble(value) : 0.0;
+    protected double parseDoubleField(String value) {
+        return isStringValid(value) ? Double.parseDouble(value) : 0.0;
     }
 
-    private long parseLongField(String value) {
-        return value != null && !value.equals("") ? Long.parseLong(value) : 0L;
+    protected long parseLongField(String value) {
+        return isStringValid(value) ? Long.parseLong(value) : 0L;
+    }
+
+    protected boolean isStringValid(String value) {
+        return value != null && !value.equals("");
     }
 
     public String getEventEndDay() {
-        return eventEndTime != null ? String.format("%s", DateTime.parse(eventEndTime).getDayOfMonth()) : "0";
+        return isStringValid(eventEndTime) ? String.format("%s", DateTime.parse(eventEndTime).getDayOfMonth()) : "0";
     }
 
     public String getEventEndHour() {
-        return eventEndTime != null ? String.format("%s", DateTime.parse(eventEndTime).getHourOfDay() - 1) : "0";
+        return isStringValid(eventEndTime) ? String.format("%s", DateTime.parse(eventEndTime).getHourOfDay() - 1) : "0";
     }
 
     public String getEventLastTime() {
-        if (eventEndTime != null) {
+        if (isStringValid(eventEndTime)) {
             Duration duration = new Duration(new DateTime(), DateTime.parse(eventEndTime));
             double lastTime = duration.getStandardHours() + duration.getStandardMinutes() % 60 / 60.0;
             return String.format("%s", new DecimalFormat("0.0").format(lastTime));
@@ -89,7 +93,7 @@ public class CalculatorFactory {
     }
 
     public long getLovecaAmount() {
-        if (getBiggestLP() == 0) {
+        if (getBiggestLp() == 0) {
             return 0;
         }
         long lovecaAmount = getPredictLovecaAmount();
@@ -97,19 +101,7 @@ public class CalculatorFactory {
     }
 
     public long getFinalRankUpExp() {
-        if (getFinalRank() < 1L) {
-            return 0L;
-        }
-        if (getFinalRank() < 34L) {
-            return Math.round(getFinalRank() * getFinalRank() * 0.28);
-        }
-        if (getFinalRank() < 100L) {
-            return Math.round((34.45 * getFinalRank() - 551) / 2);
-        }
-        if (getFinalRank() >= 100L) {
-            return Math.round(34.45 * getFinalRank() - 551);
-        }
-        return 0L;
+        return getRankUpExpByRank(getFinalRank());
     }
 
     protected double getRecoveryLp() {
@@ -129,10 +121,10 @@ public class CalculatorFactory {
             playTimes += 1;
             points += getPointsWithinOncePlay();
             experience += getExperienceWithinOncePlay();
-            if (experience > getRankUpExp()) {
+            if (experience > getBiggestLp()) {
                 experience -= getRankUpExp();
                 currentRank += 1;
-                lp += getBiggestLP();
+                lp += getBiggestLp();
             }
         }
 
@@ -145,12 +137,12 @@ public class CalculatorFactory {
                 if (experience > getRankUpExp()) {
                     experience -= getRankUpExp();
                     currentRank += 1;
-                    lp += getBiggestLP();
+                    lp += getBiggestLp();
                 }
             }
             if (points < objectivePoints) {
                 lovecaAmount += 1;
-                lp += getBiggestLP();
+                lp += getBiggestLp();
             } else {
                 break;
             }
@@ -166,20 +158,6 @@ public class CalculatorFactory {
 
         currentRank = originalRank;
         return lovecaAmount;
-    }
-
-    protected long getTotalRankUpLp() {
-        long rankUpLp = 0;
-        long originalRank = currentRank;
-        long finalRank = getFinalRank();
-
-        while (currentRank + 1 <= finalRank) {
-            rankUpLp += getBiggestLP();
-            currentRank += 1;
-        }
-
-        currentRank = originalRank;
-        return rankUpLp;
     }
 
     protected long getTotalWastedLp() {
@@ -225,22 +203,26 @@ public class CalculatorFactory {
     }
 
     protected long getRankUpExp() {
-        if (currentRank < 1L) {
+        return getRankUpExpByRank(currentRank);
+    }
+
+    protected long getRankUpExpByRank(long rank) {
+        if (rank < 1L) {
             return 0L;
         }
-        if (currentRank < 34L) {
-            return Math.round(currentRank * currentRank * 0.28);
+        if (rank < 34L) {
+            return Math.round(rank * rank * 0.28);
         }
-        if (currentRank < 100L) {
-            return Math.round((34.45 * currentRank - 551) / 2);
+        if (rank < 100L) {
+            return Math.round((34.45 * rank - 551) / 2);
         }
-        if (currentRank >= 100L) {
-            return Math.round(34.45 * currentRank - 551);
+        if (rank >= 100L) {
+            return Math.round(34.45 * rank - 551);
         }
         return 0L;
     }
 
-    protected long getBiggestLP() {
+    protected long getBiggestLp() {
         if (currentRank < 1L) {
             return 0L;
         }
@@ -374,6 +356,6 @@ public class CalculatorFactory {
     }
 
     public String getPlayTimeRatio() {
-        return new DecimalFormat("0.0").format(getPlayTimeMinutes() / (eventLastTime * 60.0) * 100);
+        return new DecimalFormat("0.0").format(getPlayTimeMinutes() / (eventLastTime * 60.0) * 100) + "%";
     }
 }
