@@ -25,6 +25,7 @@ public class CalculatorFactory {
     private double eventLastTime;
     private String eventEndTime;
 
+    private long lovecaAmount;
     private long finalPoints;
     private long finalRank;
     private long finalExperience;
@@ -96,7 +97,7 @@ public class CalculatorFactory {
         if (getBiggestLp() == 0) {
             return 0;
         }
-        long lovecaAmount = getPredictLovecaAmount();
+        calculatePredictLovecaAmount();
         return lovecaAmount < 0 ? 0 : lovecaAmount;
     }
 
@@ -104,60 +105,56 @@ public class CalculatorFactory {
         return getRankUpExpByRank(getFinalRank());
     }
 
-    protected double getRecoveryLp() {
-        return eventLastTime * 10 - getTotalWastedLp();
-    }
-
-    protected long getPredictLovecaAmount() {
+    //TODO write test for this method and refactor.
+    protected void calculatePredictLovecaAmount() {
+        lovecaAmount = 0L;
+        finalLp = currentLp + Math.round(getRecoveryLp());
+        finalExperience = currentExperience;
+        finalPoints = currentPoints;
+        timesNeedToPlay = 0L;
         long originalRank = currentRank;
-        long lovecaAmount = 0L;
-        long lp = currentLp + Math.round(getRecoveryLp());
-        long experience = currentExperience;
-        long points = currentPoints;
-        long playTimes = 0L;
 
-        while (lp > getLpWithinOncePlay()) {
-            lp -= getLpWithinOncePlay();
-            playTimes += 1;
-            points += getPointsWithinOncePlay();
-            experience += getExperienceWithinOncePlay();
-            if (experience > getBiggestLp()) {
-                experience -= getRankUpExp();
+        while (finalLp > getLpWithinOncePlay()) {
+            finalLp -= getLpWithinOncePlay();
+            timesNeedToPlay += 1;
+            finalPoints += getPointsWithinOncePlay();
+            finalExperience += getExperienceWithinOncePlay();
+            if (finalExperience > getBiggestLp()) {
+                finalExperience -= getRankUpExp();
                 currentRank += 1;
-                lp += getBiggestLp();
+                finalLp += getBiggestLp();
             }
         }
 
         while (true) {
-            while (lp > getLpWithinOncePlay()) {
-                lp -= getLpWithinOncePlay();
-                playTimes += 1;
-                points += getPointsWithinOncePlay();
-                experience += getExperienceWithinOncePlay();
-                if (experience > getRankUpExp()) {
-                    experience -= getRankUpExp();
+            while (finalLp > getLpWithinOncePlay()) {
+                finalLp -= getLpWithinOncePlay();
+                timesNeedToPlay += 1;
+                finalPoints += getPointsWithinOncePlay();
+                finalExperience += getExperienceWithinOncePlay();
+                if (finalExperience > getRankUpExp()) {
+                    finalExperience -= getRankUpExp();
                     currentRank += 1;
-                    lp += getBiggestLp();
+                    finalLp += getBiggestLp();
                 }
             }
-            if (points < objectivePoints) {
+            if (finalPoints < objectivePoints) {
                 lovecaAmount += 1;
-                lp += getBiggestLp();
+                finalLp += getBiggestLp();
             } else {
                 break;
             }
         }
 
-        finalPoints = points;
         finalRank = currentRank;
-        finalExperience = experience;
-        finalLp = lp;
-        timesNeedToPlay = playTimes;
-        totalPlayTime = playTimes * getMinutesWithinOncePlay();
+        totalPlayTime = timesNeedToPlay * getMinutesWithinOncePlay();
         playTimeRatio = totalPlayTime / (eventLastTime * 60.0);
 
         currentRank = originalRank;
-        return lovecaAmount;
+    }
+
+    protected double getRecoveryLp() {
+        return eventLastTime * 10 - getTotalWastedLp();
     }
 
     protected long getTotalWastedLp() {
@@ -329,6 +326,10 @@ public class CalculatorFactory {
 
     public void setTotalPlayTime(long totalPlayTime) {
         this.totalPlayTime = totalPlayTime;
+    }
+
+    public void setLovecaAmount(long lovecaAmount) {
+        this.lovecaAmount = lovecaAmount;
     }
 
     public long getFinalPoints() {

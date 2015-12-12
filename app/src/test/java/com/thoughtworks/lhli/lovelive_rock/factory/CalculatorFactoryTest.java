@@ -73,36 +73,36 @@ public class CalculatorFactoryTest {
     @Test
     public void getLovecaAmount() {
         calculatorFactory = new CalculatorFactory() {
-            public long getPredictLovecaAmount() {
-                return -2L;
+            public void calculatePredictLovecaAmount() {
             }
 
             public long getBiggestLp() {
                 return 125L;
             }
         };
+        calculatorFactory.setLovecaAmount(-2L);
         assertEquals(0, calculatorFactory.getLovecaAmount());
 
         calculatorFactory = new CalculatorFactory() {
-            public long getPredictLovecaAmount() {
-                return 10086L;
+            public void calculatePredictLovecaAmount() {
             }
 
             public long getBiggestLp() {
                 return 0L;
             }
         };
+        calculatorFactory.setLovecaAmount(10086L);
         assertEquals(0, calculatorFactory.getLovecaAmount());
 
         calculatorFactory = new CalculatorFactory() {
-            public long getPredictLovecaAmount() {
-                return 10010L;
+            public void calculatePredictLovecaAmount() {
             }
 
             public long getBiggestLp() {
                 return 250L;
             }
         };
+        calculatorFactory.setLovecaAmount(10010L);
         assertEquals(10010L, calculatorFactory.getLovecaAmount());
     }
 
