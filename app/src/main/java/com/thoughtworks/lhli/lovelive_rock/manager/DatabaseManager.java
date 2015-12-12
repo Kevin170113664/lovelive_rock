@@ -40,6 +40,12 @@ public class DatabaseManager {
         this.helper = new DaoMaster.DevOpenHelper(LoveLiveApp.getInstance(), "lovelive-db", null);
     }
 
+    public void deleteCard(String cardId) {
+        Long primaryKey = queryCardPrimaryKeyById(cardId);
+        getCardDao(helper.getWritableDatabase());
+        cardDao.deleteByKey(primaryKey);
+    }
+
     public void cacheCard(CardModel cardModel) {
         Long characterVoiceId = getCharacterVoiceId(cardModel);
         Long idolId = getIdolId(cardModel, characterVoiceId);
@@ -124,6 +130,17 @@ public class DatabaseManager {
         } else {
             return null;
         }
+    }
+
+    public Long queryCardPrimaryKeyById(String cardId) {
+        getCardDao(helper.getReadableDatabase());
+
+        List<Card> cardList
+                = cardDao.queryBuilder()
+                .where(CardDao.Properties.CardId.eq(cardId))
+                .list();
+        
+        return cardList.get(0).getId();
     }
 
     public Long queryEventByName(CardModel cardModel) {

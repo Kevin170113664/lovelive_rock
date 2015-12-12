@@ -72,19 +72,9 @@ public class CalculatorFactoryTest {
 
     @Test
     public void shouldCalculateLovecaAmount() {
-        calculatorFactory.setCurrentRank(200L);
         calculatorFactory.setLovecaAmount(-2L);
         assertEquals(0L, calculatorFactory.getLovecaAmount());
 
-        calculatorFactory.setCurrentRank(-123L);
-        calculatorFactory.setLovecaAmount(500L);
-        assertEquals(0L, calculatorFactory.getLovecaAmount());
-
-        calculatorFactory.setCurrentRank(0L);
-        calculatorFactory.setLovecaAmount(10010L);
-        assertEquals(0L, calculatorFactory.getLovecaAmount());
-
-        calculatorFactory.setCurrentRank(200L);
         calculatorFactory.setLovecaAmount(10086L);
         assertEquals(10086L, calculatorFactory.getLovecaAmount());
     }

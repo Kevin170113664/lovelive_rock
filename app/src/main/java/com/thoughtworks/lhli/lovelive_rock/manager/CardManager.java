@@ -105,12 +105,29 @@ public class CardManager {
     public void getMaxCardNumber() throws IOException {
         if (LoveLiveApp.getInstance().isNetworkAvailable()) {
             Call<Integer[]> call = Retrofit.getInstance().getCardService().getCardId();
-            Response<Integer[]> cardIdResponse = call.execute();
-            List<Integer> cardIdList = Arrays.asList(cardIdResponse.body());
-            String lastCardId = cardIdList.get(cardIdList.size() - 1).toString();
-            LoveLiveApp.getInstance().setMaxCardNumber(lastCardId);
+            setMaxCardNumber(call.execute());
         } else {
             System.out.print("Get latest card number failed.");
+        }
+    }
+
+    protected void setMaxCardNumber(Response<Integer[]> cardIdResponse) {
+        List<Integer> cardIdList = Arrays.asList(cardIdResponse.body());
+        String lastCardId = cardIdList.get(cardIdList.size() - 1).toString();
+        LoveLiveApp.getInstance().setMaxCardNumber(lastCardId);
+    }
+
+    public void updateLatestTenCards() throws IOException {
+        if (maxCardNumber >= 10 && LoveLiveApp.getInstance().isNetworkAvailable()) {
+            for (int cardId = maxCardNumber; cardId >= maxCardNumber - 9; cardId--) {
+                Call<CardModel> call = Retrofit.getInstance().getCardService().getCardById(String.format("%s", cardId));
+                Response<CardModel> response = call.execute();
+                CardModel cardModel = response.body();
+                databaseManager.deleteCard(cardModel.getCardId());
+                databaseManager.cacheCard(cardModel);
+            }
+        } else {
+            System.out.print("Update latest cards failed.");
         }
     }
 
