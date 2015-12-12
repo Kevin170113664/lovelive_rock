@@ -133,6 +133,7 @@ public class MedleyFestivalCalculatorActivity extends BaseActivity {
             }
 
             private void setReportFields(CalculatorFactory calculatorFactory, Bundle calculationReport) {
+                calculatorFactory.calculateEventProcess();
                 calculationReport.putString("necessary_loveca", String.format("%s", calculatorFactory.getLovecaAmount()));
                 calculationReport.putString("final_points", String.format("%s", calculatorFactory.getFinalPoints()));
                 calculationReport.putString("final_rank", String.format("%s", calculatorFactory.getFinalRank()));

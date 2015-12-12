@@ -97,7 +97,6 @@ public class CalculatorFactory {
         if (getBiggestLp() == 0) {
             return 0;
         }
-        calculatePredictLovecaAmount();
         return lovecaAmount < 0 ? 0 : lovecaAmount;
     }
 
@@ -105,52 +104,70 @@ public class CalculatorFactory {
         return getRankUpExpByRank(getFinalRank());
     }
 
-    //TODO write test for this method and refactor.
-    protected void calculatePredictLovecaAmount() {
-        lovecaAmount = 0L;
-        finalLp = currentLp + Math.round(getRecoveryLp());
-        finalExperience = currentExperience;
-        finalPoints = currentPoints;
-        timesNeedToPlay = 0L;
+    public void calculateEventProcess() {
         long originalRank = currentRank;
+        initialisePredictFields();
+        playWithFreeLp();
+        playWithLoveca();
+        calculateResultAfterPlay();
+        currentRank = originalRank;
+    }
 
-        while (finalLp > getLpWithinOncePlay()) {
-            finalLp -= getLpWithinOncePlay();
-            timesNeedToPlay += 1;
-            finalPoints += getPointsWithinOncePlay();
-            finalExperience += getExperienceWithinOncePlay();
-            if (finalExperience > getBiggestLp()) {
-                finalExperience -= getRankUpExp();
-                currentRank += 1;
-                finalLp += getBiggestLp();
-            }
-        }
+    protected void initialisePredictFields() {
+        lovecaAmount = 0L;
+        finalPoints = currentPoints;
+        finalExperience = currentExperience;
+        finalLp = currentLp + Math.round(getRecoveryLp());
+        timesNeedToPlay = 0L;
+    }
 
+    protected void playWithLoveca() {
         while (true) {
-            while (finalLp > getLpWithinOncePlay()) {
-                finalLp -= getLpWithinOncePlay();
-                timesNeedToPlay += 1;
-                finalPoints += getPointsWithinOncePlay();
-                finalExperience += getExperienceWithinOncePlay();
-                if (finalExperience > getRankUpExp()) {
-                    finalExperience -= getRankUpExp();
-                    currentRank += 1;
-                    finalLp += getBiggestLp();
+            while (finalLp >= getLpWithinOncePlay()) {
+                playOnceWithEnoughLp();
+                while (finalExperience >= getCurrentRankUpExp()) {
+                    upgradeOneRankWithEnoughExp();
                 }
             }
-            if (finalPoints < objectivePoints) {
-                lovecaAmount += 1;
-                finalLp += getBiggestLp();
+            if (finalPoints <= objectivePoints) {
+                consumeOneLoveca();
             } else {
                 break;
             }
         }
+    }
 
+    protected void calculateResultAfterPlay() {
         finalRank = currentRank;
         totalPlayTime = timesNeedToPlay * getMinutesWithinOncePlay();
         playTimeRatio = totalPlayTime / (eventLastTime * 60.0);
+    }
 
-        currentRank = originalRank;
+    protected void consumeOneLoveca() {
+        lovecaAmount += 1;
+        finalLp += getBiggestLp();
+    }
+
+    protected void playWithFreeLp() {
+        while (finalLp >= getLpWithinOncePlay()) {
+            playOnceWithEnoughLp();
+            while (finalExperience >= getCurrentRankUpExp()) {
+                upgradeOneRankWithEnoughExp();
+            }
+        }
+    }
+
+    protected void upgradeOneRankWithEnoughExp() {
+        finalExperience -= getCurrentRankUpExp();
+        currentRank += 1;
+        finalLp += getBiggestLp();
+    }
+
+    protected void playOnceWithEnoughLp() {
+        finalLp -= getLpWithinOncePlay();
+        timesNeedToPlay += 1;
+        finalPoints += getPointsWithinOncePlay();
+        finalExperience += getExperienceWithinOncePlay();
     }
 
     protected double getRecoveryLp() {
@@ -199,7 +216,7 @@ public class CalculatorFactory {
         return experienceAddition ? Math.round(basicExperience * 1.1) : basicExperience;
     }
 
-    protected long getRankUpExp() {
+    protected long getCurrentRankUpExp() {
         return getRankUpExpByRank(currentRank);
     }
 
@@ -330,6 +347,30 @@ public class CalculatorFactory {
 
     public void setLovecaAmount(long lovecaAmount) {
         this.lovecaAmount = lovecaAmount;
+    }
+
+    public void setFinalPoints(long finalPoints) {
+        this.finalPoints = finalPoints;
+    }
+
+    public void setFinalRank(long finalRank) {
+        this.finalRank = finalRank;
+    }
+
+    public void setFinalExperience(long finalExperience) {
+        this.finalExperience = finalExperience;
+    }
+
+    public void setFinalLp(long finalLp) {
+        this.finalLp = finalLp;
+    }
+
+    public void setTimesNeedToPlay(long timesNeedToPlay) {
+        this.timesNeedToPlay = timesNeedToPlay;
+    }
+
+    public void setPlayTimeRatio(double playTimeRatio) {
+        this.playTimeRatio = playTimeRatio;
     }
 
     public long getFinalPoints() {
