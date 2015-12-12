@@ -107,11 +107,17 @@ public class MediumCardListAdapter extends BaseAdapter {
     public static void setTextView(TextView textView, String value) {
         if (value != null && !value.equals("")) {
             textView.setText(value);
+        } else {
+            textView.setText(R.string.default_text);
         }
     }
 
     public static void setSkillType(TextView textView, String value) {
-        if (textView == null || value == null) {
+        if (textView == null) {
+            return;
+        }
+        if (value == null) {
+            textView.setText(R.string.card_skill_default_text);
             return;
         }
         switch (value) {
@@ -155,6 +161,7 @@ public class MediumCardListAdapter extends BaseAdapter {
                 textView.setText(R.string.skill_perfect_charm);
                 break;
             default:
+                textView.setText(R.string.card_skill_default_text);
                 break;
         }
     }
