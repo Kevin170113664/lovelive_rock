@@ -45,6 +45,15 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.card_navigator)
     protected ImageView cardNavigator;
 
+    @Bind(R.id.mf_calculator_navigator)
+    protected ImageView mfCalculatorNavigator;
+
+    @Bind(R.id.sm_calculator_navigator)
+    protected ImageView smCalculatorNavigator;
+
+    @Bind(R.id.traditional_calculator_navigator)
+    protected ImageView traditionalCalculatorNavigator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,11 +69,37 @@ public class MainActivity extends BaseActivity {
                 .into((ImageView) findViewById(R.id.loading_icon));
 
         new Thread(new LoadActivityData(this)).start();
+        setImageNavigatorClickListener();
+    }
 
+    private void setImageNavigatorClickListener() {
         cardNavigator.setOnClickListener(new ImageView.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, CardActivity.class));
+            }
+        });
+
+        mfCalculatorNavigator.setOnClickListener(new ImageView.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, MedleyFestivalCalculatorActivity.class));
+            }
+        });
+
+        smCalculatorNavigator.setOnClickListener(new ImageView.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), getString(R.string.toast_function_not_complete),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        traditionalCalculatorNavigator.setOnClickListener(new ImageView.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), getString(R.string.toast_function_not_complete),
+                        Toast.LENGTH_SHORT).show();
             }
         });
     }
