@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.adapter.EventListAdapter;
 import com.thoughtworks.lhli.lovelive_rock.bus.EventListEvent;
+import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 import com.thoughtworks.lhli.lovelive_rock.model.EventModel;
 import com.thoughtworks.lhli.lovelive_rock.task.LoadActivityData;
 
@@ -32,6 +33,10 @@ public class EventActivity extends BaseActivity {
     protected ListView listView;
 
     private List<EventModel> eventModelList;
+    private List<CardModel> eventCardModelList;
+    private EventModel eventModel;
+    private CardModel nCardModel;
+    private CardModel srCardModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +54,7 @@ public class EventActivity extends BaseActivity {
         loadingIcon.setVisibility(View.GONE);
 
         eventModelList = eventListEvent.getEventModelList();
+        eventCardModelList = eventListEvent.getEventCardModelList();
         if (eventModelList.size() < 2) {
             startActivity(new Intent(this, CardActivity.class));
         } else {
@@ -63,9 +69,30 @@ public class EventActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(EventActivity.this, EventDetailActivity.class);
-                EventModel eventModel = ((List<EventModel>) parent.getAdapter().getItem(0)).get(position);
+                eventModel = ((List<EventModel>) parent.getAdapter().getItem(0)).get(position);
+                nCardModel = null;
+                srCardModel = null;
+
+                searchEventCardsForClickedEvent();
+
                 intent.putExtra("EventModel", eventModel);
+                intent.putExtra("nCardModel", nCardModel);
+                intent.putExtra("srCardModel", srCardModel);
                 startActivity(intent);
+            }
+
+            protected void searchEventCardsForClickedEvent() {
+                for (CardModel cardModel : eventCardModelList) {
+                    if (cardModel.getEventModel() != null &&
+                            cardModel.getEventModel().getJapaneseName().equals(eventModel.getJapaneseName())) {
+                        if (cardModel.getRarity().equals("N")) {
+                            nCardModel = cardModel;
+                        }
+                        if (cardModel.getRarity().equals("SR")) {
+                            srCardModel = cardModel;
+                        }
+                    }
+                }
             }
         });
     }

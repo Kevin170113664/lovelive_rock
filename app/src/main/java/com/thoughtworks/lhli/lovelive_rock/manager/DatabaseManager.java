@@ -26,8 +26,7 @@ import java.util.List;
 
 public class DatabaseManager {
 
-    private final Integer MAX_CARDS_AMOUNT_IN_ONE_PAGE = 10;
-    private final Long NULL_FIELD_FOR_FOREIGN_KEY = -1L;
+    private final Long NULL_FIELD_ID = -1L;
     private DaoMaster.OpenHelper helper;
     private DaoSession daoSession;
     private CardDao cardDao;
@@ -48,8 +47,10 @@ public class DatabaseManager {
 
     public void deleteEvent(String eventName) {
         Long primaryKey = queryEventPrimaryKeyByName(eventName);
-        getEventDao(helper.getWritableDatabase());
-        eventDao.deleteByKey(primaryKey);
+        if (!primaryKey.equals(NULL_FIELD_ID)) {
+            getEventDao(helper.getWritableDatabase());
+            eventDao.deleteByKey(primaryKey);
+        }
     }
 
     public void cacheCard(CardModel cardModel) {
@@ -60,10 +61,10 @@ public class DatabaseManager {
     }
 
     private Long getEventId(CardModel cardModel) {
-        Long eventId = NULL_FIELD_FOR_FOREIGN_KEY;
+        Long eventId = NULL_FIELD_ID;
         if (cardModel.getEventModel() != null) {
             eventId = queryEventByName(cardModel);
-            if (eventId.equals(NULL_FIELD_FOR_FOREIGN_KEY)) {
+            if (eventId.equals(NULL_FIELD_ID)) {
                 eventId = insertEvent(cardModel.getEventModel());
             }
         }
@@ -71,10 +72,10 @@ public class DatabaseManager {
     }
 
     private Long getIdolId(CardModel cardModel, Long characterVoiceId) {
-        Long idolId = NULL_FIELD_FOR_FOREIGN_KEY;
+        Long idolId = NULL_FIELD_ID;
         if (cardModel.getIdolModel() != null) {
             idolId = queryIdolByName(cardModel);
-            if (idolId.equals(NULL_FIELD_FOR_FOREIGN_KEY)) {
+            if (idolId.equals(NULL_FIELD_ID)) {
                 idolId = insertIdol(cardModel.getIdolModel(), characterVoiceId);
             }
         }
@@ -82,10 +83,10 @@ public class DatabaseManager {
     }
 
     private Long getCharacterVoiceId(CardModel cardModel) {
-        Long characterVoiceId = NULL_FIELD_FOR_FOREIGN_KEY;
+        Long characterVoiceId = NULL_FIELD_ID;
         if (cardModel.getIdolModel() != null && cardModel.getIdolModel().getCvModel() != null) {
             characterVoiceId = queryCharacterVoiceByName(cardModel);
-            if (characterVoiceId.equals(NULL_FIELD_FOR_FOREIGN_KEY)) {
+            if (characterVoiceId.equals(NULL_FIELD_ID)) {
                 characterVoiceId = insertCv(cardModel.getIdolModel().getCvModel());
             }
         }
@@ -145,7 +146,7 @@ public class DatabaseManager {
                 = cardDao.queryBuilder()
                 .where(CardDao.Properties.CardId.eq(cardId))
                 .list();
-        
+
         return cardList.get(0).getId();
     }
 
@@ -157,7 +158,7 @@ public class DatabaseManager {
                 .where(EventDao.Properties.JapaneseName.eq(eventName))
                 .list();
 
-        return eventList.get(0).getId();
+        return eventList.size() == 0 ? NULL_FIELD_ID : eventList.get(0).getId();
     }
 
     public Long queryEventByName(CardModel cardModel) {
@@ -169,7 +170,7 @@ public class DatabaseManager {
         if (eventList.size() != 0) {
             return eventList.get(0).getId();
         } else {
-            return NULL_FIELD_FOR_FOREIGN_KEY;
+            return NULL_FIELD_ID;
         }
     }
 
@@ -195,7 +196,7 @@ public class DatabaseManager {
         if (idolList.size() != 0) {
             return idolList.get(0).getId();
         } else {
-            return NULL_FIELD_FOR_FOREIGN_KEY;
+            return NULL_FIELD_ID;
         }
     }
 
@@ -221,7 +222,7 @@ public class DatabaseManager {
         if (characterVoiceList.size() != 0) {
             return characterVoiceList.get(0).getId();
         } else {
-            return NULL_FIELD_FOR_FOREIGN_KEY;
+            return NULL_FIELD_ID;
         }
     }
 
@@ -250,34 +251,30 @@ public class DatabaseManager {
         return null;
     }
 
-    public List<CardModel> queryCardByPage(String page) {
-        getCardDao(helper.getReadableDatabase());
-
-        Integer startId = Integer.parseInt(page) * MAX_CARDS_AMOUNT_IN_ONE_PAGE
-                - (MAX_CARDS_AMOUNT_IN_ONE_PAGE - 1);
-        Integer ednId = Integer.parseInt(page) * MAX_CARDS_AMOUNT_IN_ONE_PAGE;
-
-        List<Card> cardList
-                = cardDao.queryBuilder()
-                .where(CardDao.Properties.CardId.between(startId, ednId))
-                .list();
-        if (cardList.size() != 0) {
-            List<CardModel> cardModelList = new ArrayList<>();
-            for (Card card : cardList) {
-                cardModelList.add(com.thoughtworks.lhli.lovelive_rock.ModelMapper.mapCard(card));
-            }
-            return cardModelList;
-        } else {
-            return null;
-        }
-    }
-
     public List<CardModel> queryAllCards() {
         getCardDao(helper.getReadableDatabase());
 
         List<Card> cardList
                 = cardDao.queryBuilder()
                 .where(CardDao.Properties.CardId.isNotNull())
+                .list();
+        if (cardList.size() != 0) {
+            List<CardModel> cardModelList = new ArrayList<>();
+            for (Card card : cardList) {
+                cardModelList.add(generateCardModel(card));
+            }
+            return cardModelList;
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    public List<CardModel> queryEventCards() {
+        getCardDao(helper.getReadableDatabase());
+
+        List<Card> cardList
+                = cardDao.queryBuilder()
+                .where(CardDao.Properties.EventId.notEq(NULL_FIELD_ID))
                 .list();
         if (cardList.size() != 0) {
             List<CardModel> cardModelList = new ArrayList<>();

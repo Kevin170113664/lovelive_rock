@@ -4,6 +4,7 @@ import com.thoughtworks.lhli.lovelive_rock.LoveLiveApp;
 import com.thoughtworks.lhli.lovelive_rock.Retrofit;
 import com.thoughtworks.lhli.lovelive_rock.bus.EventListEvent;
 import com.thoughtworks.lhli.lovelive_rock.bus.LatestEventEvent;
+import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 import com.thoughtworks.lhli.lovelive_rock.model.EventModel;
 import com.thoughtworks.lhli.lovelive_rock.model.MultipleEvents;
 
@@ -27,7 +28,8 @@ public class EventManager {
 
     public void getEventModelList() throws IOException {
         List<EventModel> eventModelListFromDB = databaseManager.queryAllEvents();
-        EventBus.getDefault().post(new EventListEvent(eventModelListFromDB));
+        List<CardModel> eventCardModelList = databaseManager.queryEventCards();
+        EventBus.getDefault().post(new EventListEvent(eventModelListFromDB, eventCardModelList));
     }
 
     public void getLatestEvent() throws IOException {

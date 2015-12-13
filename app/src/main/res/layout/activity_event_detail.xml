@@ -1,127 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     android:orientation="vertical">
 
-    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_event_detail"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="20dp"
-        card_view:cardCornerRadius="3dp"
-        card_view:cardElevation="10dp">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_event_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorOrange100"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/event_image"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:scaleType="centerCrop"
-                tools:src="@mipmap/medley_festival_7" />
-
-            <TextView
-                android:id="@+id/event_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:gravity="center"
-                android:textSize="@dimen/text_size_large"
-                tools:text="Event Name" />
-
-            <TextView
-                android:id="@+id/beginning_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:gravity="center"
-                android:text="@string/default_text" />
-
-            <TextView
-                android:id="@+id/end_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:gravity="center"
-                android:text="@string/default_text" />
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            card_view:cardCornerRadius="3dp"
+            card_view:cardElevation="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp">
+                android:background="@color/colorOrange100"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/event_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    tools:src="@mipmap/medley_festival_7" />
 
                 <TextView
-                    android:id="@+id/rank_1"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/event_name"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:layout_weight=".25"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size_large"
+                    tools:text="Event Name" />
+
+                <TextView
+                    android:id="@+id/beginning_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:gravity="center"
                     android:text="@string/default_text" />
 
                 <TextView
-                    android:id="@+id/points_1"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/end_time"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:layout_weight=".25"
                     android:gravity="center"
                     android:text="@string/default_text" />
 
-                <TextView
-                    android:id="@+id/rank_2"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight=".25"
-                    android:gravity="center"
-                    android:text="@string/default_text" />
+                    android:orientation="horizontal"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp">
+
+                    <TextView
+                        android:id="@+id/rank_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight=".25"
+                        android:gravity="center"
+                        android:text="@string/default_text" />
+
+                    <TextView
+                        android:id="@+id/points_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight=".25"
+                        android:gravity="center"
+                        android:text="@string/default_text" />
+
+                    <TextView
+                        android:id="@+id/rank_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight=".25"
+                        android:gravity="center"
+                        android:text="@string/default_text" />
+
+                    <TextView
+                        android:id="@+id/points_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight=".25"
+                        android:gravity="center"
+                        android:text="@string/default_text" />
+                </LinearLayout>
 
                 <TextView
-                    android:id="@+id/points_2"
+                    android:id="@+id/notes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:layout_weight=".25"
-                    android:gravity="center"
-                    android:text="@string/default_text" />
+                    android:gravity="start"
+                    android:paddingLeft="20dp"
+                    android:textSize="@dimen/text_size_default"
+                    tools:text="This is a note." />
+
+
             </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </ScrollView>
 
-            <TextView
-                android:id="@+id/notes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:gravity="start"
-                android:paddingLeft="20dp"
-                android:textSize="@dimen/text_size_default"
-                tools:text="This is a note." />
-
-            <GridView
-                android:id="@+id/grid_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="7dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="7dp"
-                android:columnWidth="90dp"
-                android:gravity="center"
-                android:horizontalSpacing="10dp"
-                android:numColumns="4"
-                android:stretchMode="columnWidth"
-                android:verticalSpacing="10dp" />
-
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
-</LinearLayout>
+    <GridView
+        android:id="@+id/grid_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="7dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="7dp"
+        android:columnWidth="90dp"
+        android:gravity="center"
+        android:horizontalSpacing="10dp"
+        android:numColumns="4"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="10dp" />
+</RelativeLayout>
