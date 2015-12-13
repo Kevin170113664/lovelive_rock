@@ -32,13 +32,13 @@ public class EventManager {
 
     public void getLatestEvent() throws IOException {
         if (LoveLiveApp.getInstance().isNetworkAvailable()) {
-            fetchEventFromInternet();
+            getEventFromInternet();
         } else {
             queryEventFromDatabase();
         }
     }
 
-    private void fetchEventFromInternet() throws IOException {
+    private void getEventFromInternet() throws IOException {
         Call<MultipleEvents> call =
                 Retrofit.getInstance().getEventService().getLatestEvent("-beginning", 1);
         Response<MultipleEvents> response = call.execute();
@@ -46,6 +46,27 @@ public class EventManager {
             eventModelList.addAll(Arrays.asList(response.body().getResults()));
             EventBus.getDefault().post(new LatestEventEvent(eventModelList));
             setLatestEventInfo();
+        }
+    }
+
+    public void updateLatestThreeEvents() throws IOException {
+        if (LoveLiveApp.getInstance().isNetworkAvailable()) {
+            Call<MultipleEvents> call =
+                    Retrofit.getInstance().getEventService().getLatestEvent("-beginning", 3);
+            Response<MultipleEvents> response = call.execute();
+            if (response.isSuccess()) {
+                eventModelList.addAll(Arrays.asList(response.body().getResults()));
+                updateEvents();
+            }
+        }
+    }
+
+    protected void updateEvents() {
+        for (EventModel eventModel : eventModelList) {
+            if (eventModel.getJapaneseT1Points() != null) {
+                databaseManager.deleteEvent(eventModel.getJapaneseName());
+                databaseManager.insertEvent(eventModel);
+            }
         }
     }
 

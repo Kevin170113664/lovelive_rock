@@ -63,6 +63,12 @@ public class LoadActivityData implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        try {
+            eventManager.updateLatestThreeEvents();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void loadMaxCardNumber() {

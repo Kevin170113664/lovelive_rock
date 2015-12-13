@@ -123,12 +123,16 @@ public class CardManager {
                 Call<CardModel> call = Retrofit.getInstance().getCardService().getCardById(String.format("%s", cardId));
                 Response<CardModel> response = call.execute();
                 CardModel cardModel = response.body();
-                databaseManager.deleteCard(cardModel.getCardId());
-                databaseManager.cacheCard(cardModel);
+                updateCard(cardModel);
             }
         } else {
             System.out.print("Update latest cards failed.");
         }
+    }
+
+    protected void updateCard(CardModel cardModel) {
+        databaseManager.deleteCard(cardModel.getCardId());
+        databaseManager.cacheCard(cardModel);
     }
 
     @NonNull

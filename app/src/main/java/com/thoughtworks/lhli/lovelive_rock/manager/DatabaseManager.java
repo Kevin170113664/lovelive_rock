@@ -46,6 +46,12 @@ public class DatabaseManager {
         cardDao.deleteByKey(primaryKey);
     }
 
+    public void deleteEvent(String eventName) {
+        Long primaryKey = queryEventPrimaryKeyByName(eventName);
+        getEventDao(helper.getWritableDatabase());
+        eventDao.deleteByKey(primaryKey);
+    }
+
     public void cacheCard(CardModel cardModel) {
         Long characterVoiceId = getCharacterVoiceId(cardModel);
         Long idolId = getIdolId(cardModel, characterVoiceId);
@@ -97,7 +103,7 @@ public class DatabaseManager {
         cardDao.insert(card);
     }
 
-    private Long insertEvent(EventModel eventModel) {
+    public Long insertEvent(EventModel eventModel) {
         getEventDao(helper.getWritableDatabase());
 
         return eventDao.insert(modelMapper.map(eventModel, Event.class));
@@ -141,6 +147,17 @@ public class DatabaseManager {
                 .list();
         
         return cardList.get(0).getId();
+    }
+
+    public Long queryEventPrimaryKeyByName(String eventName) {
+        getEventDao(helper.getReadableDatabase());
+
+        List<Event> eventList
+                = eventDao.queryBuilder()
+                .where(EventDao.Properties.JapaneseName.eq(eventName))
+                .list();
+
+        return eventList.get(0).getId();
     }
 
     public Long queryEventByName(CardModel cardModel) {
