@@ -44,7 +44,7 @@
     <string name="first_download_tips">第一次下载所有数据大约需要3~5分钟。</string>
     <string name="medley_festival_calculator_label">MF计算器</string>
     <string name="objective_points">目标点数</string>
-    <string name="current_points">已有点数</string>
+    <string name="current_points">当前点数</string>
     <string name="current_rank">当前等级</string>
     <string name="song_amount">曲目数</string>
     <string name="difficulty">难度</string>
@@ -57,7 +57,7 @@
     <string name="song_rank_addition_ratio">加成倍率：</string>
     <string name="combo_rank">连击等级</string>
     <string name="combo_rank_addition">加成倍率：</string>
-    <string name="current_last_lp">剩余LP</string>
+    <string name="current_lp">当前LP</string>
     <string name="current_experience">当前经验</string>
     <string name="event_end_time">活动结束时间</string>
     <string name="event_last_time">活动剩余时间</string>

@@ -66,7 +66,7 @@
     <string name="song_rank_addition_ratio">Addition Ratio:</string>
     <string name="combo_rank">Combo Rank</string>
     <string name="combo_rank_addition">Addition:</string>
-    <string name="current_last_lp">Current Last LP</string>
+    <string name="current_lp">Current LP</string>
     <string name="current_experience">Current Exp</string>
     <string name="event_end_time">Event End Time</string>
     <string name="event_last_time">Event Last Time</string>

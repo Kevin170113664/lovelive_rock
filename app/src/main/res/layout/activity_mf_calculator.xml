@@ -304,7 +304,7 @@
                             android:layout_height="wrap_content"
                             android:paddingBottom="10dp"
                             android:paddingTop="10dp"
-                            android:text="@string/current_last_lp"
+                            android:text="@string/current_lp"
                             android:textSize="16sp" />
 
                         <EditText
