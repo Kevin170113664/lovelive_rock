@@ -8,8 +8,11 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.thoughtworks.lhli.lovelive_rock.R;
+import com.thoughtworks.lhli.lovelive_rock.model.Pt;
 
+import java.io.InputStream;
 import java.util.HashMap;
 
 import butterknife.Bind;
@@ -67,6 +70,7 @@ public class NormalCalculatorActivity extends BaseActivity {
 
     private HashMap<String, String> eventSongRankMap = new HashMap<>();
     private HashMap<String, String> eventComboRankMap = new HashMap<>();
+    private Pt pt = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,24 +81,24 @@ public class NormalCalculatorActivity extends BaseActivity {
     }
 
     private void initialiseActivityData() {
-        setRankMap();
+        setEventPointObject();
         setButtonOnClickListener();
         advancedOptionsLayout.setVisibility(View.GONE);
         eventTimeLayout.setVisibility(View.GONE);
     }
 
-    private void setRankMap() {
-//        eventSongRankMap.put("S", "1.2");
-//        eventSongRankMap.put("A", "1.15");
-//        eventSongRankMap.put("B", "1.1");
-//        eventSongRankMap.put("C", "1.05");
-//        eventSongRankMap.put("-", "1");
-//
-//        eventComboRankMap.put("S", "1.08");
-//        eventComboRankMap.put("A", "1.06");
-//        eventComboRankMap.put("B", "1.04");
-//        eventComboRankMap.put("C", "1.02");
-//        eventComboRankMap.put("-", "1");
+    private void setEventPointObject() {
+        try {
+            InputStream inputStream = getAssets().open("normal_event.json");
+            int size = inputStream.available();
+            byte[] buffer = new byte[size];
+            inputStream.read(buffer);
+            inputStream.close();
+
+            pt = new Gson().fromJson(new String(buffer, "UTF-8"), Pt.class);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     private void setButtonOnClickListener() {

@@ -86,6 +86,13 @@
     <string name="play_time_ratio">Play Time Ratio</string>
     <string name="calculation_report_default">-</string>
     <string name="result_report">Report</string>
+    <string name="consume_lp">Consume LP:</string>
+    <string name="normal_difficulty">Normal Difficulty</string>
+    <string name="event_song_rank">Event Rank</string>
+    <string name="event_song_combo">Event Combo</string>
+    <string name="once_points">Once Points</string>
+    <string name="event_song_difficulty">Event Difficulty</string>
+    <string name="current_item">Current Item</string>
 
     <string-array name="rarity_array">
         <item>Rarity</item>

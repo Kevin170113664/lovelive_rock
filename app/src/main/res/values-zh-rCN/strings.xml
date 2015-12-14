@@ -5,6 +5,7 @@
     <string name="action_song">歌曲</string>
     <string name="action_event">活动</string>
     <string name="action_mf_calculator">MF计算器</string>
+    <string name="action_normal_calculator">传统计算器</string>
     <string name="filter_dialog_title">筛选</string>
 
     <string name="toast_function_not_complete">对不起哟，这部分功能尚未完成</string>
@@ -75,6 +76,13 @@
     <string name="play_time">游戏时间</string>
     <string name="play_time_ratio">时间占比</string>
     <string name="result_report">结果报告</string>
+    <string name="consume_lp">消耗LP:</string>
+    <string name="normal_difficulty">普通难度</string>
+    <string name="event_song_rank">活动等级</string>
+    <string name="event_song_combo">活动连击</string>
+    <string name="once_points">单次PT：</string>
+    <string name="event_song_difficulty">活动难度</string>
+    <string name="current_item">当前道具</string>
 
     <string-array name="rarity_array">
         <item>稀有度</item>

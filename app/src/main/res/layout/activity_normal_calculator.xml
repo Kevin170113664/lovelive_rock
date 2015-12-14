@@ -98,7 +98,7 @@
                         android:layout_height="wrap_content"
                         android:paddingBottom="10dp"
                         android:paddingTop="10dp"
-                        android:text="当前道具"
+                        android:text="@string/current_item"
                         android:textSize="16sp" />
 
 
@@ -118,7 +118,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/current_rank_and_item"
                     android:layout_marginBottom="5dp"
-                    android:text="活动难度"
+                    android:text="@string/event_song_difficulty"
                     android:textSize="16sp" />
 
                 <Spinner
@@ -137,7 +137,7 @@
                     android:layout_below="@id/current_rank_and_item"
                     android:layout_marginBottom="5dp"
                     android:layout_toRightOf="@id/event_difficulty_spinner"
-                    android:text="单次PT："
+                    android:text="@string/once_points"
                     android:textSize="16sp" />
 
                 <TextView
@@ -164,7 +164,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:text="活动等级"
+                        android:text="@string/event_song_rank"
                         android:textSize="16sp" />
 
                     <Spinner
@@ -180,7 +180,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:text="活动连击"
+                        android:text="@string/event_song_combo"
                         android:textSize="16sp" />
 
                     <Spinner
@@ -294,7 +294,7 @@
                         android:layout_below="@id/current_lp_and_exp"
                         android:paddingBottom="5dp"
                         android:paddingTop="10dp"
-                        android:text="普通难度"
+                        android:text="@string/normal_difficulty"
                         android:textSize="16sp" />
 
                     <Spinner
@@ -312,7 +312,7 @@
                         android:layout_alignBottom="@id/song_rank_spinner"
                         android:layout_toRightOf="@id/song_rank_spinner"
                         android:paddingBottom="5dp"
-                        android:text="消耗LP:"
+                        android:text="@string/consume_lp"
                         android:textSize="14sp" />
 
                     <TextView
