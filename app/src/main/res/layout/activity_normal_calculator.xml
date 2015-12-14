@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_mf_calculator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="0dp"
+            card_view:cardBackgroundColor="@color/colorOrange100"
+            card_view:cardCornerRadius="3dp"
+            card_view:cardElevation="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/objective_points_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="@string/objective_points"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/objective_points_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/objective_points_label"
+                    android:layout_toRightOf="@id/objective_points_label"
+                    android:inputType="number"
+                    android:text="0"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/current_points_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/objective_points_label"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="@string/current_points"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/current_points_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/current_points_label"
+                    android:layout_toRightOf="@id/current_points_label"
+                    android:inputType="number"
+                    android:text="0"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:id="@+id/current_rank_and_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/current_points_label">
+
+                    <TextView
+                        android:id="@+id/current_rank_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/current_points_label"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:text="@string/current_rank"
+                        android:textSize="16sp" />
+
+
+                    <EditText
+                        android:id="@+id/current_rank_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".5"
+                        android:inputType="number"
+                        android:text="0"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/current_item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:text="当前道具"
+                        android:textSize="16sp" />
+
+
+                    <EditText
+                        android:id="@+id/current_item_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".5"
+                        android:inputType="number"
+                        android:text="0"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/event_difficulty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/current_rank_and_item"
+                    android:layout_marginBottom="5dp"
+                    android:text="活动难度"
+                    android:textSize="16sp" />
+
+                <Spinner
+                    android:id="@+id/event_difficulty_spinner"
+                    android:layout_width="75dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@id/current_rank_and_item"
+                    android:layout_marginRight="5dp"
+                    android:layout_toRightOf="@id/event_difficulty"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/pt_within_once_play_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/current_rank_and_item"
+                    android:layout_marginBottom="5dp"
+                    android:layout_toRightOf="@id/event_difficulty_spinner"
+                    android:text="单次PT："
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/pt_within_once_play_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/pt_within_once_play_label"
+                    android:layout_below="@id/current_rank_and_item"
+                    android:layout_toRightOf="@id/pt_within_once_play_label"
+                    android:paddingBottom="5dp"
+                    android:textSize="14sp"
+                    tools:text="1616" />
+
+                <LinearLayout
+                    android:id="@+id/event_rank_and_combo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_below="@id/event_difficulty"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/event_song_rank_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:text="活动等级"
+                        android:textSize="16sp" />
+
+                    <Spinner
+                        android:id="@+id/event_song_rank_spinner"
+                        android:layout_width="80dp"
+                        android:layout_height="30dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight=".5"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/event_song_combo_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:text="活动连击"
+                        android:textSize="16sp" />
+
+                    <Spinner
+                        android:id="@+id/event_song_combo_spinner"
+                        android:layout_width="80dp"
+                        android:layout_height="30dp"
+                        android:layout_weight=".5"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/button_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/event_rank_and_combo"
+                    android:layout_marginTop="5dp">
+
+                    <Button
+                        android:id="@+id/advanced_options_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".5"
+                        android:background="@color/colorOrange100"
+                        android:text="@string/advanced_options" />
+
+                    <Button
+                        android:id="@+id/event_time_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".5"
+                        android:background="@color/colorOrange100"
+                        android:text="@string/event_time" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/advanced_options"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/button_group"
+                    android:layout_marginTop="5dp"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/wasted_lp_every_day_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:text="@string/wasted_lp_every_day"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/wasted_lp_every_day_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@id/wasted_lp_every_day_label"
+                        android:layout_toRightOf="@id/wasted_lp_every_day_label"
+                        android:inputType="number"
+                        android:text="0"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:id="@+id/current_lp_and_exp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/wasted_lp_every_day_label">
+
+                        <TextView
+                            android:id="@+id/current_last_lp_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="10dp"
+                            android:paddingTop="10dp"
+                            android:text="@string/current_lp"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/current_lp_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:inputType="number"
+                            android:text="0"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/current_experience_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="10dp"
+                            android:paddingTop="10dp"
+                            android:text="@string/current_experience"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/current_experience_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:inputType="number"
+                            android:text="0"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/song_difficulty_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/current_lp_and_exp"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="10dp"
+                        android:text="普通难度"
+                        android:textSize="16sp" />
+
+                    <Spinner
+                        android:id="@+id/song_rank_spinner"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:layout_alignBottom="@id/song_difficulty_label"
+                        android:layout_toRightOf="@id/song_difficulty_label"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/song_consume_lp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@id/song_rank_spinner"
+                        android:layout_toRightOf="@id/song_rank_spinner"
+                        android:paddingBottom="5dp"
+                        android:text="消耗LP:"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/song_rank_addition_ratio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@id/song_consume_lp"
+                        android:layout_toRightOf="@id/song_consume_lp"
+                        android:paddingBottom="5dp"
+                        android:textSize="14sp"
+                        tools:text="25" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/event_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/button_group"
+                    android:layout_marginTop="5dp"
+                    tools:visibility="gone">
+
+                    <LinearLayout
+                        android:id="@+id/event_end_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/event_end_time_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="10dp"
+                            android:paddingTop="10dp"
+                            android:text="@string/event_end_time"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/event_end_day_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:inputType="number"
+                            android:text="0"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/event_end_time_day_unit_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="10dp"
+                            android:paddingTop="10dp"
+                            android:text="@string/day_unit"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/event_end_hour_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:inputType="number"
+                            android:text="0"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/event_end_time_hour_unit_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="10dp"
+                            android:paddingTop="10dp"
+                            android:text="@string/hour_unit"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/event_last_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/event_end_time">
+
+                        <TextView
+                            android:id="@+id/event_last_time_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="10dp"
+                            android:paddingTop="10dp"
+                            android:text="@string/event_last_time"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/event_last_time_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:inputType="number"
+                            android:text="0"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/event_last_time_hour_unit_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="10dp"
+                            android:paddingTop="10dp"
+                            android:text="@string/hour_unit"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/calculate_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:background="@color/colorOrange100"
+        android:text="@string/calculate" />
+
+</RelativeLayout>

@@ -3,7 +3,8 @@
     <string name="action_card">Card</string>
     <string name="action_song">Song</string>
     <string name="action_event">Event</string>
-    <string name="action_mf_calculator">MF calculator</string>
+    <string name="action_mf_calculator">MF Calculator</string>
+    <string name="action_normal_calculator">Normal Calculator</string>
     <string name="filter_dialog_title">Filter</string>
 
     <string name="toast_function_not_complete">Sorry, this is unavailable now.</string>
@@ -51,7 +52,8 @@
     <string name="first_download_tips">Download all the data may need 3 to 5 minutes at the first time.</string>
     <string name="max_card_number_default">0</string>
     <string name="event_default_value">0</string>
-    <string name="medley_festival_calculator_label">MF calculator</string>
+    <string name="medley_festival_calculator_label">MF Calculator</string>
+    <string name="normal_calculator_label">Normal Calculator</string>
     <string name="objective_points">Objective Points</string>
     <string name="current_points">Current Points</string>
     <string name="current_rank">Current Rank</string>

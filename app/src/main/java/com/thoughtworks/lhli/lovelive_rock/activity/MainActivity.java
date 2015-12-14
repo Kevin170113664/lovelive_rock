@@ -52,7 +52,7 @@ public class MainActivity extends BaseActivity {
     protected ImageView smCalculatorNavigator;
 
     @Bind(R.id.traditional_calculator_navigator)
-    protected ImageView traditionalCalculatorNavigator;
+    protected ImageView normalCalculatorNavigator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,11 +95,10 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        traditionalCalculatorNavigator.setOnClickListener(new ImageView.OnClickListener() {
+        normalCalculatorNavigator.setOnClickListener(new ImageView.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), getString(R.string.toast_function_not_complete),
-                        Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, NormalCalculatorActivity.class));
             }
         });
     }
@@ -188,6 +187,9 @@ public class MainActivity extends BaseActivity {
                 return true;
             case R.id.action_mf_calculator:
                 startActivity(new Intent(this, MedleyFestivalCalculatorActivity.class));
+                return true;
+            case R.id.action_normal_calculator:
+                startActivity(new Intent(MainActivity.this, NormalCalculatorActivity.class));
                 return true;
         }
 

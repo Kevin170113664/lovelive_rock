@@ -43,6 +43,7 @@
     <string name="small_card_skill_type_title">技能类型：</string>
     <string name="first_download_tips">第一次下载所有数据大约需要3~5分钟。</string>
     <string name="medley_festival_calculator_label">MF计算器</string>
+    <string name="normal_calculator_label">传统计算器</string>
     <string name="objective_points">目标点数</string>
     <string name="current_points">当前点数</string>
     <string name="current_rank">当前等级</string>
