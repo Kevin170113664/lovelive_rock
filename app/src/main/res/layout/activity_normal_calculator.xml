@@ -208,7 +208,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight=".5"
                         android:background="@color/colorOrange100"
-                        android:text="@string/advanced_options" />
+                        android:text="@string/advanced_options"
+                        android:textColor="@color/colorOrange800" />
 
                     <Button
                         android:id="@+id/event_time_button"
@@ -216,7 +217,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight=".5"
                         android:background="@color/colorOrange100"
-                        android:text="@string/event_time" />
+                        android:text="@string/event_time"
+                        android:textColor="@color/colorOrange800" />
                 </LinearLayout>
 
                 <RelativeLayout
