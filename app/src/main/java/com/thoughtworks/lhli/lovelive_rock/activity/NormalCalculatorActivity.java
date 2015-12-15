@@ -1,6 +1,8 @@
 package com.thoughtworks.lhli.lovelive_rock.activity;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.thoughtworks.lhli.lovelive_rock.R;
+import com.thoughtworks.lhli.lovelive_rock.factory.CalculatorFactory;
 import com.thoughtworks.lhli.lovelive_rock.model.point.Pt;
 
 import java.io.InputStream;
@@ -99,6 +102,7 @@ public class NormalCalculatorActivity extends BaseActivity {
         setDropdownList();
         setButtonOnClickListener();
         setSpinnerSelectedListener();
+        setEventTimeFields();
         advancedOptionsLayout.setVisibility(View.GONE);
         eventTimeLayout.setVisibility(View.GONE);
     }
@@ -203,16 +207,27 @@ public class NormalCalculatorActivity extends BaseActivity {
     }
 
     protected void setOncePoints() {
+        ptWithinOncePlayText.setText(String.format("%s", calculateOncePoints()));
+    }
+
+    @NonNull
+    private Integer calculateOncePoints() {
+        Boolean isFourMultiply = false;
         String rank = eventSongRankSpinner.getSelectedItem().toString();
         String combo = eventSongComboSpinner.getSelectedItem().toString();
         String difficulty = eventDifficultySpinner.getSelectedItem().toString();
-        Integer points = pt.getPoints(difficulty, rank, combo);
 
-        ptWithinOncePlayText.setText(String.format("%s", points));
+        if (difficulty.substring(0, 1).equals("4")) {
+            isFourMultiply = true;
+            difficulty = difficulty.substring(2);
+        }
+
+        Integer points = pt.getPoints(difficulty, rank, combo);
+        return isFourMultiply ? points * 4 : points;
     }
 
     private void setDropdownList() {
-        setSpinnerAdapter(eventDifficultySpinner, R.array.difficulty);
+        setSpinnerAdapter(eventDifficultySpinner, R.array.normal_difficulty);
         setSpinnerAdapter(eventSongRankSpinner, R.array.song_rank);
         setSpinnerAdapter(eventSongComboSpinner, R.array.combo_rank);
         setSpinnerAdapter(normalDifficultySpinner, R.array.difficulty);
@@ -225,5 +240,16 @@ public class NormalCalculatorActivity extends BaseActivity {
                 android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+    }
+
+    protected void setEventTimeFields() {
+        CalculatorFactory calculatorFactory = new CalculatorFactory(readLatestEventEndTime());
+        eventEndDayText.setText(calculatorFactory.getEventEndDay());
+        eventEndHourText.setText(calculatorFactory.getEventEndHour());
+        eventLastTimeText.setText(calculatorFactory.getEventLastTime());
+    }
+
+    protected String readLatestEventEndTime() {
+        return PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("latestEventEndTime", null);
     }
 }

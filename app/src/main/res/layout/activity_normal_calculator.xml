@@ -124,7 +124,7 @@
 
                 <Spinner
                     android:id="@+id/event_difficulty_spinner"
-                    android:layout_width="90dp"
+                    android:layout_width="110dp"
                     android:layout_height="30dp"
                     android:layout_alignTop="@id/event_difficulty"
                     android:layout_below="@id/current_rank_and_item"
@@ -150,7 +150,6 @@
                     android:layout_alignBottom="@id/pt_within_once_play_label"
                     android:layout_below="@id/current_rank_and_item"
                     android:layout_toRightOf="@id/pt_within_once_play_label"
-                    android:paddingBottom="5dp"
                     android:paddingTop="5dp"
                     android:textSize="@dimen/text_size_default"
                     tools:text="1616" />

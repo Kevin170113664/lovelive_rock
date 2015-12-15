@@ -237,6 +237,16 @@
         <item>Normal</item>
         <item>Easy</item>
     </string-array>
+    <string-array name="normal_difficulty">
+        <item>Expert</item>
+        <item>Hard</item>
+        <item>Normal</item>
+        <item>Easy</item>
+        <item>4×Expert</item>
+        <item>4×Hard</item>
+        <item>4×Normal</item>
+        <item>4×Easy</item>
+    </string-array>
     <string-array name="song_rank">
         <item>S</item>
         <item>A</item>
