@@ -153,8 +153,8 @@ public class CalculatorFactory {
         finalPoints = currentPoints;
         finalExperience = currentExperience;
         finalLp = currentLp + Math.round(getRecoveryLp());
+        finalItem = currentItem;
         timesNeedToPlay = 0L;
-        finalItem = 0L;
         eventTimesNeedToPlay = 0L;
     }
 
@@ -166,7 +166,7 @@ public class CalculatorFactory {
 
     protected void calculateNormalResultAfterPlay() {
         finalRank = currentRank;
-        totalPlayTime = timesNeedToPlay * MINUTES_FOR_ONE_SONG;
+        totalPlayTime = (eventTimesNeedToPlay + timesNeedToPlay) * MINUTES_FOR_ONE_SONG;
         playTimeRatio = totalPlayTime / (eventLastTime * 60.0);
     }
 
@@ -188,11 +188,8 @@ public class CalculatorFactory {
         while (true) {
             while (finalLp >= getMfLpWithinOncePlay()) {
                 mfPlayOnceWithEnoughLp();
-                while (finalExperience >= getCurrentRankUpExp()) {
-                    upgradeOneRankWithEnoughExp();
-                }
             }
-            if (finalPoints <= objectivePoints) {
+            if (finalPoints < objectivePoints) {
                 consumeOneLoveca();
             } else {
                 break;
@@ -210,7 +207,15 @@ public class CalculatorFactory {
     }
 
     protected void normalPlayWithLoveca() {
-
+        while (finalPoints < objectivePoints) {
+            consumeOneLoveca();
+            while (finalLp >= consumeLP) {
+                normalPlayOnceWithEnoughLp();
+                while (finalItem >= getConsumeItemWithinOncePlay()) {
+                    normalPlayOnceWithEnoughItem();
+                }
+            }
+        }
     }
 
     private void normalPlayOnceWithEnoughItem() {
@@ -260,6 +265,9 @@ public class CalculatorFactory {
         timesNeedToPlay += 1;
         finalPoints += getMfPointsWithinOncePlay();
         finalExperience += getMfExperienceWithinOncePlay();
+        while (finalExperience >= getCurrentRankUpExp()) {
+            upgradeOneRankWithEnoughExp();
+        }
     }
 
     protected void normalPlayOnceWithEnoughLp() {
