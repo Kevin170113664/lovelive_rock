@@ -28,6 +28,13 @@ public class CalculatorFactory {
     private double eventLastTime;
     private String eventEndTime;
 
+    private long currentItem;
+    private String eventDifficulty;
+    private String eventRank;
+    private String eventCombo;
+    private long oncePoints;
+    private long consumeLP;
+
     private long lovecaAmount;
     private long finalPoints;
     private long finalRank;
@@ -36,6 +43,8 @@ public class CalculatorFactory {
     private long timesNeedToPlay;
     private long totalPlayTime;
     private double playTimeRatio;
+    private long finalItem;
+    private long eventTimesNeedToPlay;
 
     public CalculatorFactory(String eventEndTime) {
         this.eventEndTime = eventEndTime;
@@ -64,6 +73,27 @@ public class CalculatorFactory {
         this.eventEndDay = parseLongField(eventEndDay);
         this.eventEndHour = parseLongField(eventEndHour);
         this.eventLastTime = parseDoubleField(eventLastTime);
+    }
+
+    public CalculatorFactory(String objectivePoints, String currentPoints, String currentRank,
+                             String wastedLpEveryDay, String currentLp, String currentExperience,
+                             String eventEndDay, String eventLastTime, String currentItem,
+                             String eventDifficulty, String eventRank, String eventCombo,
+                             String oncePoints, String consumeLP) {
+        this.objectivePoints = parseLongField(objectivePoints);
+        this.currentPoints = parseLongField(currentPoints);
+        this.currentRank = parseLongField(currentRank);
+        this.wastedLpEveryDay = parseLongField(wastedLpEveryDay);
+        this.currentLp = parseLongField(currentLp);
+        this.currentExperience = parseLongField(currentExperience);
+        this.eventEndDay = parseLongField(eventEndDay);
+        this.eventLastTime = parseLongField(eventLastTime);
+        this.currentItem = parseLongField(currentItem);
+        this.eventDifficulty = eventDifficulty;
+        this.eventRank = eventRank;
+        this.eventCombo = eventCombo;
+        this.oncePoints = parseLongField(oncePoints);
+        this.consumeLP = parseLongField(consumeLP);
     }
 
     protected double parseDoubleField(String value) {
@@ -403,5 +433,18 @@ public class CalculatorFactory {
 
     public String getPlayTimeRatio() {
         return new DecimalFormat("0.0").format(playTimeRatio * 100) + "%";
+    }
+
+    public void calculateNormalProcess() {
+
+    }
+
+
+    public long getFinalItem() {
+        return finalItem;
+    }
+
+    public long getEventTimesNeedToPlay() {
+        return eventTimesNeedToPlay;
     }
 }

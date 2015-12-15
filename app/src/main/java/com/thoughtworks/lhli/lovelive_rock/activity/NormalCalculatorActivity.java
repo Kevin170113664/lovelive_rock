@@ -1,5 +1,6 @@
 package com.thoughtworks.lhli.lovelive_rock.activity;
 
+import android.app.DialogFragment;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -85,6 +86,9 @@ public class NormalCalculatorActivity extends BaseActivity {
     @Bind(R.id.pt_within_once_play_text)
     protected TextView ptWithinOncePlayText;
 
+    @Bind(R.id.current_item_text)
+    protected TextView currentItemText;
+
     private HashMap<String, String> consumeLpMap = new HashMap<>();
     private Pt pt = null;
 
@@ -103,8 +107,48 @@ public class NormalCalculatorActivity extends BaseActivity {
         setButtonOnClickListener();
         setSpinnerSelectedListener();
         setEventTimeFields();
+        setCalculateButtonClickListener();
         advancedOptionsLayout.setVisibility(View.GONE);
         eventTimeLayout.setVisibility(View.GONE);
+    }
+
+    private void setCalculateButtonClickListener() {
+        calculateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CalculatorFactory calculatorFactory = new CalculatorFactory(objectivePointsText.getText().toString(),
+                        currentPointsText.getText().toString(), currentRankText.getText().toString(),
+                        wastedLpEveryDayText.getText().toString(), currentLpText.getText().toString(),
+                        currentExperienceText.getText().toString(), eventEndDayText.getText().toString(),
+                        eventLastTimeText.getText().toString(), currentItemText.getText().toString(),
+                        eventDifficultySpinner.getSelectedItem().toString(), eventSongRankSpinner.getSelectedItem().toString(),
+                        eventSongComboSpinner.getSelectedItem().toString(), ptWithinOncePlayText.getText().toString(),
+                        consumeLpText.getText().toString());
+
+                Bundle calculationReport = new Bundle();
+                setReportFields(calculatorFactory, calculationReport);
+
+                DialogFragment normalReportDialogFragment = new ReportDialogFragment();
+                normalReportDialogFragment.setArguments(calculationReport);
+                normalReportDialogFragment.show(getFragmentManager(), "dialog");
+            }
+
+            private void setReportFields(CalculatorFactory calculatorFactory, Bundle calculationReport) {
+                calculatorFactory.calculateNormalProcess();
+                calculationReport.putString("event_type", "normal");
+                calculationReport.putString("necessary_loveca", String.format("%s", calculatorFactory.getLovecaAmount()));
+                calculationReport.putString("final_points", String.format("%s", calculatorFactory.getFinalPoints()));
+                calculationReport.putString("final_rank", String.format("%s", calculatorFactory.getFinalRank()));
+                calculationReport.putString("final_experience", String.format("%s/%s",
+                        calculatorFactory.getFinalExperience(), calculatorFactory.getFinalRankUpExp()));
+                calculationReport.putString("final_lp", String.format("%s", calculatorFactory.getFinalLp()));
+                calculationReport.putString("final_item", String.format("%s", calculatorFactory.getFinalItem()));
+                calculationReport.putString("play_frequency", String.format("%s", calculatorFactory.getTimesNeedToPlay()));
+                calculationReport.putString("event_frequency", String.format("%s", calculatorFactory.getEventTimesNeedToPlay()));
+                calculationReport.putString("total_time", calculatorFactory.getTotalPlayTime());
+                calculationReport.putString("play_time_ratio", calculatorFactory.getPlayTimeRatio());
+            }
+        });
     }
 
     private void setConsumeLpMap() {
