@@ -291,7 +291,7 @@ public class CalculatorFactoryTest {
     }
 
     @Test
-    public void shouldCalculateFieldsWhenPlayWithFreeLp() {
+    public void shouldCalculateFieldsWhenMfPlayWithFreeLp() {
         calculatorFactory = new CalculatorFactory() {
             public long getMfLpWithinOncePlay() {
                 return 60L;
@@ -320,7 +320,7 @@ public class CalculatorFactoryTest {
     }
 
     @Test
-    public void shouldCalculateFieldsWhenPlayWithLoveca() {
+    public void shouldCalculateFieldsWhenMfPlayWithLoveca() {
         calculatorFactory = new CalculatorFactory() {
             public long getMfLpWithinOncePlay() {
                 return 60L;
@@ -344,9 +344,91 @@ public class CalculatorFactoryTest {
 
         calculatorFactory.mfPlayWithLoveca();
 
+        assertEquals(29L, calculatorFactory.getLovecaAmount());
         assertEquals(41L, calculatorFactory.getFinalLp());
         assertEquals(3224L, calculatorFactory.getFinalExperience());
         assertEquals(70912L, calculatorFactory.getFinalPoints());
         assertEquals(64L, calculatorFactory.getTimesNeedToPlay());
+    }
+
+    @Test
+    public void shouldCalculateFieldsWhenNormalPlayWithFreeLp() {
+        calculatorFactory = new CalculatorFactory() {
+            public long getNormalBasicPointsWithinOncePlay() {
+                return 27L;
+            }
+
+            public long getNormalExpWithinOncePlay(long consumeLp) {
+                return 83L;
+            }
+
+            public long getNormalExpWithinOncePlay(String eventDifficulty) {
+                return 83L;
+            }
+
+            public long getConsumeItemWithinOncePlay() {
+                return 75L;
+            }
+        };
+        calculatorFactory.setConsumeLP(25L);
+        calculatorFactory.setOncePoints(404L);
+        calculatorFactory.setFinalLp(2400L);
+        calculatorFactory.setFinalExperience(0L);
+        calculatorFactory.setFinalPoints(0L);
+        calculatorFactory.setFinalItem(0L);
+        calculatorFactory.setCurrentRank(200L);
+        calculatorFactory.setTimesNeedToPlay(0L);
+        calculatorFactory.setEventTimesNeedToPlay(0L);
+
+        calculatorFactory.normalPlayWithFreeLp();
+
+        assertEquals(0L, calculatorFactory.getFinalLp());
+        assertEquals(5032L, calculatorFactory.getFinalExperience());
+        assertEquals(17271L, calculatorFactory.getFinalPoints());
+        assertEquals(27L, calculatorFactory.getFinalItem());
+        assertEquals(101L, calculatorFactory.getTimesNeedToPlay());
+        assertEquals(36L, calculatorFactory.getEventTimesNeedToPlay());
+    }
+
+    @Test
+    public void shouldCalculateFieldsWhenNormalPlayWithLoveca() {
+        calculatorFactory = new CalculatorFactory() {
+            public long getNormalBasicPointsWithinOncePlay() {
+                return 27L;
+            }
+
+            public long getNormalExpWithinOncePlay(long consumeLp) {
+                return 83L;
+            }
+
+            public long getNormalExpWithinOncePlay(String eventDifficulty) {
+                return 83L;
+            }
+
+            public long getConsumeItemWithinOncePlay() {
+                return 75L;
+            }
+        };
+        calculatorFactory.setObjectivePoints(30000L);
+        calculatorFactory.setLovecaAmount(0L);
+        calculatorFactory.setConsumeLP(25L);
+        calculatorFactory.setOncePoints(404L);
+        calculatorFactory.setFinalLp(0L);
+        calculatorFactory.setFinalExperience(0L);
+        calculatorFactory.setFinalPoints(0L);
+        calculatorFactory.setFinalItem(0L);
+        calculatorFactory.setCurrentRank(200L);
+        calculatorFactory.setTimesNeedToPlay(0L);
+        calculatorFactory.setEventTimesNeedToPlay(0L);
+
+        calculatorFactory.normalPlayWithLoveca();
+
+        assertEquals(32L, calculatorFactory.getLovecaAmount());
+        assertEquals(12L, calculatorFactory.getFinalLp());
+        assertEquals(634L, calculatorFactory.getFinalExperience());
+        assertEquals(30177L, calculatorFactory.getFinalPoints());
+        assertEquals(0L, calculatorFactory.getFinalItem());
+        assertEquals(175L, calculatorFactory.getTimesNeedToPlay());
+        assertEquals(63L, calculatorFactory.getEventTimesNeedToPlay());
     }
 }
