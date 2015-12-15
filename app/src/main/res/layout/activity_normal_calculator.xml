@@ -151,7 +151,8 @@
                     android:layout_below="@id/current_rank_and_item"
                     android:layout_toRightOf="@id/pt_within_once_play_label"
                     android:paddingBottom="5dp"
-                    android:textSize="@dimen/text_size_small"
+                    android:paddingTop="5dp"
+                    android:textSize="@dimen/text_size_default"
                     tools:text="1616" />
 
                 <LinearLayout
@@ -325,7 +326,7 @@
                         android:layout_alignBottom="@id/consume_lp_label"
                         android:layout_toRightOf="@id/consume_lp_label"
                         android:paddingBottom="5dp"
-                        android:textSize="@dimen/text_size_small"
+                        android:textSize="@dimen/text_size_default"
                         tools:text="25" />
 
 
