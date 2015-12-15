@@ -74,7 +74,7 @@
     <string name="event_last_time">Event Last Time</string>
     <string name="day_unit">Day(s)</string>
     <string name="hour_unit">Hour(s)</string>
-    <string name="minute_unit">Minute(s)</string>
+    <string name="minute_unit">Min(s)</string>
     <string name="calculate">Calculate</string>
     <string name="necessary_loveca">Necessary Loveca</string>
     <string name="final_points">Final Points</string>

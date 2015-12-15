@@ -65,13 +65,13 @@ public class MedleyFestivalCalculatorActivity extends BaseActivity {
     @Bind(R.id.difficulty_spinner)
     protected Spinner difficultySpinner;
 
-    @Bind(R.id.song_rank_spinner)
+    @Bind(R.id.normal_difficulty_spinner)
     protected Spinner songRankSpinner;
 
     @Bind(R.id.combo_rank_spinner)
     protected Spinner comboRankSpinner;
 
-    @Bind(R.id.song_rank_addition_ratio)
+    @Bind(R.id.consume_lp_text)
     protected TextView songRankAdditionRatio;
 
     @Bind(R.id.combo_rank_addition_ratio)

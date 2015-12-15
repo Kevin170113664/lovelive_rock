@@ -2,6 +2,8 @@ package com.thoughtworks.lhli.lovelive_rock.activity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -10,7 +12,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.thoughtworks.lhli.lovelive_rock.R;
-import com.thoughtworks.lhli.lovelive_rock.model.Pt;
+import com.thoughtworks.lhli.lovelive_rock.model.point.Pt;
 
 import java.io.InputStream;
 import java.util.HashMap;
@@ -50,11 +52,17 @@ public class NormalCalculatorActivity extends BaseActivity {
     @Bind(R.id.event_time)
     protected RelativeLayout eventTimeLayout;
 
-    @Bind(R.id.song_rank_spinner)
-    protected Spinner songRankSpinner;
+    @Bind(R.id.event_difficulty_spinner)
+    protected Spinner eventDifficultySpinner;
 
-    @Bind(R.id.song_rank_addition_ratio)
-    protected TextView songRankAdditionRatio;
+    @Bind(R.id.event_song_rank_spinner)
+    protected Spinner eventSongRankSpinner;
+
+    @Bind(R.id.event_song_combo_spinner)
+    protected Spinner eventSongComboSpinner;
+
+    @Bind(R.id.normal_difficulty_spinner)
+    protected Spinner normalDifficultySpinner;
 
     @Bind(R.id.event_end_day_text)
     protected EditText eventEndDayText;
@@ -68,8 +76,13 @@ public class NormalCalculatorActivity extends BaseActivity {
     @Bind(R.id.calculate_button)
     protected Button calculateButton;
 
-    private HashMap<String, String> eventSongRankMap = new HashMap<>();
-    private HashMap<String, String> eventComboRankMap = new HashMap<>();
+    @Bind(R.id.consume_lp_text)
+    protected TextView consumeLpText;
+
+    @Bind(R.id.pt_within_once_play_text)
+    protected TextView ptWithinOncePlayText;
+
+    private HashMap<String, String> consumeLpMap = new HashMap<>();
     private Pt pt = null;
 
     @Override
@@ -81,10 +94,20 @@ public class NormalCalculatorActivity extends BaseActivity {
     }
 
     private void initialiseActivityData() {
+        setConsumeLpMap();
         setEventPointObject();
+        setDropdownList();
         setButtonOnClickListener();
+        setSpinnerSelectedListener();
         advancedOptionsLayout.setVisibility(View.GONE);
         eventTimeLayout.setVisibility(View.GONE);
+    }
+
+    private void setConsumeLpMap() {
+        consumeLpMap.put("Expert", "25");
+        consumeLpMap.put("Hard", "15");
+        consumeLpMap.put("Normal", "10");
+        consumeLpMap.put("Easy", "5");
     }
 
     private void setEventPointObject() {
@@ -97,7 +120,7 @@ public class NormalCalculatorActivity extends BaseActivity {
 
             pt = new Gson().fromJson(new String(buffer, "UTF-8"), Pt.class);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            System.out.print("initialise normal event basic points object failed.");
         }
     }
 
@@ -131,5 +154,76 @@ public class NormalCalculatorActivity extends BaseActivity {
                 }
             }
         });
+    }
+
+    private void setSpinnerSelectedListener() {
+        eventDifficultySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                setOncePoints();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        eventSongRankSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                setOncePoints();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        eventSongComboSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                setOncePoints();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        normalDifficultySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                consumeLpText.setText(consumeLpMap.get(normalDifficultySpinner.getSelectedItem().toString()));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+    }
+
+    protected void setOncePoints() {
+        String rank = eventSongRankSpinner.getSelectedItem().toString();
+        String combo = eventSongComboSpinner.getSelectedItem().toString();
+        String difficulty = eventDifficultySpinner.getSelectedItem().toString();
+        Integer points = pt.getPoints(difficulty, rank, combo);
+
+        ptWithinOncePlayText.setText(String.format("%s", points));
+    }
+
+    private void setDropdownList() {
+        setSpinnerAdapter(eventDifficultySpinner, R.array.difficulty);
+        setSpinnerAdapter(eventSongRankSpinner, R.array.song_rank);
+        setSpinnerAdapter(eventSongComboSpinner, R.array.combo_rank);
+        setSpinnerAdapter(normalDifficultySpinner, R.array.difficulty);
+
+        eventSongComboSpinner.setSelection(1);
+    }
+
+    private void setSpinnerAdapter(Spinner spinner, int resourceId) {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, resourceId,
+                android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
     }
 }

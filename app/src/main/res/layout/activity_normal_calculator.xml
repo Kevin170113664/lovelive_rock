@@ -34,7 +34,7 @@
                     android:paddingBottom="10dp"
                     android:paddingTop="10dp"
                     android:text="@string/objective_points"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/text_size_default" />
 
                 <EditText
                     android:id="@+id/objective_points_text"
@@ -44,7 +44,7 @@
                     android:layout_toRightOf="@id/objective_points_label"
                     android:inputType="number"
                     android:text="0"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/text_size_small" />
 
                 <TextView
                     android:id="@+id/current_points_label"
@@ -54,7 +54,7 @@
                     android:paddingBottom="10dp"
                     android:paddingTop="10dp"
                     android:text="@string/current_points"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/text_size_default" />
 
                 <EditText
                     android:id="@+id/current_points_text"
@@ -64,7 +64,7 @@
                     android:layout_toRightOf="@id/current_points_label"
                     android:inputType="number"
                     android:text="0"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/text_size_small" />
 
                 <LinearLayout
                     android:id="@+id/current_rank_and_item"
@@ -80,7 +80,7 @@
                         android:paddingBottom="10dp"
                         android:paddingTop="10dp"
                         android:text="@string/current_rank"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/text_size_default" />
 
 
                     <EditText
@@ -90,7 +90,7 @@
                         android:layout_weight=".5"
                         android:inputType="number"
                         android:text="0"
-                        android:textSize="14sp" />
+                        android:textSize="@dimen/text_size_small" />
 
                     <TextView
                         android:id="@+id/current_item"
@@ -99,7 +99,7 @@
                         android:paddingBottom="10dp"
                         android:paddingTop="10dp"
                         android:text="@string/current_item"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/text_size_default" />
 
 
                     <EditText
@@ -109,7 +109,7 @@
                         android:layout_weight=".5"
                         android:inputType="number"
                         android:text="0"
-                        android:textSize="14sp" />
+                        android:textSize="@dimen/text_size_small" />
                 </LinearLayout>
 
                 <TextView
@@ -118,17 +118,19 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/current_rank_and_item"
                     android:layout_marginBottom="5dp"
+                    android:paddingTop="5dp"
                     android:text="@string/event_song_difficulty"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/text_size_default" />
 
                 <Spinner
                     android:id="@+id/event_difficulty_spinner"
-                    android:layout_width="75dp"
+                    android:layout_width="90dp"
                     android:layout_height="30dp"
+                    android:layout_alignTop="@id/event_difficulty"
                     android:layout_below="@id/current_rank_and_item"
                     android:layout_marginRight="5dp"
                     android:layout_toRightOf="@id/event_difficulty"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/text_size_small" />
 
                 <TextView
                     android:id="@+id/pt_within_once_play_label"
@@ -137,8 +139,9 @@
                     android:layout_below="@id/current_rank_and_item"
                     android:layout_marginBottom="5dp"
                     android:layout_toRightOf="@id/event_difficulty_spinner"
+                    android:paddingTop="5dp"
                     android:text="@string/once_points"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/text_size_default" />
 
                 <TextView
                     android:id="@+id/pt_within_once_play_text"
@@ -148,15 +151,15 @@
                     android:layout_below="@id/current_rank_and_item"
                     android:layout_toRightOf="@id/pt_within_once_play_label"
                     android:paddingBottom="5dp"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/text_size_small"
                     tools:text="1616" />
 
                 <LinearLayout
                     android:id="@+id/event_rank_and_combo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:layout_below="@id/event_difficulty"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -165,7 +168,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:text="@string/event_song_rank"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/text_size_default" />
 
                     <Spinner
                         android:id="@+id/event_song_rank_spinner"
@@ -173,7 +176,7 @@
                         android:layout_height="30dp"
                         android:layout_marginRight="5dp"
                         android:layout_weight=".5"
-                        android:textSize="14sp" />
+                        android:textSize="@dimen/text_size_small" />
 
                     <TextView
                         android:id="@+id/event_song_combo_label"
@@ -181,14 +184,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:text="@string/event_song_combo"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/text_size_default" />
 
                     <Spinner
                         android:id="@+id/event_song_combo_spinner"
                         android:layout_width="80dp"
                         android:layout_height="30dp"
                         android:layout_weight=".5"
-                        android:textSize="14sp" />
+                        android:textSize="@dimen/text_size_small" />
 
                 </LinearLayout>
 
@@ -231,7 +234,7 @@
                         android:paddingBottom="10dp"
                         android:paddingTop="10dp"
                         android:text="@string/wasted_lp_every_day"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/text_size_default" />
 
                     <EditText
                         android:id="@+id/wasted_lp_every_day_text"
@@ -241,7 +244,7 @@
                         android:layout_toRightOf="@id/wasted_lp_every_day_label"
                         android:inputType="number"
                         android:text="0"
-                        android:textSize="14sp" />
+                        android:textSize="@dimen/text_size_small" />
 
                     <LinearLayout
                         android:id="@+id/current_lp_and_exp"
@@ -256,7 +259,7 @@
                             android:paddingBottom="10dp"
                             android:paddingTop="10dp"
                             android:text="@string/current_lp"
-                            android:textSize="16sp" />
+                            android:textSize="@dimen/text_size_default" />
 
                         <EditText
                             android:id="@+id/current_lp_text"
@@ -265,7 +268,7 @@
                             android:layout_weight=".5"
                             android:inputType="number"
                             android:text="0"
-                            android:textSize="14sp" />
+                            android:textSize="@dimen/text_size_small" />
 
                         <TextView
                             android:id="@+id/current_experience_label"
@@ -274,7 +277,7 @@
                             android:paddingBottom="10dp"
                             android:paddingTop="10dp"
                             android:text="@string/current_experience"
-                            android:textSize="16sp" />
+                            android:textSize="@dimen/text_size_default" />
 
                         <EditText
                             android:id="@+id/current_experience_text"
@@ -283,46 +286,46 @@
                             android:layout_weight=".5"
                             android:inputType="number"
                             android:text="0"
-                            android:textSize="14sp" />
+                            android:textSize="@dimen/text_size_small" />
 
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/song_difficulty_label"
+                        android:id="@+id/normal_difficulty_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/current_lp_and_exp"
                         android:paddingBottom="5dp"
                         android:paddingTop="10dp"
                         android:text="@string/normal_difficulty"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/text_size_default" />
 
                     <Spinner
-                        android:id="@+id/song_rank_spinner"
-                        android:layout_width="70dp"
+                        android:id="@+id/normal_difficulty_spinner"
+                        android:layout_width="90dp"
                         android:layout_height="30dp"
-                        android:layout_alignBottom="@id/song_difficulty_label"
-                        android:layout_toRightOf="@id/song_difficulty_label"
-                        android:textSize="14sp" />
+                        android:layout_alignBottom="@id/normal_difficulty_label"
+                        android:layout_toRightOf="@id/normal_difficulty_label"
+                        android:textSize="@dimen/text_size_small" />
 
                     <TextView
-                        android:id="@+id/song_consume_lp"
+                        android:id="@+id/consume_lp_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignBottom="@id/song_rank_spinner"
-                        android:layout_toRightOf="@id/song_rank_spinner"
+                        android:layout_alignBottom="@id/normal_difficulty_spinner"
+                        android:layout_toRightOf="@id/normal_difficulty_spinner"
                         android:paddingBottom="5dp"
                         android:text="@string/consume_lp"
-                        android:textSize="14sp" />
+                        android:textSize="@dimen/text_size_default" />
 
                     <TextView
-                        android:id="@+id/song_rank_addition_ratio"
+                        android:id="@+id/consume_lp_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignBottom="@id/song_consume_lp"
-                        android:layout_toRightOf="@id/song_consume_lp"
+                        android:layout_alignBottom="@id/consume_lp_label"
+                        android:layout_toRightOf="@id/consume_lp_label"
                         android:paddingBottom="5dp"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/text_size_small"
                         tools:text="25" />
 
 
@@ -348,7 +351,7 @@
                             android:paddingBottom="10dp"
                             android:paddingTop="10dp"
                             android:text="@string/event_end_time"
-                            android:textSize="16sp" />
+                            android:textSize="@dimen/text_size_default" />
 
                         <EditText
                             android:id="@+id/event_end_day_text"
@@ -357,7 +360,7 @@
                             android:layout_weight=".5"
                             android:inputType="number"
                             android:text="0"
-                            android:textSize="14sp" />
+                            android:textSize="@dimen/text_size_small" />
 
                         <TextView
                             android:id="@+id/event_end_time_day_unit_label"
@@ -366,7 +369,7 @@
                             android:paddingBottom="10dp"
                             android:paddingTop="10dp"
                             android:text="@string/day_unit"
-                            android:textSize="16sp" />
+                            android:textSize="@dimen/text_size_default" />
 
                         <EditText
                             android:id="@+id/event_end_hour_text"
@@ -375,7 +378,7 @@
                             android:layout_weight=".5"
                             android:inputType="number"
                             android:text="0"
-                            android:textSize="14sp" />
+                            android:textSize="@dimen/text_size_small" />
 
                         <TextView
                             android:id="@+id/event_end_time_hour_unit_label"
@@ -384,7 +387,7 @@
                             android:paddingBottom="10dp"
                             android:paddingTop="10dp"
                             android:text="@string/hour_unit"
-                            android:textSize="16sp" />
+                            android:textSize="@dimen/text_size_default" />
 
                     </LinearLayout>
 
@@ -401,7 +404,7 @@
                             android:paddingBottom="10dp"
                             android:paddingTop="10dp"
                             android:text="@string/event_last_time"
-                            android:textSize="16sp" />
+                            android:textSize="@dimen/text_size_default" />
 
                         <EditText
                             android:id="@+id/event_last_time_text"
@@ -410,7 +413,7 @@
                             android:layout_weight=".5"
                             android:inputType="number"
                             android:text="0"
-                            android:textSize="14sp" />
+                            android:textSize="@dimen/text_size_small" />
 
                         <TextView
                             android:id="@+id/event_last_time_hour_unit_label"
@@ -419,7 +422,7 @@
                             android:paddingBottom="10dp"
                             android:paddingTop="10dp"
                             android:text="@string/hour_unit"
-                            android:textSize="16sp" />
+                            android:textSize="@dimen/text_size_default" />
 
                     </LinearLayout>
                 </RelativeLayout>
