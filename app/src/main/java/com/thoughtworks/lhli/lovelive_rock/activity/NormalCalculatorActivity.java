@@ -248,6 +248,8 @@ public class NormalCalculatorActivity extends BaseActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+        consumeLpText.setText("25");
     }
 
     protected void setOncePoints() {

@@ -11,6 +11,8 @@ import java.util.HashMap;
 
 public class CalculatorFactory {
 
+    private final Integer MINUTES_FOR_ONE_SONG = 3;
+
     private long objectivePoints;
     private long currentPoints;
     private long currentRank;
@@ -87,7 +89,7 @@ public class CalculatorFactory {
         this.currentLp = parseLongField(currentLp);
         this.currentExperience = parseLongField(currentExperience);
         this.eventEndDay = parseLongField(eventEndDay);
-        this.eventLastTime = parseLongField(eventLastTime);
+        this.eventLastTime = parseDoubleField(eventLastTime);
         this.currentItem = parseLongField(currentItem);
         this.eventDifficulty = eventDifficulty;
         this.eventRank = eventRank;
@@ -140,9 +142,9 @@ public class CalculatorFactory {
         }
         long originalRank = currentRank;
         initialisePredictFields();
-        playWithFreeLp();
-        playWithLoveca();
-        calculateResultAfterPlay();
+        mfPlayWithFreeLp();
+        mfPlayWithLoveca();
+        calculateMfResultAfterPlay();
         currentRank = originalRank;
     }
 
@@ -152,12 +154,40 @@ public class CalculatorFactory {
         finalExperience = currentExperience;
         finalLp = currentLp + Math.round(getRecoveryLp());
         timesNeedToPlay = 0L;
+        finalItem = 0L;
+        eventTimesNeedToPlay = 0L;
     }
 
-    protected void playWithLoveca() {
+    protected void calculateMfResultAfterPlay() {
+        finalRank = currentRank;
+        totalPlayTime = timesNeedToPlay * getMinutesWithinOncePlay();
+        playTimeRatio = totalPlayTime / (eventLastTime * 60.0);
+    }
+
+    protected void calculateNormalResultAfterPlay() {
+        finalRank = currentRank;
+        totalPlayTime = timesNeedToPlay * MINUTES_FOR_ONE_SONG;
+        playTimeRatio = totalPlayTime / (eventLastTime * 60.0);
+    }
+
+    protected void consumeOneLoveca() {
+        lovecaAmount += 1;
+        finalLp += getBiggestLp();
+    }
+
+    protected void mfPlayWithFreeLp() {
+        while (finalLp >= getMfLpWithinOncePlay()) {
+            mfPlayOnceWithEnoughLp();
+            while (finalExperience >= getCurrentRankUpExp()) {
+                upgradeOneRankWithEnoughExp();
+            }
+        }
+    }
+
+    protected void mfPlayWithLoveca() {
         while (true) {
-            while (finalLp >= getLpWithinOncePlay()) {
-                playOnceWithEnoughLp();
+            while (finalLp >= getMfLpWithinOncePlay()) {
+                mfPlayOnceWithEnoughLp();
                 while (finalExperience >= getCurrentRankUpExp()) {
                     upgradeOneRankWithEnoughExp();
                 }
@@ -170,24 +200,53 @@ public class CalculatorFactory {
         }
     }
 
-    protected void calculateResultAfterPlay() {
-        finalRank = currentRank;
-        totalPlayTime = timesNeedToPlay * getMinutesWithinOncePlay();
-        playTimeRatio = totalPlayTime / (eventLastTime * 60.0);
-    }
-
-    protected void consumeOneLoveca() {
-        lovecaAmount += 1;
-        finalLp += getBiggestLp();
-    }
-
-    protected void playWithFreeLp() {
-        while (finalLp >= getLpWithinOncePlay()) {
-            playOnceWithEnoughLp();
-            while (finalExperience >= getCurrentRankUpExp()) {
-                upgradeOneRankWithEnoughExp();
+    protected void normalPlayWithFreeLp() {
+        while (finalLp >= consumeLP) {
+            normalPlayOnceWithEnoughLp();
+            while (finalItem >= getConsumeItemWithinOncePlay()) {
+                normalPlayOnceWithEnoughItem();
             }
         }
+    }
+
+    protected void normalPlayWithLoveca() {
+
+    }
+
+    private void normalPlayOnceWithEnoughItem() {
+        finalItem -= getConsumeItemWithinOncePlay();
+        eventTimesNeedToPlay += 1;
+        finalPoints += oncePoints;
+        finalExperience += getNormalExpWithinOncePlay(eventDifficulty);
+        while (finalExperience >= getCurrentRankUpExp()) {
+            upgradeOneRankWithEnoughExp();
+        }
+    }
+
+    protected long getNormalExpWithinOncePlay(Long consumeLP) {
+        HashMap<Long, Long> normalExpMap = new HashMap<>();
+
+        normalExpMap.put(25L, 83L);
+        normalExpMap.put(15L, 46L);
+        normalExpMap.put(10L, 26L);
+        normalExpMap.put(5L, 12L);
+
+        return normalExpMap.get(consumeLP);
+    }
+
+    protected long getNormalExpWithinOncePlay(String eventDifficulty) {
+        String difficulty = eventDifficulty;
+        if (difficulty.substring(0, 1).equals("4")) {
+            difficulty = difficulty.substring(2);
+        }
+
+        HashMap<String, Long> normalExpMap = new HashMap<>();
+        normalExpMap.put("Expert", 83L);
+        normalExpMap.put("Hard", 46L);
+        normalExpMap.put("Normal", 26L);
+        normalExpMap.put("Easy", 12L);
+
+        return normalExpMap.get(difficulty);
     }
 
     protected void upgradeOneRankWithEnoughExp() {
@@ -196,11 +255,22 @@ public class CalculatorFactory {
         finalLp += getBiggestLp();
     }
 
-    protected void playOnceWithEnoughLp() {
-        finalLp -= getLpWithinOncePlay();
+    protected void mfPlayOnceWithEnoughLp() {
+        finalLp -= getMfLpWithinOncePlay();
         timesNeedToPlay += 1;
-        finalPoints += getPointsWithinOncePlay();
-        finalExperience += getExperienceWithinOncePlay();
+        finalPoints += getMfPointsWithinOncePlay();
+        finalExperience += getMfExperienceWithinOncePlay();
+    }
+
+    protected void normalPlayOnceWithEnoughLp() {
+        finalLp -= consumeLP;
+        timesNeedToPlay += 1;
+        finalItem += getNormalBasicPointsWithinOncePlay();
+        finalPoints += getNormalBasicPointsWithinOncePlay();
+        finalExperience += getNormalExpWithinOncePlay(consumeLP);
+        while (finalExperience >= getCurrentRankUpExp()) {
+            upgradeOneRankWithEnoughExp();
+        }
     }
 
     protected double getRecoveryLp() {
@@ -225,17 +295,45 @@ public class CalculatorFactory {
         return consumeTimeMap.get(songAmount);
     }
 
-    protected long getLpWithinOncePlay() {
+    protected long getMfLpWithinOncePlay() {
         return songAmount * getMfConsumeLp();
     }
 
-    protected long getPointsWithinOncePlay() {
+    protected long getConsumeItemWithinOncePlay() {
+        Boolean isFourMultiply = false;
+        String difficulty = eventDifficulty;
+        if (difficulty.substring(0, 1).equals("4")) {
+            isFourMultiply = true;
+            difficulty = difficulty.substring(2);
+        }
+
+        HashMap<String, Long> consumeItemMap = new HashMap<>();
+        consumeItemMap.put("Expert", 75L);
+        consumeItemMap.put("Hard", 45L);
+        consumeItemMap.put("Normal", 30L);
+        consumeItemMap.put("Easy", 15L);
+
+        return isFourMultiply ? consumeItemMap.get(difficulty) * 4 : consumeItemMap.get(difficulty);
+    }
+
+    protected long getMfPointsWithinOncePlay() {
         double points = getMfBasicPoints() * songRankRatio * comboRankRatio;
 
         return pointAddition ? Math.round(points * 1.1) : Math.round(points);
     }
 
-    protected long getExperienceWithinOncePlay() {
+    protected long getNormalBasicPointsWithinOncePlay() {
+        HashMap<Long, Long> normalBasicPointsMap = new HashMap<>();
+
+        normalBasicPointsMap.put(25L, 27L);
+        normalBasicPointsMap.put(15L, 16L);
+        normalBasicPointsMap.put(10L, 10L);
+        normalBasicPointsMap.put(5L, 5L);
+
+        return normalBasicPointsMap.get(consumeLP);
+    }
+
+    protected long getMfExperienceWithinOncePlay() {
         HashMap<String, Long> experienceMap = new HashMap<>();
 
         experienceMap.put("Easy", 12L);
@@ -426,6 +524,38 @@ public class CalculatorFactory {
         return timesNeedToPlay;
     }
 
+    public void setCurrentItem(long currentItem) {
+        this.currentItem = currentItem;
+    }
+
+    public void setEventDifficulty(String eventDifficulty) {
+        this.eventDifficulty = eventDifficulty;
+    }
+
+    public void setEventRank(String eventRank) {
+        this.eventRank = eventRank;
+    }
+
+    public void setEventCombo(String eventCombo) {
+        this.eventCombo = eventCombo;
+    }
+
+    public void setOncePoints(long oncePoints) {
+        this.oncePoints = oncePoints;
+    }
+
+    public void setConsumeLP(long consumeLP) {
+        this.consumeLP = consumeLP;
+    }
+
+    public void setFinalItem(long finalItem) {
+        this.finalItem = finalItem;
+    }
+
+    public void setEventTimesNeedToPlay(long eventTimesNeedToPlay) {
+        this.eventTimesNeedToPlay = eventTimesNeedToPlay;
+    }
+
     public String getTotalPlayTime() {
         return String.format("%s" + LoveLiveApp.getInstance().getString(R.string.hour_unit) + "%s" + LoveLiveApp.getInstance().getString(R.string.minute_unit),
                 totalPlayTime / 60, totalPlayTime % 60);
@@ -436,9 +566,16 @@ public class CalculatorFactory {
     }
 
     public void calculateNormalProcess() {
-
+        if (getBiggestLp() == 0) {
+            return;
+        }
+        long originalRank = currentRank;
+        initialisePredictFields();
+        normalPlayWithFreeLp();
+        normalPlayWithLoveca();
+        calculateNormalResultAfterPlay();
+        currentRank = originalRank;
     }
-
 
     public long getFinalItem() {
         return finalItem;

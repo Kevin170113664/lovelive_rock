@@ -141,11 +141,11 @@ public class CalculatorFactoryTest {
     public void shouldCalculateLpWithinOncePlay() {
         calculatorFactory.setSongAmount(2);
         calculatorFactory.setDifficulty("Hard");
-        assertEquals(24, calculatorFactory.getLpWithinOncePlay());
+        assertEquals(24, calculatorFactory.getMfLpWithinOncePlay());
 
         calculatorFactory.setSongAmount(3);
         calculatorFactory.setDifficulty("Expert");
-        assertEquals(60, calculatorFactory.getLpWithinOncePlay());
+        assertEquals(60, calculatorFactory.getMfLpWithinOncePlay());
     }
 
     @Test
@@ -156,27 +156,27 @@ public class CalculatorFactoryTest {
         calculatorFactory.setSongRankRatio(1.2);
 
         calculatorFactory.setComboRankRatio(1.08);
-        assertEquals(1108, calculatorFactory.getPointsWithinOncePlay());
+        assertEquals(1108, calculatorFactory.getMfPointsWithinOncePlay());
 
         calculatorFactory.setComboRankRatio(1.06);
-        assertEquals(1087, calculatorFactory.getPointsWithinOncePlay());
+        assertEquals(1087, calculatorFactory.getMfPointsWithinOncePlay());
 
         calculatorFactory.setComboRankRatio(1.04);
-        assertEquals(1067, calculatorFactory.getPointsWithinOncePlay());
+        assertEquals(1067, calculatorFactory.getMfPointsWithinOncePlay());
 
         calculatorFactory.setComboRankRatio(1.02);
-        assertEquals(1046, calculatorFactory.getPointsWithinOncePlay());
+        assertEquals(1046, calculatorFactory.getMfPointsWithinOncePlay());
 
         calculatorFactory.setComboRankRatio(1.0);
-        assertEquals(1026, calculatorFactory.getPointsWithinOncePlay());
+        assertEquals(1026, calculatorFactory.getMfPointsWithinOncePlay());
 
         calculatorFactory.setDifficulty("Hard");
 
         calculatorFactory.setComboRankRatio(1.08);
-        assertEquals(582, calculatorFactory.getPointsWithinOncePlay());
+        assertEquals(582, calculatorFactory.getMfPointsWithinOncePlay());
 
         calculatorFactory.setComboRankRatio(1.06);
-        assertEquals(571, calculatorFactory.getPointsWithinOncePlay());
+        assertEquals(571, calculatorFactory.getMfPointsWithinOncePlay());
     }
 
     @Test
@@ -185,15 +185,15 @@ public class CalculatorFactoryTest {
         calculatorFactory.setSongAmount(1);
         calculatorFactory.setExperienceAddition(false);
         calculatorFactory.setSongRankRatio(1);
-        assertEquals(41, calculatorFactory.getExperienceWithinOncePlay());
+        assertEquals(41, calculatorFactory.getMfExperienceWithinOncePlay());
 
         calculatorFactory.setSongAmount(3);
         calculatorFactory.setExperienceAddition(true);
         calculatorFactory.setSongRankRatio(1.2);
-        assertEquals(274, calculatorFactory.getExperienceWithinOncePlay());
+        assertEquals(274, calculatorFactory.getMfExperienceWithinOncePlay());
 
         calculatorFactory.setExperienceAddition(false);
-        assertEquals(249, calculatorFactory.getExperienceWithinOncePlay());
+        assertEquals(249, calculatorFactory.getMfExperienceWithinOncePlay());
     }
 
     @Test
@@ -246,17 +246,62 @@ public class CalculatorFactoryTest {
     }
 
     @Test
+    public void shouldCalculateNormalExpWithinOncePlay() {
+        assertEquals(83L, calculatorFactory.getNormalExpWithinOncePlay(25L));
+        assertEquals(46L, calculatorFactory.getNormalExpWithinOncePlay(15L));
+        assertEquals(26L, calculatorFactory.getNormalExpWithinOncePlay(10L));
+        assertEquals(12L, calculatorFactory.getNormalExpWithinOncePlay(5L));
+
+        assertEquals(83L, calculatorFactory.getNormalExpWithinOncePlay("Expert"));
+        assertEquals(46L, calculatorFactory.getNormalExpWithinOncePlay("Hard"));
+        assertEquals(26L, calculatorFactory.getNormalExpWithinOncePlay("Normal"));
+        assertEquals(12L, calculatorFactory.getNormalExpWithinOncePlay("Easy"));
+
+        assertEquals(83L, calculatorFactory.getNormalExpWithinOncePlay("4×Expert"));
+        assertEquals(46L, calculatorFactory.getNormalExpWithinOncePlay("4×Hard"));
+        assertEquals(26L, calculatorFactory.getNormalExpWithinOncePlay("4×Normal"));
+        assertEquals(12L, calculatorFactory.getNormalExpWithinOncePlay("4×Easy"));
+    }
+
+    @Test
+    public void shouldCalculateItemsWithinOncePlay() {
+        calculatorFactory.setEventDifficulty("4×Expert");
+        assertEquals(300L, calculatorFactory.getConsumeItemWithinOncePlay());
+
+        calculatorFactory.setEventDifficulty("Expert");
+        assertEquals(75L, calculatorFactory.getConsumeItemWithinOncePlay());
+
+        calculatorFactory.setEventDifficulty("4×Easy");
+        assertEquals(60L, calculatorFactory.getConsumeItemWithinOncePlay());
+    }
+
+    @Test
+    public void shouldCalculateBasicPointsWithinOncePlay() {
+        calculatorFactory.setConsumeLP(25L);
+        assertEquals(27L, calculatorFactory.getNormalBasicPointsWithinOncePlay());
+
+        calculatorFactory.setConsumeLP(15L);
+        assertEquals(16L, calculatorFactory.getNormalBasicPointsWithinOncePlay());
+
+        calculatorFactory.setConsumeLP(10L);
+        assertEquals(10L, calculatorFactory.getNormalBasicPointsWithinOncePlay());
+
+        calculatorFactory.setConsumeLP(5L);
+        assertEquals(5L, calculatorFactory.getNormalBasicPointsWithinOncePlay());
+    }
+
+    @Test
     public void shouldCalculateFieldsWhenPlayWithFreeLp() {
         calculatorFactory = new CalculatorFactory() {
-            public long getLpWithinOncePlay() {
+            public long getMfLpWithinOncePlay() {
                 return 60L;
             }
 
-            public long getPointsWithinOncePlay() {
+            public long getMfPointsWithinOncePlay() {
                 return 1108L;
             }
 
-            public long getExperienceWithinOncePlay() {
+            public long getMfExperienceWithinOncePlay() {
                 return 249L;
             }
         };
@@ -266,7 +311,7 @@ public class CalculatorFactoryTest {
         calculatorFactory.setCurrentRank(200L);
         calculatorFactory.setTimesNeedToPlay(0L);
 
-        calculatorFactory.playWithFreeLp();
+        calculatorFactory.mfPlayWithFreeLp();
 
         assertEquals(5L, calculatorFactory.getFinalLp());
         assertEquals(4119L, calculatorFactory.getFinalExperience());
@@ -277,15 +322,15 @@ public class CalculatorFactoryTest {
     @Test
     public void shouldCalculateFieldsWhenPlayWithLoveca() {
         calculatorFactory = new CalculatorFactory() {
-            public long getLpWithinOncePlay() {
+            public long getMfLpWithinOncePlay() {
                 return 60L;
             }
 
-            public long getPointsWithinOncePlay() {
+            public long getMfPointsWithinOncePlay() {
                 return 1108L;
             }
 
-            public long getExperienceWithinOncePlay() {
+            public long getMfExperienceWithinOncePlay() {
                 return 249L;
             }
         };
@@ -297,7 +342,7 @@ public class CalculatorFactoryTest {
         calculatorFactory.setCurrentRank(200L);
         calculatorFactory.setTimesNeedToPlay(0L);
 
-        calculatorFactory.playWithLoveca();
+        calculatorFactory.mfPlayWithLoveca();
 
         assertEquals(41L, calculatorFactory.getFinalLp());
         assertEquals(3224L, calculatorFactory.getFinalExperience());
