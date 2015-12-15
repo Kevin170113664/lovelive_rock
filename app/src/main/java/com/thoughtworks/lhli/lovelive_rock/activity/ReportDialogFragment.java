@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.thoughtworks.lhli.lovelive_rock.R;
@@ -16,7 +17,7 @@ import com.thoughtworks.lhli.lovelive_rock.R;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MfReportDialogFragment extends DialogFragment {
+public class ReportDialogFragment extends DialogFragment {
 
     @Bind(R.id.necessary_loveca_text)
     protected TextView necessaryLovecaText;
@@ -42,6 +43,18 @@ public class MfReportDialogFragment extends DialogFragment {
     @Bind(R.id.play_time_ratio_text)
     protected TextView playTimeRatioText;
 
+    @Bind(R.id.final_item_text)
+    protected TextView finalItemText;
+
+    @Bind(R.id.event_play_frequency_text)
+    protected TextView eventPlayFrequencyText;
+
+    @Bind(R.id.item_report)
+    protected LinearLayout itemReport;
+
+    @Bind(R.id.event_frequency_report)
+    protected LinearLayout eventFrequencyReport;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getDialog().setTitle(R.string.result_report);
@@ -61,12 +74,38 @@ public class MfReportDialogFragment extends DialogFragment {
         super.onActivityCreated(savedInstanceState);
         ButterKnife.bind(this, getView());
 
+        switch (getArguments().getString("event_type")) {
+            case "mf":
+                setMfReport();
+                break;
+            case "normal":
+                setNormalReport();
+                break;
+        }
+    }
+
+    protected void setMfReport() {
         necessaryLovecaText.setText(getArguments().getString("necessary_loveca"));
         finalPointsText.setText(getArguments().getString("final_points"));
         finalRankText.setText(getArguments().getString("final_rank"));
         finalExperienceText.setText(getArguments().getString("final_experience"));
         finalLpText.setText(getArguments().getString("final_lp"));
         playFrequencyText.setText(getArguments().getString("play_frequency"));
+        totalTimeText.setText(getArguments().getString("total_time"));
+        playTimeRatioText.setText(getArguments().getString("play_time_ratio"));
+        itemReport.setVisibility(View.GONE);
+        eventFrequencyReport.setVisibility(View.GONE);
+    }
+
+    protected void setNormalReport() {
+        necessaryLovecaText.setText(getArguments().getString("necessary_loveca"));
+        finalPointsText.setText(getArguments().getString("final_points"));
+        finalRankText.setText(getArguments().getString("final_rank"));
+        finalExperienceText.setText(getArguments().getString("final_experience"));
+        finalLpText.setText(getArguments().getString("final_lp"));
+        finalItemText.setText(getArguments().getString("final_item"));
+        playFrequencyText.setText(getArguments().getString("play_frequency"));
+        eventPlayFrequencyText.setText(getArguments().getString("event_frequency"));
         totalTimeText.setText(getArguments().getString("total_time"));
         playTimeRatioText.setText(getArguments().getString("play_time_ratio"));
     }

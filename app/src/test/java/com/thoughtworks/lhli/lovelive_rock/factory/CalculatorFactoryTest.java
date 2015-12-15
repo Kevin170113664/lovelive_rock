@@ -242,7 +242,7 @@ public class CalculatorFactoryTest {
     public void shouldCalculateTotalPlayTime() {
         calculatorFactory.setTotalPlayTime(338L);
 
-        assertEquals("5Hour(s)38Minute(s)", calculatorFactory.getTotalPlayTime());
+        assertEquals("5Hour(s)38Min(s)", calculatorFactory.getTotalPlayTime());
     }
 
     @Test

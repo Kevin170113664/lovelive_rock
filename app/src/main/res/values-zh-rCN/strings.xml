@@ -72,7 +72,9 @@
     <string name="final_rank">最终等级</string>
     <string name="final_experience">最终经验</string>
     <string name="final_lp">最终ＬＰ</string>
+    <string name="final_item">最终道具</string>
     <string name="play_frequency">游戏次数</string>
+    <string name="event_play_frequency">活动次数</string>
     <string name="play_time">游戏时间</string>
     <string name="play_time_ratio">时间占比</string>
     <string name="result_report">结果报告</string>

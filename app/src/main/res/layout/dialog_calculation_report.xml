@@ -111,6 +111,28 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/item_report"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="@string/final_item"
+            android:textSize="@dimen/text_size_default" />
+
+        <TextView
+            android:id="@+id/final_item_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/calculation_report_default"
+            android:textSize="@dimen/text_size_default" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -124,6 +146,28 @@
 
         <TextView
             android:id="@+id/play_frequency_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/calculation_report_default"
+            android:textSize="@dimen/text_size_default" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/event_frequency_report"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="@string/event_play_frequency"
+            android:textSize="@dimen/text_size_default" />
+
+        <TextView
+            android:id="@+id/event_play_frequency_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/calculation_report_default"

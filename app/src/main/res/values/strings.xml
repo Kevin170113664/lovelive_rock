@@ -81,7 +81,9 @@
     <string name="final_rank">Final Rank</string>
     <string name="final_experience">Final Experience</string>
     <string name="final_lp">Final LP</string>
+    <string name="final_item">Final Item</string>
     <string name="play_frequency">Play Frequency</string>
+    <string name="event_play_frequency">Event Frequency</string>
     <string name="play_time">Total Play Time</string>
     <string name="play_time_ratio">Play Time Ratio</string>
     <string name="calculation_report_default">-</string>
