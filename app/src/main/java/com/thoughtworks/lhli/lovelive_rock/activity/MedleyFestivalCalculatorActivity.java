@@ -127,13 +127,13 @@ public class MedleyFestivalCalculatorActivity extends BaseActivity {
                 Bundle calculationReport = new Bundle();
                 setReportFields(calculatorFactory, calculationReport);
 
-                DialogFragment calculationReportDialogFragment = new CalculationReportDialogFragment();
-                calculationReportDialogFragment.setArguments(calculationReport);
-                calculationReportDialogFragment.show(getFragmentManager(), "dialog");
+                DialogFragment mfReportDialogFragment = new MfReportDialogFragment();
+                mfReportDialogFragment.setArguments(calculationReport);
+                mfReportDialogFragment.show(getFragmentManager(), "dialog");
             }
 
             private void setReportFields(CalculatorFactory calculatorFactory, Bundle calculationReport) {
-                calculatorFactory.calculateEventProcess();
+                calculatorFactory.calculateMfProcess();
                 calculationReport.putString("necessary_loveca", String.format("%s", calculatorFactory.getLovecaAmount()));
                 calculationReport.putString("final_points", String.format("%s", calculatorFactory.getFinalPoints()));
                 calculationReport.putString("final_rank", String.format("%s", calculatorFactory.getFinalRank()));

@@ -16,7 +16,7 @@ import com.thoughtworks.lhli.lovelive_rock.R;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class CalculationReportDialogFragment extends DialogFragment {
+public class MfReportDialogFragment extends DialogFragment {
 
     @Bind(R.id.necessary_loveca_text)
     protected TextView necessaryLovecaText;

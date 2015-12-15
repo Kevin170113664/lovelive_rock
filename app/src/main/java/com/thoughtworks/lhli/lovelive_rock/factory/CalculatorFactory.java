@@ -104,7 +104,7 @@ public class CalculatorFactory {
         return getRankUpExpByRank(getFinalRank());
     }
 
-    public void calculateEventProcess() {
+    public void calculateMfProcess() {
         if (getBiggestLp() == 0) {
             return;
         }
