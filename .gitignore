@@ -31,3 +31,7 @@ proguard/
 *.iml
 
 *.lock
+
+*.properties
+
+*.jks

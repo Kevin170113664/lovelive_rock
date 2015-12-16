@@ -92,7 +92,7 @@
     <string name="normal_difficulty">Normal Difficulty</string>
     <string name="event_song_rank">Event Rank</string>
     <string name="event_song_combo">Event Combo</string>
-    <string name="once_points">Once Points</string>
+    <string name="once_points">Once Points:</string>
     <string name="event_song_difficulty">Event Difficulty</string>
     <string name="current_item">Current Item</string>
 
