@@ -117,9 +117,9 @@ public class CardManager {
         LoveLiveApp.getInstance().setMaxCardNumber(lastCardId);
     }
 
-    public void updateLatestTenCards() throws IOException {
-        if (maxCardNumber >= 10 && LoveLiveApp.getInstance().isNetworkAvailable()) {
-            for (int cardId = maxCardNumber; cardId >= maxCardNumber - 9; cardId--) {
+    public void updateLatest20Cards() throws IOException {
+        if (maxCardNumber >= 20 && LoveLiveApp.getInstance().isNetworkAvailable()) {
+            for (int cardId = maxCardNumber; cardId >= maxCardNumber - 19; cardId--) {
                 Call<CardModel> call = Retrofit.getInstance().getCardService().getCardById(String.format("%s", cardId));
                 Response<CardModel> response = call.execute();
                 CardModel cardModel = response.body();

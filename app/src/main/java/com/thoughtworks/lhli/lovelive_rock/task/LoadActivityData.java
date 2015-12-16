@@ -38,7 +38,7 @@ public class LoadActivityData implements Runnable {
         }
 
         try {
-            cardManager.updateLatestTenCards();
+            cardManager.updateLatest20Cards();
         } catch (IOException e) {
             e.printStackTrace();
         }
