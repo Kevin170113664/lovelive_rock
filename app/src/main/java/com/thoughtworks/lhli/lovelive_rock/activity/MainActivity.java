@@ -18,6 +18,8 @@ import com.thoughtworks.lhli.lovelive_rock.bus.LatestEventEvent;
 import com.thoughtworks.lhli.lovelive_rock.bus.MainCardEvent;
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 import com.thoughtworks.lhli.lovelive_rock.task.LoadActivityData;
+import com.umeng.analytics.AnalyticsConfig;
+import com.umeng.analytics.MobclickAgent;
 
 import java.io.IOException;
 
@@ -60,16 +62,24 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
+        setToolBar();
+        setUpCountConfig();
+        Glide.with(this).load(R.drawable.loading).asGif().into((ImageView) findViewById(R.id.loading_icon));
 
+        new Thread(new LoadActivityData(this)).start();
+        setImageNavigatorClickListener();
+    }
+
+    private void setUpCountConfig() {
+        MobclickAgent.updateOnlineConfig(this);
+        AnalyticsConfig.enableEncrypt(true);
+    }
+
+    private void setToolBar() {
         if (toolbar != null) {
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         }
-        Glide.with(this).load(R.drawable.loading).asGif()
-                .into((ImageView) findViewById(R.id.loading_icon));
-
-        new Thread(new LoadActivityData(this)).start();
-        setImageNavigatorClickListener();
     }
 
     private void setImageNavigatorClickListener() {
