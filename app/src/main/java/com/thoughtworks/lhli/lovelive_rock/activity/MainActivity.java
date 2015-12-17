@@ -26,6 +26,7 @@ import java.io.IOException;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import de.greenrobot.event.EventBus;
 
 public class MainActivity extends BaseActivity {
@@ -45,18 +46,6 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.latest_event_idolized_Sr_image)
     protected ImageView srIdolizedImage;
 
-    @Bind(R.id.card_navigator)
-    protected ImageView cardNavigator;
-
-    @Bind(R.id.mf_calculator_navigator)
-    protected ImageView mfCalculatorNavigator;
-
-    @Bind(R.id.sm_calculator_navigator)
-    protected ImageView smCalculatorNavigator;
-
-    @Bind(R.id.traditional_calculator_navigator)
-    protected ImageView normalCalculatorNavigator;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +57,6 @@ public class MainActivity extends BaseActivity {
         Glide.with(this).load(R.drawable.loading).asGif().into((ImageView) findViewById(R.id.loading_icon));
 
         new Thread(new LoadActivityData(this)).start();
-        setImageNavigatorClickListener();
     }
 
     private void setUpCountConfig() {
@@ -84,35 +72,25 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    private void setImageNavigatorClickListener() {
-        cardNavigator.setOnClickListener(new ImageView.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, CardActivity.class));
-            }
-        });
+    @OnClick(R.id.card_navigator)
+    public void cardNavigatorEvent() {
+        startActivity(new Intent(MainActivity.this, CardActivity.class));
+    }
 
-        mfCalculatorNavigator.setOnClickListener(new ImageView.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MedleyFestivalCalculatorActivity.class));
-            }
-        });
+    @OnClick(R.id.mf_calculator_navigator)
+    public void mfCalculatorEvent() {
+        startActivity(new Intent(MainActivity.this, MedleyFestivalCalculatorActivity.class));
+    }
 
-        smCalculatorNavigator.setOnClickListener(new ImageView.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), getString(R.string.toast_function_not_complete),
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
+    @OnClick(R.id.sm_calculator_navigator)
+    public void smCalculatorEvent() {
+        Toast.makeText(getApplicationContext(), getString(R.string.toast_function_not_complete),
+                Toast.LENGTH_SHORT).show();
+    }
 
-        normalCalculatorNavigator.setOnClickListener(new ImageView.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, NormalCalculatorActivity.class));
-            }
-        });
+    @OnClick(R.id.normal_calculator_navigator)
+    public void normalCalculatorEvent() {
+        startActivity(new Intent(MainActivity.this, NormalCalculatorActivity.class));
     }
 
     @Override
