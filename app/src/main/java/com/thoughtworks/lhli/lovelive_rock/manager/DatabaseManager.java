@@ -147,7 +147,7 @@ public class DatabaseManager {
                 .where(CardDao.Properties.CardId.eq(cardId))
                 .list();
 
-        return cardList.get(0).getId();
+        return cardList.size() == 0 ? -1 : cardList.get(0).getId();
     }
 
     public Long queryEventPrimaryKeyByName(String eventName) {
