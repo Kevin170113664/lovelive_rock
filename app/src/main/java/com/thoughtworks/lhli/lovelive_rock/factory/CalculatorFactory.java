@@ -121,10 +121,39 @@ public class CalculatorFactory {
     public String getEventLastTime() {
         if (isStringValid(eventEndTime)) {
             Duration duration = new Duration(new DateTime(), DateTime.parse(eventEndTime));
-            double lastTime = duration.getStandardHours() + duration.getStandardMinutes() % 60 / 60.0;
-            return String.format("%s", new DecimalFormat("0.0").format(lastTime));
+            return getFormatEventLastTime(duration);
         } else {
             return "0";
+        }
+    }
+
+    public String getEventLastTime(String endDay, String endHour) {
+        DateTime now = new DateTime();
+        if (isEventEndTimeValid(endDay, endHour, now)) {
+            DateTime eventEndTime = new DateTime(now.getYear(), now.getMonthOfYear(),
+                    Integer.parseInt(endDay), Integer.parseInt(endHour), 0, 0, 0);
+            Duration duration = new Duration(new DateTime(), eventEndTime);
+            return getFormatEventLastTime(duration);
+        } else {
+            return "0";
+        }
+    }
+
+    protected String getFormatEventLastTime(Duration duration) {
+        double lastTime = duration.getStandardHours() + duration.getStandardMinutes() % 60 / 60.0;
+        return String.format("%s", new DecimalFormat("0.0").format(lastTime));
+    }
+
+    protected boolean isEventEndTimeValid(String endDay, String endHour, DateTime now) {
+        if (isStringValid(endDay) && isStringValid(endHour)) {
+            int day = Integer.parseInt(endDay);
+            int hour = Integer.parseInt(endHour);
+            return day >= now.dayOfMonth().getMinimumValue() &&
+                    day <= now.dayOfMonth().getMaximumValue() &&
+                    hour >= now.hourOfDay().getMinimumValue() &&
+                    hour <= now.hourOfDay().getMaximumValue();
+        } else {
+            return false;
         }
     }
 

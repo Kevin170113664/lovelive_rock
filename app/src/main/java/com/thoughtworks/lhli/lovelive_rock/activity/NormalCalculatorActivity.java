@@ -23,6 +23,7 @@ import java.util.HashMap;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnTextChanged;
 
 public class NormalCalculatorActivity extends BaseActivity {
 
@@ -88,6 +89,16 @@ public class NormalCalculatorActivity extends BaseActivity {
 
     @Bind(R.id.current_item_text)
     protected TextView currentItemText;
+
+    @OnTextChanged(R.id.event_end_day_text)
+    public void calculateEventLastTimeWhenDayChanged() {
+        updateEventLastTimeText();
+    }
+
+    @OnTextChanged(R.id.event_end_hour_text)
+    public void calculateEventLastTimeWhenHourChanged() {
+        updateEventLastTimeText();
+    }
 
     private HashMap<String, String> consumeLpMap = new HashMap<>();
     private Pt pt = null;
@@ -297,5 +308,12 @@ public class NormalCalculatorActivity extends BaseActivity {
 
     protected String readLatestEventEndTime() {
         return PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("latestEventEndTime", null);
+    }
+
+    protected void updateEventLastTimeText() {
+        CalculatorFactory calculatorFactory = new CalculatorFactory();
+        String eventLastTime = calculatorFactory.getEventLastTime(eventEndDayText.getText().toString(),
+                eventEndHourText.getText().toString());
+        eventLastTimeText.setText(eventLastTime);
     }
 }

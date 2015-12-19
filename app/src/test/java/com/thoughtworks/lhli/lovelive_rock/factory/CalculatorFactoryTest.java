@@ -59,7 +59,7 @@ public class CalculatorFactoryTest {
         assertEquals("14", calculatorFactory.getEventEndHour());
     }
 
-//    TODO
+// TODO: 12/19/15
 //    @Test
 //    public void shouldCalculateEventLastTime() {
 //        calculatorFactory.setEventEndTime("2015-12-15T15:00:00+09:00");
@@ -430,5 +430,11 @@ public class CalculatorFactoryTest {
         assertEquals(0L, calculatorFactory.getFinalItem());
         assertEquals(175L, calculatorFactory.getTimesNeedToPlay());
         assertEquals(63L, calculatorFactory.getEventTimesNeedToPlay());
+    }
+
+    @Test
+    public void shouldValidateEventEndTime() {
+        assertEquals("0", calculatorFactory.getEventLastTime("32", "22"));
+        assertEquals("0", calculatorFactory.getEventLastTime("28", "30"));
     }
 }
