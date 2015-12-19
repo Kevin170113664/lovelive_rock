@@ -37,6 +37,9 @@ public class CalculatorFactory {
     private long oncePoints;
     private long consumeLP;
 
+    private String playRank;
+    private String songRank;
+
     private long lovecaAmount;
     private long finalPoints;
     private long finalRank;
@@ -96,6 +99,24 @@ public class CalculatorFactory {
         this.eventCombo = eventCombo;
         this.oncePoints = parseLongField(oncePoints);
         this.consumeLP = parseLongField(consumeLP);
+    }
+
+    public CalculatorFactory(String objectivePoints, String currentPoints, String currentRank,
+                             String playRank, String oncePoints, String wastedLpEveryDay, String difficulty,
+                             String songRank, String currentLp, String currentExperience, String eventEndDay,
+                             String eventLastTime) {
+        this.objectivePoints = parseLongField(objectivePoints);
+        this.currentPoints = parseLongField(currentPoints);
+        this.currentRank = parseLongField(currentRank);
+        this.playRank = playRank;
+        this.oncePoints = parseLongField(oncePoints);
+        this.wastedLpEveryDay = parseLongField(wastedLpEveryDay);
+        this.difficulty = difficulty;
+        this.songRank = songRank;
+        this.currentLp = parseLongField(currentLp);
+        this.currentExperience = parseLongField(currentExperience);
+        this.eventEndDay = parseLongField(eventEndDay);
+        this.eventLastTime = parseDoubleField(eventLastTime);
     }
 
     protected double parseDoubleField(String value) {
@@ -620,5 +641,9 @@ public class CalculatorFactory {
 
     public long getEventTimesNeedToPlay() {
         return eventTimesNeedToPlay;
+    }
+
+    public void calculateSmProcess() {
+
     }
 }

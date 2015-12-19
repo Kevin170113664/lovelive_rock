@@ -78,6 +78,9 @@ public class ReportDialogFragment extends DialogFragment {
             case "mf":
                 setMfReport();
                 break;
+            case "sm":
+                setSmReport();
+                break;
             case "normal":
                 setNormalReport();
                 break;
@@ -85,27 +88,33 @@ public class ReportDialogFragment extends DialogFragment {
     }
 
     protected void setMfReport() {
-        necessaryLovecaText.setText(getArguments().getString("necessary_loveca"));
-        finalPointsText.setText(getArguments().getString("final_points"));
-        finalRankText.setText(getArguments().getString("final_rank"));
-        finalExperienceText.setText(getArguments().getString("final_experience"));
-        finalLpText.setText(getArguments().getString("final_lp"));
-        playFrequencyText.setText(getArguments().getString("play_frequency"));
-        totalTimeText.setText(getArguments().getString("total_time"));
-        playTimeRatioText.setText(getArguments().getString("play_time_ratio"));
+        setCommonFields();
+
+        itemReport.setVisibility(View.GONE);
+        eventFrequencyReport.setVisibility(View.GONE);
+    }
+
+    protected void setSmReport() {
+        setCommonFields();
+
         itemReport.setVisibility(View.GONE);
         eventFrequencyReport.setVisibility(View.GONE);
     }
 
     protected void setNormalReport() {
+        setCommonFields();
+
+        finalItemText.setText(getArguments().getString("final_item"));
+        eventPlayFrequencyText.setText(getArguments().getString("event_frequency"));
+    }
+
+    private void setCommonFields() {
         necessaryLovecaText.setText(getArguments().getString("necessary_loveca"));
         finalPointsText.setText(getArguments().getString("final_points"));
         finalRankText.setText(getArguments().getString("final_rank"));
         finalExperienceText.setText(getArguments().getString("final_experience"));
         finalLpText.setText(getArguments().getString("final_lp"));
-        finalItemText.setText(getArguments().getString("final_item"));
         playFrequencyText.setText(getArguments().getString("play_frequency"));
-        eventPlayFrequencyText.setText(getArguments().getString("event_frequency"));
         totalTimeText.setText(getArguments().getString("total_time"));
         playTimeRatioText.setText(getArguments().getString("play_time_ratio"));
     }

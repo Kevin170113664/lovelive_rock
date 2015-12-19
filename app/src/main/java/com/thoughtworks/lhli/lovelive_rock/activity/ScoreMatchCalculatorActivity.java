@@ -1,5 +1,6 @@
 package com.thoughtworks.lhli.lovelive_rock.activity;
 
+import android.app.DialogFragment;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -81,14 +82,14 @@ public class ScoreMatchCalculatorActivity extends BaseActivity {
         updateEventLastTimeText();
     }
 
-    HashMap<String, Long> difficultyBasicPointMap = new HashMap<>();
-    HashMap<String, Double> playRankMap = new HashMap<>();
-    HashMap<String, Double> songRankMap = new HashMap<>();
-
     @OnTextChanged(R.id.event_end_hour_text)
     public void calculateEventLastTimeWhenHourChanged() {
         updateEventLastTimeText();
     }
+
+    HashMap<String, Long> difficultyBasicPointMap = new HashMap<>();
+    HashMap<String, Double> playRankMap = new HashMap<>();
+    HashMap<String, Double> songRankMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,9 +105,45 @@ public class ScoreMatchCalculatorActivity extends BaseActivity {
         setButtonOnClickListener();
         setSpinnerSelectedListener();
         setEventTimeFields();
-//        setCalculateButtonClickListener();
+        setCalculateButtonClickListener();
         advancedOptionsLayout.setVisibility(View.GONE);
         eventTimeLayout.setVisibility(View.GONE);
+    }
+
+    private void setCalculateButtonClickListener() {
+        calculateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CalculatorFactory calculatorFactory = new CalculatorFactory(objectivePointsText.getText().toString(),
+                        currentPointsText.getText().toString(), currentRankText.getText().toString(),
+                        playRankSpinner.getSelectedItem().toString(), ptWithinOncePlayText.getText().toString(),
+                        wastedLpEveryDayText.getText().toString(), difficultySpinner.getSelectedItem().toString(),
+                        songRankSpinner.getSelectedItem().toString(), currentLpText.getText().toString(),
+                        currentExperienceText.getText().toString(), eventEndDayText.getText().toString(),
+                        eventLastTimeText.getText().toString());
+
+                Bundle calculationReport = new Bundle();
+                setReportFields(calculatorFactory, calculationReport);
+
+                DialogFragment smReportDialogFragment = new ReportDialogFragment();
+                smReportDialogFragment.setArguments(calculationReport);
+                smReportDialogFragment.show(getFragmentManager(), "dialog");
+            }
+
+            private void setReportFields(CalculatorFactory calculatorFactory, Bundle calculationReport) {
+                calculatorFactory.calculateSmProcess();
+                calculationReport.putString("event_type", "sm");
+                calculationReport.putString("necessary_loveca", String.format("%s", calculatorFactory.getLovecaAmount()));
+                calculationReport.putString("final_points", String.format("%s", calculatorFactory.getFinalPoints()));
+                calculationReport.putString("final_rank", String.format("%s", calculatorFactory.getFinalRank()));
+                calculationReport.putString("final_experience", String.format("%s/%s",
+                        calculatorFactory.getFinalExperience(), calculatorFactory.getFinalRankUpExp()));
+                calculationReport.putString("final_lp", String.format("%s", calculatorFactory.getFinalLp()));
+                calculationReport.putString("play_frequency", String.format("%s", calculatorFactory.getTimesNeedToPlay()));
+                calculationReport.putString("total_time", calculatorFactory.getTotalPlayTime());
+                calculationReport.putString("play_time_ratio", calculatorFactory.getPlayTimeRatio());
+            }
+        });
     }
 
     private void setBasicMap() {
