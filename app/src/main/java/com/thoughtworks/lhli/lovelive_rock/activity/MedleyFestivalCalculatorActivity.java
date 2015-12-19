@@ -20,6 +20,7 @@ import java.util.HashMap;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnTextChanged;
 
 public class MedleyFestivalCalculatorActivity extends BaseActivity {
 
@@ -88,6 +89,16 @@ public class MedleyFestivalCalculatorActivity extends BaseActivity {
 
     @Bind(R.id.calculate_button)
     protected Button calculateButton;
+
+    @OnTextChanged(R.id.event_end_day_text)
+    public void calculateEventLastTimeWhenDayChanged() {
+        updateEventLastTimeText();
+    }
+
+    @OnTextChanged(R.id.event_end_hour_text)
+    public void calculateEventLastTimeWhenHourChanged() {
+        updateEventLastTimeText();
+    }
 
     private HashMap<String, String> songRankMap = new HashMap<>();
     private HashMap<String, String> comboRankMap = new HashMap<>();
@@ -245,4 +256,10 @@ public class MedleyFestivalCalculatorActivity extends BaseActivity {
         });
     }
 
+    protected void updateEventLastTimeText() {
+        CalculatorFactory calculatorFactory = new CalculatorFactory();
+        String eventLastTime = calculatorFactory.getEventLastTime(eventEndDayText.getText().toString(),
+                eventEndHourText.getText().toString());
+        eventLastTimeText.setText(eventLastTime);
+    }
 }
