@@ -102,7 +102,7 @@ public class EventDetailActivity extends BaseActivity {
             eventCardList.add(srCardRoundImage);
             eventCardList.add(srCardModel);
 
-            gridView.setAdapter(new GridCardListAdapter(EventDetailActivity.this, eventCardList));
+            gridView.setAdapter(new GridCardListAdapter(EventDetailActivity.this, eventCardList, true));
             setGridViewItemClickListener();
         }
     }

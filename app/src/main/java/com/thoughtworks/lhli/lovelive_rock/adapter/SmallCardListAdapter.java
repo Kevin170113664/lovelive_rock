@@ -21,10 +21,12 @@ public class SmallCardListAdapter extends BaseAdapter {
 
     private Context context;
     private List<CardModel> cardModelList;
+    private Boolean isIdolizedFace;
 
-    public SmallCardListAdapter(Context context, List<CardModel> cardModelList) {
+    public SmallCardListAdapter(Context context, List<CardModel> cardModelList, Boolean isIdolizedFace) {
         this.context = context;
         this.cardModelList = cardModelList;
+        this.isIdolizedFace = isIdolizedFace;
     }
 
     @Override
@@ -66,12 +68,22 @@ public class SmallCardListAdapter extends BaseAdapter {
         statistics.add(Integer.parseInt(cardModelList.get(position).getIdolizedMaximumStatisticsPure()));
         statistics.add(Integer.parseInt(cardModelList.get(position).getIdolizedMaximumStatisticsCool()));
 
-        Picasso.with(context)
-                .load(cardModelList.get(position).getRoundCardIdolizedImage())
-                .into(viewHolder.smallCardImage);
+        setImageView(position, viewHolder);
         MediumCardListAdapter.setTextView(viewHolder.smallCardCollection, cardModelList.get(position).getJapaneseCollection());
         MediumCardListAdapter.setTextView(viewHolder.smallCardMaxStatistics, Collections.max(statistics).toString());
         MediumCardListAdapter.setSkillType(viewHolder.smallCardSkill, cardModelList.get(position).getSkill());
+    }
+
+    private void setImageView(int position, ViewHolder viewHolder) {
+        String imageUrl = cardModelList.get(position).getRoundCardIdolizedImage();
+
+        if (isStringValid(cardModelList.get(position).getRoundCardImage()) && !isIdolizedFace) {
+            imageUrl = cardModelList.get(position).getRoundCardImage();
+        }
+
+        Picasso.with(context)
+                .load(imageUrl)
+                .into(viewHolder.smallCardImage);
     }
 
     private void bindItemView(View convertView, ViewHolder viewHolder) {
@@ -86,5 +98,9 @@ public class SmallCardListAdapter extends BaseAdapter {
         public TextView smallCardCollection;
         public TextView smallCardMaxStatistics;
         public TextView smallCardSkill;
+    }
+
+    private Boolean isStringValid(String value) {
+        return value != null && !value.equals("");
     }
 }

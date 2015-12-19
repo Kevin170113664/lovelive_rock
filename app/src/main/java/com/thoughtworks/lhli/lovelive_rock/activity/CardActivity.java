@@ -52,7 +52,8 @@ public class CardActivity extends BaseActivity {
     @Bind(R.id.progress_bar)
     protected ProgressBar progressBar;
 
-    private boolean isGridView = false;
+    private boolean isGridView = true;
+    private boolean isIdolizedFace = true;
     private HashMap<Integer, String> filterMap;
     private List<CardModel> cardModelList;
     private List<CardModel> visibleCardModelList = new ArrayList<>();
@@ -135,12 +136,23 @@ public class CardActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
-        if (item.getItemId() == R.id.action_filter) {
-            DialogFragment filterDialogFragment = new FilterDialogFragment();
-            filterDialogFragment.show(getFragmentManager(), "dialog");
-        } else {
-            isGridView = item.getItemId() != R.id.action_menu;
-            invalidateOptionsMenu();
+        switch (item.getItemId()) {
+            case R.id.action_filter:
+                DialogFragment filterDialogFragment = new FilterDialogFragment();
+                filterDialogFragment.show(getFragmentManager(), "dialog");
+                break;
+            case R.id.action_grid:
+                isGridView = true;
+                invalidateOptionsMenu();
+                break;
+            case R.id.action_menu:
+                isGridView = false;
+                invalidateOptionsMenu();
+                break;
+            case R.id.action_switch_face:
+                isIdolizedFace = !isIdolizedFace;
+                loadCardView();
+                break;
         }
         return true;
     }
@@ -157,11 +169,11 @@ public class CardActivity extends BaseActivity {
     private void loadCardView() {
         List<CardModel> emptyCardModelList = new ArrayList<>();
         if (isGridView) {
-            listView.setAdapter(new SmallCardListAdapter(CardActivity.this, emptyCardModelList));
-            gridView.setAdapter(new GridCardListAdapter(CardActivity.this, visibleCardModelList));
+            listView.setAdapter(new SmallCardListAdapter(CardActivity.this, emptyCardModelList, isIdolizedFace));
+            gridView.setAdapter(new GridCardListAdapter(CardActivity.this, visibleCardModelList, isIdolizedFace));
         } else {
-            gridView.setAdapter(new GridCardListAdapter(CardActivity.this, emptyCardModelList));
-            listView.setAdapter(new SmallCardListAdapter(CardActivity.this, visibleCardModelList));
+            gridView.setAdapter(new GridCardListAdapter(CardActivity.this, emptyCardModelList, isIdolizedFace));
+            listView.setAdapter(new SmallCardListAdapter(CardActivity.this, visibleCardModelList, isIdolizedFace));
         }
     }
 

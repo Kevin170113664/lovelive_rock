@@ -17,10 +17,12 @@ public class GridCardListAdapter extends BaseAdapter {
 
     private Context context;
     private List<CardModel> cardModelList;
+    private Boolean isIdolizedFace;
 
-    public GridCardListAdapter(Context context, List<CardModel> cardModelList) {
+    public GridCardListAdapter(Context context, List<CardModel> cardModelList, Boolean isIdolizedFace) {
         this.context = context;
         this.cardModelList = cardModelList;
+        this.isIdolizedFace = isIdolizedFace;
     }
 
     @Override
@@ -50,10 +52,23 @@ public class GridCardListAdapter extends BaseAdapter {
             imageView = (ImageView) convertView.getTag();
         }
 
-        Picasso.with(context)
-                .load(cardModelList.get(position).getRoundCardIdolizedImage())
-                .into(imageView);
-
+        setImageView(position, imageView);
         return convertView;
+    }
+
+    protected void setImageView(int position, ImageView imageView) {
+        String imageUrl = cardModelList.get(position).getRoundCardIdolizedImage();
+
+        if (isStringValid(cardModelList.get(position).getRoundCardImage()) && !isIdolizedFace) {
+            imageUrl = cardModelList.get(position).getRoundCardImage();
+        }
+
+        Picasso.with(context)
+                .load(imageUrl)
+                .into(imageView);
+    }
+
+    private Boolean isStringValid(String value) {
+        return value != null && !value.equals("");
     }
 }

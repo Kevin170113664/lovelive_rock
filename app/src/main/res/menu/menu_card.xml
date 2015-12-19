@@ -8,6 +8,12 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/action_switch_face"
+        android:icon="@mipmap/ic_face_white"
+        android:title="Switch Face"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/action_grid"
         android:icon="@mipmap/ic_view_comfy_white"
         android:title="Grid View"
