@@ -84,8 +84,7 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.sm_calculator_navigator)
     public void smCalculatorEvent() {
-        Toast.makeText(getApplicationContext(), getString(R.string.toast_function_not_complete),
-                Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(MainActivity.this, ScoreMatchCalculatorActivity.class));
     }
 
     @OnClick(R.id.normal_calculator_navigator)
@@ -177,6 +176,9 @@ public class MainActivity extends BaseActivity {
                 return true;
             case R.id.action_mf_calculator:
                 startActivity(new Intent(this, MedleyFestivalCalculatorActivity.class));
+                return true;
+            case R.id.action_sm_calculator:
+                startActivity(new Intent(this, ScoreMatchCalculatorActivity.class));
                 return true;
             case R.id.action_normal_calculator:
                 startActivity(new Intent(MainActivity.this, NormalCalculatorActivity.class));

@@ -5,6 +5,7 @@
     <string name="action_event">Event</string>
     <string name="action_mf_calculator">MF Calculator</string>
     <string name="action_normal_calculator">Normal Calculator</string>
+    <string name="action_sm_calculator">SM Calculator</string>
     <string name="filter_dialog_title">Filter</string>
 
     <string name="toast_function_not_complete">Sorry, this is unavailable now.</string>
@@ -54,6 +55,7 @@
     <string name="event_default_value">0</string>
     <string name="medley_festival_calculator_label">MF Calculator</string>
     <string name="normal_calculator_label">Normal Calculator</string>
+    <string name="sm_calculator_label">SM Calculator</string>
     <string name="objective_points">Objective Points</string>
     <string name="current_points">Current Points</string>
     <string name="current_rank">Current Rank</string>
@@ -95,6 +97,12 @@
     <string name="once_points">Once Points:</string>
     <string name="event_song_difficulty">Event Difficulty</string>
     <string name="current_item">Current Item</string>
+    <string name="play_rank">Play Rank</string>
+    <string name="average">Avg.</string>
+    <string name="first_place">1st</string>
+    <string name="second_place">2nd</string>
+    <string name="third_place">3rd</string>
+    <string name="forth_place">4th</string>
 
     <string-array name="rarity_array">
         <item>Rarity</item>
@@ -276,5 +284,12 @@
         <item>1.04</item>
         <item>1.02</item>
         <item>1</item>
+    </string-array>
+    <string-array name="play_rank">
+        <item>Avg.</item>
+        <item>1st</item>
+        <item>2nd</item>
+        <item>3rd</item>
+        <item>4th</item>
     </string-array>
 </resources>

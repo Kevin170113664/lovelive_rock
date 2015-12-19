@@ -6,6 +6,7 @@
     <string name="action_event">活动</string>
     <string name="action_mf_calculator">MF计算器</string>
     <string name="action_normal_calculator">传统计算器</string>
+    <string name="action_sm_calculator">SM计算器</string>
     <string name="filter_dialog_title">筛选</string>
 
     <string name="toast_function_not_complete">对不起哟，这部分功能尚未完成</string>
@@ -45,6 +46,7 @@
     <string name="first_download_tips">第一次下载所有数据大约需要3~5分钟。</string>
     <string name="medley_festival_calculator_label">MF计算器</string>
     <string name="normal_calculator_label">传统计算器</string>
+    <string name="sm_calculator_label">SM计算器</string>
     <string name="objective_points">目标点数</string>
     <string name="current_points">当前点数</string>
     <string name="current_rank">当前等级</string>
@@ -85,6 +87,12 @@
     <string name="once_points">单次PT：</string>
     <string name="event_song_difficulty">活动难度</string>
     <string name="current_item">当前道具</string>
+    <string name="play_rank">单次排名</string>
+    <string name="average">平均</string>
+    <string name="first_place">第一名</string>
+    <string name="second_place">第二名</string>
+    <string name="third_place">第三名</string>
+    <string name="forth_place">第四名</string>
 
     <string-array name="rarity_array">
         <item>稀有度</item>
@@ -198,5 +206,12 @@
         <item>東條希</item>
         <item>星空凛</item>
         <item>園田海未</item>
+    </string-array>
+    <string-array name="play_rank">
+        <item>平均</item>
+        <item>第一名</item>
+        <item>第二名</item>
+        <item>第三名</item>
+        <item>第四名</item>
     </string-array>
 </resources>
