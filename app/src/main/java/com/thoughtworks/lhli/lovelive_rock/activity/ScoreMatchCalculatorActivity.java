@@ -267,8 +267,6 @@ public class ScoreMatchCalculatorActivity extends BaseActivity {
         setSpinnerAdapter(playRankSpinner, R.array.play_rank);
         setSpinnerAdapter(difficultySpinner, R.array.difficulty);
         setSpinnerAdapter(songRankSpinner, R.array.song_rank);
-
-        playRankSpinner.setSelection(1);
     }
 
     protected void updateEventLastTimeText() {

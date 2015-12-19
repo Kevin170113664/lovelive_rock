@@ -103,6 +103,7 @@
     <string name="second_place">2nd</string>
     <string name="third_place">3rd</string>
     <string name="forth_place">4th</string>
+    <string name="default_rank">2</string>
 
     <string-array name="rarity_array">
         <item>Rarity</item>

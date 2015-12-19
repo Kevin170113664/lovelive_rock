@@ -352,6 +352,61 @@ public class CalculatorFactoryTest {
     }
 
     @Test
+    public void shouldCalculateFieldsWhenSmPlayWithFreeLp() {
+        calculatorFactory = new CalculatorFactory() {
+            public long getSmLpWithinOncePlay() {
+                return 25L;
+            }
+
+            public long getNormalExpWithinOncePlay(String difficulty) {
+                return 83L;
+            }
+        };
+        calculatorFactory.setOncePoints(408L);
+        calculatorFactory.setFinalLp(2400L);
+        calculatorFactory.setFinalExperience(0L);
+        calculatorFactory.setFinalPoints(0L);
+        calculatorFactory.setCurrentRank(200L);
+        calculatorFactory.setTimesNeedToPlay(0L);
+
+        calculatorFactory.smPlayWithFreeLp();
+
+        assertEquals(0L, calculatorFactory.getFinalLp());
+        assertEquals(2044L, calculatorFactory.getFinalExperience());
+        assertEquals(41208L, calculatorFactory.getFinalPoints());
+        assertEquals(101L, calculatorFactory.getTimesNeedToPlay());
+    }
+
+    @Test
+    public void shouldCalculateFieldsWhenSmPlayWithLoveca() {
+        calculatorFactory = new CalculatorFactory() {
+            public long getSmLpWithinOncePlay() {
+                return 25L;
+            }
+
+            public long getNormalExpWithinOncePlay(String difficulty) {
+                return 83L;
+            }
+        };
+        calculatorFactory.setOncePoints(408L);
+        calculatorFactory.setObjectivePoints(60000L);
+        calculatorFactory.setLovecaAmount(0L);
+        calculatorFactory.setFinalLp(0L);
+        calculatorFactory.setFinalExperience(0L);
+        calculatorFactory.setFinalPoints(0L);
+        calculatorFactory.setCurrentRank(200L);
+        calculatorFactory.setTimesNeedToPlay(0L);
+
+        calculatorFactory.smPlayWithLoveca();
+
+        assertEquals(29L, calculatorFactory.getLovecaAmount());
+        assertEquals(0L, calculatorFactory.getFinalLp());
+        assertEquals(6111L, calculatorFactory.getFinalExperience());
+        assertEquals(61200L, calculatorFactory.getFinalPoints());
+        assertEquals(150L, calculatorFactory.getTimesNeedToPlay());
+    }
+
+    @Test
     public void shouldCalculateFieldsWhenNormalPlayWithFreeLp() {
         calculatorFactory = new CalculatorFactory() {
             public long getNormalBasicPointsWithinOncePlay() {

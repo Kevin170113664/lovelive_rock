@@ -84,7 +84,7 @@
                     android:layout_alignBottom="@id/current_rank_label"
                     android:layout_toRightOf="@id/current_rank_label"
                     android:inputType="number"
-                    android:text="0"
+                    android:text="@string/default_rank"
                     android:textSize="14sp" />
 
 

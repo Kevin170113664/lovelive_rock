@@ -87,7 +87,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
-                        android:text="0"
+                        android:text="@string/default_rank"
                         android:textSize="@dimen/text_size_small" />
                 </LinearLayout>
 

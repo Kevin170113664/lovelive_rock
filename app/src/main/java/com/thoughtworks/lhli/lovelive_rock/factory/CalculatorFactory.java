@@ -214,6 +214,12 @@ public class CalculatorFactory {
         playTimeRatio = totalPlayTime / (eventLastTime * 60.0);
     }
 
+    protected void calculateSmResultAfterPlay() {
+        finalRank = currentRank;
+        totalPlayTime = timesNeedToPlay * MINUTES_FOR_ONE_SONG;
+        playTimeRatio = totalPlayTime / (eventLastTime * 60.0);
+    }
+
     protected void calculateNormalResultAfterPlay() {
         finalRank = currentRank;
         totalPlayTime = (eventTimesNeedToPlay + timesNeedToPlay) * MINUTES_FOR_ONE_SONG;
@@ -238,6 +244,28 @@ public class CalculatorFactory {
         while (true) {
             while (finalLp >= getMfLpWithinOncePlay()) {
                 mfPlayOnceWithEnoughLp();
+            }
+            if (finalPoints < objectivePoints) {
+                consumeOneLoveca();
+            } else {
+                break;
+            }
+        }
+    }
+
+    protected void smPlayWithFreeLp() {
+        while (finalLp >= getSmLpWithinOncePlay()) {
+            smPlayOnceWithEnoughLp();
+            while (finalExperience >= getCurrentRankUpExp()) {
+                upgradeOneRankWithEnoughExp();
+            }
+        }
+    }
+
+    protected void smPlayWithLoveca() {
+        while (true) {
+            while (finalLp >= getSmLpWithinOncePlay()) {
+                smPlayOnceWithEnoughLp();
             }
             if (finalPoints < objectivePoints) {
                 consumeOneLoveca();
@@ -320,6 +348,16 @@ public class CalculatorFactory {
         }
     }
 
+    protected void smPlayOnceWithEnoughLp() {
+        finalLp -= getSmLpWithinOncePlay();
+        timesNeedToPlay += 1;
+        finalPoints += oncePoints;
+        finalExperience += getNormalExpWithinOncePlay(difficulty);
+        while (finalExperience >= getCurrentRankUpExp()) {
+            upgradeOneRankWithEnoughExp();
+        }
+    }
+
     protected void normalPlayOnceWithEnoughLp() {
         finalLp -= consumeLP;
         timesNeedToPlay += 1;
@@ -355,6 +393,17 @@ public class CalculatorFactory {
 
     protected long getMfLpWithinOncePlay() {
         return songAmount * getMfConsumeLp();
+    }
+
+    protected long getSmLpWithinOncePlay() {
+        HashMap<String, Long> consumeLpMap = new HashMap<>();
+
+        consumeLpMap.put("Easy", 5L);
+        consumeLpMap.put("Normal", 10L);
+        consumeLpMap.put("Hard", 15L);
+        consumeLpMap.put("Expert", 25L);
+
+        return consumeLpMap.get(difficulty);
     }
 
     protected long getConsumeItemWithinOncePlay() {
@@ -562,6 +611,14 @@ public class CalculatorFactory {
         this.playTimeRatio = playTimeRatio;
     }
 
+    public void setPlayRank(String playRank) {
+        this.playRank = playRank;
+    }
+
+    public void setSongRank(String songRank) {
+        this.songRank = songRank;
+    }
+
     public long getFinalPoints() {
         return finalPoints;
     }
@@ -644,6 +701,14 @@ public class CalculatorFactory {
     }
 
     public void calculateSmProcess() {
-
+        if (getBiggestLp() == 0) {
+            return;
+        }
+        long originalRank = currentRank;
+        initialisePredictFields();
+        smPlayWithFreeLp();
+        smPlayWithLoveca();
+        calculateSmResultAfterPlay();
+        currentRank = originalRank;
     }
 }
