@@ -49,7 +49,7 @@ public class NormalCalculatorActivity extends BaseActivity {
     protected Button advancedOptionsButton;
 
     @Bind(R.id.event_time_button)
-    protected Button eventEndTimeButton;
+    protected Button eventTimeButton;
 
     @Bind(R.id.advanced_options)
     protected RelativeLayout advancedOptionsLayout;
@@ -199,7 +199,7 @@ public class NormalCalculatorActivity extends BaseActivity {
             }
         });
 
-        eventEndTimeButton.setOnClickListener(new View.OnClickListener() {
+        eventTimeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (eventTimeLayout.getVisibility() == View.GONE) {
