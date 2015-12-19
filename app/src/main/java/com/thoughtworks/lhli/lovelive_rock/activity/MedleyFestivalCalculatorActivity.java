@@ -52,7 +52,7 @@ public class MedleyFestivalCalculatorActivity extends BaseActivity {
     protected Button advancedOptionsButton;
 
     @Bind(R.id.event_time_button)
-    protected Button eventEndTimeButton;
+    protected Button eventTimeButton;
 
     @Bind(R.id.advanced_options)
     protected RelativeLayout advancedOptionsLayout;
@@ -66,13 +66,13 @@ public class MedleyFestivalCalculatorActivity extends BaseActivity {
     @Bind(R.id.difficulty_spinner)
     protected Spinner difficultySpinner;
 
-    @Bind(R.id.normal_difficulty_spinner)
+    @Bind(R.id.song_rank_spinner)
     protected Spinner songRankSpinner;
 
     @Bind(R.id.combo_rank_spinner)
     protected Spinner comboRankSpinner;
 
-    @Bind(R.id.consume_lp_text)
+    @Bind(R.id.song_rank_addition_ratio)
     protected TextView songRankAdditionRatio;
 
     @Bind(R.id.combo_rank_addition_ratio)
@@ -240,7 +240,7 @@ public class MedleyFestivalCalculatorActivity extends BaseActivity {
             }
         });
 
-        eventEndTimeButton.setOnClickListener(new View.OnClickListener() {
+        eventTimeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (eventTimeLayout.getVisibility() == View.GONE) {

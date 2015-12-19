@@ -230,7 +230,7 @@
                         android:textSize="16sp" />
 
                     <Spinner
-                        android:id="@+id/normal_difficulty_spinner"
+                        android:id="@+id/song_rank_spinner"
                         android:layout_width="70dp"
                         android:layout_height="30dp"
                         android:layout_alignBottom="@id/song_rank_label"
@@ -241,14 +241,14 @@
                         android:id="@+id/song_rank_addition_ratio_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignBottom="@id/normal_difficulty_spinner"
-                        android:layout_toRightOf="@id/normal_difficulty_spinner"
+                        android:layout_alignBottom="@id/song_rank_spinner"
+                        android:layout_toRightOf="@id/song_rank_spinner"
                         android:paddingBottom="5dp"
                         android:text="@string/song_rank_addition_ratio"
                         android:textSize="14sp" />
 
                     <TextView
-                        android:id="@+id/consume_lp_text"
+                        android:id="@+id/song_rank_addition_ratio"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignBottom="@id/song_rank_addition_ratio_label"
