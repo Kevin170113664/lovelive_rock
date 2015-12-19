@@ -113,8 +113,10 @@ public class CardManager {
 
     protected void setMaxCardNumber(Response<Integer[]> cardIdResponse) {
         List<Integer> cardIdList = Arrays.asList(cardIdResponse.body());
-        String lastCardId = cardIdList.get(cardIdList.size() - 1).toString();
-        LoveLiveApp.getInstance().setMaxCardNumber(lastCardId);
+        if (cardIdList.size() > 0) {
+            String lastCardId = cardIdList.get(cardIdList.size() - 1).toString();
+            LoveLiveApp.getInstance().setMaxCardNumber(lastCardId);
+        }
     }
 
     public void updateLatest20Cards() throws IOException {
