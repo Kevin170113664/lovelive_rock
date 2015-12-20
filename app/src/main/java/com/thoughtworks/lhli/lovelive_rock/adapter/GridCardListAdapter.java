@@ -59,13 +59,18 @@ public class GridCardListAdapter extends BaseAdapter {
     protected void setImageView(int position, ImageView imageView) {
         String imageUrl = cardModelList.get(position).getRoundCardIdolizedImage();
 
-        if (isStringValid(cardModelList.get(position).getRoundCardImage()) && !isIdolizedFace) {
+        if (shouldShowNonIdolizedImage(position)) {
             imageUrl = cardModelList.get(position).getRoundCardImage();
         }
 
         Picasso.with(context)
                 .load(imageUrl)
                 .into(imageView);
+    }
+
+    private boolean shouldShowNonIdolizedImage(int position) {
+        return isStringValid(cardModelList.get(position).getRoundCardImage()) && !isIdolizedFace &&
+                !cardModelList.get(position).isPromo();
     }
 
     private Boolean isStringValid(String value) {
