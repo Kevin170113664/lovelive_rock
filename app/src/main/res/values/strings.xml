@@ -91,11 +91,11 @@
     <string name="calculation_report_default">-</string>
     <string name="result_report">Report</string>
     <string name="consume_lp">Consume LP:</string>
-    <string name="normal_difficulty">Normal Difficulty</string>
-    <string name="event_song_rank">Event Rank</string>
-    <string name="event_song_combo">Event Combo</string>
-    <string name="once_points">Once Points:</string>
-    <string name="event_song_difficulty">Event Difficulty</string>
+    <string name="normal_difficulty">Difficulty</string>
+    <string name="event_song_rank">E-Rank</string>
+    <string name="event_song_combo">E-Combo</string>
+    <string name="once_points">Points:</string>
+    <string name="event_song_difficulty">E-Difficulty</string>
     <string name="current_item">Current Item</string>
     <string name="play_rank">Play Rank</string>
     <string name="average">Avg.</string>
