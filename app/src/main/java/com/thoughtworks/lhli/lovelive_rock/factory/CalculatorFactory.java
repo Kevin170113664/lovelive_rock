@@ -36,6 +36,7 @@ public class CalculatorFactory {
     private String eventCombo;
     private long oncePoints;
     private long consumeLP;
+    private Integer expRatio;
 
     private String playRank;
     private String songRank;
@@ -62,7 +63,7 @@ public class CalculatorFactory {
                              String songAmount, String difficulty, String wastedLpEveryDay,
                              Boolean pointAddition, Boolean experienceAddition, String songRankRatio,
                              String comboRankRatio, String currentLp, String currentExperience,
-                             String eventEndDay, String eventEndHour, String eventLastTime) {
+                             String eventEndDay, String eventEndHour, String eventLastTime, Boolean isChineseExp) {
         this.objectivePoints = parseLongField(objectivePoints);
         this.currentPoints = parseLongField(currentPoints);
         this.currentRank = parseLongField(currentRank);
@@ -78,13 +79,14 @@ public class CalculatorFactory {
         this.eventEndDay = parseLongField(eventEndDay);
         this.eventEndHour = parseLongField(eventEndHour);
         this.eventLastTime = parseDoubleField(eventLastTime);
+        this.expRatio = isChineseExp ? 1 : 2;
     }
 
     public CalculatorFactory(String objectivePoints, String currentPoints, String currentRank,
                              String wastedLpEveryDay, String currentLp, String currentExperience,
                              String eventEndDay, String eventLastTime, String currentItem,
                              String eventDifficulty, String eventRank, String eventCombo,
-                             String oncePoints, String consumeLP) {
+                             String oncePoints, String consumeLP, Boolean isChineseExp) {
         this.objectivePoints = parseLongField(objectivePoints);
         this.currentPoints = parseLongField(currentPoints);
         this.currentRank = parseLongField(currentRank);
@@ -99,12 +101,13 @@ public class CalculatorFactory {
         this.eventCombo = eventCombo;
         this.oncePoints = parseLongField(oncePoints);
         this.consumeLP = parseLongField(consumeLP);
+        this.expRatio = isChineseExp ? 1 : 2;
     }
 
     public CalculatorFactory(String objectivePoints, String currentPoints, String currentRank,
                              String playRank, String oncePoints, String wastedLpEveryDay, String difficulty,
                              String songRank, String currentLp, String currentExperience, String eventEndDay,
-                             String eventLastTime) {
+                             String eventLastTime, Boolean isChineseExp) {
         this.objectivePoints = parseLongField(objectivePoints);
         this.currentPoints = parseLongField(currentPoints);
         this.currentRank = parseLongField(currentRank);
@@ -117,6 +120,7 @@ public class CalculatorFactory {
         this.currentExperience = parseLongField(currentExperience);
         this.eventEndDay = parseLongField(eventEndDay);
         this.eventLastTime = parseDoubleField(eventLastTime);
+        this.expRatio = isChineseExp ? 1 : 2;
     }
 
     protected double parseDoubleField(String value) {
@@ -449,7 +453,7 @@ public class CalculatorFactory {
         experienceMap.put("Expert", 83L);
 
         long basicExperience = experienceMap.get(difficulty) * songAmount;
-        basicExperience = songRankRatio == 1 ? basicExperience / 2 : basicExperience;
+        basicExperience = songRankRatio == 1 ? basicExperience / expRatio : basicExperience;
 
         return experienceAddition ? Math.round(basicExperience * 1.1) : basicExperience;
     }
@@ -463,10 +467,10 @@ public class CalculatorFactory {
             return 0L;
         }
         if (rank < 34L) {
-            return Math.round(rank * rank * 0.28);
+            return Math.round(rank * rank * 0.56 / expRatio);
         }
         if (rank < 100L) {
-            return Math.round((34.45 * rank - 551) / 2);
+            return Math.round((34.45 * rank - 551) / expRatio);
         }
         if (rank >= 100L) {
             return Math.round(34.45 * rank - 551);
@@ -617,6 +621,10 @@ public class CalculatorFactory {
 
     public void setSongRank(String songRank) {
         this.songRank = songRank;
+    }
+
+    public void setExpRatio(Integer expRatio) {
+        this.expRatio = expRatio;
     }
 
     public long getFinalPoints() {

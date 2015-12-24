@@ -81,6 +81,8 @@ public class CalculatorFactoryTest {
 
     @Test
     public void shouldCalculateRankUpExp() {
+        calculatorFactory.setExpRatio(2);
+
         assertEquals(0L, calculatorFactory.getRankUpExpByRank(-2L));
         assertEquals(305L, calculatorFactory.getRankUpExpByRank(33L));
         assertEquals(1430L, calculatorFactory.getRankUpExpByRank(99L));
@@ -181,6 +183,8 @@ public class CalculatorFactoryTest {
 
     @Test
     public void shouldCalculateExpWithinOncePlay() {
+        calculatorFactory.setExpRatio(2);
+
         calculatorFactory.setDifficulty("Expert");
         calculatorFactory.setSongAmount(1);
         calculatorFactory.setExperienceAddition(false);

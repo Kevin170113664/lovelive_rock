@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -77,6 +78,9 @@ public class ScoreMatchCalculatorActivity extends BaseActivity {
     @Bind(R.id.calculate_button)
     protected Button calculateButton;
 
+    @Bind(R.id.country_exp_checkbox)
+    protected CheckBox countryExpCheckbox;
+
     @OnTextChanged(R.id.event_end_day_text)
     public void calculateEventLastTimeWhenDayChanged() {
         updateEventLastTimeText();
@@ -120,7 +124,7 @@ public class ScoreMatchCalculatorActivity extends BaseActivity {
                         wastedLpEveryDayText.getText().toString(), difficultySpinner.getSelectedItem().toString(),
                         songRankSpinner.getSelectedItem().toString(), currentLpText.getText().toString(),
                         currentExperienceText.getText().toString(), eventEndDayText.getText().toString(),
-                        eventLastTimeText.getText().toString());
+                        eventLastTimeText.getText().toString(), countryExpCheckbox.isChecked());
 
                 Bundle calculationReport = new Bundle();
                 setReportFields(calculatorFactory, calculationReport);

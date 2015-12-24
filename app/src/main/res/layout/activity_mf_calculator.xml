@@ -162,30 +162,51 @@
                     android:layout_marginTop="5dp"
                     tools:visibility="visible">
 
-                    <TextView
-                        android:id="@+id/wasted_lp_every_day_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="10dp"
-                        android:paddingTop="10dp"
-                        android:text="@string/wasted_lp_every_day"
-                        android:textSize="16sp" />
-
-                    <EditText
-                        android:id="@+id/wasted_lp_every_day_text"
+                    <LinearLayout
+                        android:id="@+id/basic_setting_group"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignBottom="@id/wasted_lp_every_day_label"
-                        android:layout_toRightOf="@id/wasted_lp_every_day_label"
-                        android:inputType="number"
-                        android:text="0"
-                        android:textSize="14sp" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/wasted_lp_every_day_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="10dp"
+                            android:paddingTop="10dp"
+                            android:text="@string/wasted_lp_every_day"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/wasted_lp_every_day_text"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:text="0"
+                            android:layout_weight=".5"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/country_exp_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="10dp"
+                            android:paddingTop="10dp"
+                            android:text="@string/exp_country"
+                            android:textSize="16sp" />
+
+                        <CheckBox
+                            android:id="@+id/country_exp_checkbox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="false" />
+                    </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/addition_group"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/wasted_lp_every_day_label">
+                        android:layout_below="@id/basic_setting_group">
 
                         <TextView
                             android:id="@+id/points_addition_label"

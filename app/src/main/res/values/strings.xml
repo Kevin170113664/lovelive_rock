@@ -104,6 +104,7 @@
     <string name="third_place">3rd</string>
     <string name="forth_place">4th</string>
     <string name="default_rank">2</string>
+    <string name="exp_country">CN Exp</string>
 
     <string-array name="rarity_array">
         <item>Rarity</item>

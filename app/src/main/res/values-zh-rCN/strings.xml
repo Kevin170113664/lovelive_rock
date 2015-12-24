@@ -93,6 +93,7 @@
     <string name="second_place">第二名</string>
     <string name="third_place">第三名</string>
     <string name="forth_place">第四名</string>
+    <string name="exp_country">国服经验</string>
 
     <string-array name="rarity_array">
         <item>稀有度</item>

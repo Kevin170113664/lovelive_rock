@@ -90,6 +90,9 @@ public class MedleyFestivalCalculatorActivity extends BaseActivity {
     @Bind(R.id.calculate_button)
     protected Button calculateButton;
 
+    @Bind(R.id.country_exp_checkbox)
+    protected CheckBox countryExpCheckbox;
+
     @OnTextChanged(R.id.event_end_day_text)
     public void calculateEventLastTimeWhenDayChanged() {
         updateEventLastTimeText();
@@ -133,7 +136,8 @@ public class MedleyFestivalCalculatorActivity extends BaseActivity {
                         experienceAddition.isChecked(), songRankMap.get(songRankSpinner.getSelectedItem().toString()),
                         comboRankMap.get(comboRankSpinner.getSelectedItem().toString()), currentLpText.getText().toString(),
                         currentExperienceText.getText().toString(), eventEndDayText.getText().toString(),
-                        eventEndHourText.getText().toString(), eventLastTimeText.getText().toString());
+                        eventEndHourText.getText().toString(), eventLastTimeText.getText().toString(),
+                        countryExpCheckbox.isChecked());
 
                 Bundle calculationReport = new Bundle();
                 setReportFields(calculatorFactory, calculationReport);
