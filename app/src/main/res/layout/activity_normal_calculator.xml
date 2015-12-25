@@ -259,7 +259,7 @@
                             android:layout_height="wrap_content"
                             android:paddingBottom="10dp"
                             android:paddingTop="10dp"
-                            android:text="@string/exp_country"
+                            android:text="@string/country"
                             android:textSize="16sp" />
 
                         <CheckBox
