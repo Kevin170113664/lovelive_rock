@@ -232,7 +232,7 @@ public class CalculatorFactory {
 
     protected void consumeOneLoveca() {
         lovecaAmount += 1;
-        finalLp += getBiggestLp();
+        finalLp = isChineseExp() ? getBiggestLp() : finalLp + getBiggestLp();
     }
 
     protected void mfPlayWithFreeLp() {
@@ -339,7 +339,7 @@ public class CalculatorFactory {
     protected void upgradeOneRankWithEnoughExp() {
         finalExperience -= getCurrentRankUpExp();
         currentRank += 1;
-        finalLp += getBiggestLp();
+        finalLp = isChineseExp() ? getBiggestLp() : finalLp + getBiggestLp();
     }
 
     protected void mfPlayOnceWithEnoughLp() {
@@ -517,6 +517,10 @@ public class CalculatorFactory {
         consumeLpMap.put("Expert", 20);
 
         return consumeLpMap.get(difficulty);
+    }
+
+    protected boolean isChineseExp() {
+        return expRatio != 2;
     }
 
     public void setObjectivePoints(long objectivePoints) {
