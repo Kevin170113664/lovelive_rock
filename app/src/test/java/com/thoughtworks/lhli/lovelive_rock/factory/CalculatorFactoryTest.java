@@ -308,7 +308,6 @@ public class CalculatorFactoryTest {
                 return 249L;
             }
         };
-        calculatorFactory.setExpRatio(2);
         calculatorFactory.setFinalLp(2400L);
         calculatorFactory.setFinalExperience(0L);
         calculatorFactory.setFinalPoints(0L);
@@ -338,7 +337,6 @@ public class CalculatorFactoryTest {
                 return 249L;
             }
         };
-        calculatorFactory.setExpRatio(2);
         calculatorFactory.setObjectivePoints(70000L);
         calculatorFactory.setLovecaAmount(0L);
         calculatorFactory.setFinalLp(0L);
@@ -367,7 +365,6 @@ public class CalculatorFactoryTest {
                 return 83L;
             }
         };
-        calculatorFactory.setExpRatio(2);
         calculatorFactory.setOncePoints(408L);
         calculatorFactory.setFinalLp(2400L);
         calculatorFactory.setFinalExperience(0L);
@@ -394,7 +391,6 @@ public class CalculatorFactoryTest {
                 return 83L;
             }
         };
-        calculatorFactory.setExpRatio(2);
         calculatorFactory.setOncePoints(408L);
         calculatorFactory.setObjectivePoints(60000L);
         calculatorFactory.setLovecaAmount(0L);
@@ -432,7 +428,6 @@ public class CalculatorFactoryTest {
                 return 75L;
             }
         };
-        calculatorFactory.setExpRatio(2);
         calculatorFactory.setConsumeLP(25L);
         calculatorFactory.setOncePoints(404L);
         calculatorFactory.setFinalLp(2400L);
@@ -472,7 +467,6 @@ public class CalculatorFactoryTest {
                 return 75L;
             }
         };
-        calculatorFactory.setExpRatio(2);
         calculatorFactory.setObjectivePoints(30000L);
         calculatorFactory.setLovecaAmount(0L);
         calculatorFactory.setConsumeLP(25L);
