@@ -12,6 +12,7 @@ import java.util.HashMap;
 public class CalculatorFactory {
 
     private final Integer MINUTES_FOR_ONE_SONG = 3;
+    private final DateTime DateTimeNow = new DateTime();
 
     private long objectivePoints;
     private long currentPoints;
@@ -145,7 +146,7 @@ public class CalculatorFactory {
 
     public String getEventLastTime() {
         if (isStringValid(eventEndTime)) {
-            Duration duration = new Duration(new DateTime(), DateTime.parse(eventEndTime));
+            Duration duration = new Duration(DateTimeNow, DateTime.parse(eventEndTime));
             return getFormatEventLastTime(duration);
         } else {
             return "0";
@@ -153,11 +154,10 @@ public class CalculatorFactory {
     }
 
     public String getEventLastTime(String endDay, String endHour) {
-        DateTime now = new DateTime();
-        if (isEventEndTimeValid(endDay, endHour, now)) {
-            DateTime eventEndTime = new DateTime(now.getYear(), now.getMonthOfYear(),
+        if (isEventEndTimeValid(endDay, endHour, DateTimeNow)) {
+            DateTime eventEndTime = new DateTime(DateTimeNow.getYear(), DateTimeNow.getMonthOfYear(),
                     Integer.parseInt(endDay), Integer.parseInt(endHour), 0, 0, 0);
-            Duration duration = new Duration(new DateTime(), eventEndTime);
+            Duration duration = new Duration(DateTimeNow, eventEndTime);
             return getFormatEventLastTime(duration);
         } else {
             return "0";
@@ -378,7 +378,7 @@ public class CalculatorFactory {
     }
 
     protected long getTotalWastedLp() {
-        return wastedLpEveryDay * eventEndDay;
+        return wastedLpEveryDay * (eventEndDay - DateTimeNow.getDayOfMonth());
     }
 
     protected long getPlayTimeMinutes() {

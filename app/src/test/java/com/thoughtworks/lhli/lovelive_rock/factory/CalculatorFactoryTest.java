@@ -2,6 +2,7 @@ package com.thoughtworks.lhli.lovelive_rock.factory;
 
 import com.thoughtworks.lhli.lovelive_rock.BuildConfig;
 
+import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -201,10 +202,14 @@ public class CalculatorFactoryTest {
 
     @Test
     public void shouldCalculateTotalWastedLp() {
+        calculatorFactory = new CalculatorFactory() {
+            DateTime DateTimeNow = new DateTime(2015, 12,
+                    26, 21, 0, 0, 0);
+        };
         calculatorFactory.setWastedLpEveryDay(7L);
-        calculatorFactory.setEventEndDay(4L);
+        calculatorFactory.setEventEndDay(31L);
 
-        assertEquals(28, calculatorFactory.getTotalWastedLp());
+        assertEquals(35, calculatorFactory.getTotalWastedLp());
     }
 
     @Test
