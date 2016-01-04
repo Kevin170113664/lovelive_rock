@@ -88,7 +88,7 @@ public class SmallCardListAdapter extends BaseAdapter {
 
     private boolean shouldShowNonIdolizedImage(int position) {
         return isStringValid(cardModelList.get(position).getRoundCardImage()) && !isIdolizedFace &&
-                !cardModelList.get(position).isPromo();
+                !cardModelList.get(position).isPromo() && !cardModelList.get(position).isSpecial();
     }
 
     private void bindItemView(View convertView, ViewHolder viewHolder) {
