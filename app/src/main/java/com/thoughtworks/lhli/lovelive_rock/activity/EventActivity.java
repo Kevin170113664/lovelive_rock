@@ -16,8 +16,10 @@ import com.thoughtworks.lhli.lovelive_rock.model.EventModel;
 import com.thoughtworks.lhli.lovelive_rock.task.LoadActivityData;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.Bind;
@@ -58,6 +60,7 @@ public class EventActivity extends BaseActivity {
         if (eventModelList.size() < 2) {
             startActivity(new Intent(this, CardActivity.class));
         } else {
+            cleanEventList();
             sortEventListByTime();
             listView.setAdapter(new EventListAdapter(EventActivity.this, eventModelList));
             setListViewOnItemClickListener();
@@ -109,5 +112,21 @@ public class EventActivity extends BaseActivity {
                 return false;
             }
         });
+    }
+
+    private void cleanEventList() {
+        HashMap<String, EventModel> eventMap = new HashMap<>();
+        List<EventModel> tempEventModelList = new ArrayList<>();
+
+        tempEventModelList.addAll(eventModelList);
+        eventModelList.clear();
+
+        for (EventModel e : tempEventModelList) {
+            eventMap.put(e.getEnd(), e);
+        }
+
+        for (EventModel e : eventMap.values()) {
+            eventModelList.add(e);
+        }
     }
 }
