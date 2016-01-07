@@ -66,8 +66,7 @@ public class EventManager {
     protected void updateEvents() {
         for (EventModel eventModel : eventModelList) {
             if (eventModel.getJapaneseT1Points() != null) {
-                databaseManager.deleteEvent(eventModel.getJapaneseName());
-                databaseManager.insertEvent(eventModel);
+                databaseManager.updateEventRankAndPoints(eventModel);
             }
         }
     }

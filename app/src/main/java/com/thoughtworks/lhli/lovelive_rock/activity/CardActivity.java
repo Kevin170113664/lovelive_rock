@@ -170,7 +170,7 @@ public class CardActivity extends BaseActivity {
 
     private void loadCardView() {
         List<CardModel> emptyCardModelList = new ArrayList<>();
-        cleanCardList();
+        removeDuplicateCard();
         sortCardListById();
         if (isGridView) {
             listView.setAdapter(new SmallCardListAdapter(CardActivity.this, emptyCardModelList, isIdolizedFace));
@@ -204,7 +204,7 @@ public class CardActivity extends BaseActivity {
         });
     }
 
-    private void cleanCardList() {
+    private void removeDuplicateCard() {
         HashMap<String, CardModel> cardMap = new HashMap<>();
         List<CardModel> tempVisibleCardModelList = new ArrayList<>();
 

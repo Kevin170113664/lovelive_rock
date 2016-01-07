@@ -72,12 +72,12 @@ public class ModelMapper {
         cardModel.setRarity(card.getRarity());
         cardModel.setAttribute(card.getAttribute());
         cardModel.setJapaneseAttribute(card.getJapaneseAttribute());
-        cardModel.setIsPromo(card.getIsPromo());
+        cardModel.setIsPromo(card.getIsPromo() == null ? false : card.getIsPromo());
         cardModel.setPromoItem(card.getPromoItem());
         cardModel.setReleaseDate(card.getReleaseDate());
-        cardModel.setJapanOnly(card.getJapanOnly());
+        cardModel.setJapanOnly(card.getJapanOnly() == null ? false : card.getJapanOnly());
         cardModel.setEventModel(null);
-        cardModel.setIsSpecial(card.getIsSpecial());
+        cardModel.setIsSpecial(card.getIsSpecial() == null ? false : card.getIsSpecial());
         cardModel.setHp(card.getHp());
         cardModel.setMinimumStatisticsSmile(card.getMinimumStatisticsSmile());
         cardModel.setMinimumStatisticsPure(card.getMinimumStatisticsPure());

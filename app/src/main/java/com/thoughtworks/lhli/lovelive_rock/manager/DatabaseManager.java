@@ -45,12 +45,36 @@ public class DatabaseManager {
         cardDao.deleteByKey(primaryKey);
     }
 
-    public void deleteEvent(String eventName) {
-        Long primaryKey = queryEventPrimaryKeyByName(eventName);
-        if (!primaryKey.equals(NULL_FIELD_ID)) {
-            getEventDao(helper.getWritableDatabase());
-            eventDao.deleteByKey(primaryKey);
-        }
+    public void updateEventRankAndPoints(EventModel eventModel) {
+        getEventDao(helper.getWritableDatabase());
+        eventDao.getSession().getDatabase().execSQL(updateJapaneseT1Rank(eventModel));
+        eventDao.getSession().getDatabase().execSQL(updateJapaneseT1Points(eventModel));
+        eventDao.getSession().getDatabase().execSQL(updateJapaneseT2Rank(eventModel));
+        eventDao.getSession().getDatabase().execSQL(updateJapaneseT2Points(eventModel));
+    }
+
+    protected String updateJapaneseT1Rank(EventModel eventModel) {
+        return "UPDATE " + eventDao.getTablename() + " SET " + EventDao.Properties.JapaneseT1Rank.columnName
+                    + " = " + eventModel.getJapaneseT1Rank() + " WHERE " + EventDao.Properties.End.columnName + " = '"
+                    + eventModel.getEnd() + "';";
+    }
+
+    protected String updateJapaneseT1Points(EventModel eventModel) {
+        return "UPDATE " + eventDao.getTablename() + " SET " + EventDao.Properties.JapaneseT1Points.columnName
+                + " = " + eventModel.getJapaneseT1Points() + " WHERE " + EventDao.Properties.End.columnName + " = '"
+                + eventModel.getEnd() + "';";
+    }
+
+    protected String updateJapaneseT2Rank(EventModel eventModel) {
+        return "UPDATE " + eventDao.getTablename() + " SET " + EventDao.Properties.JapaneseT2Rank.columnName
+                + " = " + eventModel.getJapaneseT2Rank() + " WHERE " + EventDao.Properties.End.columnName + " = '"
+                + eventModel.getEnd() + "';";
+    }
+
+    protected String updateJapaneseT2Points(EventModel eventModel) {
+        return "UPDATE " + eventDao.getTablename() + " SET " + EventDao.Properties.JapaneseT2Points.columnName
+                + " = " + eventModel.getJapaneseT2Points() + " WHERE " + EventDao.Properties.End.columnName + " = '"
+                + eventModel.getEnd() + "';";
     }
 
     public void cacheCard(CardModel cardModel) {

@@ -60,7 +60,7 @@ public class EventActivity extends BaseActivity {
         if (eventModelList.size() < 2) {
             startActivity(new Intent(this, CardActivity.class));
         } else {
-            cleanEventList();
+            removeDuplicateEvent();
             sortEventListByTime();
             listView.setAdapter(new EventListAdapter(EventActivity.this, eventModelList));
             setListViewOnItemClickListener();
@@ -114,7 +114,7 @@ public class EventActivity extends BaseActivity {
         });
     }
 
-    private void cleanEventList() {
+    private void removeDuplicateEvent() {
         HashMap<String, EventModel> eventMap = new HashMap<>();
         List<EventModel> tempEventModelList = new ArrayList<>();
 
