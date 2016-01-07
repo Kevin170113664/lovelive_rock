@@ -14,17 +14,19 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.thoughtworks.lhli.lovelive_rock.factory.FilterFactory;
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.adapter.GridCardListAdapter;
 import com.thoughtworks.lhli.lovelive_rock.adapter.SmallCardListAdapter;
 import com.thoughtworks.lhli.lovelive_rock.bus.FetchProcessEvent;
 import com.thoughtworks.lhli.lovelive_rock.bus.FilterEvent;
 import com.thoughtworks.lhli.lovelive_rock.bus.SmallCardEvent;
+import com.thoughtworks.lhli.lovelive_rock.factory.FilterFactory;
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 import com.thoughtworks.lhli.lovelive_rock.task.LoadActivityData;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -168,6 +170,8 @@ public class CardActivity extends BaseActivity {
 
     private void loadCardView() {
         List<CardModel> emptyCardModelList = new ArrayList<>();
+        cleanCardList();
+        sortCardListById();
         if (isGridView) {
             listView.setAdapter(new SmallCardListAdapter(CardActivity.this, emptyCardModelList, isIdolizedFace));
             gridView.setAdapter(new GridCardListAdapter(CardActivity.this, visibleCardModelList, isIdolizedFace));
@@ -184,5 +188,35 @@ public class CardActivity extends BaseActivity {
         filterMap.put(filterEvent.getFilterKey(), filterEvent.getFilterValue());
         visibleCardModelList = new FilterFactory().filterCards(cardModelList, filterMap);
         loadCardView();
+    }
+
+    private void sortCardListById() {
+        Collections.sort(visibleCardModelList, new Comparator<CardModel>() {
+            @Override
+            public int compare(CardModel firstCard, CardModel secondCard) {
+                return Integer.parseInt(secondCard.getCardId()) > Integer.parseInt(firstCard.getCardId()) ? 1 : -1;
+            }
+
+            @Override
+            public boolean equals(Object object) {
+                return false;
+            }
+        });
+    }
+
+    private void cleanCardList() {
+        HashMap<String, CardModel> cardMap = new HashMap<>();
+        List<CardModel> tempVisibleCardModelList = new ArrayList<>();
+
+        tempVisibleCardModelList.addAll(visibleCardModelList);
+        visibleCardModelList.clear();
+
+        for (CardModel c : tempVisibleCardModelList) {
+            cardMap.put(c.getCardId(), c);
+        }
+
+        for (CardModel c : cardMap.values()) {
+            visibleCardModelList.add(c);
+        }
     }
 }
