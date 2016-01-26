@@ -137,6 +137,14 @@ public class CardManager {
         databaseManager.cacheCard(cardModel);
     }
 
+    public void getCardBySkill(String skill) {
+        List<CardModel> cardModelList = databaseManager.queryCardsBySkill(skill);
+
+        if (cardModelList != null && cardModelList.size() != 0) {
+            EventBus.getDefault().post(new SmallCardEvent(cardModelList));
+        }
+    }
+
     @NonNull
     private Callback<CardModel> getCardByIdCallback() {
         return new Callback<CardModel>() {

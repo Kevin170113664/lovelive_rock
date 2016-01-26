@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import com.thoughtworks.lhli.lovelive_rock.LoveLiveApp;
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.activity.CardActivity;
+import com.thoughtworks.lhli.lovelive_rock.activity.CardDetailActivity;
 import com.thoughtworks.lhli.lovelive_rock.activity.EventActivity;
 import com.thoughtworks.lhli.lovelive_rock.activity.MainActivity;
 import com.thoughtworks.lhli.lovelive_rock.bus.LatestEventEvent;
@@ -24,9 +25,15 @@ import de.greenrobot.event.EventBus;
 public class LoadActivityData implements Runnable {
 
     private Activity activity;
+    private String skill;
 
     public LoadActivityData(Activity activity) {
         this.activity = activity;
+    }
+
+    public LoadActivityData(Activity activity, String skill) {
+        this.activity = activity;
+        this.skill = skill;
     }
 
     private void loadCardActivityData() {
@@ -69,6 +76,11 @@ public class LoadActivityData implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void loadCardDetailActivityData() {
+        CardManager cardManager = new CardManager(new ArrayList<CardModel>());
+        cardManager.getCardBySkill(skill);
     }
 
     private void loadMaxCardNumber() {
@@ -138,6 +150,8 @@ public class LoadActivityData implements Runnable {
             loadCardActivityData();
         } else if (activity.getClass().equals(EventActivity.class)) {
             loadEventActivityData();
+        } else if (activity.getClass().equals(CardDetailActivity.class)) {
+            loadCardDetailActivityData();
         }
     }
 }

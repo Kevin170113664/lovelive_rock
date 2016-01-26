@@ -55,8 +55,8 @@ public class DatabaseManager {
 
     protected String updateJapaneseT1Rank(EventModel eventModel) {
         return "UPDATE " + eventDao.getTablename() + " SET " + EventDao.Properties.JapaneseT1Rank.columnName
-                    + " = " + eventModel.getJapaneseT1Rank() + " WHERE " + EventDao.Properties.End.columnName + " = '"
-                    + eventModel.getEnd() + "';";
+                + " = " + eventModel.getJapaneseT1Rank() + " WHERE " + EventDao.Properties.End.columnName + " = '"
+                + eventModel.getEnd() + "';";
     }
 
     protected String updateJapaneseT1Points(EventModel eventModel) {
@@ -281,6 +281,24 @@ public class DatabaseManager {
         List<Card> cardList
                 = cardDao.queryBuilder()
                 .where(CardDao.Properties.CardId.isNotNull())
+                .list();
+        if (cardList.size() != 0) {
+            List<CardModel> cardModelList = new ArrayList<>();
+            for (Card card : cardList) {
+                cardModelList.add(generateCardModel(card));
+            }
+            return cardModelList;
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    public List<CardModel> queryCardsBySkill(String skill) {
+        getCardDao(helper.getReadableDatabase());
+
+        List<Card> cardList
+                = cardDao.queryBuilder()
+                .where(cardDao.queryBuilder().and(CardDao.Properties.Skill.eq(skill), CardDao.Properties.Rarity.eq("R")))
                 .list();
         if (cardList.size() != 0) {
             List<CardModel> cardModelList = new ArrayList<>();
