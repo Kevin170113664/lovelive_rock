@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ListView;
 
+import com.thoughtworks.lhli.lovelive_rock.CardGridView;
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.adapter.GridCardListAdapter;
 import com.thoughtworks.lhli.lovelive_rock.adapter.MediumCardListAdapter;
@@ -27,7 +27,7 @@ public class CardDetailActivity extends BaseActivity {
     protected ListView listView;
 
     @Bind(R.id.grid_view)
-    protected GridView gridView;
+    protected CardGridView gridView;
 
     private CardModel cardModel;
     private List<CardModel> cardModelList = new ArrayList<>();
@@ -46,14 +46,29 @@ public class CardDetailActivity extends BaseActivity {
         cardModelList.add(cardModel);
         listView.setAdapter(new MediumCardListAdapter(CardDetailActivity.this, cardModelList));
 
-        new Thread(new LoadActivityData(this, cardModel.getSkill())).start();
+        if (cardModel.isPromo()) {
+            new Thread(new LoadActivityData(this, cardModel.getSkill())).start();
+        }
     }
 
     public void onEventMainThread(CardDetailSmallCardEvent cardDetailSmallCardEvent) {
         cardModelList = cardDetailSmallCardEvent.getCardModelList();
+        removeCardItself();
 
         gridView.setAdapter(new GridCardListAdapter(CardDetailActivity.this, cardModelList, false));
         setGridViewItemClickListener();
+    }
+
+    protected void removeCardItself() {
+        int index = -1;
+        for (CardModel card : cardModelList) {
+            if (card.getCardId().equals(cardModel.getCardId())) {
+                index = cardModelList.indexOf(card);
+            }
+        }
+        if (index != -1) {
+            cardModelList.remove(index);
+        }
     }
 
     private void setGridViewItemClickListener() {
