@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.thoughtworks.lhli.lovelive_rock.LoveLiveApp;
 import com.thoughtworks.lhli.lovelive_rock.Retrofit;
+import com.thoughtworks.lhli.lovelive_rock.bus.CardDetailSmallCardEvent;
 import com.thoughtworks.lhli.lovelive_rock.bus.FetchProcessEvent;
 import com.thoughtworks.lhli.lovelive_rock.bus.MainCardEvent;
 import com.thoughtworks.lhli.lovelive_rock.bus.SmallCardEvent;
@@ -141,7 +142,7 @@ public class CardManager {
         List<CardModel> cardModelList = databaseManager.queryCardsBySkill(skill);
 
         if (cardModelList != null && cardModelList.size() != 0) {
-            EventBus.getDefault().post(new SmallCardEvent(cardModelList));
+            EventBus.getDefault().post(new CardDetailSmallCardEvent(cardModelList));
         }
     }
 

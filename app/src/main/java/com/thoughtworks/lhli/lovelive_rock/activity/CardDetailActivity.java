@@ -10,7 +10,7 @@ import android.widget.ListView;
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.adapter.GridCardListAdapter;
 import com.thoughtworks.lhli.lovelive_rock.adapter.MediumCardListAdapter;
-import com.thoughtworks.lhli.lovelive_rock.bus.SmallCardEvent;
+import com.thoughtworks.lhli.lovelive_rock.bus.CardDetailSmallCardEvent;
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 import com.thoughtworks.lhli.lovelive_rock.task.LoadActivityData;
 
@@ -49,8 +49,8 @@ public class CardDetailActivity extends BaseActivity {
         new Thread(new LoadActivityData(this, cardModel.getSkill())).start();
     }
 
-    public void onEventMainThread(SmallCardEvent smallCardEvent) {
-        cardModelList = smallCardEvent.getCardModelList();
+    public void onEventMainThread(CardDetailSmallCardEvent cardDetailSmallCardEvent) {
+        cardModelList = cardDetailSmallCardEvent.getCardModelList();
 
         gridView.setAdapter(new GridCardListAdapter(CardDetailActivity.this, cardModelList, false));
         setGridViewItemClickListener();
