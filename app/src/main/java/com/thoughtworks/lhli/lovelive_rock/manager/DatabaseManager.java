@@ -298,7 +298,8 @@ public class DatabaseManager {
 
         List<Card> cardList
                 = cardDao.queryBuilder()
-                .where(cardDao.queryBuilder().and(CardDao.Properties.Skill.eq(skill), CardDao.Properties.Rarity.eq("R")))
+                .where(cardDao.queryBuilder().and(CardDao.Properties.Skill.eq(skill),
+                        CardDao.Properties.Rarity.eq("R"), CardDao.Properties.IsPromo.eq(false)))
                 .list();
         if (cardList.size() != 0) {
             List<CardModel> cardModelList = new ArrayList<>();

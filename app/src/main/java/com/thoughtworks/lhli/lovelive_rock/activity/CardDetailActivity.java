@@ -47,8 +47,9 @@ public class CardDetailActivity extends BaseActivity {
 
     private void loadCardData() {
         cardModel = (CardModel) getIntent().getSerializableExtra("CardModel");
-        cardModelList.add(cardModel);
-        listView.setAdapter(new MediumCardListAdapter(CardDetailActivity.this, cardModelList));
+        List<CardModel> cardDetailList = new ArrayList<>();
+        cardDetailList.add(cardModel);
+        listView.setAdapter(new MediumCardListAdapter(CardDetailActivity.this, cardDetailList));
 
         if (cardModel.isPromo()) {
             new Thread(new LoadActivityData(this, cardModel.getSkill())).start();
@@ -57,23 +58,10 @@ public class CardDetailActivity extends BaseActivity {
 
     public void onEventMainThread(CardDetailSmallCardEvent cardDetailSmallCardEvent) {
         cardModelList = cardDetailSmallCardEvent.getCardModelList();
-        removeCardItself();
 
         feedGuideText.setVisibility(View.VISIBLE);
         gridView.setAdapter(new GridCardListAdapter(CardDetailActivity.this, cardModelList, false));
         setGridViewItemClickListener();
-    }
-
-    protected void removeCardItself() {
-        int index = -1;
-        for (CardModel card : cardModelList) {
-            if (card.getCardId().equals(cardModel.getCardId())) {
-                index = cardModelList.indexOf(card);
-            }
-        }
-        if (index != -1) {
-            cardModelList.remove(index);
-        }
     }
 
     private void setGridViewItemClickListener() {
