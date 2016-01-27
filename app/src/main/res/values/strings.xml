@@ -105,6 +105,7 @@
     <string name="forth_place">4th</string>
     <string name="default_rank">2</string>
     <string name="country">CN</string>
+    <string name="feed_guide">Feed Guide</string>
 
     <string-array name="rarity_array">
         <item>Rarity</item>

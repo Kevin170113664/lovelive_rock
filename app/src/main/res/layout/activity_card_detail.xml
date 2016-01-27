@@ -22,6 +22,15 @@
                 android:background="@color/colorBackground"
                 android:divider="@android:color/transparent" />
 
+            <TextView
+                android:id="@+id/feed_guide_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/feed_guide"
+                android:textAlignment="center"
+                android:textSize="@dimen/text_size_large"
+                android:visibility="gone" />
+
             <com.thoughtworks.lhli.lovelive_rock.CardGridView
                 android:id="@+id/grid_view"
                 android:layout_width="match_parent"

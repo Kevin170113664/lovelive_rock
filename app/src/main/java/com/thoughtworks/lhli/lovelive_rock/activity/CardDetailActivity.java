@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.thoughtworks.lhli.lovelive_rock.CardGridView;
 import com.thoughtworks.lhli.lovelive_rock.R;
@@ -28,6 +29,9 @@ public class CardDetailActivity extends BaseActivity {
 
     @Bind(R.id.grid_view)
     protected CardGridView gridView;
+
+    @Bind(R.id.feed_guide_text)
+    protected TextView feedGuideText;
 
     private CardModel cardModel;
     private List<CardModel> cardModelList = new ArrayList<>();
@@ -55,6 +59,7 @@ public class CardDetailActivity extends BaseActivity {
         cardModelList = cardDetailSmallCardEvent.getCardModelList();
         removeCardItself();
 
+        feedGuideText.setVisibility(View.VISIBLE);
         gridView.setAdapter(new GridCardListAdapter(CardDetailActivity.this, cardModelList, false));
         setGridViewItemClickListener();
     }
