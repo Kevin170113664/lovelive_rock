@@ -14,9 +14,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginBottom="@dimen/card_view_default_margin_bottom"
+            android:layout_marginLeft="@dimen/card_view_default_margin"
+            android:layout_marginRight="@dimen/card_view_default_margin"
             android:layout_marginTop="0dp"
             card_view:cardBackgroundColor="@color/colorOrange100"
             card_view:cardCornerRadius="3dp"
@@ -464,7 +464,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_margin="20dp"
+        android:layout_margin="@dimen/card_view_default_margin"
         android:background="@color/colorOrange100"
         android:text="@string/calculate" />
 

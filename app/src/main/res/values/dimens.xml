@@ -10,6 +10,7 @@
     <dimen name="text_size_medium">20sp</dimen>
     <dimen name="text_size_large">23sp</dimen>
     <dimen name="card_view_default_margin">5dp</dimen>
+    <dimen name="card_view_default_margin_bottom">15dp</dimen>
     <dimen name="card_view_default_elevation">5dp</dimen>
     <dimen name="card_view_default_corner_radius">3dp</dimen>
 </resources>
