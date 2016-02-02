@@ -106,6 +106,7 @@
     <string name="default_rank">2</string>
     <string name="country">CN</string>
     <string name="feed_guide">Feed Guide</string>
+    <string name="save_card_success_msg">Card image saved successfully</string>
 
     <string-array name="rarity_array">
         <item>Rarity</item>
