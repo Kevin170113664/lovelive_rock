@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.squareup.picasso.Picasso;
+import com.thoughtworks.lhli.lovelive_rock.LoveLiveApp;
 import com.thoughtworks.lhli.lovelive_rock.R;
 
 import java.util.List;
@@ -46,15 +47,19 @@ public class FullScreenCardAdapter extends PagerAdapter {
                 .load(cardImageList.get(position))
                 .into(fullScreenImage);
 
-        fullScreenImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activity.finish();
-            }
-        });
+        setImageClickEvent(fullScreenImage);
 
         container.addView(viewLayout);
         return viewLayout;
+    }
+
+    protected void setImageClickEvent(ImageView fullScreenImage) {
+        fullScreenImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoveLiveApp.file_download(cardImageList.get(0), activity);
+            }
+        });
     }
 
     @Override

@@ -1,24 +1,20 @@
 package com.thoughtworks.lhli.lovelive_rock.adapter;
 
-import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
+import com.thoughtworks.lhli.lovelive_rock.LoveLiveApp;
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.activity.FullScreenCardActivity;
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 
-import java.io.File;
 import java.util.List;
 
 public class MediumCardListAdapter extends BaseAdapter {
@@ -188,7 +184,7 @@ public class MediumCardListAdapter extends BaseAdapter {
             viewHolder.mediumCardImage.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    file_download(cardModelList.get(0).getCardImage());
+                    LoveLiveApp.file_download(cardModelList.get(0).getCardImage(), context);
                     return true;
                 }
             });
@@ -206,7 +202,7 @@ public class MediumCardListAdapter extends BaseAdapter {
         viewHolder.mediumCardIdolizedImage.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                file_download(cardModelList.get(0).getCardIdolizedImage());
+                LoveLiveApp.file_download(cardModelList.get(0).getCardIdolizedImage(), context);
                 return true;
             }
         });
@@ -264,33 +260,4 @@ public class MediumCardListAdapter extends BaseAdapter {
         public TextView mediumCardSkill;
         public TextView mediumCardSkillDetail;
     }
-    public void file_download(String imageUrl) {
-        String fileName = generateFileName(imageUrl);
-        DownloadManager mgr = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
-        Uri downloadUri = Uri.parse(imageUrl);
-        DownloadManager.Request request = new DownloadManager.Request(downloadUri);
-        request.setAllowedNetworkTypes(
-                DownloadManager.Request.NETWORK_WIFI
-                        | DownloadManager.Request.NETWORK_MOBILE)
-                .setAllowedOverRoaming(false).setTitle("LoveLive!")
-                .setDescription("LoveLive card image")
-                .setDestinationInExternalPublicDir("/lovelive+", fileName);
-        mgr.enqueue(request);
-
-        Toast.makeText(context.getApplicationContext(), R.string.save_card_success_msg, Toast.LENGTH_SHORT).show();
-    }
-
-    protected String generateFileName(String imageUrl) {
-        File direct = new File(Environment.getExternalStorageDirectory()
-                + "/lovelive+");
-        String[] urlArray = imageUrl.split("/");
-        String fileName = urlArray[urlArray.length - 1];
-
-        if (!direct.exists()) {
-            direct.mkdirs();
-        }
-
-        return fileName;
-    }
-
 }
