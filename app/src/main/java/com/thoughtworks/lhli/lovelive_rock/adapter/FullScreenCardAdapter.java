@@ -47,17 +47,18 @@ public class FullScreenCardAdapter extends PagerAdapter {
                 .load(cardImageList.get(position))
                 .into(fullScreenImage);
 
-        setImageClickEvent(fullScreenImage);
+        setImageClickEvent(fullScreenImage, position);
 
         container.addView(viewLayout);
         return viewLayout;
     }
 
-    protected void setImageClickEvent(ImageView fullScreenImage) {
-        fullScreenImage.setOnClickListener(new View.OnClickListener() {
+    protected void setImageClickEvent(final ImageView fullScreenImage, final int position) {
+        fullScreenImage.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onClick(View v) {
-                LoveLiveApp.file_download(cardImageList.get(0), activity);
+            public boolean onLongClick(View v) {
+                LoveLiveApp.file_download(cardImageList.get(position), activity);
+                return true;
             }
         });
     }
