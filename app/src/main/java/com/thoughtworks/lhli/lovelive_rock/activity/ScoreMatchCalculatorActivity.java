@@ -121,7 +121,6 @@ public class ScoreMatchCalculatorActivity extends BaseActivity {
                 CalculatorFactory calculatorFactory = new CalculatorFactory(objectivePointsText.getText().toString(),
                         currentPointsText.getText().toString(), currentRankText.getText().toString(),
                         ptWithinOncePlayText.getText().toString(), wastedLpEveryDayText.getText().toString(),
-                        difficultySpinner.getSelectedItem().toString(), songRankSpinner.getSelectedItem().toString(),
                         currentLpText.getText().toString(), currentExperienceText.getText().toString(),
                         eventEndDayText.getText().toString(), eventLastTimeText.getText().toString(),
                         countryExpCheckbox.isChecked());

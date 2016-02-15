@@ -39,9 +39,6 @@ public class CalculatorFactory {
     private long consumeLP;
     private Integer expRatio;
 
-    private String playRank;
-    private String songRank;
-
     private long lovecaAmount;
     private long finalPoints;
     private long finalRank;
@@ -106,16 +103,14 @@ public class CalculatorFactory {
     }
 
     public CalculatorFactory(String objectivePoints, String currentPoints, String currentRank,
-                             String oncePoints, String wastedLpEveryDay, String difficulty,
-                             String songRank, String currentLp, String currentExperience, String eventEndDay,
-                             String eventLastTime, Boolean isChineseExp) {
+                             String oncePoints, String wastedLpEveryDay, String currentLp,
+                             String currentExperience, String eventEndDay, String eventLastTime,
+                             Boolean isChineseExp) {
         this.objectivePoints = parseLongField(objectivePoints);
         this.currentPoints = parseLongField(currentPoints);
         this.currentRank = parseLongField(currentRank);
         this.oncePoints = parseLongField(oncePoints);
         this.wastedLpEveryDay = parseLongField(wastedLpEveryDay);
-        this.difficulty = difficulty;
-        this.songRank = songRank;
         this.currentLp = parseLongField(currentLp);
         this.currentExperience = parseLongField(currentExperience);
         this.eventEndDay = parseLongField(eventEndDay);
@@ -612,14 +607,6 @@ public class CalculatorFactory {
 
     public void setPlayTimeRatio(double playTimeRatio) {
         this.playTimeRatio = playTimeRatio;
-    }
-
-    public void setPlayRank(String playRank) {
-        this.playRank = playRank;
-    }
-
-    public void setSongRank(String songRank) {
-        this.songRank = songRank;
     }
 
     public void setExpRatio(Integer expRatio) {
