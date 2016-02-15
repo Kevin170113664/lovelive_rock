@@ -120,11 +120,11 @@ public class ScoreMatchCalculatorActivity extends BaseActivity {
             public void onClick(View v) {
                 CalculatorFactory calculatorFactory = new CalculatorFactory(objectivePointsText.getText().toString(),
                         currentPointsText.getText().toString(), currentRankText.getText().toString(),
-                        playRankSpinner.getSelectedItem().toString(), ptWithinOncePlayText.getText().toString(),
-                        wastedLpEveryDayText.getText().toString(), difficultySpinner.getSelectedItem().toString(),
-                        songRankSpinner.getSelectedItem().toString(), currentLpText.getText().toString(),
-                        currentExperienceText.getText().toString(), eventEndDayText.getText().toString(),
-                        eventLastTimeText.getText().toString(), countryExpCheckbox.isChecked());
+                        ptWithinOncePlayText.getText().toString(), wastedLpEveryDayText.getText().toString(),
+                        difficultySpinner.getSelectedItem().toString(), songRankSpinner.getSelectedItem().toString(),
+                        currentLpText.getText().toString(), currentExperienceText.getText().toString(),
+                        eventEndDayText.getText().toString(), eventLastTimeText.getText().toString(),
+                        countryExpCheckbox.isChecked());
 
                 Bundle calculationReport = new Bundle();
                 setReportFields(calculatorFactory, calculationReport);
