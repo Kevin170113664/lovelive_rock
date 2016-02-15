@@ -103,7 +103,7 @@ public class CalculatorFactory {
     }
 
     public CalculatorFactory(String objectivePoints, String currentPoints, String currentRank,
-                             String oncePoints, String wastedLpEveryDay, String currentLp,
+                             String oncePoints, String wastedLpEveryDay, String currentLp, String difficulty,
                              String currentExperience, String eventEndDay, String eventLastTime,
                              Boolean isChineseExp) {
         this.objectivePoints = parseLongField(objectivePoints);
@@ -112,6 +112,7 @@ public class CalculatorFactory {
         this.oncePoints = parseLongField(oncePoints);
         this.wastedLpEveryDay = parseLongField(wastedLpEveryDay);
         this.currentLp = parseLongField(currentLp);
+        this.difficulty = difficulty;
         this.currentExperience = parseLongField(currentExperience);
         this.eventEndDay = parseLongField(eventEndDay);
         this.eventLastTime = parseDoubleField(eventLastTime);
