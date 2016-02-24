@@ -448,7 +448,7 @@ public class CalculatorFactory {
         experienceMap.put("Expert", 83L);
 
         long basicExperience = experienceMap.get(difficulty) * songAmount;
-        basicExperience = songRankRatio == 1 ? basicExperience / expRatio : basicExperience;
+        basicExperience = songRankRatio == 1 ? basicExperience / 2 : basicExperience;
 
         return experienceAddition ? Math.round(basicExperience * 1.1) : basicExperience;
     }
