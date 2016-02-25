@@ -9,7 +9,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
@@ -165,8 +164,7 @@ public class MainActivity extends BaseActivity {
 
         switch (id) {
             case R.id.action_song:
-                Toast.makeText(getApplicationContext(), getString(R.string.toast_function_not_complete),
-                        Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, SongActivity.class));
                 return true;
             case R.id.action_card:
                 startActivity(new Intent(this, CardActivity.class));

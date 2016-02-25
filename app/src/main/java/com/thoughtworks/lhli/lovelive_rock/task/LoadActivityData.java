@@ -10,11 +10,14 @@ import com.thoughtworks.lhli.lovelive_rock.activity.CardActivity;
 import com.thoughtworks.lhli.lovelive_rock.activity.CardDetailActivity;
 import com.thoughtworks.lhli.lovelive_rock.activity.EventActivity;
 import com.thoughtworks.lhli.lovelive_rock.activity.MainActivity;
+import com.thoughtworks.lhli.lovelive_rock.activity.SongActivity;
 import com.thoughtworks.lhli.lovelive_rock.bus.LatestEventEvent;
 import com.thoughtworks.lhli.lovelive_rock.manager.CardManager;
 import com.thoughtworks.lhli.lovelive_rock.manager.EventManager;
+import com.thoughtworks.lhli.lovelive_rock.manager.SongManager;
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 import com.thoughtworks.lhli.lovelive_rock.model.EventModel;
+import com.thoughtworks.lhli.lovelive_rock.model.SongModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -81,6 +84,15 @@ public class LoadActivityData implements Runnable {
     private void loadCardDetailActivityData() {
         CardManager cardManager = new CardManager(new ArrayList<CardModel>());
         cardManager.getCardBySkill(skill);
+    }
+
+    private void loadSongActivityData() {
+        SongManager songManager = new SongManager(new ArrayList<SongModel>());
+        try {
+            songManager.getAllSongs();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void loadMaxCardNumber() {
@@ -152,6 +164,8 @@ public class LoadActivityData implements Runnable {
             loadEventActivityData();
         } else if (activity.getClass().equals(CardDetailActivity.class)) {
             loadCardDetailActivityData();
+        } else if (activity.getClass().equals(SongActivity.class)) {
+            loadSongActivityData();
         }
     }
 }

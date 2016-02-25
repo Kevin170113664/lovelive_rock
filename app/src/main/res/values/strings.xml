@@ -6,6 +6,7 @@
     <string name="action_mf_calculator">MF Calculator</string>
     <string name="action_normal_calculator">Normal Calculator</string>
     <string name="action_sm_calculator">SM Calculator</string>
+    <string name="song_label">Song</string>
     <string name="filter_dialog_title">Filter</string>
 
     <string name="toast_function_not_complete">Sorry, this is unavailable now.</string>

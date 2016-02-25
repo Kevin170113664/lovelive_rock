@@ -58,6 +58,10 @@
             android:name=".activity.ScoreMatchCalculatorActivity"
             android:label="@string/sm_calculator_label"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SongActivity"
+            android:label="@string/song_label"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="UMENG_APPKEY"
