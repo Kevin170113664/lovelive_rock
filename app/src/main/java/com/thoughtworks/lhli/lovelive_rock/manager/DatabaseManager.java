@@ -388,6 +388,23 @@ public class DatabaseManager {
         return null;
     }
 
+    public List<SongModel> queryAllSongs() {
+        getSongDao(helper.getReadableDatabase());
+
+        List<Song> songList = songDao.queryBuilder()
+                .where(SongDao.Properties.Name.isNotNull())
+                .list();
+        if (songList.size() != 0) {
+            List<SongModel> songModelList = new ArrayList<>();
+            for (Song song : songList) {
+                songModelList.add(com.thoughtworks.lhli.lovelive_rock.ModelMapper.mapSong(song));
+            }
+            return songModelList;
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
     @NonNull
     private IdolModel generateIdolModel(List<Idol> idolList) {
         IdolModel idolModel = modelMapper.map(idolList.get(0), IdolModel.class);

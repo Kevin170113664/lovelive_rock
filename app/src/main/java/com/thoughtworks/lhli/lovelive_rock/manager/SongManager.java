@@ -27,6 +27,17 @@ public class SongManager {
         this.databaseManager = new DatabaseManager();
     }
 
+    public void getAllSongs() throws IOException {
+        List<SongModel> songModelListFromDB = databaseManager.queryAllSongs();
+
+        if (songModelListFromDB.size() >= maxSongNumber) {
+            EventBus.getDefault().post(new SongEvent(songModelListFromDB));
+            EventBus.getDefault().post(new FetchProcessEvent("100"));
+        } else {
+            getSongByPages();
+        }
+    }
+
     private void getSongByPages() throws IOException {
         for (int page = 1; page <= 10; page++) {
             if (LoveLiveApp.getInstance().isNetworkAvailable()) {
