@@ -45,6 +45,7 @@
     <string name="small_card_max_stat_title">最高属性：</string>
     <string name="small_card_skill_type_title">技能类型：</string>
     <string name="first_download_tips">第一次下载所有数据大约需要3~5分钟。</string>
+    <string name="download_song_tips">第一次下载歌曲数据大约需要1分钟。</string>
     <string name="medley_festival_calculator_label">MF计算器</string>
     <string name="normal_calculator_label">传统计算器</string>
     <string name="sm_calculator_label">SM计算器</string>
