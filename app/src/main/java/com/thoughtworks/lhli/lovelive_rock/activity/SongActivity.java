@@ -15,7 +15,11 @@ import com.thoughtworks.lhli.lovelive_rock.bus.SongEvent;
 import com.thoughtworks.lhli.lovelive_rock.model.SongModel;
 import com.thoughtworks.lhli.lovelive_rock.task.LoadActivityData;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -44,7 +48,7 @@ public class SongActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_card);
+        setContentView(R.layout.activity_song);
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
         Glide.with(this).load(R.drawable.loading).asGif().into(loadingIcon);
@@ -62,6 +66,13 @@ public class SongActivity extends BaseActivity {
         findViewById(R.id.loading_mask).setVisibility(View.GONE);
         loadingIcon.setVisibility(View.GONE);
         songModelList = songEvent.getSongModelList();
+        loadSongView();
+    }
+
+    private void loadSongView() {
+        removeDuplicateSong();
+        Long seed = System.nanoTime();
+        Collections.shuffle(songModelList, new Random(seed));
         gridView.setAdapter(new GridSongListAdapter(this, songModelList));
     }
 
@@ -72,6 +83,22 @@ public class SongActivity extends BaseActivity {
             downloadProgress.setVisibility(View.VISIBLE);
             progressBar.setProgress(Integer.parseInt(fetchProcessEvent.getProcess()));
             downloadProgress.setText(String.format("%s%%", fetchProcessEvent.getProcess()));
+        }
+    }
+
+    private void removeDuplicateSong() {
+        HashMap<String, SongModel> songMap = new HashMap<>();
+        List<SongModel> tempSongModelList = new ArrayList<>();
+
+        tempSongModelList.addAll(songModelList);
+        songModelList.clear();
+
+        for (SongModel s : tempSongModelList) {
+            songMap.put(s.getName(), s);
+        }
+
+        for (SongModel s : songMap.values()) {
+            songModelList.add(s);
         }
     }
 }

@@ -7,7 +7,7 @@
 
     <ImageView
         android:id="@+id/grid_view_image"
-        android:layout_width="144dp"
-        android:layout_height="144dp"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:gravity="center" />
 </LinearLayout>
