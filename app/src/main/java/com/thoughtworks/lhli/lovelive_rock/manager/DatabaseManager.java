@@ -36,7 +36,7 @@ public class DatabaseManager {
     private ModelMapper modelMapper = new ModelMapper();
 
     public DatabaseManager() {
-        this.helper = new DaoMaster.DevOpenHelper(LoveLiveApp.getInstance(), "lovelive-db", null);
+        this.helper = new DaoMaster.UpgradeHelper(LoveLiveApp.getInstance(), "lovelive-db", null);
     }
 
     public void deleteCard(String cardId) {

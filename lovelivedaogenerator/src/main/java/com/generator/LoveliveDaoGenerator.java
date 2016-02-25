@@ -7,7 +7,7 @@ import de.greenrobot.daogenerator.Schema;
 
 public class LoveliveDaoGenerator {
     public static void main(String[] args) {
-        Schema schema = new Schema(1, "com.thoughtworks.lhli.lovelive_rock.data");
+        Schema schema = new Schema(2, "com.thoughtworks.lhli.lovelive_rock.data");
 
         LoveliveDaoGenerator generator = new LoveliveDaoGenerator();
         generator.addAllEntities(schema);
@@ -20,10 +20,11 @@ public class LoveliveDaoGenerator {
     }
 
     private void addAllEntities(Schema schema) {
-        Entity CharacterVoice = generateCharacterVoiceEntity(schema);
-        Entity Event = generateEventEntity(schema);
-        Entity Idol = generateIdolEntity(schema, CharacterVoice);
-        generateCardEntity(schema, Event, Idol);
+        Entity characterVoice = generateCharacterVoiceEntity(schema);
+        Entity event = generateEventEntity(schema);
+        Entity idol = generateIdolEntity(schema, characterVoice);
+        generateCardEntity(schema, event, idol);
+        generateSongEntity(schema, event);
     }
 
     private Entity generateCharacterVoiceEntity(Schema schema) {
@@ -148,5 +149,34 @@ public class LoveliveDaoGenerator {
         Card.addStringProperty("transparentUrPair");
         Card.addStringProperty("transparentIdolizedUrPair");
         Card.implementsSerializable();
+    }
+
+    private void generateSongEntity(Schema schema, Entity event) {
+        Entity Song = schema.addEntity("Song");
+        Song.addIdProperty();
+        Song.addStringProperty("name");
+        Song.addStringProperty("romaji_name");
+        Song.addStringProperty("translated_name");
+        Song.addStringProperty("attribute");
+        Song.addShortProperty("BPM");
+        Song.addShortProperty("time");
+        Property eventProperty = Song.addLongProperty("eventId").notNull().getProperty();
+        Song.addToOne(event, eventProperty);
+        Song.addShortProperty("rank");
+        Song.addStringProperty("daily_rotation");
+        Song.addShortProperty("daily_rotation_position");
+        Song.addStringProperty("image");
+        Song.addShortProperty("easy_difficulty");
+        Song.addShortProperty("easy_notes");
+        Song.addShortProperty("normal_difficulty");
+        Song.addShortProperty("normal_notes");
+        Song.addShortProperty("hard_difficulty");
+        Song.addShortProperty("hard_notes");
+        Song.addShortProperty("expert_difficulty");
+        Song.addShortProperty("expert_random_difficulty");
+        Song.addShortProperty("expert_notes");
+        Song.addBooleanProperty("available");
+        Song.addLongProperty("itunes_id");
+        Song.implementsSerializable();
     }
 }
