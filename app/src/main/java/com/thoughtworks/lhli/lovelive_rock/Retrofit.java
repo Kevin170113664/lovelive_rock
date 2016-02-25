@@ -3,6 +3,7 @@ package com.thoughtworks.lhli.lovelive_rock;
 import com.squareup.okhttp.OkHttpClient;
 import com.thoughtworks.lhli.lovelive_rock.service.CardService;
 import com.thoughtworks.lhli.lovelive_rock.service.EventService;
+import com.thoughtworks.lhli.lovelive_rock.service.SongService;
 
 import java.util.concurrent.TimeUnit;
 
@@ -38,5 +39,9 @@ public class Retrofit {
 
     public EventService getEventService() {
         return retrofit.create(EventService.class);
+    }
+
+    public SongService getSongService() {
+        return retrofit.create(SongService.class);
     }
 }

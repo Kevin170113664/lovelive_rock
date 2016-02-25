@@ -3,16 +3,20 @@ package com.thoughtworks.lhli.lovelive_rock;
 import com.thoughtworks.lhli.lovelive_rock.data.Card;
 import com.thoughtworks.lhli.lovelive_rock.data.Event;
 import com.thoughtworks.lhli.lovelive_rock.data.Idol;
+import com.thoughtworks.lhli.lovelive_rock.data.Song;
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
+import com.thoughtworks.lhli.lovelive_rock.model.SongModel;
 
 public class ModelMapper {
+
+    private static Long NULL_FIELD_ID = -1L;
 
     public static Card mapCard(CardModel cardModel) {
         Card card = new Card();
         Idol idol = new Idol();
-        idol.setId(-1L);
+        idol.setId(NULL_FIELD_ID);
         Event event = new Event();
-        event.setId(-1L);
+        event.setId(NULL_FIELD_ID);
 
         card.setCardId(cardModel.getCardId());
         card.setName(cardModel.getName());
@@ -110,5 +114,65 @@ public class ModelMapper {
         cardModel.setTransparentUrPair(card.getTransparentUrPair());
         cardModel.setTransparentIdolizedUrPair(card.getTransparentIdolizedUrPair());
         return cardModel;
+    }
+
+    public static Song mapSong(SongModel songModel) {
+        Song song = new Song();
+        Event event = new Event();
+        event.setId(NULL_FIELD_ID);
+
+        song.setName(songModel.getName());
+        song.setRomajiName(songModel.getRomajiName());
+        song.setTranslatedName(songModel.getTranslatedName());
+        song.setAttribute(songModel.getAttribute());
+        song.setBPM(songModel.getBPM());
+        song.setTime(songModel.getTime());
+        song.setEvent(event);
+        song.setRank(songModel.getRank());
+        song.setDailyRotation(songModel.getDailyRotation());
+        song.setDailyRotationPosition(songModel.getDailyRotationPosition());
+        song.setImage(songModel.getImage());
+        song.setEasyDifficulty(songModel.getEasyDifficulty());
+        song.setEasyNotes(songModel.getEasyNotes());
+        song.setNormalDifficulty(songModel.getNormalDifficulty());
+        song.setNormalNotes(songModel.getNormalNotes());
+        song.setHardDifficulty(songModel.getHardDifficulty());
+        song.setHardNotes(songModel.getHardNotes());
+        song.setExpertDifficulty(songModel.getExpertDifficulty());
+        song.setExpertRandomDifficulty(songModel.getExpertRandomDifficulty());
+        song.setExpertNotes(songModel.getExpertNotes());
+        song.setAvailable(songModel.getAvailable());
+        song.setItunesId(songModel.getItunesId());
+
+        return song;
+    }
+
+    public static SongModel mapSong(Song song) {
+        SongModel songModel = new SongModel();
+
+        songModel.setName(song.getName());
+        songModel.setRomajiName(song.getRomajiName());
+        songModel.setTranslatedName(song.getTranslatedName());
+        songModel.setAttribute(song.getAttribute());
+        songModel.setBPM(song.getBPM());
+        songModel.setTime(song.getTime());
+        songModel.setEventModel(null);
+        songModel.setRank(song.getRank());
+        songModel.setDailyRotation(song.getDailyRotation());
+        songModel.setDailyRotationPosition(song.getDailyRotationPosition());
+        songModel.setImage(song.getImage());
+        songModel.setEasyDifficulty(song.getEasyDifficulty());
+        songModel.setEasyNotes(song.getEasyNotes());
+        songModel.setNormalDifficulty(song.getNormalDifficulty());
+        songModel.setNormalNotes(song.getNormalNotes());
+        songModel.setHardDifficulty(song.getHardDifficulty());
+        songModel.setHardNotes(song.getHardNotes());
+        songModel.setExpertDifficulty(song.getExpertDifficulty());
+        songModel.setExpertRandomDifficulty(song.getExpertRandomDifficulty());
+        songModel.setExpertNotes(song.getExpertNotes());
+        songModel.setAvailable(song.getAvailable());
+        songModel.setItunesId(song.getItunesId());
+
+        return songModel;
     }
 }

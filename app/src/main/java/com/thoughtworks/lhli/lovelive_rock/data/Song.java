@@ -11,27 +11,27 @@ public class Song implements java.io.Serializable {
 
     private Long id;
     private String name;
-    private String romaji_name;
-    private String translated_name;
+    private String romajiName;
+    private String translatedName;
     private String attribute;
     private Short BPM;
     private Short time;
     private long eventId;
     private Short rank;
-    private String daily_rotation;
-    private Short daily_rotation_position;
+    private String dailyRotation;
+    private Short dailyRotationPosition;
     private String image;
-    private Short easy_difficulty;
-    private Short easy_notes;
-    private Short normal_difficulty;
-    private Short normal_notes;
-    private Short hard_difficulty;
-    private Short hard_notes;
-    private Short expert_difficulty;
-    private Short expert_random_difficulty;
-    private Short expert_notes;
+    private Short easyDifficulty;
+    private Short easyNotes;
+    private Short normalDifficulty;
+    private Short normalNotes;
+    private Short hardDifficulty;
+    private Short hardNotes;
+    private Short expertDifficulty;
+    private Short expertRandomDifficulty;
+    private Short expertNotes;
     private Boolean available;
-    private Long itunes_id;
+    private Long itunesId;
 
     /** Used to resolve relations */
     private transient DaoSession daoSession;
@@ -50,30 +50,30 @@ public class Song implements java.io.Serializable {
         this.id = id;
     }
 
-    public Song(Long id, String name, String romaji_name, String translated_name, String attribute, Short BPM, Short time, long eventId, Short rank, String daily_rotation, Short daily_rotation_position, String image, Short easy_difficulty, Short easy_notes, Short normal_difficulty, Short normal_notes, Short hard_difficulty, Short hard_notes, Short expert_difficulty, Short expert_random_difficulty, Short expert_notes, Boolean available, Long itunes_id) {
+    public Song(Long id, String name, String romajiName, String translatedName, String attribute, Short BPM, Short time, long eventId, Short rank, String dailyRotation, Short dailyRotationPosition, String image, Short easyDifficulty, Short easyNotes, Short normalDifficulty, Short normalNotes, Short hardDifficulty, Short hardNotes, Short expertDifficulty, Short expertRandomDifficulty, Short expertNotes, Boolean available, Long itunesId) {
         this.id = id;
         this.name = name;
-        this.romaji_name = romaji_name;
-        this.translated_name = translated_name;
+        this.romajiName = romajiName;
+        this.translatedName = translatedName;
         this.attribute = attribute;
         this.BPM = BPM;
         this.time = time;
         this.eventId = eventId;
         this.rank = rank;
-        this.daily_rotation = daily_rotation;
-        this.daily_rotation_position = daily_rotation_position;
+        this.dailyRotation = dailyRotation;
+        this.dailyRotationPosition = dailyRotationPosition;
         this.image = image;
-        this.easy_difficulty = easy_difficulty;
-        this.easy_notes = easy_notes;
-        this.normal_difficulty = normal_difficulty;
-        this.normal_notes = normal_notes;
-        this.hard_difficulty = hard_difficulty;
-        this.hard_notes = hard_notes;
-        this.expert_difficulty = expert_difficulty;
-        this.expert_random_difficulty = expert_random_difficulty;
-        this.expert_notes = expert_notes;
+        this.easyDifficulty = easyDifficulty;
+        this.easyNotes = easyNotes;
+        this.normalDifficulty = normalDifficulty;
+        this.normalNotes = normalNotes;
+        this.hardDifficulty = hardDifficulty;
+        this.hardNotes = hardNotes;
+        this.expertDifficulty = expertDifficulty;
+        this.expertRandomDifficulty = expertRandomDifficulty;
+        this.expertNotes = expertNotes;
         this.available = available;
-        this.itunes_id = itunes_id;
+        this.itunesId = itunesId;
     }
 
     /** called by internal mechanisms, do not call yourself. */
@@ -98,20 +98,20 @@ public class Song implements java.io.Serializable {
         this.name = name;
     }
 
-    public String getRomaji_name() {
-        return romaji_name;
+    public String getRomajiName() {
+        return romajiName;
     }
 
-    public void setRomaji_name(String romaji_name) {
-        this.romaji_name = romaji_name;
+    public void setRomajiName(String romajiName) {
+        this.romajiName = romajiName;
     }
 
-    public String getTranslated_name() {
-        return translated_name;
+    public String getTranslatedName() {
+        return translatedName;
     }
 
-    public void setTranslated_name(String translated_name) {
-        this.translated_name = translated_name;
+    public void setTranslatedName(String translatedName) {
+        this.translatedName = translatedName;
     }
 
     public String getAttribute() {
@@ -154,20 +154,20 @@ public class Song implements java.io.Serializable {
         this.rank = rank;
     }
 
-    public String getDaily_rotation() {
-        return daily_rotation;
+    public String getDailyRotation() {
+        return dailyRotation;
     }
 
-    public void setDaily_rotation(String daily_rotation) {
-        this.daily_rotation = daily_rotation;
+    public void setDailyRotation(String dailyRotation) {
+        this.dailyRotation = dailyRotation;
     }
 
-    public Short getDaily_rotation_position() {
-        return daily_rotation_position;
+    public Short getDailyRotationPosition() {
+        return dailyRotationPosition;
     }
 
-    public void setDaily_rotation_position(Short daily_rotation_position) {
-        this.daily_rotation_position = daily_rotation_position;
+    public void setDailyRotationPosition(Short dailyRotationPosition) {
+        this.dailyRotationPosition = dailyRotationPosition;
     }
 
     public String getImage() {
@@ -178,76 +178,76 @@ public class Song implements java.io.Serializable {
         this.image = image;
     }
 
-    public Short getEasy_difficulty() {
-        return easy_difficulty;
+    public Short getEasyDifficulty() {
+        return easyDifficulty;
     }
 
-    public void setEasy_difficulty(Short easy_difficulty) {
-        this.easy_difficulty = easy_difficulty;
+    public void setEasyDifficulty(Short easyDifficulty) {
+        this.easyDifficulty = easyDifficulty;
     }
 
-    public Short getEasy_notes() {
-        return easy_notes;
+    public Short getEasyNotes() {
+        return easyNotes;
     }
 
-    public void setEasy_notes(Short easy_notes) {
-        this.easy_notes = easy_notes;
+    public void setEasyNotes(Short easyNotes) {
+        this.easyNotes = easyNotes;
     }
 
-    public Short getNormal_difficulty() {
-        return normal_difficulty;
+    public Short getNormalDifficulty() {
+        return normalDifficulty;
     }
 
-    public void setNormal_difficulty(Short normal_difficulty) {
-        this.normal_difficulty = normal_difficulty;
+    public void setNormalDifficulty(Short normalDifficulty) {
+        this.normalDifficulty = normalDifficulty;
     }
 
-    public Short getNormal_notes() {
-        return normal_notes;
+    public Short getNormalNotes() {
+        return normalNotes;
     }
 
-    public void setNormal_notes(Short normal_notes) {
-        this.normal_notes = normal_notes;
+    public void setNormalNotes(Short normalNotes) {
+        this.normalNotes = normalNotes;
     }
 
-    public Short getHard_difficulty() {
-        return hard_difficulty;
+    public Short getHardDifficulty() {
+        return hardDifficulty;
     }
 
-    public void setHard_difficulty(Short hard_difficulty) {
-        this.hard_difficulty = hard_difficulty;
+    public void setHardDifficulty(Short hardDifficulty) {
+        this.hardDifficulty = hardDifficulty;
     }
 
-    public Short getHard_notes() {
-        return hard_notes;
+    public Short getHardNotes() {
+        return hardNotes;
     }
 
-    public void setHard_notes(Short hard_notes) {
-        this.hard_notes = hard_notes;
+    public void setHardNotes(Short hardNotes) {
+        this.hardNotes = hardNotes;
     }
 
-    public Short getExpert_difficulty() {
-        return expert_difficulty;
+    public Short getExpertDifficulty() {
+        return expertDifficulty;
     }
 
-    public void setExpert_difficulty(Short expert_difficulty) {
-        this.expert_difficulty = expert_difficulty;
+    public void setExpertDifficulty(Short expertDifficulty) {
+        this.expertDifficulty = expertDifficulty;
     }
 
-    public Short getExpert_random_difficulty() {
-        return expert_random_difficulty;
+    public Short getExpertRandomDifficulty() {
+        return expertRandomDifficulty;
     }
 
-    public void setExpert_random_difficulty(Short expert_random_difficulty) {
-        this.expert_random_difficulty = expert_random_difficulty;
+    public void setExpertRandomDifficulty(Short expertRandomDifficulty) {
+        this.expertRandomDifficulty = expertRandomDifficulty;
     }
 
-    public Short getExpert_notes() {
-        return expert_notes;
+    public Short getExpertNotes() {
+        return expertNotes;
     }
 
-    public void setExpert_notes(Short expert_notes) {
-        this.expert_notes = expert_notes;
+    public void setExpertNotes(Short expertNotes) {
+        this.expertNotes = expertNotes;
     }
 
     public Boolean getAvailable() {
@@ -258,12 +258,12 @@ public class Song implements java.io.Serializable {
         this.available = available;
     }
 
-    public Long getItunes_id() {
-        return itunes_id;
+    public Long getItunesId() {
+        return itunesId;
     }
 
-    public void setItunes_id(Long itunes_id) {
-        this.itunes_id = itunes_id;
+    public void setItunesId(Long itunesId) {
+        this.itunesId = itunesId;
     }
 
     /** To-one relationship, resolved on first access. */

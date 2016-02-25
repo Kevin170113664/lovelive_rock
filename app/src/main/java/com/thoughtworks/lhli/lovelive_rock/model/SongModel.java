@@ -18,73 +18,72 @@ public class SongModel implements Serializable {
     private String attribute;
 
     @SerializedName("BPM")
-    private String BPM;
+    private Short BPM;
 
     @SerializedName("time")
-    private String time;
+    private Short time;
 
     @SerializedName("event")
-    private String event;
+    private EventModel eventModel;
 
     @SerializedName("rank")
-    private String rank;
+    private Short rank;
 
     @SerializedName("daily_rotation")
     private String dailyRotation;
 
     @SerializedName("daily_rotation_position")
-    private String dailyRotationPosition;
+    private Short dailyRotationPosition;
 
     @SerializedName("image")
     private String image;
 
     @SerializedName("easy_difficulty")
-    private String easyDifficulty;
+    private Short easyDifficulty;
 
     @SerializedName("easy_notes")
-    private String easyNotes;
+    private Short easyNotes;
 
     @SerializedName("normal_difficulty")
-    private String normalDifficulty;
+    private Short normalDifficulty;
 
     @SerializedName("normal_notes")
-    private String normalNotes;
+    private Short normalNotes;
 
     @SerializedName("hard_difficulty")
-    private String hardDifficulty;
+    private Short hardDifficulty;
 
     @SerializedName("hard_notes")
-    private String hardNotes;
+    private Short hardNotes;
 
     @SerializedName("expert_difficulty")
-    private String expertDifficulty;
+    private Short expertDifficulty;
 
     @SerializedName("expert_random_difficulty")
-    private String expertRandomDifficulty;
+    private Short expertRandomDifficulty;
 
     @SerializedName("expert_notes")
-    private String expertNotes;
+    private Short expertNotes;
 
     @SerializedName("available")
-    private String available;
+    private Boolean available;
 
     @SerializedName("itunes_id")
-    private String itunesId;
+    private Long itunesId;
 
     public SongModel(String name, String romajiName, String translatedName, String attribute,
-                     String BPM, String time, String event, String rank, String dailyRotation,
-                     String dailyRotationPosition, String image, String easyDifficulty,
-                     String easyNotes, String normalDifficulty, String normalNotes,
-                     String hardDifficulty, String hardNotes, String expertDifficulty,
-                     String expertRandomDifficulty, String expertNotes, String available,
-                     String itunesId) {
+                     Short BPM, Short time, EventModel eventModel, Short rank, String dailyRotation,
+                     Short dailyRotationPosition, String image, Short easyDifficulty, Short easyNotes,
+                     Short normalDifficulty, Short normalNotes, Short hardDifficulty, Short hardNotes,
+                     Short expertDifficulty, Short expertRandomDifficulty, Short expertNotes,
+                     Boolean available, Long itunesId) {
         this.name = name;
         this.romajiName = romajiName;
         this.translatedName = translatedName;
         this.attribute = attribute;
         this.BPM = BPM;
         this.time = time;
-        this.event = event;
+        this.eventModel = eventModel;
         this.rank = rank;
         this.dailyRotation = dailyRotation;
         this.dailyRotationPosition = dailyRotationPosition;
@@ -137,35 +136,35 @@ public class SongModel implements Serializable {
         this.attribute = attribute;
     }
 
-    public String getBPM() {
+    public Short getBPM() {
         return BPM;
     }
 
-    public void setBPM(String BPM) {
+    public void setBPM(Short BPM) {
         this.BPM = BPM;
     }
 
-    public String getTime() {
+    public Short getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(Short time) {
         this.time = time;
     }
 
-    public String getEvent() {
-        return event;
+    public EventModel getEventModel() {
+        return eventModel;
     }
 
-    public void setEvent(String event) {
-        this.event = event;
+    public void setEventModel(EventModel eventModel) {
+        this.eventModel = eventModel;
     }
 
-    public String getRank() {
+    public Short getRank() {
         return rank;
     }
 
-    public void setRank(String rank) {
+    public void setRank(Short rank) {
         this.rank = rank;
     }
 
@@ -177,11 +176,11 @@ public class SongModel implements Serializable {
         this.dailyRotation = dailyRotation;
     }
 
-    public String getDailyRotationPosition() {
+    public Short getDailyRotationPosition() {
         return dailyRotationPosition;
     }
 
-    public void setDailyRotationPosition(String dailyRotationPosition) {
+    public void setDailyRotationPosition(Short dailyRotationPosition) {
         this.dailyRotationPosition = dailyRotationPosition;
     }
 
@@ -193,91 +192,91 @@ public class SongModel implements Serializable {
         this.image = image;
     }
 
-    public String getEasyDifficulty() {
+    public Short getEasyDifficulty() {
         return easyDifficulty;
     }
 
-    public void setEasyDifficulty(String easyDifficulty) {
+    public void setEasyDifficulty(Short easyDifficulty) {
         this.easyDifficulty = easyDifficulty;
     }
 
-    public String getEasyNotes() {
+    public Short getEasyNotes() {
         return easyNotes;
     }
 
-    public void setEasyNotes(String easyNotes) {
+    public void setEasyNotes(Short easyNotes) {
         this.easyNotes = easyNotes;
     }
 
-    public String getNormalDifficulty() {
+    public Short getNormalDifficulty() {
         return normalDifficulty;
     }
 
-    public void setNormalDifficulty(String normalDifficulty) {
+    public void setNormalDifficulty(Short normalDifficulty) {
         this.normalDifficulty = normalDifficulty;
     }
 
-    public String getNormalNotes() {
+    public Short getNormalNotes() {
         return normalNotes;
     }
 
-    public void setNormalNotes(String normalNotes) {
+    public void setNormalNotes(Short normalNotes) {
         this.normalNotes = normalNotes;
     }
 
-    public String getHardDifficulty() {
+    public Short getHardDifficulty() {
         return hardDifficulty;
     }
 
-    public void setHardDifficulty(String hardDifficulty) {
+    public void setHardDifficulty(Short hardDifficulty) {
         this.hardDifficulty = hardDifficulty;
     }
 
-    public String getHardNotes() {
+    public Short getHardNotes() {
         return hardNotes;
     }
 
-    public void setHardNotes(String hardNotes) {
+    public void setHardNotes(Short hardNotes) {
         this.hardNotes = hardNotes;
     }
 
-    public String getExpertDifficulty() {
+    public Short getExpertDifficulty() {
         return expertDifficulty;
     }
 
-    public void setExpertDifficulty(String expertDifficulty) {
+    public void setExpertDifficulty(Short expertDifficulty) {
         this.expertDifficulty = expertDifficulty;
     }
 
-    public String getExpertRandomDifficulty() {
+    public Short getExpertRandomDifficulty() {
         return expertRandomDifficulty;
     }
 
-    public void setExpertRandomDifficulty(String expertRandomDifficulty) {
+    public void setExpertRandomDifficulty(Short expertRandomDifficulty) {
         this.expertRandomDifficulty = expertRandomDifficulty;
     }
 
-    public String getExpertNotes() {
+    public Short getExpertNotes() {
         return expertNotes;
     }
 
-    public void setExpertNotes(String expertNotes) {
+    public void setExpertNotes(Short expertNotes) {
         this.expertNotes = expertNotes;
     }
 
-    public String getAvailable() {
+    public Boolean getAvailable() {
         return available;
     }
 
-    public void setAvailable(String available) {
+    public void setAvailable(Boolean available) {
         this.available = available;
     }
 
-    public String getItunesId() {
+    public Long getItunesId() {
         return itunesId;
     }
 
-    public void setItunesId(String itunesId) {
+    public void setItunesId(Long itunesId) {
         this.itunesId = itunesId;
     }
 }

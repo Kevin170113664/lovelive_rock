@@ -76,7 +76,7 @@ public class CardManager {
             sendFetchProcessEvent(cardModelList.size());
             sendSmallCardEvent();
         } else {
-            System.out.print("getCardByIdCallback failed.");
+            System.out.print("Get one page cards failed.");
         }
     }
 

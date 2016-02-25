@@ -14,10 +14,13 @@ import com.thoughtworks.lhli.lovelive_rock.data.Event;
 import com.thoughtworks.lhli.lovelive_rock.data.EventDao;
 import com.thoughtworks.lhli.lovelive_rock.data.Idol;
 import com.thoughtworks.lhli.lovelive_rock.data.IdolDao;
+import com.thoughtworks.lhli.lovelive_rock.data.Song;
+import com.thoughtworks.lhli.lovelive_rock.data.SongDao;
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 import com.thoughtworks.lhli.lovelive_rock.model.CvModel;
 import com.thoughtworks.lhli.lovelive_rock.model.EventModel;
 import com.thoughtworks.lhli.lovelive_rock.model.IdolModel;
+import com.thoughtworks.lhli.lovelive_rock.model.SongModel;
 
 import org.modelmapper.ModelMapper;
 
@@ -33,6 +36,7 @@ public class DatabaseManager {
     private EventDao eventDao;
     private IdolDao idolDao;
     private CharacterVoiceDao characterVoiceDao;
+    private SongDao songDao;
     private ModelMapper modelMapper = new ModelMapper();
 
     public DatabaseManager() {
@@ -77,6 +81,11 @@ public class DatabaseManager {
                 + eventModel.getEnd() + "';";
     }
 
+    public void cacheSong(SongModel songModel) {
+        Long eventId = getEventId(songModel);
+        insertSong(songModel, eventId);
+    }
+
     public void cacheCard(CardModel cardModel) {
         Long characterVoiceId = getCharacterVoiceId(cardModel);
         Long idolId = getIdolId(cardModel, characterVoiceId);
@@ -87,9 +96,20 @@ public class DatabaseManager {
     private Long getEventId(CardModel cardModel) {
         Long eventId = NULL_FIELD_ID;
         if (cardModel.getEventModel() != null) {
-            eventId = queryEventByName(cardModel);
+            eventId = queryEventByName(cardModel.getEventModel());
             if (eventId.equals(NULL_FIELD_ID)) {
                 eventId = insertEvent(cardModel.getEventModel());
+            }
+        }
+        return eventId;
+    }
+
+    private Long getEventId(SongModel songModel) {
+        Long eventId = NULL_FIELD_ID;
+        if (songModel.getEventModel() != null) {
+            eventId = queryEventByName(songModel.getEventModel());
+            if (eventId.equals(NULL_FIELD_ID)) {
+                eventId = insertEvent(songModel.getEventModel());
             }
         }
         return eventId;
@@ -126,6 +146,15 @@ public class DatabaseManager {
         card.setIdolId(idolId);
         card.setEventId(eventId);
         cardDao.insert(card);
+    }
+
+    private void insertSong(SongModel songModel, Long eventId) {
+        getSongDao(helper.getWritableDatabase());
+
+        songModel.setEventModel(null);
+        Song song = com.thoughtworks.lhli.lovelive_rock.ModelMapper.mapSong(songModel);
+        song.setEventId(eventId);
+        songDao.insert(song);
     }
 
     public Long insertEvent(EventModel eventModel) {
@@ -185,11 +214,11 @@ public class DatabaseManager {
         return eventList.size() == 0 ? NULL_FIELD_ID : eventList.get(0).getId();
     }
 
-    public Long queryEventByName(CardModel cardModel) {
+    public Long queryEventByName(EventModel eventModel) {
         getEventDao(helper.getReadableDatabase());
 
         List<Event> eventList = eventDao.queryBuilder()
-                .where(EventDao.Properties.JapaneseName.eq(cardModel.getEventModel().getJapaneseName()))
+                .where(EventDao.Properties.JapaneseName.eq(eventModel.getJapaneseName()))
                 .list();
         if (eventList.size() != 0) {
             return eventList.get(0).getId();
@@ -347,6 +376,18 @@ public class DatabaseManager {
         }
     }
 
+    public SongModel querySongByName(String name) {
+        getSongDao(helper.getReadableDatabase());
+
+        List<Song> songList = songDao.queryBuilder()
+                .where(SongDao.Properties.Name.eq(name))
+                .list();
+        if (songList.size() != 0) {
+            return modelMapper.map(songList.get(0), SongModel.class);
+        }
+        return null;
+    }
+
     @NonNull
     private IdolModel generateIdolModel(List<Idol> idolList) {
         IdolModel idolModel = modelMapper.map(idolList.get(0), IdolModel.class);
@@ -382,6 +423,11 @@ public class DatabaseManager {
     private void getCvDao(SQLiteDatabase database) {
         openSession(database);
         characterVoiceDao = daoSession.getCharacterVoiceDao();
+    }
+
+    private void getSongDao(SQLiteDatabase database) {
+        openSession(database);
+        songDao = daoSession.getSongDao();
     }
 
     private void openSession(SQLiteDatabase database) {
