@@ -91,6 +91,11 @@ public class MainActivity extends BaseActivity {
         startActivity(new Intent(MainActivity.this, NormalCalculatorActivity.class));
     }
 
+    @OnClick(R.id.song_navigator)
+    public void songNavigatorEvent() {
+        startActivity(new Intent(this, SongActivity.class));
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);

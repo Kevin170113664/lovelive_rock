@@ -131,6 +131,26 @@
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/song_navigator_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/card_navigator_view"
+                    android:layout_marginBottom="@dimen/card_view_default_margin"
+                    android:layout_marginLeft="@dimen/card_view_default_margin"
+                    android:layout_marginRight="@dimen/card_view_default_margin"
+                    card_view:cardBackgroundColor="@color/colorOrange100"
+                    card_view:cardCornerRadius="@dimen/card_view_default_corner_radius"
+                    card_view:cardElevation="@dimen/card_view_default_elevation">
+
+                    <ImageView
+                        android:id="@+id/song_navigator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitCenter"
+                        android:src="@mipmap/song_navigator" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/mf_calculator_card_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -173,7 +193,7 @@
                 <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@id/card_navigator_view"
+                    android:layout_alignBottom="@id/song_navigator_view"
                     android:layout_below="@id/sm_calculator_card_view"
                     android:layout_marginRight="@dimen/card_view_default_margin"
                     android:layout_toRightOf="@id/card_navigator_view"
@@ -184,7 +204,7 @@
                     <ImageView
                         android:id="@+id/normal_calculator_navigator"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:scaleType="centerCrop"
                         android:src="@mipmap/traditional_calculator_navigator" />
                 </android.support.v7.widget.CardView>
