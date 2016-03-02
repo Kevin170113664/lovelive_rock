@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_event_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            card_view:cardCornerRadius="3dp"
+            card_view:cardElevation="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorOrange100">
+
+                <ImageView
+                    android:id="@+id/song_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_horizontal"
+                    tools:src="@mipmap/glass_of_garden" />
+
+                <ImageView
+                    android:id="@+id/pure_icon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_below="@id/song_image"
+                    android:layout_margin="16dp"
+                    tools:src="@mipmap/pure_icon" />
+
+                <TextView
+                    android:id="@+id/song_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/song_image"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_toRightOf="@id/pure_icon"
+                    android:gravity="center_horizontal"
+                    android:textSize="@dimen/text_size_medium"
+                    tools:text="硝子の花園" />
+
+                <Button
+                    android:id="@+id/daily_rotation"
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@id/song_image"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@id/song_name"
+                    android:background="@color/colorOrange400"
+                    android:text="日替"
+                    android:textSize="15sp" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+    </ScrollView>
+
+</RelativeLayout>
