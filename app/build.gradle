@@ -64,6 +64,7 @@ dependencies {
     compile 'joda-time:joda-time:2.9.1'
     compile 'org.joda:joda-convert:1.2'
     compile 'com.umeng.analytics:analytics:latest.integration'
+    compile 'com.daimajia.numberprogressbar:library:1.2@aar'
     testCompile 'junit:junit:4.12'
     testCompile 'org.robolectric:robolectric:3.0'
     testCompile 'org.mockito:mockito-all:2.0.2-beta'
