@@ -26,7 +26,7 @@
                 <ImageView
                     android:id="@+id/song_image"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="240dp"
                     android:layout_marginTop="10dp"
                     android:gravity="center_horizontal"
                     tools:src="@mipmap/glass_of_garden" />
@@ -40,7 +40,7 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:id="@+id/pure_icon"
+                        android:id="@+id/song_attribute_icon"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_margin="16dp"
@@ -98,6 +98,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/song_BPM"
+                    android:layout_marginBottom="10dp"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -118,64 +119,68 @@
 
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/easy"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/difficulty_button_group"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/song_duration"
-                    android:background="@color/colorOrange100"
-                    android:text="Easy"
-                    android:textColor="@color/colorOrange800" />
+                    android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/normal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/song_duration"
-                    android:layout_toRightOf="@id/easy"
-                    android:background="@color/colorOrange100"
-                    android:text="Normal"
-                    android:textColor="@color/colorOrange800" />
+                    <Button
+                        android:id="@+id/easy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".25"
+                        android:background="@color/colorOrange100"
+                        android:text="Easy"
+                        android:textColor="@color/colorOrange800" />
 
-                <Button
-                    android:id="@+id/hard"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/song_duration"
-                    android:layout_toRightOf="@id/normal"
-                    android:background="@color/colorOrange100"
-                    android:text="Hard"
-                    android:textColor="@color/colorOrange800" />
+                    <Button
+                        android:id="@+id/normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".25"
+                        android:background="@color/colorOrange100"
+                        android:text="Normal"
+                        android:textColor="@color/colorOrange800" />
 
-                <Button
-                    android:id="@+id/expert"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/song_duration"
-                    android:layout_toRightOf="@id/hard"
-                    android:background="@color/colorOrange100"
-                    android:text="Expert"
-                    android:textColor="@color/colorOrange800" />
+                    <Button
+                        android:id="@+id/hard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".25"
+                        android:background="@color/colorOrange100"
+                        android:text="Hard"
+                        android:textColor="@color/colorOrange800" />
 
-                <com.daimajia.numberprogressbar.NumberProgressBar
-                    android:id="@+id/notes_progress_bar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/expert"
-                    android:layout_margin="10dp"
-                    card_view:progress_text_size="15sp" />
+                    <Button
+                        android:id="@+id/expert"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".25"
+                        android:background="@color/colorOrange100"
+                        android:text="Expert"
+                        android:textColor="@color/colorOrange800" />
+
+                </LinearLayout>
 
                 <com.daimajia.numberprogressbar.NumberProgressBar
                     android:id="@+id/difficulty_progress_bar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/notes_progress_bar"
-                    android:layout_margin="10dp"
+                    android:layout_below="@id/difficulty_button_group"
+                    android:layout_margin="20dp"
+                    card_view:progress_text_size="15sp" />
+
+                <com.daimajia.numberprogressbar.NumberProgressBar
+                    android:id="@+id/notes_progress_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/difficulty_progress_bar"
+                    android:layout_margin="20dp"
                     card_view:progress_text_size="15sp" />
 
             </RelativeLayout>
-
         </android.support.v7.widget.CardView>
     </ScrollView>
-
 </RelativeLayout>

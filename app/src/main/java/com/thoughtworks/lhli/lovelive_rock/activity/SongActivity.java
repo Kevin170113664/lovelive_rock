@@ -1,7 +1,9 @@
 package com.thoughtworks.lhli.lovelive_rock.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -67,6 +69,7 @@ public class SongActivity extends BaseActivity {
         loadingIcon.setVisibility(View.GONE);
         songModelList = songEvent.getSongModelList();
         loadSongView();
+        setGridViewClickListener();
     }
 
     private void loadSongView() {
@@ -74,6 +77,18 @@ public class SongActivity extends BaseActivity {
         Long seed = System.nanoTime();
         Collections.shuffle(songModelList, new Random(seed));
         gridView.setAdapter(new GridSongListAdapter(this, songModelList));
+    }
+
+    private void setGridViewClickListener() {
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(SongActivity.this, SongDetailActivity.class);
+                SongModel songModel = ((List<SongModel>) parent.getAdapter().getItem(0)).get(position);
+                intent.putExtra("SongModel", songModel);
+                startActivity(intent);
+            }
+        });
     }
 
     public void onEventMainThread(FetchProcessEvent fetchProcessEvent) {

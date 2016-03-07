@@ -8,6 +8,7 @@
     <string name="action_sm_calculator">SM Calculator</string>
     <string name="song_label">Song</string>
     <string name="filter_dialog_title">Filter</string>
+    <string name="song_detail_label">Song Detail</string>
 
     <string name="toast_function_not_complete">Sorry, this is unavailable now.</string>
     <string name="latest_event_name">latest event name</string>
