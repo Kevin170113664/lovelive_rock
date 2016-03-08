@@ -87,7 +87,12 @@ public class SongDetailActivity extends BaseActivity {
                 .into(songImage);
 
         setSongSummary();
-        songExpertButtonEvent();
+
+        if (LoveLiveApp.getValidShort(songModel.getExpertDifficulty()) != 0) {
+            songExpertButtonEvent();
+        } else {
+            songHardButtonEvent();
+        }
     }
 
     private void setSongSummary() {
@@ -132,12 +137,13 @@ public class SongDetailActivity extends BaseActivity {
     private void initRandomSeekBar() {
         if (LoveLiveApp.getValidShort(songModel.getExpertRandomDifficulty()) != 0) {
             randomDifficultySeekBar.setVisibility(View.VISIBLE);
-            initSingleSeekBar(randomDifficultySeekBar, songModel.getExpertRandomDifficulty(), SONG_MAX_NOTES);
+            initSingleSeekBar(randomDifficultySeekBar, songModel.getExpertRandomDifficulty(), SONG_MAX_DIFFICULTY);
         }
     }
 
     private void initSeekBar(Short normalDifficulty, Short normalNotes) {
         initSingleSeekBar(difficultySeekBar, normalDifficulty, SONG_MAX_DIFFICULTY);
         initSingleSeekBar(notesSeekBar, normalNotes, SONG_MAX_NOTES);
+        randomDifficultySeekBar.setVisibility(View.GONE);
     }
 }
