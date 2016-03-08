@@ -37,35 +37,39 @@ public class SongDetailActivity extends BaseActivity {
     @Bind(R.id.duration_value)
     protected TextView durationValue;
 
-    @Bind(R.id.notes_seek_bar)
-    protected CustomSeekBar notesSeekBar;
-
     @Bind(R.id.difficulty_seek_bar)
     protected CustomSeekBar difficultySeekBar;
 
+    @Bind(R.id.random_difficulty_seek_bar)
+    protected CustomSeekBar randomDifficultySeekBar;
+
+    @Bind(R.id.notes_seek_bar)
+    protected CustomSeekBar notesSeekBar;
+
     @OnClick(R.id.easy)
     protected void songEasyButtonEvent() {
-        setSeekBar(songModel.getEasyDifficulty(), songModel.getEasyNotes());
+        initSeekBar(songModel.getEasyDifficulty(), songModel.getEasyNotes());
     }
 
     @OnClick(R.id.normal)
     protected void songNormalButtonEvent() {
-        setSeekBar(songModel.getNormalDifficulty(), songModel.getNormalNotes());
+        initSeekBar(songModel.getNormalDifficulty(), songModel.getNormalNotes());
     }
 
     @OnClick(R.id.hard)
     protected void songHardButtonEvent() {
-        setSeekBar(songModel.getHardDifficulty(), songModel.getHardNotes());
+        initSeekBar(songModel.getHardDifficulty(), songModel.getHardNotes());
     }
 
     @OnClick(R.id.expert)
     protected void songExpertButtonEvent() {
-        setSeekBar(songModel.getExpertDifficulty(), songModel.getExpertNotes());
+        initSeekBar(songModel.getExpertDifficulty(), songModel.getExpertNotes());
+        initRandomSeekBar();
     }
 
     private SongModel songModel;
-    private final int SONG_MAX_DIFFICULTY = 12;
-    private final int SONG_MAX_NOTES = 700;
+    private final short SONG_MAX_DIFFICULTY = 12;
+    private final short SONG_MAX_NOTES = 700;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,25 +117,27 @@ public class SongDetailActivity extends BaseActivity {
         }
     }
 
-    private void setSeekBar(Short difficulty, Short notes) {
-        difficultySeekBar.setMax(SONG_MAX_DIFFICULTY);
-        difficultySeekBar.setProgress(LoveLiveApp.getValidShort(difficulty));
-        difficultySeekBar.setText(LoveLiveApp.getValidShort(difficulty).toString());
-        difficultySeekBar.setOnTouchListener(new View.OnTouchListener() {
+    private void initSingleSeekBar(CustomSeekBar seekBar, Short progress, Short maxProgress) {
+        seekBar.setMax(maxProgress);
+        seekBar.setProgress(LoveLiveApp.getValidShort(progress));
+        seekBar.setText(LoveLiveApp.getValidShort(progress).toString());
+        seekBar.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 return true;
             }
         });
+    }
 
-        notesSeekBar.setMax(SONG_MAX_NOTES);
-        notesSeekBar.setProgress(LoveLiveApp.getValidShort(notes));
-        notesSeekBar.setText(LoveLiveApp.getValidShort(notes).toString());
-        notesSeekBar.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });
+    private void initRandomSeekBar() {
+        if (LoveLiveApp.getValidShort(songModel.getExpertRandomDifficulty()) != 0) {
+            randomDifficultySeekBar.setVisibility(View.VISIBLE);
+            initSingleSeekBar(randomDifficultySeekBar, songModel.getExpertRandomDifficulty(), SONG_MAX_NOTES);
+        }
+    }
+
+    private void initSeekBar(Short normalDifficulty, Short normalNotes) {
+        initSingleSeekBar(difficultySeekBar, normalDifficulty, SONG_MAX_DIFFICULTY);
+        initSingleSeekBar(notesSeekBar, normalNotes, SONG_MAX_NOTES);
     }
 }

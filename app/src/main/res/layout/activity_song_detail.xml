@@ -176,10 +176,24 @@
                     android:thumbTint="@color/colorOrange700" />
 
                 <com.thoughtworks.lhli.lovelive_rock.CustomSeekBar
-                    android:id="@+id/notes_seek_bar"
+                    android:id="@+id/random_difficulty_seek_bar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/difficulty_seek_bar"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:progressBackgroundTint="@color/colorOrange500"
+                    android:progressTint="@color/colorOrange500"
+                    android:thumbTint="@color/colorOrange700"
+                    android:visibility="gone" />
+
+                <com.thoughtworks.lhli.lovelive_rock.CustomSeekBar
+                    android:id="@+id/notes_seek_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/random_difficulty_seek_bar"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="20dp"

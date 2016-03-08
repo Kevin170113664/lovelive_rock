@@ -84,8 +84,7 @@ public class LoveLiveApp extends Application {
     }
 
     public static String generateFileName(String imageUrl) {
-        File direct = new File(Environment.getExternalStorageDirectory()
-                + "/lovelive+");
+        File direct = new File(Environment.getExternalStorageDirectory() + "/lovelive+");
         String[] urlArray = imageUrl.split("/");
         String fileName = urlArray[urlArray.length - 1];
 
@@ -97,10 +96,6 @@ public class LoveLiveApp extends Application {
     }
 
     public static Short getValidShort(Short value) {
-        if (value == null) {
-            return 0;
-        } else {
-            return value;
-        }
+        return value == null ? 0 : value;
     }
 }
