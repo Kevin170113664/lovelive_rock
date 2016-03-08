@@ -1,13 +1,15 @@
 package com.thoughtworks.lhli.lovelive_rock.activity;
 
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.daimajia.numberprogressbar.NumberProgressBar;
 import com.squareup.picasso.Picasso;
+import com.thoughtworks.lhli.lovelive_rock.CustomSeekBar;
+import com.thoughtworks.lhli.lovelive_rock.LoveLiveApp;
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.model.SongModel;
 
@@ -35,31 +37,35 @@ public class SongDetailActivity extends BaseActivity {
     @Bind(R.id.duration_value)
     protected TextView durationValue;
 
-    @Bind(R.id.notes_progress_bar)
-    protected NumberProgressBar notesProgressBar;
+    @Bind(R.id.notes_seek_bar)
+    protected CustomSeekBar notesSeekBar;
 
-    @Bind(R.id.difficulty_progress_bar)
-    protected NumberProgressBar difficultyProgressBar;
+    @Bind(R.id.difficulty_seek_bar)
+    protected CustomSeekBar difficultySeekBar;
 
     @OnClick(R.id.easy)
     protected void songEasyButtonEvent() {
+        setSongProgressBar(songModel.getEasyDifficulty(), songModel.getEasyNotes());
     }
 
     @OnClick(R.id.normal)
     protected void songNormalButtonEvent() {
+        setSongProgressBar(songModel.getNormalDifficulty(), songModel.getNormalNotes());
     }
 
     @OnClick(R.id.hard)
     protected void songHardButtonEvent() {
+        setSongProgressBar(songModel.getHardDifficulty(), songModel.getHardNotes());
     }
 
     @OnClick(R.id.expert)
     protected void songExpertButtonEvent() {
+        setSongProgressBar(songModel.getExpertDifficulty(), songModel.getExpertNotes());
     }
 
     private SongModel songModel;
     private final int SONG_MAX_DIFFICULTY = 12;
-    private final int SONG_MAX_NOTES = 650;
+    private final int SONG_MAX_NOTES = 700;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +83,7 @@ public class SongDetailActivity extends BaseActivity {
                 .into(songImage);
 
         setSongSummary();
-        setSongProgressBar();
+        songExpertButtonEvent();
     }
 
     private void setSongSummary() {
@@ -87,7 +93,7 @@ public class SongDetailActivity extends BaseActivity {
         durationValue.setText(songModel.getTime().toString());
 
         if (songModel.getDailyRotation() == null || songModel.getDailyRotation().equals("")) {
-            dailyRotation.setVisibility(View.INVISIBLE);
+            dailyRotation.setVisibility(View.GONE);
         }
     }
 
@@ -107,14 +113,25 @@ public class SongDetailActivity extends BaseActivity {
         }
     }
 
-    private void setSongProgressBar() {
-        difficultyProgressBar.setMax(SONG_MAX_DIFFICULTY);
-        if (songModel.getExpertDifficulty() != null) {
-            difficultyProgressBar.setProgress(songModel.getExpertDifficulty());
-        }
-        notesProgressBar.setMax(SONG_MAX_NOTES);
-        if (songModel.getExpertNotes() != null) {
-            notesProgressBar.setProgress(songModel.getExpertNotes());
-        }
+    private void setSongProgressBar(Short difficulty, Short notes) {
+        difficultySeekBar.setMax(SONG_MAX_DIFFICULTY);
+        difficultySeekBar.setProgress(LoveLiveApp.getValidShort(difficulty));
+        difficultySeekBar.setText(LoveLiveApp.getValidShort(difficulty).toString());
+        difficultySeekBar.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+        });
+
+        notesSeekBar.setMax(SONG_MAX_NOTES);
+        notesSeekBar.setProgress(LoveLiveApp.getValidShort(notes));
+        notesSeekBar.setText(LoveLiveApp.getValidShort(notes).toString());
+        notesSeekBar.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+        });
     }
 }

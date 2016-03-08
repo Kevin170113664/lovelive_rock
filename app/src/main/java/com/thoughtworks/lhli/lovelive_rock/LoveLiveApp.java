@@ -95,4 +95,12 @@ public class LoveLiveApp extends Application {
 
         return fileName;
     }
+
+    public static Short getValidShort(Short value) {
+        if (value == null) {
+            return 0;
+        } else {
+            return value;
+        }
+    }
 }

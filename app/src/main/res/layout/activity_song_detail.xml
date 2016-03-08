@@ -43,15 +43,15 @@
                         android:id="@+id/song_attribute_icon"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_margin="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="16dp"
                         tools:src="@mipmap/pure_icon" />
 
                     <TextView
                         android:id="@+id/song_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
-                        android:layout_marginTop="15dp"
                         android:gravity="center_horizontal"
                         android:textSize="@dimen/text_size_medium"
                         tools:text="硝子の花園" />
@@ -68,7 +68,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/song_BPM"
+                    android:id="@+id/song_basic_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/song_summary"
@@ -80,7 +80,7 @@
                         android:id="@+id/BPM_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Beats Per Minute"
+                        android:text="BPM"
                         android:textSize="20sp" />
 
                     <TextView
@@ -91,22 +91,12 @@
                         android:textSize="20sp"
                         tools:text="169" />
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/song_duration"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/song_BPM"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
                     <TextView
                         android:id="@+id/duration_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Song Duration"
+                        android:layout_marginLeft="20dp"
+                        android:text="时长"
                         android:textSize="20sp" />
 
                     <TextView
@@ -115,7 +105,15 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:textSize="20sp"
-                        tools:text="02:00" />
+                        tools:text="120" />
+
+                    <TextView
+                        android:id="@+id/second_unit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="秒"
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
@@ -123,7 +121,7 @@
                     android:id="@+id/difficulty_button_group"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/song_duration"
+                    android:layout_below="@id/song_basic_info"
                     android:orientation="horizontal">
 
                     <Button
@@ -164,21 +162,34 @@
 
                 </LinearLayout>
 
-                <com.daimajia.numberprogressbar.NumberProgressBar
-                    android:id="@+id/difficulty_progress_bar"
-                    android:layout_width="wrap_content"
+                <com.thoughtworks.lhli.lovelive_rock.CustomSeekBar
+                    android:id="@+id/difficulty_seek_bar"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/difficulty_button_group"
-                    android:layout_margin="20dp"
-                    card_view:progress_text_size="15sp" />
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="@color/colorOrange800"
+                    android:progressBackgroundTint="@color/colorOrange800"
+                    android:progressTint="@color/colorOrange800"
+                    android:thumbTint="@color/colorOrange800" />
 
-                <com.daimajia.numberprogressbar.NumberProgressBar
-                    android:id="@+id/notes_progress_bar"
-                    android:layout_width="wrap_content"
+                <com.thoughtworks.lhli.lovelive_rock.CustomSeekBar
+                    android:id="@+id/notes_seek_bar"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/difficulty_progress_bar"
-                    android:layout_margin="20dp"
-                    card_view:progress_text_size="15sp" />
+                    android:layout_below="@id/difficulty_seek_bar"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="@color/colorOrange800"
+                    android:progressBackgroundTint="@color/colorOrange800"
+                    android:progressTint="@color/colorOrange800"
+                    android:thumbTint="@color/colorOrange800" />
 
             </RelativeLayout>
         </android.support.v7.widget.CardView>
