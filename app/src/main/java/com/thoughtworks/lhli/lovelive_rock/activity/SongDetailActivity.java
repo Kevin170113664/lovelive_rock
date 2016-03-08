@@ -45,22 +45,22 @@ public class SongDetailActivity extends BaseActivity {
 
     @OnClick(R.id.easy)
     protected void songEasyButtonEvent() {
-        setSongProgressBar(songModel.getEasyDifficulty(), songModel.getEasyNotes());
+        setSeekBar(songModel.getEasyDifficulty(), songModel.getEasyNotes());
     }
 
     @OnClick(R.id.normal)
     protected void songNormalButtonEvent() {
-        setSongProgressBar(songModel.getNormalDifficulty(), songModel.getNormalNotes());
+        setSeekBar(songModel.getNormalDifficulty(), songModel.getNormalNotes());
     }
 
     @OnClick(R.id.hard)
     protected void songHardButtonEvent() {
-        setSongProgressBar(songModel.getHardDifficulty(), songModel.getHardNotes());
+        setSeekBar(songModel.getHardDifficulty(), songModel.getHardNotes());
     }
 
     @OnClick(R.id.expert)
     protected void songExpertButtonEvent() {
-        setSongProgressBar(songModel.getExpertDifficulty(), songModel.getExpertNotes());
+        setSeekBar(songModel.getExpertDifficulty(), songModel.getExpertNotes());
     }
 
     private SongModel songModel;
@@ -113,7 +113,7 @@ public class SongDetailActivity extends BaseActivity {
         }
     }
 
-    private void setSongProgressBar(Short difficulty, Short notes) {
+    private void setSeekBar(Short difficulty, Short notes) {
         difficultySeekBar.setMax(SONG_MAX_DIFFICULTY);
         difficultySeekBar.setProgress(LoveLiveApp.getValidShort(difficulty));
         difficultySeekBar.setText(LoveLiveApp.getValidShort(difficulty).toString());

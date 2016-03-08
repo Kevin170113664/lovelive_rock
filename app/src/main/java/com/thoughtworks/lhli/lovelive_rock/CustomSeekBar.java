@@ -35,7 +35,7 @@ public class CustomSeekBar extends SeekBar {
     protected synchronized void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         double thumb_x = ((double) this.getProgress() / this.getMax()) * (double) this.getWidth();
-        paint.setTextSize(50.0f);
+        paint.setTextSize(35.0f);
         canvas.drawText(text, (float) thumb_x, this.getHeight(), paint);
     }
 

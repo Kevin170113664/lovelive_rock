@@ -53,7 +53,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:textSize="@dimen/text_size_medium"
+                        android:textSize="@dimen/text_size_small"
                         tools:text="硝子の花園" />
 
                     <Button
@@ -63,7 +63,7 @@
                         android:layout_marginLeft="20dp"
                         android:background="@color/colorOrange500"
                         android:text="日替"
-                        android:textSize="15sp" />
+                        android:textSize="@dimen/text_size_small" />
 
                 </LinearLayout>
 
@@ -81,14 +81,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="BPM"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/text_size_small" />
 
                     <TextView
                         android:id="@+id/BPM_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/text_size_small"
                         tools:text="169" />
 
                     <TextView
@@ -97,14 +97,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:text="时长"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/text_size_small" />
 
                     <TextView
                         android:id="@+id/duration_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/text_size_small"
                         tools:text="120" />
 
                     <TextView
@@ -113,7 +113,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="秒"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/text_size_small" />
 
                 </LinearLayout>
 
