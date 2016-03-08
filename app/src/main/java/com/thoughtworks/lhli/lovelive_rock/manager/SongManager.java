@@ -18,30 +18,21 @@ import retrofit.Response;
 
 public class SongManager {
 
-    private Integer maxSongNumber = 110;
-    private Integer maxSongPage;
+    private Integer maxSongNumber = 101;
     private List<SongModel> songModelList;
     DatabaseManager databaseManager;
 
     public SongManager(List<SongModel> songModelList) {
         this.songModelList = songModelList;
         this.databaseManager = new DatabaseManager();
-        this.maxSongPage = LoveLiveApp.calculateMaxPage(maxSongNumber);
     }
 
     public void getAllSongs() throws IOException {
-        List<SongModel> songModelListFromDB = databaseManager.queryAllSongs();
-
-        if (songModelListFromDB.size() >= maxSongNumber) {
-            EventBus.getDefault().post(new SongEvent(songModelListFromDB));
-            EventBus.getDefault().post(new FetchProcessEvent("100"));
-        } else {
-            getSongByPages();
-        }
+        setMaxSongNumber();
     }
 
     private void getSongByPages() throws IOException {
-        for (int page = 1; page <= maxSongPage; page++) {
+        for (int page = 1; page <= LoveLiveApp.calculateMaxPage(maxSongNumber); page++) {
             if (LoveLiveApp.getInstance().isNetworkAvailable()) {
                 Call<MultipleSongs> call = Retrofit.getInstance().getSongService().getSongList(page);
                 Response<MultipleSongs> songsResponse = call.execute();
@@ -49,6 +40,28 @@ public class SongManager {
             } else {
                 System.out.print("Get songs from " + page + " pages failed.");
             }
+        }
+    }
+
+    private void setMaxSongNumber() throws IOException {
+        if (LoveLiveApp.getInstance().isNetworkAvailable()) {
+            Call<MultipleSongs> call = Retrofit.getInstance().getSongService().getSongByPageSize(1, 1);
+            Response<MultipleSongs> songsResponse = call.execute();
+            maxSongNumber = songsResponse.body().getCount();
+        } else {
+            System.out.print("Get max song number failed.");
+        }
+        getAllSongsByMaxSongNumber();
+    }
+
+    private void getAllSongsByMaxSongNumber() throws IOException {
+        List<SongModel> songModelListFromDB = databaseManager.queryAllSongs();
+
+        if (songModelListFromDB.size() >= maxSongNumber) {
+            EventBus.getDefault().post(new SongEvent(songModelListFromDB));
+            EventBus.getDefault().post(new FetchProcessEvent("100"));
+        } else {
+            getSongByPages();
         }
     }
 

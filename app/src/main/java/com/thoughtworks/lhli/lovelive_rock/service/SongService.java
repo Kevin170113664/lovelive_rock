@@ -10,4 +10,7 @@ public interface SongService {
 
     @GET("songs")
     Call<MultipleSongs> getSongList(@Query("page") Integer page);
+
+    @GET("songs")
+    Call<MultipleSongs> getSongByPageSize(@Query("page") Integer page, @Query("page_size") Integer pageSize);
 }
