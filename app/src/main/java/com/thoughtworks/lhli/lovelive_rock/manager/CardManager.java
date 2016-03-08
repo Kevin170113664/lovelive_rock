@@ -34,11 +34,7 @@ public class CardManager {
         this.cardModelList = cardModelList;
         this.databaseManager = new DatabaseManager();
         maxCardNumber = Integer.parseInt(LoveLiveApp.getInstance().getMaxCardNumber());
-        maxCardPage = calculateMaxCardPage(maxCardNumber);
-    }
-
-    private Integer calculateMaxCardPage(Integer maxCardNumber) {
-        return maxCardNumber == 0 ? 0 : Integer.parseInt(new DecimalFormat("0").format(maxCardNumber / 10.0 + 1));
+        maxCardPage = LoveLiveApp.calculateMaxPage(maxCardNumber);
     }
 
     private Integer calculateMinCardPage(List<CardModel> cardModelListFromDB) {

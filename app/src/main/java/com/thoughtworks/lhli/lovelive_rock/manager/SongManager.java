@@ -18,13 +18,15 @@ import retrofit.Response;
 
 public class SongManager {
 
-    private Integer maxSongNumber = 100;
+    private Integer maxSongNumber = 110;
+    private Integer maxSongPage;
     private List<SongModel> songModelList;
     DatabaseManager databaseManager;
 
     public SongManager(List<SongModel> songModelList) {
         this.songModelList = songModelList;
         this.databaseManager = new DatabaseManager();
+        this.maxSongPage = LoveLiveApp.calculateMaxPage(maxSongNumber);
     }
 
     public void getAllSongs() throws IOException {
@@ -39,7 +41,7 @@ public class SongManager {
     }
 
     private void getSongByPages() throws IOException {
-        for (int page = 1; page <= 10; page++) {
+        for (int page = 1; page <= maxSongPage; page++) {
             if (LoveLiveApp.getInstance().isNetworkAvailable()) {
                 Call<MultipleSongs> call = Retrofit.getInstance().getSongService().getSongList(page);
                 Response<MultipleSongs> songsResponse = call.execute();

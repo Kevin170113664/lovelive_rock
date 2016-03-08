@@ -10,6 +10,7 @@ import android.os.Environment;
 import android.widget.Toast;
 
 import java.io.File;
+import java.text.DecimalFormat;
 
 public class LoveLiveApp extends Application {
 
@@ -97,5 +98,9 @@ public class LoveLiveApp extends Application {
 
     public static Short getValidShort(Short value) {
         return value == null ? 0 : value;
+    }
+
+    public static Integer calculateMaxPage(Integer maxValue) {
+        return maxValue <= 0 ? 0 : Integer.parseInt(new DecimalFormat("0").format(maxValue / 10.0 + 1));
     }
 }
