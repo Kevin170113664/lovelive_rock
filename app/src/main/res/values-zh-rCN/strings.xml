@@ -99,6 +99,10 @@
     <string name="country">国服</string>
     <string name="feed_guide">喂养指南</string>
     <string name="save_card_success_msg">卡牌图片已经保存到您的手机中</string>
+    <string name="daily_rotation">日替</string>
+    <string name="song_duration">时长</string>
+    <string name="second_unit">秒</string>
+    <string name="song_bpm">BPM</string>
 
     <string-array name="rarity_array">
         <item>稀有度</item>

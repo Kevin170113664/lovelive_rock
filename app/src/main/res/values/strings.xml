@@ -110,6 +110,10 @@
     <string name="country">CN</string>
     <string name="feed_guide">Feed Guide</string>
     <string name="save_card_success_msg">Card image saved successfully</string>
+    <string name="daily_rotation">DAILY</string>
+    <string name="song_duration">Duration</string>
+    <string name="second_unit">s</string>
+    <string name="song_bpm">BPM</string>
 
     <string-array name="rarity_array">
         <item>Rarity</item>
