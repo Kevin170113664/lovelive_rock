@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lovelive+</string>
+    <string name="app_name">LoveLive+</string>
     <string name="action_card">Card</string>
     <string name="action_song">Song</string>
     <string name="action_event">Event</string>
