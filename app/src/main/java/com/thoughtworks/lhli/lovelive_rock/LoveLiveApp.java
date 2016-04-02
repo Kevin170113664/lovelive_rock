@@ -77,11 +77,11 @@ public class LoveLiveApp extends Application {
                 DownloadManager.Request.NETWORK_WIFI
                         | DownloadManager.Request.NETWORK_MOBILE)
                 .setAllowedOverRoaming(false).setTitle("LoveLive!")
-                .setDescription("LoveLive card image")
+                .setDescription("LoveLive+")
                 .setDestinationInExternalPublicDir("/lovelive+", fileName);
         mgr.enqueue(request);
 
-        Toast.makeText(context.getApplicationContext(), R.string.save_card_success_msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context.getApplicationContext(), R.string.save_image_success_msg, Toast.LENGTH_SHORT).show();
     }
 
     public static String generateFileName(String imageUrl) {

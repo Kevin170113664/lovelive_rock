@@ -81,11 +81,7 @@ public class SongDetailActivity extends BaseActivity {
 
     private void loadSongData() {
         songModel = (SongModel) getIntent().getSerializableExtra("SongModel");
-
-        Picasso.with(this)
-                .load(songModel.getImage())
-                .into(songImage);
-
+        setSongImage();
         setSongSummary();
 
         if (LoveLiveApp.getValidShort(songModel.getExpertDifficulty()) != 0) {
@@ -95,11 +91,25 @@ public class SongDetailActivity extends BaseActivity {
         }
     }
 
+    private void setSongImage() {
+        Picasso.with(this)
+                .load(songModel.getImage())
+                .into(songImage);
+
+        songImage.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                LoveLiveApp.file_download(songModel.getImage(), SongDetailActivity.this);
+                return true;
+            }
+        });
+    }
+
     private void setSongSummary() {
         setSongAttributeIcon();
         songName.setText(songModel.getName());
-        BPMValue.setText(songModel.getBPM().toString());
-        durationValue.setText(songModel.getTime().toString());
+        BPMValue.setText(String.format("%s", songModel.getBPM()));
+        durationValue.setText(String.format("%s", songModel.getTime()));
 
         if (songModel.getDailyRotation() == null || songModel.getDailyRotation().equals("")) {
             dailyRotation.setVisibility(View.GONE);
