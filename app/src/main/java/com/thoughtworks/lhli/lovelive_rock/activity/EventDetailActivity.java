@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.thoughtworks.lhli.lovelive_rock.LoveLiveApp;
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.adapter.GridCardListAdapter;
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
@@ -72,10 +73,7 @@ public class EventDetailActivity extends BaseActivity {
     }
 
     private void setEventSummary() {
-        Picasso.with(this)
-                .load(eventModel.getImage())
-                .into(eventImage);
-
+        setEventImage();
         setTextView(eventName, eventModel.getJapaneseName());
         setTextView(beginningTime, eventModel.getBeginning());
         setTextView(endTime, eventModel.getEnd());
@@ -88,6 +86,20 @@ public class EventDetailActivity extends BaseActivity {
         if (eventModel.getNote() == null || eventModel.getNote().equals("")) {
             notes.setVisibility(View.GONE);
         }
+    }
+
+    private void setEventImage() {
+        Picasso.with(this)
+                .load(eventModel.getImage())
+                .into(eventImage);
+
+        eventImage.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                LoveLiveApp.file_download(eventModel.getImage(), EventDetailActivity.this);
+                return true;
+            }
+        });
     }
 
     private void setEventCardGrid() {
