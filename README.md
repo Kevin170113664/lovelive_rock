@@ -22,9 +22,12 @@ You can use the calculator to help you predict your event in the game.
 If you like it, don't forget to **recommend** the App to your friends!
 
 > 下载链接
-> Download link: http://pan.baidu.com/s/1eRtf5jc
+> Download link: 
+>> http://pan.baidu.com/s/1eRtf5jc
+
 > 密码
-> Password: 6hve
+> Password: 
+>> 6hve
 
 谢谢。
 Thanks.
