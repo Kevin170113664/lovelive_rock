@@ -33,11 +33,9 @@ public class CalculatorFactory {
 
     private long currentItem;
     private String eventDifficulty;
-    private String eventRank;
-    private String eventCombo;
     private long oncePoints;
     private long consumeLP;
-    private Integer expRatio;
+    private final Integer expRatio = 2;
 
     private long lovecaAmount;
     private long finalPoints;
@@ -61,7 +59,7 @@ public class CalculatorFactory {
                              String songAmount, String difficulty, String wastedLpEveryDay,
                              Boolean pointAddition, Boolean experienceAddition, String songRankRatio,
                              String comboRankRatio, String currentLp, String currentExperience,
-                             String eventEndDay, String eventEndHour, String eventLastTime, Boolean isChineseExp) {
+                             String eventEndDay, String eventEndHour, String eventLastTime) {
         this.objectivePoints = parseLongField(objectivePoints);
         this.currentPoints = parseLongField(currentPoints);
         this.currentRank = parseLongField(currentRank);
@@ -77,14 +75,12 @@ public class CalculatorFactory {
         this.eventEndDay = parseLongField(eventEndDay);
         this.eventEndHour = parseLongField(eventEndHour);
         this.eventLastTime = parseDoubleField(eventLastTime);
-        this.expRatio = isChineseExp ? 1 : 2;
     }
 
     public CalculatorFactory(String objectivePoints, String currentPoints, String currentRank,
                              String wastedLpEveryDay, String currentLp, String currentExperience,
                              String eventEndDay, String eventLastTime, String currentItem,
-                             String eventDifficulty, String eventRank, String eventCombo,
-                             String oncePoints, String consumeLP, Boolean isChineseExp) {
+                             String eventDifficulty, String oncePoints, String consumeLP) {
         this.objectivePoints = parseLongField(objectivePoints);
         this.currentPoints = parseLongField(currentPoints);
         this.currentRank = parseLongField(currentRank);
@@ -95,17 +91,13 @@ public class CalculatorFactory {
         this.eventLastTime = parseDoubleField(eventLastTime);
         this.currentItem = parseLongField(currentItem);
         this.eventDifficulty = eventDifficulty;
-        this.eventRank = eventRank;
-        this.eventCombo = eventCombo;
         this.oncePoints = parseLongField(oncePoints);
         this.consumeLP = parseLongField(consumeLP);
-        this.expRatio = isChineseExp ? 1 : 2;
     }
 
     public CalculatorFactory(String objectivePoints, String currentPoints, String currentRank,
                              String oncePoints, String wastedLpEveryDay, String currentLp, String difficulty,
-                             String currentExperience, String eventEndDay, String eventLastTime,
-                             Boolean isChineseExp) {
+                             String currentExperience, String eventEndDay, String eventLastTime) {
         this.objectivePoints = parseLongField(objectivePoints);
         this.currentPoints = parseLongField(currentPoints);
         this.currentRank = parseLongField(currentRank);
@@ -116,7 +108,6 @@ public class CalculatorFactory {
         this.currentExperience = parseLongField(currentExperience);
         this.eventEndDay = parseLongField(eventEndDay);
         this.eventLastTime = parseDoubleField(eventLastTime);
-        this.expRatio = isChineseExp ? 1 : 2;
     }
 
     protected double parseDoubleField(String value) {
@@ -610,10 +601,6 @@ public class CalculatorFactory {
         this.playTimeRatio = playTimeRatio;
     }
 
-    public void setExpRatio(Integer expRatio) {
-        this.expRatio = expRatio;
-    }
-
     public long getFinalPoints() {
         return finalPoints;
     }
@@ -643,11 +630,9 @@ public class CalculatorFactory {
     }
 
     public void setEventRank(String eventRank) {
-        this.eventRank = eventRank;
     }
 
     public void setEventCombo(String eventCombo) {
-        this.eventCombo = eventCombo;
     }
 
     public void setOncePoints(long oncePoints) {

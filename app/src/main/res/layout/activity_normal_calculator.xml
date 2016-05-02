@@ -252,21 +252,6 @@
                             android:inputType="number"
                             android:text="0"
                             android:textSize="@dimen/text_size_small" />
-
-                        <TextView
-                            android:id="@+id/country_exp_label"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingBottom="10dp"
-                            android:paddingTop="10dp"
-                            android:text="@string/country"
-                            android:textSize="16sp" />
-
-                        <CheckBox
-                            android:id="@+id/country_exp_checkbox"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:checked="false" />
                     </LinearLayout>
 
                     <LinearLayout

@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -91,9 +90,6 @@ public class NormalCalculatorActivity extends BaseActivity {
     @Bind(R.id.current_item_text)
     protected TextView currentItemText;
 
-    @Bind(R.id.country_exp_checkbox)
-    protected CheckBox countryExpCheckbox;
-
     @OnTextChanged(R.id.event_end_day_text)
     public void calculateEventLastTimeWhenDayChanged() {
         updateEventLastTimeText();
@@ -136,9 +132,8 @@ public class NormalCalculatorActivity extends BaseActivity {
                         wastedLpEveryDayText.getText().toString(), currentLpText.getText().toString(),
                         currentExperienceText.getText().toString(), eventEndDayText.getText().toString(),
                         eventLastTimeText.getText().toString(), currentItemText.getText().toString(),
-                        eventDifficultySpinner.getSelectedItem().toString(), eventSongRankSpinner.getSelectedItem().toString(),
-                        eventSongComboSpinner.getSelectedItem().toString(), ptWithinOncePlayText.getText().toString(),
-                        consumeLpText.getText().toString(), countryExpCheckbox.isChecked());
+                        eventDifficultySpinner.getSelectedItem().toString(), ptWithinOncePlayText.getText().toString(),
+                        consumeLpText.getText().toString());
 
                 Bundle calculationReport = new Bundle();
                 setReportFields(calculatorFactory, calculationReport);
