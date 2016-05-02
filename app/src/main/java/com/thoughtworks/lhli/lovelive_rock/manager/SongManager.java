@@ -34,7 +34,7 @@ public class SongManager {
     private void getSongByPages() throws IOException {
         for (int page = 1; page <= LoveLiveApp.calculateMaxPage(maxSongNumber); page++) {
             if (LoveLiveApp.getInstance().isNetworkAvailable()) {
-                Call<MultipleSongs> call = Retrofit.getInstance().getSongService().getSongList(page);
+                Call<MultipleSongs> call = Retrofit.getInstance().getSongService().getSongList(page, true);
                 Response<MultipleSongs> songsResponse = call.execute();
                 saveSongsAndSendEvents(songsResponse);
             } else {

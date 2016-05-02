@@ -11,7 +11,8 @@ import retrofit.http.Query;
 public interface CardService {
 
     @GET("cards")
-    Call<MultipleCards> getCardList(@Query("page") Integer page);
+    Call<MultipleCards> getCardList(@Query("page") Integer page,
+                                    @Query("expand_event") Boolean expandEvent);
 
     @GET("cards/{id}")
     Call<CardModel> getCardById(@Path("id") String cardId);

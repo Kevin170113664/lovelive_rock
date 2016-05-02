@@ -56,7 +56,7 @@ public class CardManager {
     private void getCardByPages() throws IOException {
         for (int page = minCardPage; page <= maxCardPage; page++) {
             if (LoveLiveApp.getInstance().isNetworkAvailable()) {
-                Call<MultipleCards> call = Retrofit.getInstance().getCardService().getCardList(page);
+                Call<MultipleCards> call = Retrofit.getInstance().getCardService().getCardList(page, true);
                 Response<MultipleCards> cardsResponse = call.execute();
                 saveCardsAndSendEvents(cardsResponse);
             } else {
