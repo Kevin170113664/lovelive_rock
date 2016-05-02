@@ -159,6 +159,11 @@
     </string-array>
     <string-array name="collection_array">
         <item>卡牌主题</item>
+        <item>踊り子編</item>
+        <item>ベースボール編</item>
+        <item>大正ロマン編</item>
+        <item>妖精の国編</item>
+        <item>サーカス編</item>
         <item>クリスマス編</item>
         <item>舞踏会編</item>
         <item>動物編part2</item>
