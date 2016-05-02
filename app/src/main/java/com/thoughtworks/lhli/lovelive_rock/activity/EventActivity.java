@@ -104,6 +104,9 @@ public class EventActivity extends BaseActivity {
         Collections.sort(eventModelList, new Comparator<EventModel>() {
             @Override
             public int compare(EventModel firstEvent, EventModel secondEvent) {
+                if (secondEvent.getEnd() == null || firstEvent.getEnd() == null) {
+                    return 1;
+                }
                 return secondEvent.getEnd().compareTo(firstEvent.getEnd());
             }
 
