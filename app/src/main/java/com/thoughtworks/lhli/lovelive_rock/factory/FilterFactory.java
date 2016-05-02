@@ -51,7 +51,7 @@ public class FilterFactory {
         if (!filterMap.get(R.id.rarity_spinner).equals(rarityArray[0])) {
             List<CardModel> visibleCardModelList = new ArrayList<>();
             for (CardModel c : cardModelList) {
-                if (c.getRarity().equals(filterMap.get(R.id.rarity_spinner))) {
+                if (c.getRarity() != null && c.getRarity().equals(filterMap.get(R.id.rarity_spinner))) {
                     visibleCardModelList.add(c);
                 }
             }
@@ -64,7 +64,8 @@ public class FilterFactory {
         if (!filterMap.get(R.id.idol_spinner).equals(idolArray[0])) {
             List<CardModel> visibleCardModelList = new ArrayList<>();
             for (CardModel c : cardModelList) {
-                if (c.getJapaneseName().replaceAll("\\s", "").equals(filterMap.get(R.id.idol_spinner))) {
+                if (c.getJapaneseName() != null &&
+                        c.getJapaneseName().replaceAll("\\s", "").equals(filterMap.get(R.id.idol_spinner))) {
                     visibleCardModelList.add(c);
                 }
             }
@@ -77,7 +78,7 @@ public class FilterFactory {
         if (!filterMap.get(R.id.attribute_spinner).equals(attributeArray[0])) {
             List<CardModel> visibleCardModelList = new ArrayList<>();
             for (CardModel c : cardModelList) {
-                if (c.getAttribute().equals(filterMap.get(R.id.attribute_spinner))) {
+                if (c.getAttribute() != null && c.getAttribute().equals(filterMap.get(R.id.attribute_spinner))) {
                     visibleCardModelList.add(c);
                 }
             }
@@ -92,7 +93,7 @@ public class FilterFactory {
             HashMap<String, String[]> gradeMap = getGradeMap();
             List<String> gradeMember = Arrays.asList(gradeMap.get(filterMap.get(R.id.grade_spinner)));
             for (CardModel c : cardModelList) {
-                if (gradeMember.contains(c.getJapaneseName().replaceAll("\\s", ""))) {
+                if (c.getJapaneseName() != null && gradeMember.contains(c.getJapaneseName().replaceAll("\\s", ""))) {
                     visibleCardModelList.add(c);
                 }
             }
@@ -107,7 +108,7 @@ public class FilterFactory {
             HashMap<String, String[]> subTeamMap = getSubTeamMap();
             List<String> subTeamMember = Arrays.asList(subTeamMap.get(filterMap.get(R.id.sub_team_spinner)));
             for (CardModel c : cardModelList) {
-                if (subTeamMember.contains(c.getJapaneseName().replaceAll("\\s", ""))) {
+                if (c.getJapaneseName() != null && subTeamMember.contains(c.getJapaneseName().replaceAll("\\s", ""))) {
                     visibleCardModelList.add(c);
                 }
             }
@@ -122,7 +123,7 @@ public class FilterFactory {
             HashMap<String, String[]> skillTypeMap = getSkillMap();
             List<String> skills = Arrays.asList(skillTypeMap.get(filterMap.get(R.id.skill_type_spinner)));
             for (CardModel c : cardModelList) {
-                if (skills.contains(c.getSkill())) {
+                if (c.getSkill() != null && skills.contains(c.getSkill())) {
                     visibleCardModelList.add(c);
                 }
             }

@@ -72,9 +72,13 @@ public class FilterFactoryTest {
         Honoka.setAttribute("Smile");
         CardModel Umi = new CardModel();
         Umi.setAttribute("Cool");
+        CardModel DirtyData = new CardModel();
+        DirtyData.setAttribute(null);
+
         cardModelList.add(Kotori);
         cardModelList.add(Honoka);
         cardModelList.add(Umi);
+        cardModelList.add(DirtyData);
         filterMap.put(R.id.attribute_spinner, "Pure");
         List<CardModel> expectedList = new ArrayList<>();
         expectedList.add(Kotori);
@@ -90,9 +94,14 @@ public class FilterFactoryTest {
         Hanayo.setJapaneseName("小泉花陽");
         CardModel Umi = new CardModel();
         Umi.setJapaneseName("園田海未");
+        CardModel DirtyData = new CardModel();
+        DirtyData.setJapaneseName(null);
+
         cardModelList.add(Kotori);
         cardModelList.add(Hanayo);
         cardModelList.add(Umi);
+        cardModelList.add(DirtyData);
+
         filterMap.put(R.id.grade_spinner, "First");
         List<CardModel> expectedList = new ArrayList<>();
         expectedList.add(Hanayo);
@@ -108,9 +117,14 @@ public class FilterFactoryTest {
         Hanayo.setJapaneseName("小泉花陽");
         CardModel Umi = new CardModel();
         Umi.setJapaneseName("園田海未");
+        CardModel DirtyData = new CardModel();
+        DirtyData.setJapaneseName(null);
+
         cardModelList.add(Kotori);
         cardModelList.add(Hanayo);
         cardModelList.add(Umi);
+        cardModelList.add(DirtyData);
+
         filterMap.put(R.id.sub_team_spinner, "Lily White");
         List<CardModel> expectedList = new ArrayList<>();
         expectedList.add(Umi);
@@ -126,9 +140,14 @@ public class FilterFactoryTest {
         Hanayo.setJapaneseName("小泉花陽");
         CardModel Umi = new CardModel();
         Umi.setJapaneseName("園田海未");
+        CardModel DirtyData = new CardModel();
+        DirtyData.setJapaneseName(null);
+
         cardModelList.add(Kotori);
         cardModelList.add(Hanayo);
         cardModelList.add(Umi);
+        cardModelList.add(DirtyData);
+
         filterMap.put(R.id.idol_spinner, "南ことり");
         List<CardModel> expectedList = new ArrayList<>();
         expectedList.add(Kotori);
@@ -144,9 +163,14 @@ public class FilterFactoryTest {
         perfectLock.setAttribute("Total Trick");
         CardModel healer = new CardModel();
         healer.setAttribute("Timer Yell");
+        CardModel DirtyData = new CardModel();
+        DirtyData.setAttribute(null);
+
         cardModelList.add(scoreUp);
         cardModelList.add(perfectLock);
         cardModelList.add(healer);
+        cardModelList.add(DirtyData);
+
         filterMap.put(R.id.skill_type_spinner, "Score Up");
         List<CardModel> expectedList = new ArrayList<>();
         expectedList.add(scoreUp);
@@ -162,9 +186,11 @@ public class FilterFactoryTest {
         Honoka.setEventModel(null);
         CardModel Umi = new CardModel();
         Umi.setEventModel(null);
+
         cardModelList.add(eventCard);
         cardModelList.add(Honoka);
         cardModelList.add(Umi);
+
         filterMap.put(R.id.event_spinner, "Yes");
         List<CardModel> expectedList = new ArrayList<>();
         expectedList.add(eventCard);
@@ -180,9 +206,11 @@ public class FilterFactoryTest {
         Honoka.setIsPromo(false);
         CardModel Umi = new CardModel();
         Umi.setIsPromo(false);
+
         cardModelList.add(promoKotori);
         cardModelList.add(Honoka);
         cardModelList.add(Umi);
+
         filterMap.put(R.id.promo_spinner, "Yes");
         List<CardModel> expectedList = new ArrayList<>();
         expectedList.add(promoKotori);
@@ -198,9 +226,14 @@ public class FilterFactoryTest {
         Honoka.setJapaneseCollection("バレンタイン編");
         CardModel Umi = new CardModel();
         Umi.setJapaneseCollection("職業編Part2");
+        CardModel DirtyData = new CardModel();
+        DirtyData.setJapaneseCollection(null);
+
         cardModelList.add(Kotori);
         cardModelList.add(Honoka);
         cardModelList.add(Umi);
+        cardModelList.add(DirtyData);
+
         filterMap.put(R.id.collection_spinner, "手品師編");
         List<CardModel> expectedList = new ArrayList<>();
         expectedList.add(Kotori);
