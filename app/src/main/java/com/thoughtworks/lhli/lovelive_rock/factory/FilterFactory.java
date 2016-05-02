@@ -64,8 +64,7 @@ public class FilterFactory {
         if (!filterMap.get(R.id.idol_spinner).equals(idolArray[0])) {
             List<CardModel> visibleCardModelList = new ArrayList<>();
             for (CardModel c : cardModelList) {
-                if (c.getJapaneseName() != null &&
-                        c.getJapaneseName().replaceAll("\\s", "").equals(filterMap.get(R.id.idol_spinner))) {
+                if (getName(c).equals(filterMap.get(R.id.idol_spinner))) {
                     visibleCardModelList.add(c);
                 }
             }
@@ -93,7 +92,7 @@ public class FilterFactory {
             HashMap<String, String[]> gradeMap = getGradeMap();
             List<String> gradeMember = Arrays.asList(gradeMap.get(filterMap.get(R.id.grade_spinner)));
             for (CardModel c : cardModelList) {
-                if (c.getJapaneseName() != null && gradeMember.contains(c.getJapaneseName().replaceAll("\\s", ""))) {
+                if (gradeMember.contains(getName(c))) {
                     visibleCardModelList.add(c);
                 }
             }
@@ -108,7 +107,7 @@ public class FilterFactory {
             HashMap<String, String[]> subTeamMap = getSubTeamMap();
             List<String> subTeamMember = Arrays.asList(subTeamMap.get(filterMap.get(R.id.sub_team_spinner)));
             for (CardModel c : cardModelList) {
-                if (c.getJapaneseName() != null && subTeamMember.contains(c.getJapaneseName().replaceAll("\\s", ""))) {
+                if (subTeamMember.contains(getName(c))) {
                     visibleCardModelList.add(c);
                 }
             }
@@ -212,5 +211,16 @@ public class FilterFactory {
         subTeamMap.put(subTeamArray[2], bibiMember);
         subTeamMap.put(subTeamArray[3], lilyWhiteMember);
         return subTeamMap;
+    }
+
+    private String getName(CardModel cardModel) {
+
+        if (cardModel.getJapaneseName() != null) {
+            return cardModel.getJapaneseName().replaceAll("\\s", "");
+        } else if (cardModel.getIdolModel() != null && cardModel.getIdolModel().getJapaneseName() != null) {
+            return cardModel.getIdolModel().getJapaneseName().replaceAll("\\s", "");
+        }
+
+        return "";
     }
 }

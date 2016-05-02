@@ -203,17 +203,6 @@ public class DatabaseManager {
         return cardList.size() == 0 ? -1 : cardList.get(0).getId();
     }
 
-    public Long queryEventPrimaryKeyByName(String eventName) {
-        getEventDao(helper.getReadableDatabase());
-
-        List<Event> eventList
-                = eventDao.queryBuilder()
-                .where(EventDao.Properties.JapaneseName.eq(eventName))
-                .list();
-
-        return eventList.size() == 0 ? NULL_FIELD_ID : eventList.get(0).getId();
-    }
-
     public Long queryEventByName(EventModel eventModel) {
         getEventDao(helper.getReadableDatabase());
 

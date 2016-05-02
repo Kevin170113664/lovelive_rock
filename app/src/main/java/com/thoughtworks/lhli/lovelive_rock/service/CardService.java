@@ -12,7 +12,8 @@ public interface CardService {
 
     @GET("cards")
     Call<MultipleCards> getCardList(@Query("page") Integer page,
-                                    @Query("expand_event") Boolean expandEvent);
+                                    @Query("expand_event") Boolean expandEvent,
+                                    @Query("expand_idol") Boolean expandIdol);
 
     @GET("cards/{id}")
     Call<CardModel> getCardById(@Path("id") String cardId);
