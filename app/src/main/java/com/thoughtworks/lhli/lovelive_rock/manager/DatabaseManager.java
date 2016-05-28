@@ -296,8 +296,7 @@ public class DatabaseManager {
     public List<CardModel> queryAllCards() {
         getCardDao(helper.getReadableDatabase());
 
-        List<Card> cardList
-                = cardDao.queryBuilder()
+        List<Card> cardList = cardDao.queryBuilder()
                 .where(CardDao.Properties.CardId.isNotNull())
                 .list();
         if (cardList.size() != 0) {

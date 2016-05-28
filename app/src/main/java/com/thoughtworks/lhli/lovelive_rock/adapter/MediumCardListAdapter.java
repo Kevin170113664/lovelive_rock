@@ -51,9 +51,11 @@ public class MediumCardListAdapter extends BaseAdapter {
         if (convertView == null) {
             viewHolder = new ViewHolder();
             if (isPromo) {
-                convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.medium_card_list_item_promo, parent, false);
+                convertView = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.medium_card_list_item_promo, parent, false);
             } else {
-                convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.medium_card_list_item_default, parent, false);
+                convertView = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.medium_card_list_item_default, parent, false);
             }
             bindItemView(convertView, viewHolder);
             convertView.setTag(viewHolder);
@@ -78,7 +80,11 @@ public class MediumCardListAdapter extends BaseAdapter {
         setImageClickEvent(viewHolder);
         setSkillType(viewHolder.mediumCardSkillType, cardModelList.get(position).getSkill());
 
-        setTextView(viewHolder.mediumCardIdolName, cardModelList.get(position).getJapaneseName());
+        if (cardModelList.get(position).getJapaneseName() != null && !cardModelList.get(position).getJapaneseName().equals("")) {
+            setTextView(viewHolder.mediumCardIdolName, cardModelList.get(position).getJapaneseName());
+        } else if (cardModelList.get(position).getIdolModel() != null) {
+            setTextView(viewHolder.mediumCardIdolName, cardModelList.get(position).getIdolModel().getJapaneseName());
+        }
         setTextView(viewHolder.mediumCardId, cardModelList.get(position).getCardId());
         setTextView(viewHolder.mediumCardMinSmile, cardModelList.get(position).getMinimumStatisticsSmile());
         setTextView(viewHolder.mediumCardMinPure, cardModelList.get(position).getMinimumStatisticsPure());

@@ -17,8 +17,6 @@ import com.thoughtworks.lhli.lovelive_rock.bus.LatestEventEvent;
 import com.thoughtworks.lhli.lovelive_rock.bus.MainCardEvent;
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 import com.thoughtworks.lhli.lovelive_rock.task.LoadActivityData;
-import com.umeng.analytics.AnalyticsConfig;
-import com.umeng.analytics.MobclickAgent;
 import com.umeng.update.UmengUpdateAgent;
 
 import java.io.IOException;
@@ -59,8 +57,6 @@ public class MainActivity extends BaseActivity {
     }
 
     private void setUpCountConfig() {
-        MobclickAgent.updateOnlineConfig(this);
-        AnalyticsConfig.enableEncrypt(true);
         UmengUpdateAgent.update(this);
     }
 
