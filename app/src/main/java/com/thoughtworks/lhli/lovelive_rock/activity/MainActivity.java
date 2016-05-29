@@ -17,7 +17,6 @@ import com.squareup.picasso.Picasso;
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.bus.LatestEventEvent;
 import com.thoughtworks.lhli.lovelive_rock.bus.MainCardEvent;
-import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 import com.thoughtworks.lhli.lovelive_rock.task.LoadActivityData;
 import com.umeng.update.UmengUpdateAgent;
 
@@ -38,12 +37,6 @@ public class MainActivity extends BaseActivity {
 
     @Bind(R.id.latest_event_image)
     protected ImageView latestEventImage;
-
-    @Bind(R.id.latest_event_Sr_image)
-    protected ImageView srImage;
-
-    @Bind(R.id.latest_event_idolized_Sr_image)
-    protected ImageView srIdolizedImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +93,7 @@ public class MainActivity extends BaseActivity {
         return true;
     }
 
-    protected void saveLatestEventEndTime(String eventEndTime) {
+    private void saveLatestEventEndTime(String eventEndTime) {
         SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
         editor.putString("latestEventEndTime", eventEndTime);
         editor.apply();
@@ -119,17 +112,6 @@ public class MainActivity extends BaseActivity {
 
     public void onEventMainThread(final MainCardEvent mainCardEvent) {
         loadingIcon.setVisibility(View.GONE);
-        final CardModel cardModel = mainCardEvent.getCardModelList().get(0);
-
-        Picasso.with(this)
-                .load(cardModel.getCardImage())
-                .into(srImage);
-
-        Picasso.with(this)
-                .load(cardModel.getCardIdolizedImage())
-                .into(srIdolizedImage);
-
-        setEventSrImageClickListener(cardModel);
     }
 
     private void setEventImageClickListener() {
@@ -137,26 +119,6 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, EventActivity.class));
-            }
-        });
-    }
-
-    private void setEventSrImageClickListener(final CardModel cardModel) {
-        srImage.setOnClickListener(new ImageView.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CardDetailActivity.class);
-                intent.putExtra("CardModel", cardModel);
-                startActivity(intent);
-            }
-        });
-
-        srIdolizedImage.setOnClickListener(new ImageView.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CardDetailActivity.class);
-                intent.putExtra("CardModel", cardModel);
-                startActivity(intent);
             }
         });
     }
@@ -185,23 +147,27 @@ public class MainActivity extends BaseActivity {
                 startActivity(new Intent(MainActivity.this, NormalCalculatorActivity.class));
                 return true;
             case R.id.action_clear_data:
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        SQLiteDatabase db = openOrCreateDatabase("lovelive-db", MODE_PRIVATE, null);
-                        db.execSQL("DELETE FROM CARD;");
-                        db.execSQL("DELETE FROM EVENT;");
-                        db.execSQL("DELETE FROM IDOL;");
-                        db.execSQL("DELETE FROM CHARACTER_VOICE;");
-                        db.execSQL("DELETE FROM SONG;");
-                        db.close();
-                    }
-                }).start();
+                truncateAllTables();
                 Toast.makeText(getApplicationContext(), R.string.clear_app_data_successfully,
                         Toast.LENGTH_SHORT).show();
                 return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void truncateAllTables() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                SQLiteDatabase db = openOrCreateDatabase("lovelive-db", MODE_PRIVATE, null);
+                db.execSQL("DELETE FROM CARD;");
+                db.execSQL("DELETE FROM EVENT;");
+                db.execSQL("DELETE FROM IDOL;");
+                db.execSQL("DELETE FROM CHARACTER_VOICE;");
+                db.execSQL("DELETE FROM SONG;");
+                db.close();
+            }
+        }).start();
     }
 }

@@ -21,7 +21,6 @@ import com.thoughtworks.lhli.lovelive_rock.model.SongModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import de.greenrobot.event.EventBus;
 
@@ -58,8 +57,7 @@ public class LoadActivityData implements Runnable {
         loadMaxCardNumber();
         EventManager eventManager = new EventManager(new ArrayList<EventModel>());
         try {
-            String latestEventName = readLatestEvent().get(activity.getString(R.string.latest_event_name));
-            LoveLiveApp.getInstance().setLatestEventName(latestEventName);
+            LoveLiveApp.getInstance().setLatestEventName(readLatestEventName());
             eventManager.getLatestEvent();
         } catch (IOException e) {
             e.printStackTrace();
@@ -104,53 +102,20 @@ public class LoadActivityData implements Runnable {
         }
     }
 
-    protected void saveLatestEvent(HashMap<String, String> eventMap) {
+    private void saveLatestEventName(String lastEventName) {
         SharedPreferences sharedPreferences = activity.getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(activity.getString(R.string.latest_event_name), eventMap.get(activity.getString(R.string.latest_event_name)));
-        editor.putString(activity.getString(R.string.latest_event_N_id), eventMap.get(activity.getString(R.string.latest_event_N_id)));
-        editor.putString(activity.getString(R.string.latest_event_SR_id), eventMap.get(activity.getString(R.string.latest_event_SR_id)));
+        editor.putString(activity.getString(R.string.latest_event_name), lastEventName);
         editor.apply();
     }
 
-    protected HashMap<String, String> readLatestEvent() {
+    private String readLatestEventName() {
         SharedPreferences sharedPreferences = activity.getPreferences(Context.MODE_PRIVATE);
-        HashMap<String, String> eventMap = new HashMap<>();
-        eventMap.put(activity.getString(R.string.latest_event_name),
-                sharedPreferences.getString(activity.getString(R.string.latest_event_name),
-                        activity.getString(R.string.event_default_value)));
-        eventMap.put(activity.getString(R.string.latest_event_N_id),
-                sharedPreferences.getString(activity.getString(R.string.latest_event_N_id),
-                        activity.getString(R.string.event_default_value)));
-        eventMap.put(activity.getString(R.string.latest_event_SR_id),
-                sharedPreferences.getString(activity.getString(R.string.latest_event_SR_id),
-                        activity.getString(R.string.event_default_value)));
-        return eventMap;
+        return sharedPreferences.getString(activity.getString(R.string.latest_event_name), activity.getString(R.string.event_default_value));
     }
 
     public void onEvent(LatestEventEvent latestEventEvent) throws IOException {
-        EventModel latestEvent = latestEventEvent.getEventModelList().get(0);
-        CardManager cardManager = new CardManager(new ArrayList<CardModel>());
-
-        if (LoveLiveApp.getInstance().isNetworkAvailable()) {
-           if (latestEvent.getCards() != null && latestEvent.getCards().length != 0) {
-               Integer srId = latestEvent.getCards()[1];
-               cardManager.getCardById(srId.toString());
-               cacheLatestEvent(latestEvent);
-           }
-        } else {
-            cardManager.getCardById(readLatestEvent().get(activity.getString(R.string.latest_event_SR_id)));
-        }
-    }
-
-    private void cacheLatestEvent(EventModel latestEvent) throws IOException {
-        HashMap<String, String> eventMap = new HashMap<>();
-        Integer nId = latestEvent.getCards()[0];
-        Integer srId = latestEvent.getCards()[1];
-        eventMap.put(activity.getString(R.string.latest_event_name), latestEvent.getJapaneseName());
-        eventMap.put(activity.getString(R.string.latest_event_N_id), nId.toString());
-        eventMap.put(activity.getString(R.string.latest_event_SR_id), srId.toString());
-        saveLatestEvent(eventMap);
+        saveLatestEventName(latestEventEvent.getEventModelList().get(0).getJapaneseName());
     }
 
     @Override
