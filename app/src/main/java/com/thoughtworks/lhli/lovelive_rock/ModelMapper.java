@@ -61,8 +61,8 @@ public class ModelMapper {
         card.setOwnedCards(cardModel.getOwnedCards());
         card.setTransparentImage(cardModel.getTransparentImage());
         card.setTransparentIdolizedImage(cardModel.getTransparentIdolizedImage());
-        card.setTransparentUrPair(cardModel.getTransparentUrPair());
-        card.setTransparentIdolizedUrPair(cardModel.getTransparentIdolizedUrPair());
+        card.setCleanUr(cardModel.getCleanUr());
+        card.setCleanUrIdolized(cardModel.getCleanUrIdolized());
         return card;
     }
 
@@ -111,8 +111,8 @@ public class ModelMapper {
         cardModel.setOwnedCards(card.getOwnedCards());
         cardModel.setTransparentImage(card.getTransparentImage());
         cardModel.setTransparentIdolizedImage(card.getTransparentIdolizedImage());
-        cardModel.setTransparentUrPair(card.getTransparentUrPair());
-        cardModel.setTransparentIdolizedUrPair(card.getTransparentIdolizedUrPair());
+        cardModel.setCleanUr(card.getCleanUr());
+        cardModel.setCleanUrIdolized(card.getCleanUrIdolized());
         return cardModel;
     }
 

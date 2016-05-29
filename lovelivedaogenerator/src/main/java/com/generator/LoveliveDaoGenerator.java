@@ -148,6 +148,8 @@ public class LoveliveDaoGenerator {
         Card.addStringProperty("transparentIdolizedImage");
         Card.addStringProperty("transparentUrPair");
         Card.addStringProperty("transparentIdolizedUrPair");
+        Card.addStringProperty("cleanUr");
+        Card.addStringProperty("cleanUrIdolized");
         Card.implementsSerializable();
     }
 

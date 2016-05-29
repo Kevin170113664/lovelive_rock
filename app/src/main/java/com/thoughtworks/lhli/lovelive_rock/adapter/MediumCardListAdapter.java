@@ -15,6 +15,8 @@ import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.activity.FullScreenCardActivity;
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MediumCardListAdapter extends BaseAdapter {
@@ -216,8 +218,16 @@ public class MediumCardListAdapter extends BaseAdapter {
 
     private void createFullScreenActivity() {
         Intent intent = new Intent(context, FullScreenCardActivity.class);
-        intent.putExtra("CardImage", cardModelList.get(0).getCardImage());
-        intent.putExtra("IdolizedCardImage", cardModelList.get(0).getCardIdolizedImage());
+        ArrayList<String> images = new ArrayList<>();
+        images.add(cardModelList.get(0).getCardImage());
+        images.add(cardModelList.get(0).getCardIdolizedImage());
+        images.add(cardModelList.get(0).getTransparentImage());
+        images.add(cardModelList.get(0).getTransparentIdolizedImage());
+        images.add(cardModelList.get(0).getCleanUr());
+        images.add(cardModelList.get(0).getCleanUrIdolized());
+        images.removeAll(Collections.singleton(null));
+
+        intent.putStringArrayListExtra("images", images);
         context.startActivity(intent);
     }
 
@@ -245,25 +255,25 @@ public class MediumCardListAdapter extends BaseAdapter {
         viewHolder.mediumCardSkillDetail = (TextView) convertView.findViewById(R.id.medium_card_skill_detail);
     }
 
-    public class ViewHolder {
-        public ImageView mediumCardImage;
-        public ImageView mediumCardIdolizedImage;
-        public TextView mediumCardIdolName;
-        public TextView mediumCardId;
-        public TextView mediumCardMinSmile;
-        public TextView mediumCardMinPure;
-        public TextView mediumCardMinCool;
-        public TextView mediumCardNonIdolizedMaxSmile;
-        public TextView mediumCardNonIdolizedMaxPure;
-        public TextView mediumCardNonIdolizedMaxCool;
-        public TextView mediumCardIdolizedMaxSmile;
-        public TextView mediumCardIdolizedMaxPure;
-        public TextView mediumCardIdolizedMaxCool;
-        public TextView mediumCardSkillType;
-        public TextView mediumCardReleaseDate;
-        public TextView mediumCardCenterSkill;
-        public TextView mediumCardCenterSkillDetail;
-        public TextView mediumCardSkill;
-        public TextView mediumCardSkillDetail;
+    private class ViewHolder {
+        ImageView mediumCardImage;
+        ImageView mediumCardIdolizedImage;
+        TextView mediumCardIdolName;
+        TextView mediumCardId;
+        TextView mediumCardMinSmile;
+        TextView mediumCardMinPure;
+        TextView mediumCardMinCool;
+        TextView mediumCardNonIdolizedMaxSmile;
+        TextView mediumCardNonIdolizedMaxPure;
+        TextView mediumCardNonIdolizedMaxCool;
+        TextView mediumCardIdolizedMaxSmile;
+        TextView mediumCardIdolizedMaxPure;
+        TextView mediumCardIdolizedMaxCool;
+        TextView mediumCardSkillType;
+        TextView mediumCardReleaseDate;
+        TextView mediumCardCenterSkill;
+        TextView mediumCardCenterSkillDetail;
+        TextView mediumCardSkill;
+        TextView mediumCardSkillDetail;
     }
 }

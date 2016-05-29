@@ -12,7 +12,6 @@ import java.util.List;
 public class FullScreenCardActivity extends BaseActivity {
 
     private List<String> cardImageList = new ArrayList<>();
-    private ViewPager pager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +22,9 @@ public class FullScreenCardActivity extends BaseActivity {
     }
 
     private void loadImage() {
-        if (getIntent().getStringExtra("CardImage") != null) {
-            cardImageList.add(getIntent().getStringExtra("CardImage"));
+        ViewPager pager = (ViewPager) findViewById(R.id.pager);
+        if (pager != null) {
+            pager.setAdapter(new FullScreenCardAdapter(this, getIntent().getStringArrayListExtra("images")));
         }
-        cardImageList.add(getIntent().getStringExtra("IdolizedCardImage"));
-        pager = (ViewPager) findViewById(R.id.pager);
-        pager.setAdapter(new FullScreenCardAdapter(this, cardImageList));
     }
 }

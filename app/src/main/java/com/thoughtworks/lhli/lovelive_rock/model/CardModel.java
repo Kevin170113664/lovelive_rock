@@ -135,11 +135,11 @@ public class CardModel implements Serializable {
     @SerializedName("transparent_idolized_image")
     private String transparentIdolizedImage;
 
-    @SerializedName("transparent_ur_pair")
-    private String transparentUrPair;
+    @SerializedName("clean_ur")
+    private String cleanUr;
 
-    @SerializedName("transparent_idolized_ur_pair")
-    private String transparentIdolizedUrPair;
+    @SerializedName("clean_ur_idolized")
+    private String cleanUrIdolized;
 
     public CardModel(String cardId, String name, String japaneseName, IdolModel idolModel, String japaneseCollection,
                      String rarity, String attribute, String japaneseAttribute, boolean isPromo,
@@ -155,7 +155,7 @@ public class CardModel implements Serializable {
                      String roundCardImage, String videoStory, String japaneseVideoStory,
                      String websiteUrl, String nonIdolizedMaxLevel, String idolizedMaxLevel,
                      String ownedCards, String transparentImage, String transparentIdolizedImage,
-                     String transparentUrPair, String transparentIdolizedUrPair) {
+                     String cleanUr, String cleanUrIdolized) {
         this.cardId = cardId;
         this.name = name;
         this.japaneseName = japaneseName;
@@ -198,8 +198,8 @@ public class CardModel implements Serializable {
         this.ownedCards = ownedCards;
         this.transparentImage = transparentImage;
         this.transparentIdolizedImage = transparentIdolizedImage;
-        this.transparentUrPair = transparentUrPair;
-        this.transparentIdolizedUrPair = transparentIdolizedUrPair;
+        this.cleanUr = cleanUr;
+        this.cleanUrIdolized = cleanUrIdolized;
     }
 
     public CardModel() {
@@ -373,12 +373,12 @@ public class CardModel implements Serializable {
         return transparentIdolizedImage;
     }
 
-    public String getTransparentUrPair() {
-        return transparentUrPair;
+    public String getCleanUr() {
+        return cleanUr;
     }
 
-    public String getTransparentIdolizedUrPair() {
-        return transparentIdolizedUrPair;
+    public String getCleanUrIdolized() {
+        return cleanUrIdolized;
     }
 
     public void setCardId(String cardId) {
@@ -549,12 +549,12 @@ public class CardModel implements Serializable {
         this.transparentIdolizedImage = transparentIdolizedImage;
     }
 
-    public void setTransparentUrPair(String transparentUrPair) {
-        this.transparentUrPair = transparentUrPair;
+    public void setCleanUr(String cleanUr) {
+        this.cleanUr = cleanUr;
     }
 
-    public void setTransparentIdolizedUrPair(String transparentIdolizedUrPair) {
-        this.transparentIdolizedUrPair = transparentIdolizedUrPair;
+    public void setCleanUrIdolized(String cleanUrIdolized) {
+        this.cleanUrIdolized = cleanUrIdolized;
     }
 
     public String getRoundCardIdolizedImage() {

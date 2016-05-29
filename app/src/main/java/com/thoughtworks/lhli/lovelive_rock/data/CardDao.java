@@ -71,6 +71,8 @@ public class CardDao extends AbstractDao<Card, Long> {
         public final static Property TransparentIdolizedImage = new Property(43, String.class, "transparentIdolizedImage", false, "TRANSPARENT_IDOLIZED_IMAGE");
         public final static Property TransparentUrPair = new Property(44, String.class, "transparentUrPair", false, "TRANSPARENT_UR_PAIR");
         public final static Property TransparentIdolizedUrPair = new Property(45, String.class, "transparentIdolizedUrPair", false, "TRANSPARENT_IDOLIZED_UR_PAIR");
+        public final static Property CleanUr = new Property(46, String.class, "cleanUr", false, "CLEAN_UR");
+        public final static Property CleanUrIdolized = new Property(47, String.class, "cleanUrIdolized", false, "CLEAN_UR_IDOLIZED");
     };
 
     private DaoSession daoSession;
@@ -134,7 +136,9 @@ public class CardDao extends AbstractDao<Card, Long> {
                 "\"TRANSPARENT_IMAGE\" TEXT," + // 42: transparentImage
                 "\"TRANSPARENT_IDOLIZED_IMAGE\" TEXT," + // 43: transparentIdolizedImage
                 "\"TRANSPARENT_UR_PAIR\" TEXT," + // 44: transparentUrPair
-                "\"TRANSPARENT_IDOLIZED_UR_PAIR\" TEXT);"); // 45: transparentIdolizedUrPair
+                "\"TRANSPARENT_IDOLIZED_UR_PAIR\" TEXT," + // 45: transparentIdolizedUrPair
+                "\"CLEAN_UR\" TEXT," + // 46: cleanUr
+                "\"CLEAN_UR_IDOLIZED\" TEXT);"); // 47: cleanUrIdolized
     }
 
     /** Drops the underlying database table. */
@@ -369,6 +373,16 @@ public class CardDao extends AbstractDao<Card, Long> {
         if (transparentIdolizedUrPair != null) {
             stmt.bindString(46, transparentIdolizedUrPair);
         }
+
+        String cleanUr = entity.getCleanUr();
+        if (cleanUr != null) {
+            stmt.bindString(47, cleanUr);
+        }
+
+        String cleanUrIdolized = entity.getCleanUrIdolized();
+        if (cleanUrIdolized != null) {
+            stmt.bindString(48, cleanUrIdolized);
+        }
     }
 
     @Override
@@ -432,7 +446,9 @@ public class CardDao extends AbstractDao<Card, Long> {
             cursor.isNull(offset + 42) ? null : cursor.getString(offset + 42), // transparentImage
             cursor.isNull(offset + 43) ? null : cursor.getString(offset + 43), // transparentIdolizedImage
             cursor.isNull(offset + 44) ? null : cursor.getString(offset + 44), // transparentUrPair
-            cursor.isNull(offset + 45) ? null : cursor.getString(offset + 45) // transparentIdolizedUrPair
+                cursor.isNull(offset + 45) ? null : cursor.getString(offset + 45), // transparentIdolizedUrPair
+                cursor.isNull(offset + 46) ? null : cursor.getString(offset + 46), // cleanUr
+                cursor.isNull(offset + 47) ? null : cursor.getString(offset + 47) // cleanUrIdolized
         );
         return entity;
     }
@@ -486,6 +502,8 @@ public class CardDao extends AbstractDao<Card, Long> {
         entity.setTransparentIdolizedImage(cursor.isNull(offset + 43) ? null : cursor.getString(offset + 43));
         entity.setTransparentUrPair(cursor.isNull(offset + 44) ? null : cursor.getString(offset + 44));
         entity.setTransparentIdolizedUrPair(cursor.isNull(offset + 45) ? null : cursor.getString(offset + 45));
+        entity.setCleanUr(cursor.isNull(offset + 46) ? null : cursor.getString(offset + 46));
+        entity.setCleanUrIdolized(cursor.isNull(offset + 47) ? null : cursor.getString(offset + 47));
      }
     
     /** @inheritdoc */

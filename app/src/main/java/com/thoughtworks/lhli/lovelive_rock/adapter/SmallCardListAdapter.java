@@ -98,11 +98,11 @@ public class SmallCardListAdapter extends BaseAdapter {
         viewHolder.smallCardSkill = (TextView) convertView.findViewById(R.id.small_card_skill);
     }
 
-    public class ViewHolder {
-        public ImageView smallCardImage;
-        public TextView smallCardCollection;
-        public TextView smallCardMaxStatistics;
-        public TextView smallCardSkill;
+    private class ViewHolder {
+        ImageView smallCardImage;
+        TextView smallCardCollection;
+        TextView smallCardMaxStatistics;
+        TextView smallCardSkill;
     }
 
     private Boolean isStringValid(String value) {

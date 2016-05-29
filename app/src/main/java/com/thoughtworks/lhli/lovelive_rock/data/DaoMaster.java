@@ -14,7 +14,7 @@ import de.greenrobot.dao.identityscope.IdentityScopeType;
  * Master of DAO (schema version 2): knows all DAOs.
 */
 public class DaoMaster extends AbstractDaoMaster {
-    public static final int SCHEMA_VERSION = 2;
+    public static final int SCHEMA_VERSION = 3;
 
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(SQLiteDatabase db, boolean ifNotExists) {
@@ -58,6 +58,9 @@ public class DaoMaster extends AbstractDaoMaster {
             switch (newVersion) {
                 case 2:
                     new MigrateV1ToV2().applyMigration(db, oldVersion);
+                    break;
+                case 3:
+                    new MigrateV2ToV3().applyMigration(db, oldVersion);
                     break;
                 default:
                     break;
