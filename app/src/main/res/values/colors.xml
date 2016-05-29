@@ -10,6 +10,7 @@
     <color name="colorButtonPressedBackground">#FF8F00</color>
     <color name="colorButtonBackground">#FFCA28</color>
     <color name="colorDivider">#FFECB3</color>
+    <color name="tabsScrollColor">#FFF8E1</color>
 
     <color name="colorOrange50">#FFF8E1</color>
     <color name="colorOrange100">#FFECB3</color>

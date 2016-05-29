@@ -1,17 +1,16 @@
 package com.thoughtworks.lhli.lovelive_rock.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.thoughtworks.lhli.lovelive_rock.R;
-import com.thoughtworks.lhli.lovelive_rock.adapter.GridSongListAdapter;
+import com.thoughtworks.lhli.lovelive_rock.SlidingTabLayout;
+import com.thoughtworks.lhli.lovelive_rock.adapter.SongPagerAdapter;
 import com.thoughtworks.lhli.lovelive_rock.bus.FetchProcessEvent;
 import com.thoughtworks.lhli.lovelive_rock.bus.SongEvent;
 import com.thoughtworks.lhli.lovelive_rock.model.SongModel;
@@ -29,9 +28,6 @@ import de.greenrobot.event.EventBus;
 
 public class SongActivity extends BaseActivity {
 
-    @Bind(R.id.grid_view)
-    protected GridView gridView;
-
     @Bind(R.id.loading_icon)
     protected ImageView loadingIcon;
 
@@ -44,7 +40,13 @@ public class SongActivity extends BaseActivity {
     @Bind(R.id.progress_bar)
     protected ProgressBar progressBar;
 
-    List<SongModel> songModelList;
+    @Bind(R.id.pager)
+    protected ViewPager pager;
+
+    @Bind(R.id.tabs)
+    protected SlidingTabLayout tabs;
+
+    private List<SongModel> songModelList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,26 +71,22 @@ public class SongActivity extends BaseActivity {
         loadingIcon.setVisibility(View.GONE);
         songModelList = songEvent.getSongModelList();
         loadSongView();
-        setGridViewClickListener();
     }
 
     private void loadSongView() {
         removeDuplicateSong();
         Long seed = System.nanoTime();
         Collections.shuffle(songModelList, new Random(seed));
-        gridView.setAdapter(new GridSongListAdapter(this, songModelList));
-    }
 
-    private void setGridViewClickListener() {
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        pager.setAdapter(new SongPagerAdapter(this, songModelList));
+        tabs.setDistributeEvenly(true);
+        tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(SongActivity.this, SongDetailActivity.class);
-                SongModel songModel = ((List<SongModel>) parent.getAdapter().getItem(0)).get(position);
-                intent.putExtra("SongModel", songModel);
-                startActivity(intent);
+            public int getIndicatorColor(int position) {
+                return getResources().getColor(R.color.tabsScrollColor);
             }
         });
+        tabs.setViewPager(pager);
     }
 
     public void onEventMainThread(FetchProcessEvent fetchProcessEvent) {

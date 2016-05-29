@@ -113,6 +113,9 @@
     <string name="song_duration">Duration</string>
     <string name="second_unit">s</string>
     <string name="song_bpm">BPM</string>
+    <string name="smileAttribute">Smile</string>
+    <string name="pureAttribute">Pure</string>
+    <string name="coolAttribute">Cool</string>
 
     <string-array name="rarity_array">
         <item>Rarity</item>
