@@ -32,4 +32,9 @@
         android:orderInCategory="100"
         android:title="@string/action_normal_calculator"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_clear_data"
+        android:orderInCategory="100"
+        android:title="@string/action_clear_data"
+        app:showAsAction="never" />
 </menu>

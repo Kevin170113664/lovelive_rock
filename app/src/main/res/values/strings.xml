@@ -6,6 +6,7 @@
     <string name="action_mf_calculator">MF Calculator</string>
     <string name="action_normal_calculator">Normal Calculator</string>
     <string name="action_sm_calculator">SM Calculator</string>
+    <string name="action_clear_data">Clear App Data</string>
     <string name="song_label">Song</string>
     <string name="filter_dialog_title">Filter</string>
     <string name="song_detail_label">Song Detail</string>
@@ -116,6 +117,7 @@
     <string name="smileAttribute">Smile</string>
     <string name="pureAttribute">Pure</string>
     <string name="coolAttribute">Cool</string>
+    <string name="clear_app_data_successfully">Clear App data successfully.</string>
 
     <string-array name="rarity_array">
         <item>Rarity</item>

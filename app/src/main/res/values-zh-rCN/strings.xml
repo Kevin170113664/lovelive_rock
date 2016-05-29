@@ -7,6 +7,7 @@
     <string name="action_mf_calculator">MF计算器</string>
     <string name="action_normal_calculator">传统计算器</string>
     <string name="action_sm_calculator">SM计算器</string>
+    <string name="action_clear_data">清除应用数据</string>
     <string name="song_label">歌曲</string>
     <string name="filter_dialog_title">筛选</string>
     <string name="song_detail_label">歌曲详情</string>
@@ -102,6 +103,7 @@
     <string name="song_duration">时长</string>
     <string name="second_unit">秒</string>
     <string name="song_bpm">BPM</string>
+    <string name="clear_app_data_successfully">清除应用数据成功</string>
 
     <string-array name="rarity_array">
         <item>稀有度</item>

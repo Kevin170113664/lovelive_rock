@@ -2,6 +2,7 @@ package com.thoughtworks.lhli.lovelive_rock.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
@@ -9,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
@@ -181,6 +183,22 @@ public class MainActivity extends BaseActivity {
                 return true;
             case R.id.action_normal_calculator:
                 startActivity(new Intent(MainActivity.this, NormalCalculatorActivity.class));
+                return true;
+            case R.id.action_clear_data:
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        SQLiteDatabase db = openOrCreateDatabase("lovelive-db", MODE_PRIVATE, null);
+                        db.execSQL("DELETE FROM CARD;");
+                        db.execSQL("DELETE FROM EVENT;");
+                        db.execSQL("DELETE FROM IDOL;");
+                        db.execSQL("DELETE FROM CHARACTER_VOICE;");
+                        db.execSQL("DELETE FROM SONG;");
+                        db.close();
+                    }
+                }).start();
+                Toast.makeText(getApplicationContext(), R.string.clear_app_data_successfully,
+                        Toast.LENGTH_SHORT).show();
                 return true;
         }
 
