@@ -124,6 +124,7 @@
         <item>N</item>
         <item>R</item>
         <item>SR</item>
+        <item>SSR</item>
         <item>UR</item>
     </string-array>
     <string-array name="attribute_array">
@@ -149,12 +150,24 @@
         <item>東條希</item>
         <item>矢澤にこ</item>
         <item>絢瀬絵里</item>
+        <item>津島善子</item>
+        <item>国木田花丸</item>
+        <item>黒澤ルビィ</item>
+        <item>高海千歌</item>
+        <item>櫻内梨子</item>
+        <item>渡辺曜</item>
+        <item>小原鞠莉</item>
+        <item>黑澤ダイヤ</item>
+        <item>松浦果南</item>
     </string-array>
     <string-array name="sub_team_array">
         <item>Sub-Team</item>
         <item>Printemps</item>
         <item>BiBi</item>
         <item>Lily White</item>
+        <item>CYaRon！</item>
+        <item>AZALEA</item>
+        <item>Guilty Kiss</item>
     </string-array>
     <string-array name="skill_type_array">
         <item>Skill Type</item>
@@ -174,6 +187,8 @@
     </string-array>
     <string-array name="collection_array">
         <item>Collection</item>
+        <item>小悪魔編</item>
+        <item>アイドル衣装編</item>
         <item>踊り子編</item>
         <item>ベースボール編</item>
         <item>大正ロマン編</item>
@@ -216,16 +231,25 @@
         <item>小泉花陽</item>
         <item>星空凛</item>
         <item>西木野真姫</item>
+        <item>津島善子</item>
+        <item>国木田花丸</item>
+        <item>黒澤ルビィ</item>
     </string-array>
     <string-array name="second_grade_member">
         <item>高坂穂乃果</item>
         <item>南ことり</item>
         <item>園田海未</item>
+        <item>高海千歌</item>
+        <item>櫻内梨子</item>
+        <item>渡辺曜</item>
     </string-array>
     <string-array name="third_grade_member">
         <item>東條希</item>
         <item>矢澤にこ</item>
         <item>絢瀬絵里</item>
+        <item>小原鞠莉</item>
+        <item>黑澤ダイヤ</item>
+        <item>松浦果南</item>
     </string-array>
     <string-array name="printemps_member">
         <item>高坂穂乃果</item>
@@ -241,6 +265,21 @@
         <item>東條希</item>
         <item>星空凛</item>
         <item>園田海未</item>
+    </string-array>
+    <string-array name="cya_ron_member">
+        <item>高海千歌</item>
+        <item>黒澤ルビィ</item>
+        <item>渡辺曜</item>
+    </string-array>
+    <string-array name="azalea_member">
+        <item>国木田花丸</item>
+        <item>黑澤ダイヤ</item>
+        <item>松浦果南</item>
+    </string-array>
+    <string-array name="guilty_kiss_member">
+        <item>櫻内梨子</item>
+        <item>津島善子</item>
+        <item>小原鞠莉</item>
     </string-array>
     <string-array name="score_up_skill">
         <item>Score Up</item>

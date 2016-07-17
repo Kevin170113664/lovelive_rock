@@ -29,6 +29,9 @@ public class FilterFactory {
     private String[] printempsMember = LoveLiveApp.getInstance().getResources().getStringArray(R.array.printemps_member);
     private String[] bibiMember = LoveLiveApp.getInstance().getResources().getStringArray(R.array.bibi_member);
     private String[] lilyWhiteMember = LoveLiveApp.getInstance().getResources().getStringArray(R.array.lily_white_member);
+    private String[] cYaRonWhiteMember = LoveLiveApp.getInstance().getResources().getStringArray(R.array.cya_ron_member);
+    private String[] azaleaMember = LoveLiveApp.getInstance().getResources().getStringArray(R.array.azalea_member);
+    private String[] guiltyKillMember = LoveLiveApp.getInstance().getResources().getStringArray(R.array.guilty_kiss_member);
     private String[] scoreUpSkill = LoveLiveApp.getInstance().getResources().getStringArray(R.array.score_up_skill);
     private String[] perfectLockSkill = LoveLiveApp.getInstance().getResources().getStringArray(R.array.perfect_lock_skill);
     private String[] healerSkill = LoveLiveApp.getInstance().getResources().getStringArray(R.array.healer_skill);
@@ -210,6 +213,9 @@ public class FilterFactory {
         subTeamMap.put(subTeamArray[1], printempsMember);
         subTeamMap.put(subTeamArray[2], bibiMember);
         subTeamMap.put(subTeamArray[3], lilyWhiteMember);
+        subTeamMap.put(subTeamArray[4], cYaRonWhiteMember);
+        subTeamMap.put(subTeamArray[5], azaleaMember);
+        subTeamMap.put(subTeamArray[6], guiltyKillMember);
         return subTeamMap;
     }
 
