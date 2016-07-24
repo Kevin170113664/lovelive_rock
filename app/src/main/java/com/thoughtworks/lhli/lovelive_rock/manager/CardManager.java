@@ -28,7 +28,7 @@ public class CardManager {
     private Integer maxCardPage;
 
     private List<CardModel> cardModelList;
-    DatabaseManager databaseManager;
+    private DatabaseManager databaseManager;
 
     public CardManager(List<CardModel> cardModelList) {
         this.cardModelList = cardModelList;
