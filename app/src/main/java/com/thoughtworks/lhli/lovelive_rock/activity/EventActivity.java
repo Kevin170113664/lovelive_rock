@@ -37,8 +37,7 @@ public class EventActivity extends BaseActivity {
     private List<EventModel> eventModelList;
     private List<CardModel> eventCardModelList;
     private EventModel eventModel;
-    private CardModel nCardModel;
-    private CardModel srCardModel;
+    private List<CardModel> singleEventCards = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,14 +72,18 @@ public class EventActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(EventActivity.this, EventDetailActivity.class);
                 eventModel = ((List<EventModel>) parent.getAdapter().getItem(0)).get(position);
-                nCardModel = null;
-                srCardModel = null;
+                singleEventCards.clear();
 
                 searchEventCardsForClickedEvent();
 
                 intent.putExtra("EventModel", eventModel);
-                intent.putExtra("nCardModel", nCardModel);
-                intent.putExtra("srCardModel", srCardModel);
+                if (singleEventCards.size() >= 2) {
+                    intent.putExtra("nCardModel", singleEventCards.get(0));
+                    intent.putExtra("srCardModel", singleEventCards.get(1));
+                }
+                if (singleEventCards.size() == 3) {
+                    intent.putExtra("secondSrCardModel", singleEventCards.get(2));
+                }
                 startActivity(intent);
             }
 
@@ -88,12 +91,7 @@ public class EventActivity extends BaseActivity {
                 for (CardModel cardModel : eventCardModelList) {
                     if (cardModel.getEventModel() != null &&
                             cardModel.getEventModel().getJapaneseName().equals(eventModel.getJapaneseName())) {
-                        if (cardModel.getRarity().equals("N")) {
-                            nCardModel = cardModel;
-                        }
-                        if (cardModel.getRarity().equals("SR")) {
-                            srCardModel = cardModel;
-                        }
+                        singleEventCards.add(cardModel);
                     }
                 }
             }

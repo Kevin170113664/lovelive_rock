@@ -56,6 +56,7 @@ public class EventDetailActivity extends BaseActivity {
     private EventModel eventModel;
     private CardModel nCardModel;
     private CardModel srCardModel;
+    private CardModel secondSrCardModel;
     private List<CardModel> eventCardList;
 
     @Override
@@ -114,6 +115,13 @@ public class EventDetailActivity extends BaseActivity {
             eventCardList.add(srCardRoundImage);
             eventCardList.add(srCardModel);
 
+            if (secondSrCardModel != null) {
+                CardModel secondSrCardRoundImage = new CardModel();
+                secondSrCardRoundImage.setRoundCardIdolizedImage(secondSrCardModel.getRoundCardImage());
+                eventCardList.add(secondSrCardRoundImage);
+                eventCardList.add(secondSrCardModel);
+            }
+
             gridView.setAdapter(new GridCardListAdapter(EventDetailActivity.this, eventCardList, true));
             setGridViewItemClickListener();
         }
@@ -138,6 +146,7 @@ public class EventDetailActivity extends BaseActivity {
         eventModel = (EventModel) getIntent().getSerializableExtra("EventModel");
         nCardModel = (CardModel) getIntent().getSerializableExtra("nCardModel");
         srCardModel = (CardModel) getIntent().getSerializableExtra("srCardModel");
+        secondSrCardModel = (CardModel) getIntent().getSerializableExtra("secondSrCardModel");
         eventCardList = new ArrayList<>();
     }
 
