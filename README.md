@@ -28,11 +28,11 @@ If you like it, don't forget to **recommend** the App to your friends!
 
 > 下载链接
 > Download link: 
-> http://pan.baidu.com/s/1eRtf5jc
+> https://pan.baidu.com/s/1bphxBS7
 
 > 密码
 > Password: 
-> 6hve
+> 61y8
 
 感谢为LoveLive+的提供数据来源API的贡献者们!
 > API来源: https://github.com/SchoolIdolTomodachi/SchoolIdolAPI
