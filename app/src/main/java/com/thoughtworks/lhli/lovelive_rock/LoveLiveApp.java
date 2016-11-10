@@ -84,7 +84,7 @@ public class LoveLiveApp extends Application {
         Toast.makeText(context.getApplicationContext(), R.string.save_image_success_msg, Toast.LENGTH_SHORT).show();
     }
 
-    public static String generateFileName(String imageUrl) {
+    private static String generateFileName(String imageUrl) {
         File direct = new File(Environment.getExternalStorageDirectory() + "/lovelive+");
         String[] urlArray = imageUrl.split("/");
         String fileName = urlArray[urlArray.length - 1];

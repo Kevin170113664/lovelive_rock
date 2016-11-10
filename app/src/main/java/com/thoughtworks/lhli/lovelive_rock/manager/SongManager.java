@@ -20,7 +20,7 @@ public class SongManager {
 
     private Integer maxSongNumber = 101;
     private List<SongModel> songModelList;
-    DatabaseManager databaseManager;
+    private DatabaseManager databaseManager;
 
     public SongManager(List<SongModel> songModelList) {
         this.songModelList = songModelList;

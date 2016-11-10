@@ -19,7 +19,7 @@ import retrofit.Response;
 public class EventManager {
 
     private List<EventModel> eventModelList;
-    DatabaseManager databaseManager;
+    private DatabaseManager databaseManager;
 
     public EventManager(List<EventModel> eventModelList) {
         this.eventModelList = eventModelList;
