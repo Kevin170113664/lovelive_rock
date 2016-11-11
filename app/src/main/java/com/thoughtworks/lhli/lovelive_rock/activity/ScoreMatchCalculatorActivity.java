@@ -146,10 +146,10 @@ public class ScoreMatchCalculatorActivity extends BaseActivity {
     }
 
     private void setBasicMap() {
-        difficultyBasicPointMap.put("Expert", 272L);
-        difficultyBasicPointMap.put("Hard", 163L);
-        difficultyBasicPointMap.put("Normal", 89L);
-        difficultyBasicPointMap.put("Easy", 36L);
+        difficultyBasicPointMap.put("Expert", 357L);
+        difficultyBasicPointMap.put("Hard", 177L);
+        difficultyBasicPointMap.put("Normal", 100L);
+        difficultyBasicPointMap.put("Easy", 42L);
 
         playRankMap.put(getString(R.string.average), 1.1125);
         playRankMap.put(getString(R.string.first_place), 1.25);
