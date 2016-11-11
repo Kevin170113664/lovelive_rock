@@ -170,7 +170,7 @@ public class NormalCalculatorActivity extends BaseActivity {
 
     private void setEventPointObject() {
         try {
-            InputStream inputStream = getAssets().open("normal_event.json");
+            InputStream inputStream = getAssets().open("normal_event_japanese.json");
             int size = inputStream.available();
             byte[] buffer = new byte[size];
             inputStream.read(buffer);

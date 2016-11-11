@@ -240,7 +240,7 @@
         <item>南ことり</item>
         <item>園田海未</item>
         <item>高海千歌</item>
-        <item>櫻内梨子</item>
+        <item>桜内梨子</item>
         <item>渡辺曜</item>
     </string-array>
     <string-array name="third_grade_member">
@@ -248,7 +248,7 @@
         <item>矢澤にこ</item>
         <item>絢瀬絵里</item>
         <item>小原鞠莉</item>
-        <item>黑澤ダイヤ</item>
+        <item>黒澤ダイヤ</item>
         <item>松浦果南</item>
     </string-array>
     <string-array name="printemps_member">
@@ -273,11 +273,11 @@
     </string-array>
     <string-array name="azalea_member">
         <item>国木田花丸</item>
-        <item>黑澤ダイヤ</item>
+        <item>黒澤ダイヤ</item>
         <item>松浦果南</item>
     </string-array>
     <string-array name="guilty_kiss_member">
-        <item>櫻内梨子</item>
+        <item>桜内梨子</item>
         <item>津島善子</item>
         <item>小原鞠莉</item>
     </string-array>
