@@ -65,6 +65,12 @@ public class SongModel implements Serializable {
     @SerializedName("expert_notes")
     private Short expertNotes;
 
+    @SerializedName("master_difficulty")
+    private Short masterDifficulty;
+
+    @SerializedName("master_notes")
+    private Short masterNotes;
+
     @SerializedName("available")
     private Boolean available;
 
@@ -76,7 +82,7 @@ public class SongModel implements Serializable {
                      Short dailyRotationPosition, String image, Short easyDifficulty, Short easyNotes,
                      Short normalDifficulty, Short normalNotes, Short hardDifficulty, Short hardNotes,
                      Short expertDifficulty, Short expertRandomDifficulty, Short expertNotes,
-                     Boolean available, Long itunesId) {
+                     Short masterDifficulty, Short masterNotes, Boolean available, Long itunesId) {
         this.name = name;
         this.romajiName = romajiName;
         this.translatedName = translatedName;
@@ -97,6 +103,8 @@ public class SongModel implements Serializable {
         this.expertDifficulty = expertDifficulty;
         this.expertRandomDifficulty = expertRandomDifficulty;
         this.expertNotes = expertNotes;
+        this.masterDifficulty = masterDifficulty;
+        this.masterNotes = masterNotes;
         this.available = available;
         this.itunesId = itunesId;
     }
@@ -262,6 +270,22 @@ public class SongModel implements Serializable {
 
     public void setExpertNotes(Short expertNotes) {
         this.expertNotes = expertNotes;
+    }
+
+    public Short getMasterDifficulty() {
+        return masterDifficulty;
+    }
+
+    public void setMasterDifficulty(Short masterDifficulty) {
+        this.masterDifficulty = masterDifficulty;
+    }
+
+    public Short getMasterNotes() {
+        return masterNotes;
+    }
+
+    public void setMasterNotes(Short masterNotes) {
+        this.masterNotes = masterNotes;
     }
 
     public Boolean getAvailable() {

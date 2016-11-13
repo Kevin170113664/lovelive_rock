@@ -30,6 +30,8 @@ public class Song implements java.io.Serializable {
     private Short expertDifficulty;
     private Short expertRandomDifficulty;
     private Short expertNotes;
+    private Short masterDifficulty;
+    private Short masterNotes;
     private Boolean available;
     private Long itunesId;
 
@@ -50,7 +52,7 @@ public class Song implements java.io.Serializable {
         this.id = id;
     }
 
-    public Song(Long id, String name, String romajiName, String translatedName, String attribute, Short BPM, Short time, long eventId, Short rank, String dailyRotation, Short dailyRotationPosition, String image, Short easyDifficulty, Short easyNotes, Short normalDifficulty, Short normalNotes, Short hardDifficulty, Short hardNotes, Short expertDifficulty, Short expertRandomDifficulty, Short expertNotes, Boolean available, Long itunesId) {
+    public Song(Long id, String name, String romajiName, String translatedName, String attribute, Short BPM, Short time, long eventId, Short rank, String dailyRotation, Short dailyRotationPosition, String image, Short easyDifficulty, Short easyNotes, Short normalDifficulty, Short normalNotes, Short hardDifficulty, Short hardNotes, Short expertDifficulty, Short expertRandomDifficulty, Short expertNotes, Short masterDifficulty, Short masterNotes, Boolean available, Long itunesId) {
         this.id = id;
         this.name = name;
         this.romajiName = romajiName;
@@ -72,6 +74,8 @@ public class Song implements java.io.Serializable {
         this.expertDifficulty = expertDifficulty;
         this.expertRandomDifficulty = expertRandomDifficulty;
         this.expertNotes = expertNotes;
+        this.masterDifficulty = masterDifficulty;
+        this.masterNotes = masterNotes;
         this.available = available;
         this.itunesId = itunesId;
     }
@@ -248,6 +252,22 @@ public class Song implements java.io.Serializable {
 
     public void setExpertNotes(Short expertNotes) {
         this.expertNotes = expertNotes;
+    }
+
+    public Short getMasterDifficulty() {
+        return masterDifficulty;
+    }
+
+    public void setMasterDifficulty(Short masterDifficulty) {
+        this.masterDifficulty = masterDifficulty;
+    }
+
+    public Short getMasterNotes() {
+        return masterNotes;
+    }
+
+    public void setMasterNotes(Short masterNotes) {
+        this.masterNotes = masterNotes;
     }
 
     public Boolean getAvailable() {

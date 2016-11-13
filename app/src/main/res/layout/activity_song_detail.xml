@@ -128,7 +128,7 @@
                         android:id="@+id/easy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight=".25"
+                        android:layout_weight=".2"
                         android:background="@color/colorOrange100"
                         android:text="Easy"
                         android:textColor="@color/colorOrange800" />
@@ -137,7 +137,7 @@
                         android:id="@+id/normal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight=".25"
+                        android:layout_weight=".2"
                         android:background="@color/colorOrange100"
                         android:text="Normal"
                         android:textColor="@color/colorOrange800" />
@@ -146,7 +146,7 @@
                         android:id="@+id/hard"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight=".25"
+                        android:layout_weight=".2"
                         android:background="@color/colorOrange100"
                         android:text="Hard"
                         android:textColor="@color/colorOrange800" />
@@ -155,9 +155,18 @@
                         android:id="@+id/expert"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight=".25"
+                        android:layout_weight=".2"
                         android:background="@color/colorOrange100"
                         android:text="Expert"
+                        android:textColor="@color/colorOrange800" />
+
+                    <Button
+                        android:id="@+id/master"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".2"
+                        android:background="@color/colorOrange100"
+                        android:text="Master"
                         android:textColor="@color/colorOrange800" />
 
                 </LinearLayout>

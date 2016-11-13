@@ -373,12 +373,12 @@ public class CardDao extends AbstractDao<Card, Long> {
         if (transparentIdolizedUrPair != null) {
             stmt.bindString(46, transparentIdolizedUrPair);
         }
-
+ 
         String cleanUr = entity.getCleanUr();
         if (cleanUr != null) {
             stmt.bindString(47, cleanUr);
         }
-
+ 
         String cleanUrIdolized = entity.getCleanUrIdolized();
         if (cleanUrIdolized != null) {
             stmt.bindString(48, cleanUrIdolized);
@@ -446,9 +446,9 @@ public class CardDao extends AbstractDao<Card, Long> {
             cursor.isNull(offset + 42) ? null : cursor.getString(offset + 42), // transparentImage
             cursor.isNull(offset + 43) ? null : cursor.getString(offset + 43), // transparentIdolizedImage
             cursor.isNull(offset + 44) ? null : cursor.getString(offset + 44), // transparentUrPair
-                cursor.isNull(offset + 45) ? null : cursor.getString(offset + 45), // transparentIdolizedUrPair
-                cursor.isNull(offset + 46) ? null : cursor.getString(offset + 46), // cleanUr
-                cursor.isNull(offset + 47) ? null : cursor.getString(offset + 47) // cleanUrIdolized
+            cursor.isNull(offset + 45) ? null : cursor.getString(offset + 45), // transparentIdolizedUrPair
+            cursor.isNull(offset + 46) ? null : cursor.getString(offset + 46), // cleanUr
+            cursor.isNull(offset + 47) ? null : cursor.getString(offset + 47) // cleanUrIdolized
         );
         return entity;
     }

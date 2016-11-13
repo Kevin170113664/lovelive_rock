@@ -46,8 +46,10 @@ public class SongDao extends AbstractDao<Song, Long> {
         public final static Property ExpertDifficulty = new Property(18, Short.class, "expertDifficulty", false, "EXPERT_DIFFICULTY");
         public final static Property ExpertRandomDifficulty = new Property(19, Short.class, "expertRandomDifficulty", false, "EXPERT_RANDOM_DIFFICULTY");
         public final static Property ExpertNotes = new Property(20, Short.class, "expertNotes", false, "EXPERT_NOTES");
-        public final static Property Available = new Property(21, Boolean.class, "available", false, "AVAILABLE");
-        public final static Property ItunesId = new Property(22, Long.class, "itunesId", false, "ITUNES_ID");
+        public final static Property MasterDifficulty = new Property(21, Short.class, "masterDifficulty", false, "MASTER_DIFFICULTY");
+        public final static Property MasterNotes = new Property(22, Short.class, "masterNotes", false, "MASTER_NOTES");
+        public final static Property Available = new Property(23, Boolean.class, "available", false, "AVAILABLE");
+        public final static Property ItunesId = new Property(24, Long.class, "itunesId", false, "ITUNES_ID");
     };
 
     private DaoSession daoSession;
@@ -87,8 +89,10 @@ public class SongDao extends AbstractDao<Song, Long> {
                 "\"EXPERT_DIFFICULTY\" INTEGER," + // 18: expertDifficulty
                 "\"EXPERT_RANDOM_DIFFICULTY\" INTEGER," + // 19: expertRandomDifficulty
                 "\"EXPERT_NOTES\" INTEGER," + // 20: expertNotes
-                "\"AVAILABLE\" INTEGER," + // 21: available
-                "\"ITUNES_ID\" INTEGER);"); // 22: itunesId
+                "\"MASTER_DIFFICULTY\" INTEGER," + // 21: masterDifficulty
+                "\"MASTER_NOTES\" INTEGER," + // 22: masterNotes
+                "\"AVAILABLE\" INTEGER," + // 23: available
+                "\"ITUNES_ID\" INTEGER);"); // 24: itunesId
     }
 
     /** Drops the underlying database table. */
@@ -203,14 +207,24 @@ public class SongDao extends AbstractDao<Song, Long> {
             stmt.bindLong(21, expertNotes);
         }
  
+        Short masterDifficulty = entity.getMasterDifficulty();
+        if (masterDifficulty != null) {
+            stmt.bindLong(22, masterDifficulty);
+        }
+ 
+        Short masterNotes = entity.getMasterNotes();
+        if (masterNotes != null) {
+            stmt.bindLong(23, masterNotes);
+        }
+ 
         Boolean available = entity.getAvailable();
         if (available != null) {
-            stmt.bindLong(22, available ? 1L: 0L);
+            stmt.bindLong(24, available ? 1L: 0L);
         }
  
         Long itunesId = entity.getItunesId();
         if (itunesId != null) {
-            stmt.bindLong(23, itunesId);
+            stmt.bindLong(25, itunesId);
         }
     }
 
@@ -251,8 +265,10 @@ public class SongDao extends AbstractDao<Song, Long> {
             cursor.isNull(offset + 18) ? null : cursor.getShort(offset + 18), // expertDifficulty
             cursor.isNull(offset + 19) ? null : cursor.getShort(offset + 19), // expertRandomDifficulty
             cursor.isNull(offset + 20) ? null : cursor.getShort(offset + 20), // expertNotes
-            cursor.isNull(offset + 21) ? null : cursor.getShort(offset + 21) != 0, // available
-            cursor.isNull(offset + 22) ? null : cursor.getLong(offset + 22) // itunesId
+            cursor.isNull(offset + 21) ? null : cursor.getShort(offset + 21), // masterDifficulty
+            cursor.isNull(offset + 22) ? null : cursor.getShort(offset + 22), // masterNotes
+            cursor.isNull(offset + 23) ? null : cursor.getShort(offset + 23) != 0, // available
+            cursor.isNull(offset + 24) ? null : cursor.getLong(offset + 24) // itunesId
         );
         return entity;
     }
@@ -281,8 +297,10 @@ public class SongDao extends AbstractDao<Song, Long> {
         entity.setExpertDifficulty(cursor.isNull(offset + 18) ? null : cursor.getShort(offset + 18));
         entity.setExpertRandomDifficulty(cursor.isNull(offset + 19) ? null : cursor.getShort(offset + 19));
         entity.setExpertNotes(cursor.isNull(offset + 20) ? null : cursor.getShort(offset + 20));
-        entity.setAvailable(cursor.isNull(offset + 21) ? null : cursor.getShort(offset + 21) != 0);
-        entity.setItunesId(cursor.isNull(offset + 22) ? null : cursor.getLong(offset + 22));
+        entity.setMasterDifficulty(cursor.isNull(offset + 21) ? null : cursor.getShort(offset + 21));
+        entity.setMasterNotes(cursor.isNull(offset + 22) ? null : cursor.getShort(offset + 22));
+        entity.setAvailable(cursor.isNull(offset + 23) ? null : cursor.getShort(offset + 23) != 0);
+        entity.setItunesId(cursor.isNull(offset + 24) ? null : cursor.getLong(offset + 24));
      }
     
     /** @inheritdoc */

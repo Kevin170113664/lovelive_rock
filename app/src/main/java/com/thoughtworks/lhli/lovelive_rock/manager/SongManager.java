@@ -9,6 +9,7 @@ import com.thoughtworks.lhli.lovelive_rock.model.SongModel;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -83,7 +84,9 @@ public class SongManager {
     }
 
     private void cacheOnePageSongs() {
-        for (SongModel songModel : songModelList) {
+        List<SongModel> cloneSongModelList = new ArrayList<>();
+        cloneSongModelList.addAll(songModelList);
+        for (SongModel songModel : cloneSongModelList) {
             SongModel queriedSongModel = databaseManager.querySongByName(songModel.getName());
             if (queriedSongModel == null) {
                 databaseManager.cacheSong(songModel);

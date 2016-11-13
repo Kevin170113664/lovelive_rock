@@ -67,9 +67,14 @@ public class SongDetailActivity extends BaseActivity {
         initRandomSeekBar();
     }
 
+    @OnClick(R.id.master)
+    protected void songMasterButtonEvent() {
+        initSeekBar(songModel.getMasterDifficulty(), songModel.getMasterNotes());
+    }
+
     private SongModel songModel;
-    private final short SONG_MAX_DIFFICULTY = 12;
-    private final short SONG_MAX_NOTES = 700;
+    private final short SONG_MAX_DIFFICULTY = 13;
+    private final short SONG_MAX_NOTES = 900;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,10 +89,10 @@ public class SongDetailActivity extends BaseActivity {
         setSongImage();
         setSongSummary();
 
-        if (LoveLiveApp.getValidShort(songModel.getExpertDifficulty()) != 0) {
-            songExpertButtonEvent();
+        if (LoveLiveApp.getValidShort(songModel.getMasterDifficulty()) != 0) {
+            songMasterButtonEvent();
         } else {
-            songHardButtonEvent();
+            songExpertButtonEvent();
         }
     }
 
@@ -151,9 +156,9 @@ public class SongDetailActivity extends BaseActivity {
         }
     }
 
-    private void initSeekBar(Short normalDifficulty, Short normalNotes) {
-        initSingleSeekBar(difficultySeekBar, normalDifficulty, SONG_MAX_DIFFICULTY);
-        initSingleSeekBar(notesSeekBar, normalNotes, SONG_MAX_NOTES);
+    private void initSeekBar(Short difficulty, Short notes) {
+        initSingleSeekBar(difficultySeekBar, difficulty, SONG_MAX_DIFFICULTY);
+        initSingleSeekBar(notesSeekBar, notes, SONG_MAX_NOTES);
         randomDifficultySeekBar.setVisibility(View.GONE);
     }
 }

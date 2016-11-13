@@ -177,6 +177,8 @@ public class LoveliveDaoGenerator {
         Song.addShortProperty("expertDifficulty");
         Song.addShortProperty("expertRandomDifficulty");
         Song.addShortProperty("expertNotes");
+        Song.addShortProperty("masterDifficulty");
+        Song.addShortProperty("masterNotes");
         Song.addBooleanProperty("available");
         Song.addLongProperty("itunesId");
         Song.implementsSerializable();

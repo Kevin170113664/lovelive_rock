@@ -141,6 +141,8 @@ public class ModelMapper {
         song.setExpertDifficulty(songModel.getExpertDifficulty());
         song.setExpertRandomDifficulty(songModel.getExpertRandomDifficulty());
         song.setExpertNotes(songModel.getExpertNotes());
+        song.setMasterDifficulty(songModel.getMasterDifficulty());
+        song.setMasterNotes(songModel.getMasterNotes());
         song.setAvailable(songModel.getAvailable());
         song.setItunesId(songModel.getItunesId());
 
@@ -170,6 +172,8 @@ public class ModelMapper {
         songModel.setExpertDifficulty(song.getExpertDifficulty());
         songModel.setExpertRandomDifficulty(song.getExpertRandomDifficulty());
         songModel.setExpertNotes(song.getExpertNotes());
+        songModel.setMasterDifficulty(song.getMasterDifficulty());
+        songModel.setMasterNotes(song.getMasterNotes());
         songModel.setAvailable(song.getAvailable());
         songModel.setItunesId(song.getItunesId());
 
