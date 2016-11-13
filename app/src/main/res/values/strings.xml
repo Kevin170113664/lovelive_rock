@@ -30,6 +30,7 @@
     <string name="card_release_date_default_text">Unknown release date</string>
     <string name="card_center_skill_default_text">Unknown center skill</string>
     <string name="card_center_skill_detail_default_text">Unknown center skill detail</string>
+    <string name="card_side_center_skill_default_text">Unknown side center skill</string>
     <string name="card_skill_name_default_text">Unknown skill name</string>
     <string name="card_skill_detail_default_text">Unknown skill detail</string>
     <string name="card_collection">Collection:</string>

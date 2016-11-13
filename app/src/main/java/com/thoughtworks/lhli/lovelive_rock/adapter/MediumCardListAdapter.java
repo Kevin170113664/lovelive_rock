@@ -9,13 +9,20 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 import com.thoughtworks.lhli.lovelive_rock.LoveLiveApp;
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.activity.FullScreenCardActivity;
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
+import com.thoughtworks.lhli.lovelive_rock.model.CardSideCenterSkill;
+import com.thoughtworks.lhli.lovelive_rock.util.Util;
 
+import java.io.InputStream;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -24,6 +31,7 @@ public class MediumCardListAdapter extends BaseAdapter {
     private Context context;
     private List<CardModel> cardModelList;
     private boolean isPromo;
+    private String sideCenter;
 
     public MediumCardListAdapter(Context context, List<CardModel> cardModelList) {
         this.context = context;
@@ -65,9 +73,34 @@ public class MediumCardListAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
+        setURsSideCenter(position);
         setItemView(position, viewHolder);
 
         return convertView;
+    }
+
+    private void setURsSideCenter(int position) {
+        try {
+            InputStream inputStream = LoveLiveApp.getInstance().getAssets().open("ur_side_center_skill.json");
+            int size = inputStream.available();
+            byte[] buffer = new byte[size];
+            inputStream.read(buffer);
+            inputStream.close();
+
+            Type collectionType = new TypeToken<Collection<CardSideCenterSkill>>(){}.getType();
+            Collection<CardSideCenterSkill> cardSideCenterSkills = new Gson()
+                    .fromJson(new String(buffer, "UTF-8"), collectionType);
+
+            for(CardSideCenterSkill c : cardSideCenterSkills) {
+                if (c.getId().equals(Integer.parseInt(cardModelList.get(position).getCardId()))
+                        && Util.isStringValid(c.getSkill())) {
+                    sideCenter = c.getSkill();
+                    break;
+                }
+            }
+        } catch (Exception ex) {
+            System.out.print("read side center skill json failed.");
+        }
     }
 
     private void setItemView(int position, ViewHolder viewHolder) {
@@ -102,6 +135,12 @@ public class MediumCardListAdapter extends BaseAdapter {
         setTextView(viewHolder.mediumCardCenterSkillDetail, cardModelList.get(position).getJapaneseCenterSkillDetails());
         setTextView(viewHolder.mediumCardSkill, cardModelList.get(position).getJapaneseSkill());
 
+        if (Util.isStringValid(sideCenter)) {
+            setTextView(viewHolder.mediumCardSideCenterSkill, sideCenter);
+        } else {
+            viewHolder.mediumCardSideCenterSkill.setVisibility(View.GONE);
+        }
+
         if (isPromo || isJapaneseSkillDetailEmpty(position)) {
             setTextView(viewHolder.mediumCardSkillDetail, cardModelList.get(position).getSkillDetails());
         } else {
@@ -113,7 +152,7 @@ public class MediumCardListAdapter extends BaseAdapter {
         return cardModelList.get(position).getJapaneseSkillDetails() == null || cardModelList.get(position).getJapaneseSkillDetails().equals("");
     }
 
-    public static void setTextView(TextView textView, String value) {
+    static void setTextView(TextView textView, String value) {
         if (value != null && !value.equals("")) {
             textView.setText(value);
         } else {
@@ -121,7 +160,7 @@ public class MediumCardListAdapter extends BaseAdapter {
         }
     }
 
-    public static void setSkillType(TextView textView, String value) {
+    static void setSkillType(TextView textView, String value) {
         if (textView == null) {
             return;
         }
@@ -251,6 +290,7 @@ public class MediumCardListAdapter extends BaseAdapter {
         viewHolder.mediumCardReleaseDate = (TextView) convertView.findViewById(R.id.medium_card_release_date);
         viewHolder.mediumCardCenterSkill = (TextView) convertView.findViewById(R.id.medium_card_center_skill);
         viewHolder.mediumCardCenterSkillDetail = (TextView) convertView.findViewById(R.id.medium_card_center_skill_detail);
+        viewHolder.mediumCardSideCenterSkill = (TextView) convertView.findViewById(R.id.medium_card_side_center_skill);
         viewHolder.mediumCardSkill = (TextView) convertView.findViewById(R.id.medium_card_skill);
         viewHolder.mediumCardSkillDetail = (TextView) convertView.findViewById(R.id.medium_card_skill_detail);
     }
@@ -273,6 +313,7 @@ public class MediumCardListAdapter extends BaseAdapter {
         TextView mediumCardReleaseDate;
         TextView mediumCardCenterSkill;
         TextView mediumCardCenterSkillDetail;
+        TextView mediumCardSideCenterSkill;
         TextView mediumCardSkill;
         TextView mediumCardSkillDetail;
     }

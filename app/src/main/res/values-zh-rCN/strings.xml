@@ -26,6 +26,7 @@
     <string name="card_release_date_default_text">出现日期未知</string>
     <string name="card_center_skill_default_text">主唱技能未知</string>
     <string name="card_center_skill_detail_default_text">主唱技能详情未知</string>
+    <string name="card_side_center_skill_default_text">副主唱技能未知</string>
     <string name="card_skill_name_default_text">技能名称未知</string>
     <string name="card_skill_detail_default_text">技能详情未知</string>
 

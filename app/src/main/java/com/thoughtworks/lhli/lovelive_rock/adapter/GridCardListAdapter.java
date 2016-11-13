@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 import com.thoughtworks.lhli.lovelive_rock.R;
 import com.thoughtworks.lhli.lovelive_rock.model.CardModel;
+import com.thoughtworks.lhli.lovelive_rock.util.Util;
 
 import java.util.List;
 
@@ -69,11 +70,7 @@ public class GridCardListAdapter extends BaseAdapter {
     }
 
     private boolean shouldShowNonIdolizedImage(int position) {
-        return isStringValid(cardModelList.get(position).getRoundCardImage()) && !isIdolizedFace &&
+        return Util.isStringValid(cardModelList.get(position).getRoundCardImage()) && !isIdolizedFace &&
                 !cardModelList.get(position).isPromo() && !cardModelList.get(position).isSpecial();
-    }
-
-    private Boolean isStringValid(String value) {
-        return value != null && !value.equals("");
     }
 }

@@ -1,0 +1,477 @@
+[
+  {
+    "id": 64,
+    "skill_id": 2,
+    "skill": "μ'sのメンバーはさらにピュアPが3%UPする"
+  },
+  {
+    "id": 66,
+    "skill_id": 1,
+    "skill": "μ'sのメンバーはさらにスマイルPが3%UPする"
+  },
+  {
+    "id": 73,
+    "skill_id": 3,
+    "skill": "μ'sのメンバーはさらにクールPが3%UPする"
+  },
+  {
+    "id": 79,
+    "skill_id": 1,
+    "skill": "μ'sのメンバーはさらにスマイルPが3%UPする"
+  },
+  {
+    "id": 88,
+    "skill_id": 2,
+    "skill": "μ'sのメンバーはさらにピュアPが3%UPする"
+  },
+  {
+    "id": 94,
+    "skill_id": 3,
+    "skill": "μ'sのメンバーはさらにクールPが3%UPする"
+  },
+  {
+    "id": 101,
+    "skill_id": 2,
+    "skill": "μ'sのメンバーはさらにピュアPが3%UPする"
+  },
+  {
+    "id": 105,
+    "skill_id": 1,
+    "skill": "μ'sのメンバーはさらにスマイルPが3%UPする"
+  },
+  {
+    "id": 126,
+    "skill_id": 3,
+    "skill": "μ'sのメンバーはさらにクールPが3%UPする"
+  },
+  {
+    "id": 127,
+    "skill_id": 2,
+    "skill": "μ'sのメンバーはさらにピュアPが3%UPする"
+  },
+  {
+    "id": 134,
+    "skill_id": 1,
+    "skill": "μ'sのメンバーはさらにスマイルPが3%UPする"
+  },
+  {
+    "id": 145,
+    "skill_id": 1,
+    "skill": "μ'sのメンバーはさらにスマイルPが3%UPする"
+  },
+  {
+    "id": 155,
+    "skill_id": 3,
+    "skill": "μ'sのメンバーはさらにクールPが3%UPする"
+  },
+  {
+    "id": 165,
+    "skill_id": 2,
+    "skill": "μ'sのメンバーはさらにピュアPが3%UPする"
+  },
+  {
+    "id": 172,
+    "skill_id": 3,
+    "skill": "μ'sのメンバーはさらにクールPが3%UPする"
+  },
+  {
+    "id": 180,
+    "skill_id": 3,
+    "skill": "μ'sのメンバーはさらにクールPが3%UPする"
+  },
+  {
+    "id": 187,
+    "skill_id": 1,
+    "skill": "μ'sのメンバーはさらにスマイルPが3%UPする"
+  },
+  {
+    "id": 196,
+    "skill_id": 2,
+    "skill": "μ'sのメンバーはさらにピュアPが3%UPする"
+  },
+  {
+    "id": 203,
+    "skill_id": 15,
+    "skill": "3年生のメンバーはさらにクールPが6%UPする"
+  },
+  {
+    "id": 214,
+    "skill_id": 11,
+    "skill": "2年生のメンバーはさらにピュアPが6%UPする"
+  },
+  {
+    "id": 222,
+    "skill_id": 12,
+    "skill": "2年生のメンバーはさらにクールPが6%UPする"
+  },
+  {
+    "id": 250,
+    "skill_id": 15,
+    "skill": "3年生のメンバーはさらにクールPが6%UPする"
+  },
+  {
+    "id": 257,
+    "skill_id": 8,
+    "skill": "1年生のメンバーはさらにピュアPが6%UPする"
+  },
+  {
+    "id": 265,
+    "skill_id": 16,
+    "skill": "Printempsのメンバーはさらにスマイルが6%UPする"
+  },
+  {
+    "id": 272,
+    "skill_id": 20,
+    "skill": "lily whiteのメンバーはさらにピュアが6%UPする"
+  },
+  {
+    "id": 280,
+    "skill_id": 13,
+    "skill": "3年生のメンバーはさらにスマイルPが6%UPする"
+  },
+  {
+    "id": 296,
+    "skill_id": 12,
+    "skill": "2年生のメンバーはさらにクールPが6%UPする"
+  },
+  {
+    "id": 315,
+    "skill_id": 16,
+    "skill": "Printempsのメンバーはさらにスマイルが6%UPする"
+  },
+  {
+    "id": 322,
+    "skill_id": 8,
+    "skill": "1年生のメンバーはさらにピュアPが6%UPする"
+  },
+  {
+    "id": 330,
+    "skill_id": 15,
+    "skill": "3年生のメンバーはさらにクールPが6%UPする"
+  },
+  {
+    "id": 346,
+    "skill_id": 10,
+    "skill": "2年生のメンバーはさらにスマイルPが6%UPする"
+  },
+  {
+    "id": 358,
+    "skill_id": 9,
+    "skill": "1年生のメンバーはさらにクールPが6%UPする"
+  },
+  {
+    "id": 367,
+    "skill_id": 14,
+    "skill": "3年生のメンバーはさらにピュアPが6%UPする"
+  },
+  {
+    "id": 378,
+    "skill_id": 11,
+    "skill": "2年生のメンバーはさらにピュアPが6%UPする"
+  },
+  {
+    "id": 397,
+    "skill_id": 13,
+    "skill": "3年生のメンバーはさらにスマイルPが6%UPする"
+  },
+  {
+    "id": 408,
+    "skill_id": 7,
+    "skill": "1年生のメンバーはさらにスマイルPが6%UPする"
+  },
+  {
+    "id": 415,
+    "skill_id": 2,
+    "skill": "μ'sのメンバーはさらにピュアPが3%UPする"
+  },
+  {
+    "id": 426,
+    "skill_id": 1,
+    "skill": "μ'sのメンバーはさらにスマイルPが3%UPする"
+  },
+  {
+    "id": 442,
+    "skill_id": 3,
+    "skill": "μ'sのメンバーはさらにクールPが3%UPする"
+  },
+  {
+    "id": 456,
+    "skill_id": 2,
+    "skill": "μ'sのメンバーはさらにピュアPが3%UPする"
+  },
+  {
+    "id": 464,
+    "skill_id": 9,
+    "skill": "1年生のメンバーはさらにクールPが6%UPする"
+  },
+  {
+    "id": 476,
+    "skill_id": 1,
+    "skill": "μ'sのメンバーはさらにスマイルPが3%UPする"
+  },
+  {
+    "id": 483,
+    "skill_id": 11,
+    "skill": "2年生のメンバーはさらにピュアPが6%UPする"
+  },
+  {
+    "id": 507,
+    "skill_id": 1,
+    "skill": "μ'sのメンバーはさらにスマイルPが3%UPする"
+  },
+  {
+    "id": 514,
+    "skill_id": 3,
+    "skill": "μ'sのメンバーはさらにクールPが3%UPする"
+  },
+  {
+    "id": 531,
+    "skill_id": 19,
+    "skill": "lily whiteのメンバーはさらにスマイルが6%UPする"
+  },
+  {
+    "id": 538,
+    "skill_id": 2,
+    "skill": "μ'sのメンバーはさらにピュアPが3%UPする"
+  },
+  {
+    "id": 549,
+    "skill_id": 10,
+    "skill": "2年生のメンバーはさらにスマイルPが6%UPする"
+  },
+  {
+    "id": 556,
+    "skill_id": 9,
+    "skill": "1年生のメンバーはさらにクールPが6%UPする"
+  },
+  {
+    "id": 565,
+    "skill_id": 12,
+    "skill": "2年生のメンバーはさらにクールPが6%UPする"
+  },
+  {
+    "id": 581,
+    "skill_id": 23,
+    "skill": "BiBiのメンバーはさらにピュアが6%UPする"
+  },
+  {
+    "id": 590,
+    "skill_id": 14,
+    "skill": "3年生のメンバーはさらにピュアPが6%UPする"
+  },
+  {
+    "id": 600,
+    "skill_id": 3,
+    "skill": "μ'sのメンバーはさらにクールPが3%UPする"
+  },
+  {
+    "id": 608,
+    "skill_id": 7,
+    "skill": "1年生のメンバーはさらにスマイルPが6%UPする"
+  },
+  {
+    "id": 634,
+    "skill_id": 17,
+    "skill": "Printempsのメンバーはさらにピュアが6%UPする"
+  },
+  {
+    "id": 643,
+    "skill_id": 21,
+    "skill": "lily whiteのメンバーはさらにクールが6%UPする"
+  },
+  {
+    "id": 650,
+    "skill_id": 20,
+    "skill": "lily whiteのメンバーはさらにピュアが6%UPする"
+  },
+  {
+    "id": 659,
+    "skill_id": 24,
+    "skill": "BiBiのメンバーはさらにクールが6%UPする"
+  },
+  {
+    "id": 666,
+    "skill_id": 19,
+    "skill": "lily whiteのメンバーはさらにスマイルが6%UPする"
+  },
+  {
+    "id": 675,
+    "skill_id": 17,
+    "skill": "Printempsのメンバーはさらにピュアが6%UPする"
+  },
+  {
+    "id": 692,
+    "skill_id": 22,
+    "skill": "BiBiのメンバーはさらにスマイルが6%UPする"
+  },
+  {
+    "id": 701,
+    "skill_id": 24,
+    "skill": "BiBiのメンバーはさらにクールが6%UPする"
+  },
+  {
+    "id": 708,
+    "skill_id": 16,
+    "skill": "Printempsのメンバーはさらにスマイルが6%UPする"
+  },
+  {
+    "id": 726,
+    "skill_id": 10,
+    "skill": "2年生のメンバーはさらにスマイルPが6%UPする"
+  },
+  {
+    "id": 733,
+    "skill_id": 21,
+    "skill": "lily whiteのメンバーはさらにクールが6%UPする"
+  },
+  {
+    "id": 744,
+    "skill_id": 22,
+    "skill": "BiBiのメンバーはさらにスマイルが6%UPする"
+  },
+  {
+    "id": 761,
+    "skill_id": 18,
+    "skill": "Printempsのメンバーはさらにクールが6%UPする"
+  },
+  {
+    "id": 772,
+    "skill_id": 23,
+    "skill": "BiBiのメンバーはさらにピュアが6%UPする"
+  },
+  {
+    "id": 782,
+    "skill_id": 19,
+    "skill": "lily whiteのメンバーはさらにスマイルが6%UPする"
+  },
+  {
+    "id": 799,
+    "skill_id": 23,
+    "skill": "BiBiのメンバーはさらにピュアが6%UPする"
+  },
+  {
+    "id": 815,
+    "skill_id": 21,
+    "skill": "lily whiteのメンバーはさらにクールが6%UPする"
+  },
+  {
+    "id": 833,
+    "skill_id": 17,
+    "skill": "Printempsのメンバーはさらにピュアが6%UPする"
+  },
+  {
+    "id": 843,
+    "skill_id": 7,
+    "skill": "1年生のメンバーはさらにスマイルPが6%UPする"
+  },
+  {
+    "id": 855,
+    "skill_id": 22,
+    "skill": "BiBiのメンバーはさらにスマイルが6%UPする"
+  },
+  {
+    "id": 862,
+    "skill_id": 14,
+    "skill": "3年生のメンバーはさらにピュアPが6%UPする"
+  },
+  {
+    "id": 871,
+    "skill_id": 18,
+    "skill": "Printempsのメンバーはさらにクールが6%UPする"
+  },
+  {
+    "id": 881,
+    "skill_id": 8,
+    "skill": "1年生のメンバーはさらにピュアPが6%UPする"
+  },
+  {
+    "id": 890,
+    "skill_id": 13,
+    "skill": "3年生のメンバーはさらにスマイルPが6%UPする"
+  },
+  {
+    "id": 900,
+    "skill_id": 18,
+    "skill": "Printempsのメンバーはさらにクールが6%UPする"
+  },
+  {
+    "id": 909,
+    "skill_id": 24,
+    "skill": "BiBiのメンバーはさらにクールが6%UPする"
+  },
+  {
+    "id": 955,
+    "skill_id": 4,
+    "skill": "AqoursのメンバーはさらにスマイルPが3%UPする"
+  },
+  {
+    "id": 956,
+    "skill_id": 6,
+    "skill": "AqoursのメンバーはさらにクールPが3%UPする"
+  },
+  {
+    "id": 957,
+    "skill_id": 5,
+    "skill": "AqoursのメンバーはさらにピュアPが3%UPする"
+  },
+  {
+    "id": 965,
+    "skill_id": 20,
+    "skill": "lily whiteのメンバーはさらにピュアが6%UPする"
+  },
+  {
+    "id": 974,
+    "skill_id": 4,
+    "skill": "AqoursのメンバーはさらにスマイルPが3%UPする"
+  },
+  {
+    "id": 980,
+    "skill_id": 10,
+    "skill": "2年生のメンバーはさらにスマイルPが6%UPする"
+  },
+  {
+    "id": 985,
+    "skill_id": 5,
+    "skill": "AqoursのメンバーはさらにピュアPが3%UPする"
+  },
+  {
+    "id": 997,
+    "skill_id": 4,
+    "skill": "AqoursのメンバーはさらにスマイルPが3%UPする"
+  },
+  {
+    "id": 1002,
+    "skill_id": 11,
+    "skill": "2年生のメンバーはさらにピュアPが6%UPする"
+  },
+  {
+    "id": 1007,
+    "skill_id": 5,
+    "skill": "AqoursのメンバーはさらにピュアPが3%UPする"
+  },
+  {
+    "id": 1018,
+    "skill_id": 6,
+    "skill": "AqoursのメンバーはさらにクールPが3%UPする"
+  },
+  {
+    "id": 1025,
+    "skill_id": 24,
+    "skill": "BiBiのメンバーはさらにクールが6%UPする"
+  },
+  {
+    "id": 1030,
+    "skill_id": 6,
+    "skill": "AqoursのメンバーはさらにクールPが3%UPする"
+  },
+  {
+    "id": 1041,
+    "skill_id": 25,
+    "skill": "Guilty Kissのメンバーはさらにスマイルが6%UPする"
+  },
+  {
+    "id": 1046,
+    "skill_id": 14,
+    "skill": "3年生のメンバーはさらにピュアPが6%UPする"
+  }
+]
