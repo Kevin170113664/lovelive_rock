@@ -21,6 +21,9 @@ import com.thoughtworks.lhli.lovelive_rock.task.LoadActivityData;
 import com.umeng.update.UmengUpdateAgent;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -28,6 +31,7 @@ import butterknife.OnClick;
 import de.greenrobot.event.EventBus;
 
 public class MainActivity extends BaseActivity {
+    private List<Integer> navResourceIds = new ArrayList<>();
 
     @Bind(R.id.toolbar)
     protected Toolbar toolbar;
@@ -38,6 +42,24 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.latest_event_image)
     protected ImageView latestEventImage;
 
+    @Bind(R.id.card_navigator)
+    protected ImageView cardNavigator;
+
+    @Bind(R.id.song_navigator)
+    protected ImageView songNavigator;
+
+    @Bind(R.id.cf_calculator_navigator)
+    protected ImageView cfCalculatorNavigator;
+
+    @Bind(R.id.sm_calculator_navigator)
+    protected ImageView smCalculatorNavigator;
+
+    @Bind(R.id.normal_calculator_navigator)
+    protected ImageView normalCalculatorNavigator;
+
+    @Bind(R.id.mf_calculator_navigator)
+    protected ImageView mfCalculatorNavigator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,8 +69,39 @@ public class MainActivity extends BaseActivity {
         setToolBar();
         setUpCountConfig();
         Glide.with(this).load(R.drawable.loading).asGif().into((ImageView) findViewById(R.id.loading_icon));
+        showCleanURsRandomly();
 
         new Thread(new LoadActivityData(this)).start();
+    }
+
+    private void showCleanURsRandomly() {
+        navResourceIds.add(R.mipmap.nav_rincleanur666);
+        navResourceIds.add(R.mipmap.nav_makicleanuridolized701);
+        navResourceIds.add(R.mipmap.nav_hanayocleanuridolized556);
+        navResourceIds.add(R.mipmap.nav_honokacleanuridolized980);
+        navResourceIds.add(R.mipmap.nav_kotoricleanuridolized1002);
+        navResourceIds.add(R.mipmap.nav_umicleanuridolized214);
+        navResourceIds.add(R.mipmap.nav_elicleanuridolized659);
+        navResourceIds.add(R.mipmap.nav_nicocleanuridolized909);
+        navResourceIds.add(R.mipmap.nav_nozomicleanuridolized367);
+        navResourceIds.add(R.mipmap.nav_hanamarucleanuridolized974);
+        navResourceIds.add(R.mipmap.nav_rubycleanuridolized985);
+        navResourceIds.add(R.mipmap.nav_yoshikocleanuridolized1018);
+        navResourceIds.add(R.mipmap.nav_chikacleanur955);
+        navResourceIds.add(R.mipmap.nav_rikocleanur1041);
+        navResourceIds.add(R.mipmap.nav_youcleanur957);
+        navResourceIds.add(R.mipmap.nav_diacleanuridolized1030);
+        navResourceIds.add(R.mipmap.nav_kanancleanur1007);
+        navResourceIds.add(R.mipmap.nav_maricleanur997);
+
+        Collections.shuffle(navResourceIds);
+
+        cardNavigator.setImageResource(navResourceIds.get(0));
+        songNavigator.setImageResource(navResourceIds.get(1));
+        cfCalculatorNavigator.setImageResource(navResourceIds.get(2));
+        smCalculatorNavigator.setImageResource(navResourceIds.get(3));
+        normalCalculatorNavigator.setImageResource(navResourceIds.get(4));
+        mfCalculatorNavigator.setImageResource(navResourceIds.get(5));
     }
 
     private void setUpCountConfig() {

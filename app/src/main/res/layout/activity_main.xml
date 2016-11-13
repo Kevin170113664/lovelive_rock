@@ -122,7 +122,7 @@
                     card_view:cardElevation="@dimen/card_view_default_elevation">
 
                     <ImageView
-                        android:id="@+id/clear_data_navigator"
+                        android:id="@+id/cf_calculator_navigator"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
