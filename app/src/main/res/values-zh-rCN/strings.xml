@@ -176,6 +176,12 @@
     </string-array>
     <string-array name="collection_array">
         <item>卡牌主题</item>
+        <item>チアリーダー</item>
+        <item>誕生石編</item>
+        <item>ハロウィーン編</item>
+        <item>浴衣編</item>
+        <item>プール編</item>
+        <item>水着編</item>
         <item>小悪魔編</item>
         <item>アイドル衣装編</item>
         <item>踊り子編</item>
@@ -187,7 +193,6 @@
         <item>舞踏会編</item>
         <item>動物編part2</item>
         <item>くのいち編</item>
-        <item>プール編</item>
         <item>マリン編</item>
         <item>手品師編</item>
         <item>サイバー編</item>
