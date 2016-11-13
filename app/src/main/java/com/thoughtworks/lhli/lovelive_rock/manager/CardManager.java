@@ -13,6 +13,7 @@ import com.thoughtworks.lhli.lovelive_rock.model.MultipleCards;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -77,7 +78,9 @@ public class CardManager {
     }
 
     private void cacheOnePageCards() {
-        for (CardModel cardModel : cardModelList) {
+        List<CardModel> cloneCardModelList = new ArrayList<>();
+        cloneCardModelList.addAll(cardModelList);
+        for (CardModel cardModel : cloneCardModelList) {
             CardModel queriedCardModel = databaseManager.queryCardById(cardModel.getCardId());
             if (queriedCardModel == null) {
                 databaseManager.cacheCard(cardModel);
