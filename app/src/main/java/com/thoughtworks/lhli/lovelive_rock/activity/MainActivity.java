@@ -120,6 +120,12 @@ public class MainActivity extends BaseActivity {
         startActivity(new Intent(MainActivity.this, CardActivity.class));
     }
 
+    @OnClick(R.id.cf_calculator_navigator)
+    public void cfCalculatorEvent() {
+        Toast.makeText(getApplicationContext(), R.string.coming_soon,
+                Toast.LENGTH_SHORT).show();
+    }
+
     @OnClick(R.id.mf_calculator_navigator)
     public void mfCalculatorEvent() {
         startActivity(new Intent(MainActivity.this, MedleyFestivalCalculatorActivity.class));
@@ -189,6 +195,10 @@ public class MainActivity extends BaseActivity {
                 return true;
             case R.id.action_event:
                 startActivity(new Intent(this, EventActivity.class));
+                return true;
+            case R.id.action_cf_calculator:
+                Toast.makeText(getApplicationContext(), R.string.coming_soon,
+                        Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.action_mf_calculator:
                 startActivity(new Intent(this, MedleyFestivalCalculatorActivity.class));

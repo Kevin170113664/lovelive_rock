@@ -3,6 +3,7 @@
     <string name="action_card">Card</string>
     <string name="action_song">Song</string>
     <string name="action_event">Event</string>
+    <string name="action_cf_calculator">CF Calculator</string>
     <string name="action_mf_calculator">MF Calculator</string>
     <string name="action_normal_calculator">Normal Calculator</string>
     <string name="action_sm_calculator">SM Calculator</string>
@@ -119,6 +120,7 @@
     <string name="pureAttribute">Pure</string>
     <string name="coolAttribute">Cool</string>
     <string name="clear_app_data_successfully">Clear App data successfully.</string>
+    <string name="coming_soon">Coming soon…</string>
 
     <string-array name="rarity_array">
         <item>Rarity</item>

@@ -4,6 +4,7 @@
     <string name="action_card">卡牌</string>
     <string name="action_song">歌曲</string>
     <string name="action_event">活动</string>
+    <string name="action_cf_calculator">CF计算器</string>
     <string name="action_mf_calculator">MF计算器</string>
     <string name="action_normal_calculator">传统计算器</string>
     <string name="action_sm_calculator">SM计算器</string>
@@ -105,6 +106,7 @@
     <string name="second_unit">秒</string>
     <string name="song_bpm">BPM</string>
     <string name="clear_app_data_successfully">清除应用数据成功</string>
+    <string name="coming_soon">还在开发中啦……</string>
 
     <string-array name="rarity_array">
         <item>稀有度</item>

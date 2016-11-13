@@ -18,6 +18,11 @@
         android:title="@string/action_event"
         app:showAsAction="never" />
     <item
+        android:id="@+id/action_cf_calculator"
+        android:orderInCategory="100"
+        android:title="@string/action_cf_calculator"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/action_mf_calculator"
         android:orderInCategory="100"
         android:title="@string/action_mf_calculator"
