@@ -68,107 +68,131 @@
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/card_navigator_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
                     android:layout_marginBottom="@dimen/card_view_default_margin"
                     android:layout_marginLeft="@dimen/card_view_default_margin"
-                    android:layout_marginRight="@dimen/card_view_default_margin"
+                    android:layout_weight=".33"
                     card_view:cardBackgroundColor="@color/colorOrange100"
                     card_view:cardCornerRadius="@dimen/card_view_default_corner_radius"
                     card_view:cardElevation="@dimen/card_view_default_elevation">
 
                     <ImageView
                         android:id="@+id/card_navigator"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:scaleType="fitCenter"
-                        android:src="@mipmap/card_navigator" />
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/nav_kotoricleanuridolized1002" />
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/song_navigator_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/card_navigator_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginBottom="@dimen/card_view_default_margin"
                     android:layout_marginLeft="@dimen/card_view_default_margin"
                     android:layout_marginRight="@dimen/card_view_default_margin"
+                    android:layout_weight=".33"
                     card_view:cardBackgroundColor="@color/colorOrange100"
                     card_view:cardCornerRadius="@dimen/card_view_default_corner_radius"
                     card_view:cardElevation="@dimen/card_view_default_elevation">
 
                     <ImageView
                         android:id="@+id/song_navigator"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:scaleType="fitCenter"
-                        android:src="@mipmap/song_navigator" />
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/nav_honokacleanuridolized980" />
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/mf_calculator_card_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/card_view_default_margin"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
                     android:layout_marginRight="@dimen/card_view_default_margin"
-                    android:layout_toRightOf="@id/card_navigator_view"
+                    android:layout_weight=".33"
                     card_view:cardBackgroundColor="@color/colorOrange100"
                     card_view:cardCornerRadius="@dimen/card_view_default_corner_radius"
                     card_view:cardElevation="@dimen/card_view_default_elevation">
 
                     <ImageView
-                        android:id="@+id/mf_calculator_navigator"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/clear_data_navigator"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@mipmap/mf_calculator_navigator" />
+                        android:src="@mipmap/nav_umicleanuridolized214" />
                 </android.support.v7.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
                 <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/sm_calculator_card_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/mf_calculator_card_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
                     android:layout_marginBottom="@dimen/card_view_default_margin"
-                    android:layout_marginRight="@dimen/card_view_default_margin"
-                    android:layout_toRightOf="@id/card_navigator_view"
+                    android:layout_marginLeft="@dimen/card_view_default_margin"
+                    android:layout_weight=".33"
                     card_view:cardBackgroundColor="@color/colorOrange100"
                     card_view:cardCornerRadius="@dimen/card_view_default_corner_radius"
                     card_view:cardElevation="@dimen/card_view_default_elevation">
 
                     <ImageView
                         android:id="@+id/sm_calculator_navigator"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@mipmap/sm_calculator_navigator" />
+                        android:src="@mipmap/nav_youcleanur957" />
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@id/song_navigator_view"
-                    android:layout_below="@id/sm_calculator_card_view"
+                    android:id="@+id/normal_calculator_card_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginLeft="@dimen/card_view_default_margin"
                     android:layout_marginRight="@dimen/card_view_default_margin"
-                    android:layout_toRightOf="@id/card_navigator_view"
+                    android:layout_weight=".33"
                     card_view:cardBackgroundColor="@color/colorOrange100"
                     card_view:cardCornerRadius="@dimen/card_view_default_corner_radius"
                     card_view:cardElevation="@dimen/card_view_default_elevation">
 
                     <ImageView
                         android:id="@+id/normal_calculator_navigator"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@mipmap/traditional_calculator_navigator" />
+                        android:src="@mipmap/nav_chikacleanur955" />
                 </android.support.v7.widget.CardView>
-            </RelativeLayout>
+
+                <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/mf_calculator_card_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/card_view_default_margin"
+                    android:layout_marginRight="@dimen/card_view_default_margin"
+                    android:layout_weight=".33"
+                    card_view:cardBackgroundColor="@color/colorOrange100"
+                    card_view:cardCornerRadius="@dimen/card_view_default_corner_radius"
+                    card_view:cardElevation="@dimen/card_view_default_elevation">
+
+                    <ImageView
+                        android:id="@+id/mf_calculator_navigator"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/nav_rikocleanur1041" />
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </android.support.design.widget.CoordinatorLayout>
