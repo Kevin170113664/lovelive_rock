@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LoveLive+</string>
+    <string name="action_card">卡牌</string>
+    <string name="action_song">歌曲</string>
+    <string name="action_event">活動</string>
+    <string name="action_cf_calculator">CF計算器</string>
+    <string name="action_mf_calculator">MF計算器</string>
+    <string name="action_normal_calculator">傳統計算器</string>
+    <string name="action_sm_calculator">SM計算器</string>
+    <string name="action_clear_data">清除應用數據</string>
+    <string name="song_label">歌曲</string>
+    <string name="filter_dialog_title">篩選</string>
+    <string name="song_detail_label">歌曲詳情</string>
+
+    <string name="toast_function_not_complete">對不起喲，這部分功能尚未完成</string>
+
+    <string name="card_layout_label">卡牌</string>
+    <string name="card_detail_layout_label">卡牌詳情</string>
+    <string name="card_full_screen_label">卡面</string>
+    <string name="event_layout_label">活動</string>
+    <string name="event_detail_label">活動詳情</string>
+
+    <string name="default_text">未知</string>
+    <string name="card_collection_default_text">無卡牌主題</string>
+    <string name="card_skill_default_text">未知</string>
+    <string name="card_release_date_default_text">出現日期未知</string>
+    <string name="card_center_skill_default_text">主唱技能未知</string>
+    <string name="card_center_skill_detail_default_text">主唱技能詳情未知</string>
+    <string name="card_side_center_skill_default_text">副主唱技能未知</string>
+    <string name="card_skill_name_default_text">技能名稱未知</string>
+    <string name="card_skill_detail_default_text">技能詳情未知</string>
+
+    <string name="skill_healer">回復</string>
+    <string name="skill_perfect_lock">判定</string>
+    <string name="skill_score_up">加分</string>
+    <string name="skill_total_yell">圖標回復</string>
+    <string name="skill_total_trick">圖標小判定</string>
+    <string name="skill_total_charm">圖標加分</string>
+    <string name="skill_timer_yell">時間回復</string>
+    <string name="skill_timer_trick">時間小判定</string>
+    <string name="skill_timer_charm">時間加分</string>
+    <string name="skill_rhythmical_yell">連擊回復</string>
+    <string name="skill_rhythmical_charm">連擊加分</string>
+    <string name="skill_perfect_yell">完美回復</string>
+    <string name="skill_perfect_charm">完美加分</string>
+
+    <string name="small_card_collection_title">卡牌主題：</string>
+    <string name="small_card_max_stat_title">最高屬性：</string>
+    <string name="small_card_skill_type_title">技能類型：</string>
+    <string name="first_download_tips">第一次下載所有數據大約需要3~5分鐘。</string>
+    <string name="download_song_tips">第一次下載歌曲數據大約需要1分鐘。</string>
+    <string name="medley_festival_calculator_label">MF計算器</string>
+    <string name="normal_calculator_label">傳統計算器</string>
+    <string name="sm_calculator_label">SM計算器</string>
+    <string name="objective_points">目標點數</string>
+    <string name="current_points">當前點數</string>
+    <string name="current_rank">當前等級</string>
+    <string name="song_amount">曲目數</string>
+    <string name="difficulty">難度</string>
+    <string name="advanced_options">高級選項</string>
+    <string name="event_time">活動時間</string>
+    <string name="wasted_lp_every_day">每天浪費LP</string>
+    <string name="event_points_addition">活動點數加成</string>
+    <string name="experience_addition">活動經驗加成</string>
+    <string name="song_rank">歌曲等級</string>
+    <string name="song_rank_addition_ratio">加成倍率：</string>
+    <string name="combo_rank">連擊等級</string>
+    <string name="combo_rank_addition">加成倍率：</string>
+    <string name="current_lp">當前LP</string>
+    <string name="current_experience">當前經驗</string>
+    <string name="event_end_time">活動結束時間</string>
+    <string name="event_last_time">活動剩餘時間</string>
+    <string name="day_unit">日</string>
+    <string name="hour_unit">時</string>
+    <string name="minute_unit">分</string>
+    <string name="calculate">開始計算</string>
+    <string name="necessary_loveca">需要心數</string>
+    <string name="final_points">最終點數</string>
+    <string name="final_rank">最終等級</string>
+    <string name="final_experience">最終經驗</string>
+    <string name="final_lp">最終ＬＰ</string>
+    <string name="final_item">最終道具</string>
+    <string name="play_frequency">遊戲次數</string>
+    <string name="event_play_frequency">活動次數</string>
+    <string name="play_time">遊戲時間</string>
+    <string name="play_time_ratio">時間佔比</string>
+    <string name="result_report">結果報告</string>
+    <string name="consume_lp">消耗LP:</string>
+    <string name="normal_difficulty">普通難度</string>
+    <string name="event_song_rank">活動等級</string>
+    <string name="event_song_combo">活動連擊</string>
+    <string name="once_points">單次PT：</string>
+    <string name="event_song_difficulty">活動難度</string>
+    <string name="current_item">當前道具</string>
+    <string name="play_rank">單詞排名</string>
+    <string name="average">平均</string>
+    <string name="first_place">第一名</string>
+    <string name="second_place">第二名</string>
+    <string name="third_place">第三名</string>
+    <string name="forth_place">第四名</string>
+    <string name="feed_guide">餵養指南</string>
+    <string name="save_image_success_msg">圖片已經保存到您的手機中</string>
+    <string name="daily_rotation">日替</string>
+    <string name="song_duration">時長</string>
+    <string name="second_unit">秒</string>
+    <string name="song_bpm">BPM</string>
+    <string name="clear_app_data_successfully">清除應用數據成功</string>
+    <string name="coming_soon">還在開發中啦……</string>
+
+    <string-array name="rarity_array">
+        <item>稀有度</item>
+        <item>N</item>
+        <item>R</item>
+        <item>SR</item>
+        <item>SSR</item>
+        <item>UR</item>
+    </string-array>
+    <string-array name="attribute_array">
+        <item>屬性</item>
+        <item>Smile</item>
+        <item>Pure</item>
+        <item>Cool</item>
+    </string-array>
+    <string-array name="grade_array">
+        <item>年級</item>
+        <item>一年級</item>
+        <item>二年級</item>
+        <item>三年級</item>
+    </string-array>
+    <string-array name="idol_array">
+        <item>角色</item>
+        <item>高坂穂乃果</item>
+        <item>南ことり</item>
+        <item>園田海未</item>
+        <item>小泉花陽</item>
+        <item>西木野真姫</item>
+        <item>星空凛</item>
+        <item>東條希</item>
+        <item>矢澤にこ</item>
+        <item>絢瀬絵里</item>
+        <item>津島善子</item>
+        <item>国木田花丸</item>
+        <item>黒澤ルビィ</item>
+        <item>高海千歌</item>
+        <item>桜内梨子</item>
+        <item>渡辺曜</item>
+        <item>小原鞠莉</item>
+        <item>黒澤ダイヤ</item>
+        <item>松浦果南</item>
+    </string-array>
+    <string-array name="sub_team_array">
+        <item>小組</item>
+        <item>Printemps</item>
+        <item>BiBi</item>
+        <item>Lily White</item>
+        <item>CYaRon！</item>
+        <item>AZALEA</item>
+        <item>Guilty Kiss</item>
+    </string-array>
+    <string-array name="skill_type_array">
+        <item>技能類型</item>
+        <item>加分</item>
+        <item>判定</item>
+        <item>回復</item>
+    </string-array>
+    <string-array name="is_event_card_or_not">
+        <item>活動卡</item>
+        <item>是</item>
+        <item>否</item>
+    </string-array>
+    <string-array name="is_promo_or_not">
+        <item>特典卡</item>
+        <item>是</item>
+        <item>否</item>
+    </string-array>
+    <string-array name="collection_array">
+        <item>卡牌主題</item>
+        <item>チアリーダー</item>
+        <item>誕生石編</item>
+        <item>ハロウィーン編</item>
+        <item>浴衣編</item>
+        <item>プール編</item>
+        <item>水着編</item>
+        <item>小悪魔編</item>
+        <item>アイドル衣装編</item>
+        <item>踊り子編</item>
+        <item>ベースボール編</item>
+        <item>大正ロマン編</item>
+        <item>妖精の国編</item>
+        <item>サーカス編</item>
+        <item>クリスマス編</item>
+        <item>舞踏会編</item>
+        <item>動物編part2</item>
+        <item>くのいち編</item>
+        <item>マリン編</item>
+        <item>手品師編</item>
+        <item>サイバー編</item>
+        <item>職業編Part2</item>
+        <item>ホワイトデー編</item>
+        <item>バレンタイン編</item>
+        <item>七福神編</item>
+        <item>雪山編</item>
+        <item>星座編</item>
+        <item>ハロウィン編</item>
+        <item>カフェメイド編</item>
+        <item>チャイナドレス編</item>
+        <item>7月編</item>
+        <item>6月編</item>
+        <item>5月編</item>
+        <item>4月編</item>
+        <item>3月編</item>
+        <item>2月編</item>
+        <item>1月編</item>
+        <item>12月編</item>
+        <item>11月編</item>
+        <item>10月編</item>
+        <item>9月編</item>
+        <item>8月編</item>
+        <item>動物編</item>
+        <item>職業編</item>
+        <item>初期</item>
+    </string-array>
+    <string-array name="play_rank">
+        <item>平均</item>
+        <item>第一名</item>
+        <item>第二名</item>
+        <item>第三名</item>
+        <item>第四名</item>
+    </string-array>
+</resources>
